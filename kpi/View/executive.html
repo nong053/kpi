@@ -1,0 +1,545 @@
+<meta charset="utf-8">
+<!-- 
+<script src="../kendoCommercial/js/jquery.min.js"></script>
+-->
+
+ <style>
+ 	.tabMenu{
+ 	margin-left:0px;
+ 	background-color: #F5F5F5;
+    border-bottom: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+ 	padding:5px;
+ 	color:black;
+ 	margin-bottom: 5px;
+ 	
+ 	}
+ </style>
+
+
+
+
+
+ <script>
+ /*
+  $(document).ready(function(){
+	
+	  Morris.Bar({
+		  element: 'barOperations',
+		  data: [
+		  {x: '2011 Q1', y: 3, z: 2, a: 3},
+		  {x: '2011 Q2', y: 2, z: null, a: 1},
+		  {x: '2011 Q3', y: 0, z: 2, a: 4},
+		  {x: '2011 Q4', y: 2, z: 4, a: 3}
+		  ],
+		  xkey: 'x',
+		  ykeys: ['y', 'z', 'a'],
+		  labels: ['Y', 'Z', 'A']
+		  }).on('click', function(i, row){
+		  console.log(i, row);
+		  });
+  });
+  */
+  </script>
+  
+<!-- morris script end-->
+<!-- 
+<div class="row">
+
+    	<div class="col-md-12 tabMenu ">
+    	
+    		<label>Year Budget</label>
+			<select id="paramYear">
+				<option>2013</option>
+				<option>2012</option>
+				<option>2011</option>
+			</select>
+			
+			
+			<label>Month</label>
+			<select id="paramMonth">
+				<option>Jan</option>
+				<option>Feb</option>
+				<option>Mar</option>
+			</select>
+			
+			<input type="submit" value="Submit" class="k-button">
+    	</div>
+
+ </div>
+    -->
+<div class="row marginBottom">
+	<div class="col-md-3 bgColorGreen">
+		<div class="boxStatus">
+			<div class="boxGraphTop">
+				<div id="donutStatus1"></div>
+			</div>
+			<div class="boxTextTop">
+			<span class="glyphicon glyphicon-barcode"></span><br>
+			boxText2
+			</div>
+			<div class="boxButtonTop">
+			<span class="glyphicon glyphicon-bell"></span><br>
+			boxButton2
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 bgColorBlue">
+		<div class="boxStatus">
+			<div class="boxGraphTop">
+				<div id="donutStatus2"></div>
+			</div>
+			<div class="boxTextTop">
+			<span class="glyphicon glyphicon-barcode"></span><br>
+			boxText2
+			</div>
+			<div class="boxButtonTop">
+			<span class="glyphicon glyphicon-bell"></span><br>
+			boxButton2
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 bgColorOrange">
+		<div class="boxStatus">
+			<div class="boxGraphTop">
+				<div id="donutStatus3"></div>
+			</div>
+			<div class="boxTextTop">
+			<span class="glyphicon glyphicon-barcode"></span><br>
+			boxText2
+			</div>
+			<div class="boxButtonTop">
+			<span class="glyphicon glyphicon-bell"></span><br>
+			boxButton2
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 bgColorRed">
+		<div class="boxStatus">
+			<div class="boxGraphTop">
+				<div id="donutStatus4"></div>
+			</div>
+			<div class="boxTextTop">
+			<span class="glyphicon glyphicon-barcode"></span><br>
+			boxText2
+			</div>
+			<div class="boxButtonTop">
+			<span class="glyphicon glyphicon-bell"></span><br>
+			boxButton2
+			</div>
+		</div>
+	</div>
+	<br style="clear:both">
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<!-- <h3 class="panel-title"><b>NSTDA BSC(ข้อมูล เม.ย. 2555)1</b></h3>-->
+		<div class="box-title-area">
+			<div class="box-title-l"><span class="glyphicon glyphicon-globe"></span>
+			NSTDA BSC(ข้อมูล เม.ย. 2555)</div>
+			<div class="box-title-r">
+				<div class="boxNav"><span class="glyphicon glyphicon-remove"></span></div>
+				<div class="boxNav"><span class="glyphicon glyphicon-resize-full"></span></div>
+				<div class="boxNav"><span class="glyphicon glyphicon-minus"></span></div>
+			</div>
+			<br style="clear:both">
+		</div>
+		
+		</div>
+		<div class="panel-body">
+			<table id="executiveTable" class="table table-condensed">
+	                <colgroup>
+	                    <col />
+	                    <col />
+	                    <col style="width:110px" />
+	                    <col style="width:120px" />
+	                    <col style="width:130px" />
+	                </colgroup>
+	                <thead>
+	                    <tr>
+	                        <th data-field="make">Car Make</th>
+	                        <th data-field="model">Car Model</th>
+	                        <th data-field="year">Year</th>
+	                        <th data-field="category">Category</th>
+	                        <th data-field="airconditioner">Air Conditioner</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr>
+	                        <td>Volvo</td>
+	                        <td>S60</td>
+	                        <td>2010</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallRed">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Audi</td>
+	                        <td>A4</td>
+	                        <td>2002</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallYellow">1</span>
+		                        <span class="badge pull-right ExBallGreen">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>BMW</td>
+	                        <td>535d</td>
+	                        <td>2006</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGreen">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>BMW</td>
+	                        <td>320d</td>
+	                        <td>2006</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallRed">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>VW</td>
+	                        <td>Passat</td>
+	                        <td>2007</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallRed">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Peugeot</td>
+	                        <td>407</td>
+	                        <td>2006</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallYellow">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Honda</td>
+	                        <td>Accord</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallYellow">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Alfa Romeo</td>
+	                        <td>159</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGreen">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Nissan</td>
+	                        <td>Almera</td>
+	                        <td>2001</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallYellow">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Mitsubishi</td>
+	                        <td>Lancer</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallYellow">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>Opel</td>
+	                        <td>Vectra</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallRed">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td>Opel</td>
+	                        <td>Vectra</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallRed">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td>Opel</td>
+	                        <td>Vectra</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallYellow">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+	                        </td>
+	                    </tr>
+	                     <tr>
+	                        <td>Opel</td>
+	                        <td>Vectra</td>
+	                        <td>2008</td>
+	                        <td>Saloon</td>
+	                        <td>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGray">1</span>
+		                        <span class="badge pull-right ExBallGreen">1</span>
+	                        </td>
+	                    </tr>
+	                   
+	                </tbody>
+	            </table>
+		</div>
+	</div>
+	
+	</div>
+	<div class="col-md-6">
+	
+	
+	<div class="row">
+			<div class="panel panel-default bgPanel">
+				<div class="panel-heading">
+				
+						<!-- <h3 class="panel-title"><b>งบประมาณ(ข้อมูล ณ วันที่ 1 มิ.ย.55)</b></h3> -->
+						
+						<div class="box-title-area">
+							<div class="box-title-l"><span class="glyphicon glyphicon-globe"></span>
+							งบประมาณ(ข้อมูล ณ วันที่ 1 มิ.ย.55)</div>
+							<div class="box-title-r">
+								<div class="boxNav"><span class="glyphicon glyphicon-remove"></span></div>
+								<div class="boxNav"><span class="glyphicon glyphicon-resize-full"></span></div>
+								<div class="boxNav"><span class="glyphicon glyphicon-minus"></span></div>
+							</div>
+							<br style="clear:both">
+						</div>
+						
+						</div>
+						<div class="panel-body">
+							<div class="col-md-6">
+					
+						<div class="row">
+							<div class="col-md-12">
+								<div id="gaugeOperations" class="boxGaugeBudget"></div>
+							</div>
+						</div>
+						<div class="row border-box">
+						
+							<div class="col-md-12">
+							<div class="bgBlueOpacity"><b>งบดำเนินการ</b></div>
+							<table class="table table-condensed">
+								<tr>
+									<td>Plan Q2</td>
+									<td>5000</td>
+								</tr>
+								<tr>
+									<td>Sum Revenue</td>
+									<td>15000</td>
+								</tr>
+							</table>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-12">
+								<div id="gaugeConstruction" class="boxGaugeBudget"></div>
+							</div>
+						</div>
+						<div class="row border-box">
+						
+							<div class="col-md-12">
+							<div class="bgBlueOpacity"><b>งบก่อสร้าง</b></div>
+							<table class="table table-condensed">
+								<tr>
+									<td>Plan Q2</td>
+									<td>5000</td>
+								</tr>
+								<tr>
+									<td>Sum Revenue</td>
+									<td>15000</td>
+								</tr>
+							</table>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-md-12 bgPanel">
+					<div id="barOperations"></div>
+				</div>
+				
+				
+			</div>
+		</div>
+		
+	</div>
+		
+		
+		
+		
+		
+		
+	</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default bgPanel">
+			<div class="panel-heading">
+				<!-- <h3 class="panel-title"><b>บุคลากร</b></h3>-->
+				<div class="box-title-area">
+					<div class="box-title-l"><span class="glyphicon glyphicon-globe"></span>
+					บุคลากร</div>
+					<div class="box-title-r">
+						<div class="boxNav"><span class="glyphicon glyphicon-remove"></span></div>
+						<div class="boxNav"><span class="glyphicon glyphicon-resize-full"></span></div>
+						<div class="boxNav"><span class="glyphicon glyphicon-minus"></span></div>
+					</div>
+					<br style="clear:both">
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="bgBlueOpacity"><b>จำนวนบุคลากรแยกตามพันธกิจ</b></div>
+						<div id="pieByObligation" class="boxGraph"></div>
+					</div>
+					<div class="col-md-6">
+					<div class="bgBlueOpacity"><b>สัดส่วนค่าใช้จ่ายบุคลากร</b></div>
+						<div id="pieByPositionGroup" class="boxGraph"></div>
+					</div>
+				</div>
+				<div class="row">
+				
+					<div class="col-md-6">
+						<div class="bgBlueOpacity">Test3</div>
+						<div id="lineEmpTurnOver" class="boxGraph"></div>
+					</div>
+					<div class="col-md-6">
+						<div class="bgBlueOpacity">Test4</div>
+						<div id="piePayment" class="boxGraph"></div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-md-6">
+	
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						<!-- <h3 class="panel-title"><b>รายได้(ข้อมูล ณ วันที่ 1 มิ.ย. 55)</b></h3>-->
+							<div class="box-title-area">
+								<div class="box-title-l"><span class="glyphicon glyphicon-globe"></span>
+								รายได้(ข้อมูล ณ วันที่ 1 มิ.ย. 55)</div>
+								<div class="box-title-r">
+									<div class="boxNav"><span class="glyphicon glyphicon-remove"></span></div>
+									<div class="boxNav"><span class="glyphicon glyphicon-resize-full"></span></div>
+									<div class="boxNav"><span class="glyphicon glyphicon-minus"></span></div>
+								</div>
+								<br style="clear:both">
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-6">
+								<div id="pieRevenue" class="boxGraph"></div>
+							</div>
+							<div class="col-md-5  border-box">
+								<div id="tableRevenue">
+									<div class="bgBlueOpacity"><b>รายได้เทียบแผนทั้งปี</b></div>
+									<table class="table table-condensed">
+										<tbody>
+											<tr>
+												<td>Revenue year</td>
+												<td>10000</td>
+											</tr>
+											<tr>
+												<td>Plan Q2</td>
+												<td>5000</td>
+											</tr>
+											<tr>
+												<td>Sum Revenue</td>
+												<td>15000</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+				<div class="row">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						<!--  <h3 class="panel-title"><b>รายได้แบ่งตามประเภท(ล้านบาท)</b></h3>-->
+							<div class="box-title-area">
+								<div class="box-title-l"><span class="glyphicon glyphicon-globe"></span>
+								ายได้แบ่งตามประเภท(ล้านบาท)</div>
+								<div class="box-title-r">
+									<div class="boxNav"><span class="glyphicon glyphicon-remove"></span></div>
+									<div class="boxNav"><span class="glyphicon glyphicon-resize-full"></span></div>
+									<div class="boxNav"><span class="glyphicon glyphicon-minus"></span></div>
+								</div>
+								<br style="clear:both">
+							</div>
+						</div>
+						<div class="panel-body">
+							<div id="barRevenueByType" class="boxGraph"></div>
+						</div>
+					</div>
+				
+					
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../Controller/executive.js"></script>

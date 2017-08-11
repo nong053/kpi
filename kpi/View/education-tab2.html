@@ -1,0 +1,135 @@
+<script>
+$(document).ready(function(){
+	  var s1 = [2, 6, 7, 10];
+	  var s2 = [7, 5, 3, 4];
+	  var s3 = [14, 9, 3, 8];
+	  plot3 = $.jqplot('eStackBar1', [s1, s2, s3], {
+	    // Tell the plot to stack the bars.
+	    stackSeries: true,
+	    captureRightClick: true,
+	    seriesDefaults:{
+	      renderer:$.jqplot.BarRenderer,
+	      rendererOptions: {
+	          // Put a 30 pixel margin between bars.
+	          barMargin: 30,
+	          // Highlight bars when mouse button pressed.
+	          // Disables default highlighting on mouse over.
+	          highlightMouseDown: true  ,
+	          barDirection: 'horizontal'
+	          
+	      },
+	      pointLabels: {show: true}
+	    },
+	    axes: {
+	      xaxis: {
+	          renderer: $.jqplot.CategoryAxisRenderer
+	      },
+	      yaxis: {
+	        // Don't pad out the bottom of the data range.  By default,
+	        // axes scaled as if data extended 10% above and below the
+	        // actual range to prevent data points right on grid boundaries.
+	        // Don't want to do that here.
+	        padMin: 0
+	      }
+	    },
+	    legend: {
+	      show: true,
+	      location: 'e',
+	      placement: 'outside'
+	    }     
+	  });
+	  // Bind a listener to the "jqplotDataClick" event.  Here, simply change
+	  // the text of the info3 element to show what series and ponit were
+	  // clicked along with the data for that point.
+	  $('#eStackBar1').bind('jqplotDataClick',
+	    function (ev, seriesIndex, pointIndex, data) {
+	      $('#info3').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+	    }
+	  );
+	  
+	  
+	  
+	  /*bar eBarChart21*/
+	   var s1 = [2, 6, 7, 10];
+	  var s2 = [7, 5, 3, 4];
+	  var s3 = [14, 9, 3, 8];
+	  plot3 = $.jqplot('eBarChart21', [s1, s2, s3], {
+	    // Tell the plot to stack the bars.
+	    //stackSeries: true,
+	    captureRightClick: true,
+	    seriesDefaults:{
+	      renderer:$.jqplot.BarRenderer,
+	      rendererOptions: {
+	          // Put a 30 pixel margin between bars.
+	          barMargin: 30,
+	          // Highlight bars when mouse button pressed.
+	          // Disables default highlighting on mouse over.
+	          highlightMouseDown: true  ,
+	          
+	      },
+	      pointLabels: {show: true}
+	    },
+	    axes: {
+	      xaxis: {
+	          renderer: $.jqplot.CategoryAxisRenderer
+	      },
+	      yaxis: {
+	        // Don't pad out the bottom of the data range.  By default,
+	        // axes scaled as if data extended 10% above and below the
+	        // actual range to prevent data points right on grid boundaries.
+	        // Don't want to do that here.
+	        padMin: 0
+	      }
+	    },
+	    legend: {
+	      show: true,
+	      location: 'e',
+	      placement: 'outside'
+	    }     
+	  });
+	  // Bind a listener to the "jqplotDataClick" event.  Here, simply change
+	  // the text of the info3 element to show what series and ponit were
+	  // clicked along with the data for that point.
+	  $('#eBarChart21').bind('jqplotDataClick',
+	    function (ev, seriesIndex, pointIndex, data) {
+	      $('#info3').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+	    }
+	  );
+	  /*bar eBarChart21*/
+	  /*pie start*/
+	  var data = [
+	              ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14],
+	              ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
+	            ];
+	            var plot1 = jQuery.jqplot ('ePieChart22', [data],
+	              {
+	                seriesDefaults: {
+	                  // Make this a pie chart.
+	                  renderer: jQuery.jqplot.PieRenderer,
+	                  rendererOptions: {
+	                    // Put data labels on the pie slices.
+	                    // By default, labels show the percentage of the slice.
+	                    showDataLabels: true
+	                  }
+	                },
+	                legend: { show:true, location: 'e' }
+	              }
+	            );
+	  /*pie end*/
+	});
+</script>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div id="eStackBar1"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div id="eBarChart21"></div>
+	</div>
+	<div class="col-md-6">
+		<div id="ePieChart22"></div>
+	</div>
+</div>

@@ -1,0 +1,72 @@
+<style>
+#tabs{
+font-size:13px;
+}
+</style>
+<script>
+	$(document).ready(function(){
+		$("#tabs").tabs();
+		
+		$("a[href=#statusOverview]").click(function(){
+			//alert("hello world1");
+			$.ajax({
+				url:'../View/statusOverview.html',
+				type:'get',
+				dataType:'html',
+				async:false,
+				success:function(data){
+					$("#statusOverview").html(data);
+					
+				}
+			});
+		});
+		$("a[href=#productionProgress]").click(function(){
+			//alert("hello world2");
+			$.ajax({
+				
+				url:'../View/productionProgress.html',
+				type:'get',
+				dataType:'html',
+				async:false,
+				success:function(data){
+					//alert(data);
+					$("#productionProgress").html(data);
+				}
+			});
+		});
+		$("a[href='#planingMachine']").click(function(){
+			//alert("hello world3");
+			$.ajax({
+				url:'../View/planingManchine.html',
+				type:'get',
+				dataType:'html',
+				async:false,
+				success:function(data){
+					//alert(data);
+					$("#planingMachine").html(data);
+				}
+			});
+		});
+	});
+</script>
+
+<div class="row">
+	<div class="col-md-12">
+		<div id="tabs">
+			<ul>
+				<li><a href="#statusOverview">Status Overview</a></li>
+				<li><a href="#productionProgress">Production Progress</a></li>
+				<li><a href="#planingMachine">Planing Machine</a></li>
+			</ul>
+			<div id="statusOverview">
+				tabs-1
+			</div>
+			<div id="productionProgress">
+				tabs-2
+			</div>
+			<div id="planingMachine">
+				tabs-3	
+			</div>
+		</div>
+	</div>
+</div>

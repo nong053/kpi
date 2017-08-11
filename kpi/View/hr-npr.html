@@ -1,0 +1,198 @@
+
+<style>
+.demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.2em;
+}
+.demo-container {
+	position: relative;
+	height: 190px;
+}
+.lineGraphHr-npr {
+	width:auto;
+
+}
+.boxGraphHr{
+	height: 235px;
+}
+</style>
+
+<script>
+
+
+/*start bar chart1*/
+
+var data2 = [ ["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9] ];
+
+$.plot("#barChartNpr3", [ data2 ], {
+	series: {
+		bars: {
+			show: true,
+			barWidth: 0.6,
+			align: "center"
+		}
+	},
+	xaxis: {
+		mode: "categories",
+		tickLength: 0
+	}
+});
+
+/*end bar chart1*/
+/*start bar chart2*/
+
+var data3 = [ ["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9] ];
+
+$.plot("#barChartNpr1", [ data3 ], {
+	series: {
+		bars: {
+			show: true,
+			barWidth: 0.6,
+			align: "center"
+		}
+	},
+	xaxis: {
+		mode: "categories",
+		tickLength: 0
+	}
+});
+
+/*end bar chart2*/
+
+/*start line realtime*/
+
+var data = [],
+totalPoints = 300;
+
+function getRandomData() {
+if (data.length > 0)
+	data = data.slice(1);
+// Do a random walk
+while (data.length < totalPoints) {
+	var prev = data.length > 0 ? data[data.length - 1] : 50,
+		y = prev + Math.random() * 10 - 5;
+
+	if (y < 0) {
+		y = 0;
+	} else if (y > 100) {
+		y = 100;
+	}
+	data.push(y);
+}
+// Zip the generated y values with the x values
+var res = [];
+for (var i = 0; i < data.length; ++i) {
+	res.push([i, data[i]])
+}
+
+return res;
+}
+//Set up the control widget
+
+var plot = $.plot("#barChartNpr2", [ getRandomData() ], {
+series: {
+	shadowSize: 0	// Drawing is faster without shadows
+},
+yaxis: {
+	min: 0,
+	max: 100
+},
+xaxis: {
+	show: false
+}
+});
+function update() {
+
+plot.setData([getRandomData()]);
+
+// Since the axes don't change, we don't need to call plot.setupGrid()
+
+plot.draw();
+setTimeout(update, 100);
+}
+
+/*end line realtime*/
+
+</script>
+				
+<div class="row">
+	<div class="col-md-4 boxGraphHr">
+	
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+			</div>
+			<div class="panel-body "> 
+				<div class="demo-container">
+					<div id="pieHrNprGraph1" class="demo-placeholder pieGraphHr"></div>
+				</div>
+			 </div>
+		</div>
+	
+	</div>
+	<div class="col-md-4 boxGraphHr">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+			</div>
+			<div class="panel-body"> 
+				<div class="demo-container">
+					<div id="pieHrNprGraph2" class="demo-placeholder pieGraphHr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 boxGraphHr">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+			</div>
+			<div class="panel-body">
+				<div class="demo-container">
+					<div id="pieHrNprGraph3" class="demo-placeholder pieGraphHr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4 boxGraph">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+			</div>
+			<div class="panel-body">
+				<div class="demo-container">
+					
+					<div id="barChartNpr1" class="demo-placeholder lineGraphHr-npr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 boxGraph">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+			</div>
+			<div class="panel-body">
+				<div class="demo-container">
+					<div id="barChartNpr2" class="demo-placeholder lineGraphHr-npr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 boxGraph">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+			</div>
+			<div class="panel-body">
+				<div class="demo-container">
+					<div id="barChartNpr3" class="demo-placeholder lineGraphHr-npr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

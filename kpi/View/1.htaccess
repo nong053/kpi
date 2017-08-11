@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?userName=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?userName=$1
+
+
+#http://localhost:8081/viewdetail.php?id=1234&keyword=ajax-tutorial
+#http://localhost:8081/1234/ajax-tutorial.html
+#RewriteRule ^(.*)/(.*)/(.*) /index.php?page=article&main_menu_id=$2&pageIndex=$3
+
+
+
+#http://localhost:9999/index.php?page=article&main_menu_id=128&userName=zcartlet&pageIndex=0
+#http://localhost:9999/article/128/zcartlet/0.html
+
+#RewriteRule ^(.*)/(.*)/(.*)/(.*) /index.php?&userName=$1&page=$2&main_menu_id=$3&pageIndex=$4
+
+
+
+
+
+
+
+</IfModule>

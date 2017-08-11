@@ -1,0 +1,235 @@
+[17-Feb-2015 01:53:10 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:10 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:53:10 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:53:10 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:53:11 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:13 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:13 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:53:13 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:53:13 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 28
+[17-Feb-2015 01:53:14 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:14 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:53:14 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:53:14 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 32
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:53:15 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 28
+[17-Feb-2015 01:53:16 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:16 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:53:16 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:53:16 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 32
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:17 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:18 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:53:19 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:23 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:23 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:23 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:23 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:56:24 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 28
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:26 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 32
+[17-Feb-2015 01:56:27 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:27 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:27 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:27 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 28
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:28 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:56:29 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:29 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:29 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:29 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 32
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:30 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:31 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:35 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:44 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:44 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:44 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:44 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:56:46 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:47 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:47 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:47 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:47 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 28
+[17-Feb-2015 01:56:48 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:48 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:48 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:48 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 32
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 24
+[17-Feb-2015 01:56:49 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppraisalYearList.php on line 28
+[17-Feb-2015 01:56:50 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:50 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:50 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 22
+[17-Feb-2015 01:56:50 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDepartmentList.php on line 26
+[17-Feb-2015 01:56:51 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:51 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:51 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 28
+[17-Feb-2015 01:56:51 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mAppralisalPeriodList.php on line 32
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:52 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 01:56:53 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:09 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:10 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/dashboar/public_html/kpi/Model/config.php on line 6
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): Access denied for user 'root'@'localhost' (using password: NO) in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[17-Feb-2015 02:03:11 America/Chicago] PHP Warning:  mysql_query(): A link to the server could not be established in /home/dashboar/public_html/kpi/Model/mGenarateJson.php on line 7
+[27-Mar-2015 04:53:28 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Mar-2015 22:42:39 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Mar-2015 22:42:42 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Mar-2015 22:48:29 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Mar-2015 22:57:10 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Mar-2015 22:57:22 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Mar-2015 22:57:24 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[06-Apr-2015 23:45:19 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[23-Apr-2015 02:56:32 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[23-Apr-2015 03:00:15 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[28-Apr-2015 01:29:06 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[07-May-2015 21:03:40 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16
+[08-May-2015 06:04:00 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/dashboar/public_html/kpi/Model/mDivisionList.php on line 16

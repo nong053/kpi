@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*css web sussucessfuly standard*/
+
+body{
+	padding:0px;
+	margin:0px;
+}
+
+#body{
+	width:1000px;
+	height:auto;
+	margin:auto;
+}
+
+
+/*header*/
+
+#body #header_bg{
+	width:1000px;
+	height:50px;
+	background-color:#F00;
+	
+}
+#body #header_bg #logo_bg{
+	float:left;
+}
+#body #header_bg #logo_bg #logo_top{
+	
+}
+#body #header_bg #banner_bg{
+	float:left;
+}
+#body #header_bg #banner_bg #banner_top{
+
+}
+/*main_menu*/
+#body #main_menu_bg {
+	background-color:#00F;
+	height:50px;
+	width:1000px;;
+}
+#body #main_menu_bg #main_menu{
+	float:left;
+}
+
+/*main_banner*/
+#body #main_banner_bg{
+	background-color:#FF0;
+	height:200px;
+	width:1000px;	
+}
+#body #main_banner_bg #main_banner{
+	
+}
+
+/*codntent*/
+
+#body #content_bg{
+	background-color:#3F0;
+	height:500px;
+	width:1000px;
+	background-color:#0FF;
+}
+#body #content_bg #box_l_bg{
+	float:left;
+}
+#body #content_bg #box_l_bg #box_l{
+	
+}
+
+
+
+
+#body #content_bg #content_bg2{
+	float:left;
+}
+
+#body #content_bg #content_bg #content{
+	
+}
+
+
+/*footer*/
+#body #footer_bg{
+}
+#body #footer_bg #fooer{
+}
