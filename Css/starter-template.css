@@ -1,0 +1,159 @@
+body {
+  /*padding-top: 50px;*/
+  padding-top: 45px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.mainContentDev{
+	margin-top:5px;
+}
+.navbar-blue{
+    background-color: #428BCA;
+    border-color: #428BCA;
+   /* color: #FFFFFF;*/	
+}
+/*
+.col-md-3{
+	padding:0px;
+}
+.col-md-9{
+	padding-left:5px;
+}
+.col-md-2{
+	padding:0px;
+	
+}
+.col-md-10{
+	padding-left:5px;
+}
+*/
+/*
+[class*="col-"] {
+	padding-left:5px;
+	padding:0px;
+}
+*/
+
+.container{
+	width:100%;
+}
+.container99{
+	width:99%;
+}
+
+<!-- navbar-->
+.navbar-brand{
+   height: '';
+}
+.navbar-blue {
+  background-color: #428BCA;
+  border-color: #428BCA;
+}
+
+.navbar-blue .navbar-brand {
+  color: #FFFFFF;;
+}
+
+.navbar-blue .navbar-brand:hover,
+.navbar-blue .navbar-brand:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-blue .navbar-text {
+  color: #F0FFFF;
+}
+
+.navbar-blue .navbar-nav > li > a {
+  color: #F0FFFF;
+}
+
+.navbar-blue .navbar-nav > li > a:hover,
+.navbar-blue .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-blue .navbar-nav > .active > a,
+.navbar-blue .navbar-nav > .active > a:hover,
+.navbar-blue .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #4C95D4;;
+}
+
+.navbar-blue .navbar-nav > .disabled > a,
+.navbar-blue .navbar-nav > .disabled > a:hover,
+.navbar-blue .navbar-nav > .disabled > a:focus {
+  color: #444444;
+  background-color: transparent;
+}
+
+.navbar-blue .navbar-toggle {
+  border-color: white;
+}
+
+.navbar-blue .navbar-toggle:hover,
+.navbar-blue .navbar-toggle:focus {
+  background-color: #428bca;
+}
+
+.navbar-blue .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.navbar-blue .navbar-collapse,
+.navbar-blue .navbar-form {
+  border-color: white;
+}
+
+.navbar-blue .navbar-nav > .open > a,
+.navbar-blue .navbar-nav > .open > a:hover,
+.navbar-blue .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #080808;
+}
+
+.navbar-blue .navbar-nav > .dropdown > a:hover .caret {
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.navbar-blue .navbar-nav > .dropdown > a .caret {
+  border-top-color: #F0FFFF;
+  border-bottom-color: #F0FFFF;
+}
+
+.navbar-blue .navbar-nav > .open > a .caret,
+.navbar-blue .navbar-nav > .open > a:hover .caret,
+.navbar-blue .navbar-nav > .open > a:focus .caret {
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.glyphicon {
+    font-size: 16px;
+ 
+}
+.titleHeader{
+	background-color: #F5F5F5;
+    border-bottom: 1px solid #E5E5E5;
+    padding-top:2px;
+    padding-bottom:2px;
+}
+.boxGreen{
+	background:#4C95D4;
+}
+.boxRed{
+	background:#4C95D4;
+}
+.boxYellow{
+	background:#4C95D4;
+}
+
+.navbar-blue .navbar-nav > .open > a, .navbar-blue .navbar-nav > .open > a:hover, .navbar-blue .navbar-nav > .open > a:focus{
+	 background-color: #428bca;
+}
+
