@@ -1,7 +1,15 @@
+@import url(fonts/thsarabunnew.css);
+
+
+.navbar{
+    box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);
+    }
+
 body{
     /*background:#F2F5F7;*/
-    font-size:14px;
-    font-family:Tahoma;
+    font-size:16px;
+    /* font-family:Tahoma; */
+    font-family: 'THSarabunNew', sans-serif; 
     overflow-y:scroll;
 	overflow-x:hidden;
 
@@ -23,13 +31,13 @@ body{
     #mainContent{
     margin-left:201px;
     position:relative;
-    margin-top:5px;
+    margin-top:15px;
    
     /*background:red;*/
     }
     .sidebar-background {
-    background: none repeat scroll 0 0 #EAEAEA;
-    border-right: 1px solid #CCCCCC;
+    background: none repeat scroll 0 0 #F5F5F5;
+    border-right: 1px solid #E5E5E5;
     height: 100%;
     left: 0;
     position: fixed;
@@ -444,7 +452,7 @@ body{
 
 .nav-list > li > a {
     display: block;
-    font-size: 13px;
+    font-size: 16px;
     height: 39px;
     line-height: 17px;
     padding-left: 7px;
@@ -700,7 +708,31 @@ ul.submenuHover li:hover:before{
 .table > tbody > tr > td{
      padding: 3px 3px 3px 8px;
 }
+.table {
+
+    margin-bottom: 0px; 
+}
 
 .modal-title{
     font-weight: bold;
 }
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+

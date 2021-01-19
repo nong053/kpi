@@ -148,7 +148,7 @@ if($_SESSION['language']=="th"){
  	}
  	.alert{
  	 margin-bottom: 5px;
-     padding: 5px;
+     /* padding: 5px; */
  	}
  	.panel{
  	margin-bottom: 5px;

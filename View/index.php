@@ -30,18 +30,18 @@ $_SESSION['main_menul_l_appraisal_result']="Appraisal Result";
 
 }else{
 //TH
-$_SESSION['main_menul_l_kpiDashboard']="แดชบอร์ด";
+$_SESSION['main_menul_l_kpiDashboard']="แดชบอร์ด BSC";
 $_SESSION['main_menul_l_threshold']="เกณฑ์การประเมิน";
 $_SESSION['main_menul_l_appraisalPeriod']="ช่วงประเมิน";
 $_SESSION['main_menul_l_department']="แผนก";
-$_SESSION['main_menul_l_position']="ระดับ";
+$_SESSION['main_menul_l_position']="สิทธิ์";
 $_SESSION['main_menul_l_employee']="พนักงาน";
 $_SESSION['main_menul_l_kpi']="ตัวชี้วัด";
 $_SESSION['main_menul_l_assign_master_kpi']="มอบหมายตัวชี้วัด";
-$_SESSION['main_menul_l_assign_kpi']="หัวหน้าประเมินพนักงาน";
+$_SESSION['main_menul_l_assign_kpi']="ประเมิน";
 $_SESSION['main_menul_l_assign_kpi_emp']="พนักงานตประเมินเอง";
 $_SESSION['main_menul_l_approve_kpi_result']="อนุมัติผลการประเมิน";
-$_SESSION['main_menul_l_appraisal_result']="ผลการประเมินรายบุคคล";
+$_SESSION['main_menul_l_appraisal_result']="ผลการประเมิน";
 
 }
 // Sett Main Menu End
@@ -81,8 +81,10 @@ if($_SESSION['login_status']!="1"){
      <link href="../bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
     
 
-    <!-- Custom styles for this template -->
-    <link href="../Css/starter-template.css" rel="stylesheet">
+	
+	 <!-- Custom styles for this template -->
+	 <link href="../Css/login.css" rel="stylesheet">
+	 <link href="../Css/starter-template.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -454,7 +456,7 @@ var checkBrowserFn=function(){
 
    <style type="text/css">
    	.btn{
-   		 padding: 3px 12px;
+   		 /* padding: 3px 12px; */
 
    	}
    	.glyphicon{
@@ -477,7 +479,7 @@ var checkBrowserFn=function(){
 
   <body>
 
-    <div class="navbar navbar-blue navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-blue navbar-fixed-top shadow-sm" role="navigation">
       <div class="container">
         <div class="navbar-header" style="margin-top:5px;">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -486,13 +488,15 @@ var checkBrowserFn=function(){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a style='height: 0px;' class="navbar-brand" href="#" > <span class="iconMenu glyphicon glyphicon-dashboard"></span>โปรแกรมประเมินผลปฎิบัติงานโดยตัวชี้วัด (Key Performance Indicators)</a>
+		  <a style='height: 0px;' class="navbar-brand" href="#" > 
+		  <!-- <span class="iconMenu glyphicon glyphicon-dashboard" style="font-size:30px;"></span> -->
+		   โปรแกรมประเมินผลปฎิบัติงานโดยตัวชี้วัด (Key Performance Indicators)</a>
         </div>
         
         <div class="collapse navbar-collapse">
        	
           
-          <ul class="nav navbar-nav navbar-right" style='margin-top:13px'>
+          <ul class="nav navbar-nav navbar-right" style='margin-top:10px'>
           
            
            
@@ -536,7 +540,7 @@ var checkBrowserFn=function(){
 						?>
 						
 						<strong>
-						<button class="boxC btn btn-info " style="margin-top:0px;">
+						<button class="boxC btn btn-info btn-circle " style="margin-top:0px; padding:0px;">
 							<i class="glyphicon  glyphicon-user"></i>
 						</button>
 						Admin
@@ -627,6 +631,7 @@ var checkBrowserFn=function(){
 						)){
 				  		?>
 							
+							
 							<li  class="active mainMenu menuLevel1">
 					  			<a  href="#" id="kpiDashboard" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
 					  			<b class="arrow"></b>
@@ -642,16 +647,28 @@ var checkBrowserFn=function(){
 							<li class="mainMenu menuLevel1">
 					  			<a  href="#" id="appraisalPeriod" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
 					  			<b class="arrow"></b>
-					  		</li>
+							  </li>
+							  <li class="mainMenu menuLevel1">
+					  			<a href="#" id="position3" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
+					  			<b class="arrow"></b>
+							  </li>
+							  <li class="mainMenu menuLevel1">
+					  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
+					  			<b class="arrow"></b>
+							</li>
+							
 							<li class="mainMenu menuLevel1"> 
 					  			<a href="#" id="department" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_department']?></span></a>
 					 			<b class="arrow"></b>
 					 		</li>
-					 		
-					 		<li class="mainMenu menuLevel1">
-					  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
+							
+							
+							<li class="mainMenu menuLevel1">
+					  			<a href="#" id="position2" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> ตำแหน่ง</span></a>
 					  			<b class="arrow"></b>
-					  		</li>
+							</li>
+							  
+					 		
 					  		<li class="mainMenu menuLevel1">
 					  			<a href="#" id="employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_employee']?></span></a>
 					  			<b class="arrow"></b>

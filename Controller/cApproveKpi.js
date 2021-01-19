@@ -11,15 +11,15 @@
 			success:function(data){
 				$("#employeeShowData").html(data);
 				
-				 $("#Tableemployee").kendoGrid({
-                    /// height: 350,
-                     sortable: true,
-                     pageable: {
-                         refresh: true,
-                         pageSizes: true,
-                         buttonCount: 5
-                     },
-                 });
+				//  $("#Tableemployee").kendoGrid({
+                //     /// height: 350,
+                //      sortable: true,
+                //      pageable: {
+                //          refresh: true,
+                //          pageSizes: true,
+                        //  buttonCount: 5
+                //      },
+                //  });
 				 setGridTable();
 				 
 				//alert(data);

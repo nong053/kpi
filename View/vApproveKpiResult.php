@@ -24,8 +24,8 @@ if($_SESSION['language']=="th"){
 	$_SESSION['approve_emp_l_tbl_department']="แผนก";
 	$_SESSION['approve_emp_l_tbl_position']="ระดับ";
 	$_SESSION['approve_emp_l_tbl_age']="อายุ";
-	$_SESSION['approve_emp_l_tbl_result']="ผลหัวหน้าประเมิน";
-	$_SESSION['approve_emp_l_tbl_emp_result']="ผลประเมินตนเอง";
+	$_SESSION['approve_emp_l_tbl_result']="หัวหน้าประเมิน";
+	$_SESSION['approve_emp_l_tbl_emp_result']="ประเมินตนเอง";
 	$_SESSION['approve_emp_l_tbl_total_result']="สรุปผลประเมิน";
 	$_SESSION['approve_emp_l_tbl_adjust_result']="ปรับคะแนน";
 	$_SESSION['approve_emp_l_tbl_manage']="จัดการ";
@@ -101,7 +101,7 @@ if($_SESSION['language']=="th"){
     border: 1px solid transparent;
     border-radius: 4px;
     margin-bottom: 5px;
-    padding: 5px;
+    /* padding: 5px; */
 }
 .panel {
    

@@ -51,18 +51,18 @@ if($_POST['action']=="showEmpData"){
 	$result=mysql_query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='Tableemployee' class='grid table-striped'>";
+	$tableHTML.="<table id='Tableemployee' class='grid table table-striped'>";
 	$tableHTML.="<colgroup>";
 	$tableHTML.="<col style='width:5%' />";
-	$tableHTML.="<col style='width:5%' />";
-	$tableHTML.="<col style='width:13%' />";
-	$tableHTML.="<col style='width:10%'/>";
-	$tableHTML.="<col style='width:10%' />";
+	$tableHTML.="<col style='width:7%' />";
+	$tableHTML.="<col style='width:12%' />";
+	$tableHTML.="<col style='width:10% text-align:right;'/>";
+	// $tableHTML.="<col style='width:10%' />";
 	//$tableHTML.="<col style='width:8%'/>";
 	//$tableHTML.="<col style='width:5%'/>";
-	$tableHTML.="<col style='width:10%'/>";
+	$tableHTML.="<col style='width:10% text-align:right'/>";
 	//$tableHTML.="<col style='width:5%'/>";
-	$tableHTML.="<col style='width:10%'/>";
+	$tableHTML.="<col style='width:10% text-align:right'/>";
 	/*$tableHTML.="<col />";*/
 
 	$tableHTML.="</colgroup>";
@@ -72,17 +72,17 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['approve_emp_l_tbl_picture']."</b></th>";
 	$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['approve_emp_l_tbl_fullname']."</b></th>";
 	$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['approve_emp_l_tbl_department']."</b></th>";
-	$tableHTML.="<th data-field=\"column5\"><b>".$_SESSION['approve_emp_l_tbl_position']."</b></th>";
+	// $tableHTML.="<th data-field=\"column5\"><b>".$_SESSION['approve_emp_l_tbl_position']."</b></th>";
 	//$tableHTML.="<th data-field=\"column6\"><b>Role</b></th>";
 	//$tableHTML.="<th data-field=\"column7\"><b>Age W</b></th>";
 	//$tableHTML.="<th data-field=\"column8\"><b>".$_SESSION['approve_emp_l_tbl_age']."</b></th>";
 	//$tableHTML.="<th data-field=\"column9\"><b>Tel</b></th>";
-	$tableHTML.="<th data-field=\"column10\"><b>".$_SESSION['approve_emp_l_tbl_emp_result']."</b></th>";
-	$tableHTML.="<th data-field=\"column11\"><b>".$_SESSION['approve_emp_l_tbl_result']."</b></th>";
-	$tableHTML.="<th data-field=\"column12\"><b>".$_SESSION['approve_emp_l_tbl_adjust_result']."</b></th>";
-	$tableHTML.="<th data-field=\"column13\"><b>".$_SESSION['approve_emp_l_tbl_total_result']."</b></th>";
+	$tableHTML.="<th style='text-align:right;'  data-field=\"column10\"><b>".$_SESSION['approve_emp_l_tbl_emp_result']."</b></th>";
+	$tableHTML.="<th style='text-align:right;'  data-field=\"column11\"><b>".$_SESSION['approve_emp_l_tbl_result']."</b></th>";
+	$tableHTML.="<th style='text-align:right;'  data-field=\"column12\"><b>".$_SESSION['approve_emp_l_tbl_adjust_result']."</b></th>";
+	$tableHTML.="<th style='text-align:right;'  data-field=\"column13\"><b>".$_SESSION['approve_emp_l_tbl_total_result']."</b></th>";
 
-	$tableHTML.="<th data-field=\"column14\" style='text-align:center;'><b>".$_SESSION['approve_emp_l_tbl_manage']."</b></th>";
+	$tableHTML.="<th style='text-align:right;'  data-field=\"column14\" style='text-align:center;'><b>".$_SESSION['approve_emp_l_tbl_manage']."</b></th>";
 		
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -114,18 +114,18 @@ if($_POST['action']=="showEmpData"){
 		$tableHTML.="	<td><img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=50></td>";
 		$tableHTML.="	<td>".$rs['emp_first_name']." ".$rs['emp_last_name']."</td>";
 		$tableHTML.="	<td>".$rs['department_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span></td>";
-		$tableHTML.="	<td>".$rs['position_name']."<span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";
+		// $tableHTML.="	<td>".$rs['position_name']."<span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";
 		//$tableHTML.="	<td>".$rs['role_name']."</td>";
 		//$tableHTML.="	<td>".$rs['emp_age_working']."</td>";
 		//$tableHTML.="	<td>".$rs['emp_age']."</td>";
 		//$tableHTML.="	<td>".$rs['emp_tel']."</td>";
-		$tableHTML.="	<td><span id='emp_score_percentage-".$rs['emp_id']."' style='font-size:20px; color:orange; font-weight:bold;'>".number_format((float)$emp_score_percentage, 2, '.', '')."%</span></td>";
-		$tableHTML.="	<td><span id='chief_score_percentage-".$rs['emp_id']."' style='font-size:20px; color:orange; font-weight:bold;'>".number_format((float)$chief_score_percentage, 2, '.', '')."%</span></td>";
+		$tableHTML.="	<td class='text-right'><span id='emp_score_percentage-".$rs['emp_id']."' style=' color:orange; font-weight:bold;'>".number_format((float)$emp_score_percentage, 2, '.', '')."%</span></td>";
+		$tableHTML.="	<td class='text-right'><span id='chief_score_percentage-".$rs['emp_id']."' style=' color:orange; font-weight:bold;'>".number_format((float)$chief_score_percentage, 2, '.', '')."%</span></td>";
 
-		$tableHTML.="	<td><span id='adjust_score_percentage-".$rs['emp_id']."' style='font-size:20px; color:orange; font-weight:bold;'>".number_format((float)$adjust_score_percentage, 2, '.', '')."%</span></td>";
+		$tableHTML.="	<td class='text-right'><span id='adjust_score_percentage-".$rs['emp_id']."' style=' color:orange; font-weight:bold;'>".number_format((float)$adjust_score_percentage, 2, '.', '')."%</span></td>";
 
 
-		$tableHTML.="	<td><span id='total_score_percentage-".$rs['emp_id']."' style='font-size:20px; color:green; font-weight:bold;'>".number_format((float)$total_score_percentage, 2, '.', '')."%</span></td>";
+		$tableHTML.="	<td class='text-right'><span id='total_score_percentage-".$rs['emp_id']."' style=' color:green; font-weight:bold;'>".number_format((float)$total_score_percentage, 2, '.', '')."%</span></td>";
 /*
 appraisal_period_id	1
 department_id	1
@@ -151,14 +151,14 @@ year	2012
 		
 		if($rsKpiResult[approve_flag]=="Y"){
 		$tableHTML.="	<td>
-			<div style='text-align:center'>
+			<div style='text-align:right'>
 				<button type='button' id='idApproveKPI-".$rs['emp_id']."' class='actionApproveKPI btn btn-success btn-xs'>Approved </button>
 				<button type='button' id='idApproveEditKPI-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary btn-xs'>Edit</button>
 			</div>
 			</td>";
 		}else{
 			$tableHTML.="<td>
-			<div style='text-align:center'>
+			<div style='text-align:right'>
 				<button type='button' id='idApproveKPI-".$rs['emp_id']."' class='actionApproveKPI btn btn-warning btn-xs'>Approve </button>
 				<button type='button' id='idApproveEditKPI-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary btn-xs'>Edit</button>
 			</div>

@@ -12,7 +12,7 @@ var fnDropdownListAsignDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assign_department_id\" name=\"assign_department_id\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"assign_department_id\" name=\"assign_department_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -59,7 +59,7 @@ var fnDropdownListAssignPosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assign_position_id\" name=\"assign_position_id\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"assign_position_id\" name=\"assign_position_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -109,7 +109,7 @@ var fnDropdownListAssignPosition=function(position_id,paramSelectAll){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select  style='width:100px;'id=\"appraisal_period_assign_kpi\" name=\"appraisal_period_assign_kpi\" class=\"form-control input-sm\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select  style='width:100px;'id=\"appraisal_period_assign_kpi\" name=\"appraisal_period_assign_kpi\" class=\"\" style=\"width:auto;\">";
 				//htmlDropDrowList+="<option value=\"all\">ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
@@ -144,7 +144,7 @@ var paramAssignYear=function(kpi_year){
 		success:function(data){
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assign_year\" name=\"assign_year\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"assign_year\" name=\"assign_year\" class=\"\" style=\"width:auto;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_year!=undefined){
 						if(kpi_year==indexEntry[0]){
@@ -210,7 +210,7 @@ var fnDropdownListYearInform=function(kpi_year){
 		success:function(data){
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"yearInform\" name=\"yearInform\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"yearInform\" name=\"yearInform\" class=\"\" style=\"width:auto;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_year!=undefined){
 						if(kpi_year==indexEntry[0]){
@@ -266,7 +266,7 @@ var fnDropdownListPositionInform=function(position_id){
 			//console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assignPositionInform\" name=\"assignPositionInform\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"assignPositionInform\" name=\"assignPositionInform\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -308,7 +308,7 @@ var fnDropdownListDepInform=function(department_id){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assignDepartmentInform\" name=\"assignDepartmentInform\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"assignDepartmentInform\" name=\"assignDepartmentInform\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -348,7 +348,7 @@ var fnDropdownListDepInform=function(department_id){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select  style='width:100px;'id=\"appraisal_period_assign_kpi_inform\" name=\"appraisal_period_assign_kpi_inform\" class=\"form-control input-sm\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select  style='width:100px;'id=\"appraisal_period_assign_kpi_inform\" name=\"appraisal_period_assign_kpi_inform\" class=\"\" style=\"width:auto;\">";
 				//htmlDropDrowList+="<option value=\"all\">ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
@@ -388,7 +388,7 @@ var fnDropdownAssignListKPI=function(kpi_id){
 		success:function(data){
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"kpi_id\" name=\"kpi_id\" class=\"form-control input-sm\" style=\"width:100%;\">";
+			htmlDropDrowList+="<select id=\"kpi_id\" name=\"kpi_id\" class=\"\" style=\"width:100%;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_id==indexEntry[0]){
 						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	

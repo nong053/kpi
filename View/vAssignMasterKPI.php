@@ -31,7 +31,7 @@ if($_SESSION['language']=="th"){
 
 	//form
 	
-	$_SESSION['assign_l_form_name']="ฟอร์มมอบหมายตัวชี้วัด";
+	$_SESSION['assign_l_form_name']="มอบหมายตัวชี้วัด";
 	$_SESSION['assign_l_form_kpi_name']="ตัวชี้วัด";
 	$_SESSION['assign_l_form_weight']="น้ำหนัก";
 	$_SESSION['assign_l_form_btn_add']="เพิ่ม";
@@ -179,19 +179,19 @@ if($_SESSION['language']=="th"){
 						<tr>
 							<td class='text-right'><b><?=$_SESSION['assign_l_form_weight']?></td>
 							<td >
-								<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control input-sm" value="25.00"  style="width:150px;" >
+								<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control " value="25.00"  style="width:150px;" >
 							</td>
 						</tr>
 						<tr style="display: none;">
 							<td class='text-right'><b>Target Data</b></td>
 							<td >
-								<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control input-sm" style="background: #ddd; width:150px;"  disabled>
+								<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style="background: #ddd; width:150px;"  disabled>
 							</td>
 						</tr>
 						<tr style="display: none;">
 							<td class='text-right'><b>Target Score</b></td>
 							<td >
-								<input type="text" id="target_score" name="target_score"  class="form-control input-sm" style="background: #ddd; width:150px;" disabled>
+								<input type="text" id="target_score" name="target_score"  class="form-control " style="background: #ddd; width:150px;" disabled>
 							</td>
 						</tr>
 						<tr style="display: none;">
@@ -205,7 +205,7 @@ if($_SESSION['language']=="th"){
 							<td class='text-right'><b> Actual Data</b></td>
 							<td id="areaKPIActual">
 							 
-								<input id="kpi_actual_manual" name="kpi_actual_manual" value="0.00"  class="form-control input-sm" style="width:150px;">
+								<input id="kpi_actual_manual" name="kpi_actual_manual" value="0.00"  class="form-control " style="width:150px;">
 								<textarea id="kpi_actual_query" name="kpi_actual_query" style="display: none;"></textarea> 
 							</td>
 						</tr>
@@ -246,8 +246,8 @@ if($_SESSION['language']=="th"){
 								<div style="float:left;">
 									<input type="hidden" name="assign_kpi_action" id ="assign_kpi_action"  value="add">
 									<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
-									<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="<?=$_SESSION['assign_l_form_btn_add']?>" class="btn btn-primary btn-sm">
-									<input type="button" value="<?=$_SESSION['assign_l_form_btn_reset']?>" id="assign_kpi_reset" class="btn btn-default btn-sm">
+									<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="<?=$_SESSION['assign_l_form_btn_add']?>" class="btn btn-primary ">
+									<input type="button" value="<?=$_SESSION['assign_l_form_btn_reset']?>" id="assign_kpi_reset" class="btn btn-default ">
 									
 									<!--<input type="button" id="send_to_approve" name="send_to_approve" value="Send to Approve">
 									 <input type="button" value="Search" id="assign_kpi_search"> -->
@@ -408,10 +408,10 @@ if($_SESSION['language']=="th"){
 	<div style="margin-top: 5px; "  class="panel panel-default panel-bottom displayHideShow">
 			  <div class="panel-heading">
 			
-						<button class="btn btn-primary btn-xs" id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
+						<button class="btn btn-primary " id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['assign_l_des_btn_add']?>
 						</button>
-						<input type="button" id="kpi_process" name="kpi_process" value="<?=$_SESSION['assign_l_des_btn_confirm']?>" class="btn btn-primary btn-sm">			
+						<input type="button" id="kpi_process" name="kpi_process" value="<?=$_SESSION['assign_l_des_btn_confirm']?>" class="btn btn-warning ">			
 			  </div>
 			  <div class="panel-body panel-body-top">
 			  

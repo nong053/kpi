@@ -13,8 +13,8 @@ error_reporting (E_ALL ^ E_NOTICE);
     <link href="Css/bootstrap.min.css" rel="stylesheet">
     <link href="Css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="Css/bootstrap-overrides.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="Css/theme.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" type="text/css" href="Css/theme.css"> -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
 
     <link rel="stylesheet" type="text/css" href="Css/lib/animate.css" media="screen, projection">
     <link rel="stylesheet" href="Css/sign-up.css" type="text/css" media="screen" />
@@ -23,13 +23,16 @@ error_reporting (E_ALL ^ E_NOTICE);
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <style type="text/css">
-    body {
-        position: relative;
-       /* background: #DDDCE2 url(../img/body_bg.jpg) repeat left top;*/
-        -webkit-font-smoothing: antialiased;
-        font-family: 'Lato', sans-serif !important;
-        padding-top: 0px;
+    @import url(./Css/fonts/thsarabunnew.css);
+
+    body{
+
+   
+    font-family: 'THSarabunNew', sans-serif; 
+
     }
+
+   
     #sign_up2 .signin_box .box .form input[type="password"] {
     border-radius: 3px;
     color: black;
@@ -124,7 +127,7 @@ error_reporting (E_ALL ^ E_NOTICE);
                         </div>
                      <div class="perk">
                             <span class="icos ico3"></span>
-                            <p><strong><a href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร.่ 080-992-6565 <br>
+                            <p><strong><a href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
                                 อีเมลล์: nn.it@hotmail.com ,Line:nongnuyit
                             </p>
                         </div>

@@ -11,7 +11,7 @@
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_assign_evaluate_kpi\" name=\"appraisal_period_assign_evaluate_kpi\" class=\"form-control input-sm\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select id=\"appraisal_period_assign_evaluate_kpi\" name=\"appraisal_period_assign_evaluate_kpi\" class=\"\" style=\"width:auto;\">";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -43,7 +43,7 @@ var fnDropdownListAppraisalDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_department_id\" name=\"appraisal_department_id\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"appraisal_department_id\" name=\"appraisal_department_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -89,7 +89,7 @@ var fnDropdownListAppraisalPosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_position_id\" name=\"appraisal_position_id\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"appraisal_position_id\" name=\"appraisal_position_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -425,8 +425,8 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 						
 						 var idAssignKPI=this.id.split("-");
 						 var empId=idAssignKPI[1];
-						 var depId=sessionStorage.getItem("param_department");
-						 var positionId=sessionStorage.getItem("param_position");
+						 var depId=$("#depId-"+empId).text();
+						 var positionId=$("#positionId-"+empId).text();
 						 
 							$("#emp_assign_id_emb").remove();
 							$("#dep_assign_id_emb").remove();
@@ -514,8 +514,8 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 					$(".actionRemoveAssign").click(function(){
 						 var idAssignKPI=this.id.split("-");
 						 var empId=idAssignKPI[1];
-						 var depId=sessionStorage.getItem("param_department");
-						 var positionId=sessionStorage.getItem("param_position");
+						 var depId=$("#depId-"+empId).text();
+						 var positionId=$("#positionId-"+empId).text();
 						
 						 $.ajax({
 								url:"../Model/mAssignKpi.php",
@@ -1247,7 +1247,7 @@ $(document).ready(function(){
 				success:function(data){
 					
 					var htmlDropDrowList="";
-					htmlDropDrowList+="<select id=\"appraisal_year\" name=\"appraisal_year\" class=\"form-control input-sm\" style=\"width:auto;\">";
+					htmlDropDrowList+="<select id=\"appraisal_year\" name=\"appraisal_year\" class=\"\" style=\"width:auto;\">";
 						$.each(data,function(index,indexEntry){
 							if(kpi_year!=undefined){
 								if(kpi_year==indexEntry[0]){
