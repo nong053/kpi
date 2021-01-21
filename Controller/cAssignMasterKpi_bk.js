@@ -545,29 +545,6 @@ var fnDropdownAssignListKPI=function(kpi_id){
 	});
 	};
 	/*calculte Percentage end*/
-	var showDataEmpAssignKpi = function(department_id,position_id){
-		
-		
-		
-		
-		$.ajax({
-			url:"../Model/mAssignMasterKpi.php",
-			type:"post",
-			dataType:"html",
-			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-			data:{
-				"action":"showEmpData",
-				"department_id":department_id ,
-				"position_id":position_id},
-				async:false,
-			success:function(data){
-			
-				$("#assignKpiToEmpShowData").html(data).show();
-				
-			}
-			
-		});
-	}
 	var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_id){
 		
 		/*
@@ -752,7 +729,8 @@ var fnDropdownAssignListKPI=function(kpi_id){
 									"position_id":position_id},
 								success:function(data){
 									if(data[0]=="success"){
-										
+										//alert("ลบข้อมูลเรียบร้อย");	
+										//showDataAssignKpi();
 										showDataAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
 										
 									}
@@ -947,9 +925,8 @@ $(document).ready(function(){
 	
 	
 
-	showDataEmpAssignKpi(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
-	//showDataAssignKpi();
 	
+	showDataAssignKpi();
 
 
 	/*Search data for assign data start*/

@@ -9,8 +9,8 @@ if($_SESSION['language']=="th"){
 	//description
 	$_SESSION['assign_l_des_title']="มอบหมายตัวชี้วัด";
 	$_SESSION['assign_l_des_detail']="เพื่อทำการมอบหมายตัวชี้วัดที่ต้องวัดผลการปฏิบัติงานให้กับพนักงาน ตรงนี้จะเป็นการ มอบหมายตัวชี้วัดค่าเริ่มต้นโดยมอบหมายในระดับตำแหน่งซึ่งก็คือพนักงานที่อยู่ภายใต้ตำแหน่งนั้นๆ";
-	$_SESSION['assign_l_des_btn_add']="มอบหมายตัวชี้วัด";
-	$_SESSION['assign_l_des_btn_confirm']="ยืนยันทั้งหมด";
+	$_SESSION['assign_l_des_btn_add']="มอบหมายตัวชี้วัดทั้งหมด";
+	$_SESSION['assign_l_des_btn_confirm']="ส่งประเมินทั้งหมด";
 
 	//Search
 	$_SESSION['assign_l_search_year']="ปีประเมิน";
@@ -27,6 +27,11 @@ if($_SESSION['language']=="th"){
 	$_SESSION['assign_l_tbl_target']="เป้าข้อมูลดิบ";
 	$_SESSION['assign_l_tbl_target_score']="เป้าคะแนน";
 	$_SESSION['assign_l_tbl_manage']="จัดการ";
+	$_SESSION['kpi_result_emp_l_tbl_person_info']="ข้อมูลพนักงาน";
+	$_SESSION['kpi_result_emp_l_tbl_kpi_assign']="มอบหมายตัวชี้วัด";
+
+	
+
 
 	
 
@@ -47,7 +52,7 @@ if($_SESSION['language']=="th"){
 		//description
 	$_SESSION['assign_l_des_title']="KPI Assignment ";
 	$_SESSION['assign_l_des_detail']="To assign a measure to measure performance for employees. This will be Assign default metrics Assignment at the level of position, that is, employees under that position.";
-	$_SESSION['assign_l_des_btn_add']="KPI Assignment ";
+	$_SESSION['assign_l_des_btn_add']="All KPI Assignment";
 	$_SESSION['assign_l_des_btn_confirm']="All Confirm";
 
 	//Search
@@ -65,6 +70,8 @@ if($_SESSION['language']=="th"){
 	$_SESSION['assign_l_tbl_target']="Data Target";
 	$_SESSION['assign_l_tbl_target_score']="Target Score";
 	$_SESSION['assign_l_tbl_manage']="Manage";
+	$_SESSION['kpi_result_emp_l_tbl_person_info']="Person In";
+	$_SESSION['kpi_result_emp_l_tbl_kpi_assign']="Assign KPI";
 
 	
 
@@ -128,6 +135,10 @@ if($_SESSION['language']=="th"){
 	.displayHideShow {
 		display: none;
 
+	}
+	.emp-text-left{
+		text-align: left;
+		padding: 5px;
 	}
 </style>
 
@@ -444,17 +455,18 @@ if($_SESSION['language']=="th"){
 
 			<div class="col-md-6 text object-text-right">
 
-				<button class="btn btn-primary " id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
+				
+				<input type="button" id="kpi_process" name="kpi_process" value="<?= $_SESSION['assign_l_des_btn_confirm'] ?>" class="btn btn-warning btn-lg">
+				<button class="btn btn-primary btn-lg" id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
 					<?= $_SESSION['assign_l_des_btn_add'] ?>
 				</button>
-				<input type="button" id="kpi_process" name="kpi_process" value="<?= $_SESSION['assign_l_des_btn_confirm'] ?>" class="btn btn-warning ">
-
 			</div>
 			<br style="clear:both">
 		</div>
 		<div class="panel-body panel-body-top">
 
-			<div id="assignKpiShowData" style="display:none;"></div>
+			<!-- <div id="assignKpiShowData" style="display:none;"></div> -->
+			<div id="assignKpiToEmpShowData" style="display:none;"></div>
 
 		</div>
 	

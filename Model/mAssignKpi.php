@@ -138,7 +138,7 @@ select e.*,pe.position_name,r.role_name,d.department_name
 
 	from employee e
 	INNER JOIN position_emp pe on e.position_id=pe.position_id
-	INNER JOIN role r on pe.role_id=r.role_id
+	INNER JOIN role r on e.role_id=r.role_id
 	INNER JOIN department d on e.department_id=d.department_id
 	where (e.department_id='$department_id' or '$department_id' ='All')
 	and (e.position_id='$position_id' or '$position_id' ='All')

@@ -217,7 +217,114 @@ if($_POST['action']=="add"){
 	mysql_close($conn);
 }
 
+if($_POST['action']=="showEmpData"){
+	
+	$strSQL="
+	select e.*,pe.position_name,r.role_name,d.department_name
+	from employee e
+	INNER JOIN position_emp pe on e.position_id=pe.position_id
+	INNER JOIN role r on e.role_id=r.role_id
+	INNER JOIN department d on e.department_id=d.department_id
+	where (e.department_id='$department_id' or '$department_id' ='All')
+	and (e.position_id='$position_id' or '$position_id' ='All')
+	and e.emp_status_work_id='1'
+	and e.admin_id='$admin_id'
+	order by e.emp_id
 
+	";
+	
+	$result=mysql_query($strSQL);
+	$tableHTML="";
+	$i=1;
+	$tableHTML.="<table id='Tableemployee' class='table grid table-striped'>";
+	$tableHTML.="<colgroup>";
+	$tableHTML.="<col style='width:10%' />";
+	$tableHTML.="<col style='width:80%' />";
+	
+	$tableHTML.="</colgroup>";
+	$tableHTML.="<thead>";
+	$tableHTML.="<tr>";
+	$tableHTML.="<th style='text-align:center;' data-field=\"column2\"><b>".$_SESSION['kpi_result_emp_l_tbl_person_info']."</b></th>";
+	$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['kpi_result_emp_l_tbl_kpi_assign']."</b></th>";
+		
+	$tableHTML.="</tr>";
+	$tableHTML.="</thead>";
+	$tableHTML.="<div class='contentemployee'>";
+	while($rs=mysql_fetch_array($result)){
+		$tableHTML.="<tr>";
+			$tableHTML.="<td style='text-align:center;'>";
+
+			
+			$tableHTML.="<div class='thumbnail' style='width:200px;'>";
+					 if(empty($rs['emp_picture_thum'])){
+						 	$tableHTML.="	<img style='opacity:0.1;' src=\"../view/uploads/avatar.jpg\" >";
+						 }else{
+						 	$tableHTML.="	<img  src=\"".$rs['emp_picture_thum']."\" >";
+					 }
+					 $tableHTML.=" 
+					<div class='caption'>";
+						
+					 $tableHTML.="<p class='emp-text-left'>";
+					 $tableHTML.="".$rs['emp_first_name']." ".$rs['emp_last_name'];
+					 $tableHTML.="<br>".$rs['department_name'];
+					 $tableHTML.="<br> ตำแหน่ง".$rs['position_name'];
+					 $tableHTML.="</p>";
+					 $tableHTML.=" 
+					</div>
+					</div>";
+				
+
+			$tableHTML.="</td>";
+			$tableHTML.="<td>";
+			$tableHTML.="
+			<div class='alert alert-info'>
+					 <div class='col-md-6 object-text-left'>
+					 น้ำหนักตัวชี้วัดรวม
+					 </div>
+					 <div class='col-md-6 object-text-right'>
+					 <button class='btn btn-warning'>ส่งประเมิน</button>
+					 <button class='btn btn-primary'>มอบหมายตัวชี้วัด</button>
+					 </div>
+					 <br style='clear:both'>
+			</div>";
+			
+			$tableHTML.="<table class='table'>";
+			$tableHTML.="<thead>";
+			$tableHTML.="<tr>";
+				$tableHTML.="<th>";
+					$tableHTML.="ตัวชี้วัด";
+				$tableHTML.="</th>";
+				$tableHTML.="<th>";
+					$tableHTML.="จัดการ";
+				$tableHTML.="</th>";
+
+			//$tableHTML.="</th>";
+			$tableHTML.="</thead'>";
+			$tableHTML.="</tbody'>";
+					$tableHTML.="<tr>";
+					$tableHTML.="<td>";
+						$tableHTML.="xx";
+					$tableHTML.="</td>";
+					$tableHTML.="<td>";
+						$tableHTML.="xx";
+					$tableHTML.="</td>";
+					$tableHTML.="</tr>";
+				$tableHTML.="</tbody>";
+			$tableHTML.="</table>";
+			$tableHTML.="</td>";
+		$tableHTML.="</tr>";
+		
+
+
+	}
+	$tableHTML.="</tbody>";
+	$tableHTML.="</table>";
+
+	echo $tableHTML;
+	mysql_close($conn);
+
+
+}
 if($_POST['action']=="showData"){
 	//echo "Show Data";
 	$strSQL="
@@ -236,9 +343,9 @@ if($_POST['action']=="showData"){
 	
 	
 	$result=mysql_query($strSQL);
-	$$tableHTML="";
+	$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='TableassignKpi' class='grid table-striped'>";
+	$tableHTML.="<table id='TableassignKpi' class=' table grid table-striped'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
 			$tableHTML.="<col  style='width:45%'/>";
@@ -319,6 +426,7 @@ $tableHTML.="
 	$tableHTML.="</table>";
 	echo $tableHTML;
 	mysql_close($conn);
+
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
