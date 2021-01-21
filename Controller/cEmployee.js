@@ -34,7 +34,7 @@ $(document).ready(function(){
 			success:function(data){
 				//console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"department_search_id\" name=\"department_search_id\" class=\"form-control input-sm\" >";
+				htmlDropDrowList+="<select id=\"department_search_id\" name=\"department_search_id\" class=\"\" >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(department_id==indexEntry[0]){
@@ -89,7 +89,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"status_work_search_id\" name=\"status_work_search_id\" class=\"form-control input-sm\"  >";
+				htmlDropDrowList+="<select id=\"status_work_search_id\" name=\"status_work_search_id\" class=\"\"  >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(status_work_id==indexEntry[0]){
@@ -127,7 +127,7 @@ $(document).ready(function(){
 			success:function(data){
 				//alert(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"empDepartment\" name=\"empDepartment\" class=\"form-control input-sm\" >";
+				htmlDropDrowList+="<select id=\"empDepartment\" name=\"empDepartment\" class=\"\" >";
 				//htmlDropDrowList+="<option value='0'>ไม่ระบุ</option>";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
@@ -175,7 +175,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select  id=\"position_search_id\" name=\"position_search_id\" class=\"form-control input-sm\" >";
+				htmlDropDrowList+="<select  id=\"position_search_id\" name=\"position_search_id\" class=\"\" >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(position_id==indexEntry[0]){
@@ -225,7 +225,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"empPosition\" name=\"empPosition\" class=\"form-control input-sm\" >";
+				htmlDropDrowList+="<select id=\"empPosition\" name=\"empPosition\" class=\"\" >";
 					$.each(data,function(index,indexEntry){
 						if(position_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -270,7 +270,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"empStatusWork\" name=\"empStatusWork\" class=\"form-control input-sm\" >";
+				htmlDropDrowList+="<select id=\"empStatusWork\" name=\"empStatusWork\" class=\"\" >";
 					$.each(data,function(index,indexEntry){
 						if(status_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -291,6 +291,8 @@ $(document).ready(function(){
 	}
 	
 	fnDropdownListEmpStatus();
+
+	fnDropdownListRole();
 
 
 	//Dropdown List Emp Status start
@@ -315,7 +317,7 @@ $(document).ready(function(){
 		$("#empFullName").val("");
 		$("#empFirstName").val("");
 		$("#empLastName").val("");
-		$("#empPosition2").val("");
+		//$("#empPosition2").val("");
 
 		$("#empPosition").val("");
 		$("#empAge").val("");
@@ -405,7 +407,7 @@ $(document).ready(function(){
 								//$("#empConfirmPass").val(data[0]["emp_pass"]);
 								//$("#empFullName").val(data[0]["emp_name"]);
 								//$("#empPosition").val(data[0]["position_id"]);
-								$("#empPosition2").val(data[0]["position2"]);
+								//$("#empPosition2").val(data[0]["position2"]);
 								//fnDropdownListEmpSeashPostion(data[0]["position_id"]);
 								fnDropdownListSearchDep(data[0]["department_id"]);
 								
@@ -413,7 +415,7 @@ $(document).ready(function(){
 								//fnDropdownListEmpPostion
 								fnDropdownListEmpPostion(data[0]["position_id"]);
 								fnDropdownListEmpStatus(data[0]["emp_status_work_id"],data[0]["emp_user"]);
-								//fnDropdownListRole(data[0]["role_id"]);
+								fnDropdownListRole(data[0]["role_id"]);
 								$("#empAge").val(data[0]["emp_age"]);
 								$("#empTel").val(data[0]["emp_tel"]);
 								$("#empEmail").val(data[0]["emp_email"]);

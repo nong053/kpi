@@ -320,9 +320,9 @@ if($_POST['empAction']=="add"){
 if($_POST['action']=="showData"){
 	//echo "Show Data";
 	
-	$strSQL="select e.*,pe.position_name,r.role_name,d.department_name,es.emp_status_work from employee e 
+	$strSQL="select e.*,pe.position_name,r.role_name,r.role_id,d.department_name,es.emp_status_work from employee e 
 LEFT JOIN position_emp pe on e.position_id=pe.position_id
-LEFT JOIN role r on pe.role_id=r.role_id
+LEFT JOIN role r on e.role_id=r.role_id
 LEFT JOIN department d on e.department_id=d.department_id
 LEFT JOIN  emp_status es on e.emp_status_work_id=es.id
 where (e.department_id='$department_id' or '$department_id' ='All')
@@ -343,7 +343,7 @@ where (e.department_id='All' or 'All' ='All')
 	$i=1;
 	$tableHTML.="<table id='Tableemployee' class='grid table-striped' style='width:100%'>";
 		$tableHTML.="<colgroup>";
-			$tableHTML.="<col style='width:5%' />";
+			//$tableHTML.="<col style='width:5%' />";
 			$tableHTML.="<col  style='width:8%'/>";
 			$tableHTML.="<col style='width:20%'/>";
 			$tableHTML.="<col style='width:15%'/>";
@@ -355,8 +355,8 @@ where (e.department_id='All' or 'All' ='All')
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_id\"><b> ".$_SESSION['employee_l_tbl_id']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_picture\"><b>".$_SESSION['employee_l_tbl_picture']."</b></th>";
+			//$tableHTML.="<th data-field=\"employee_l_tbl_id\"><b> ".$_SESSION['employee_l_tbl_id']."</b></th>";
+			$tableHTML.="<th style='text-align:center;' data-field=\"employee_l_tbl_picture\"><b>".$_SESSION['employee_l_tbl_picture']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_name\"><b>".$_SESSION['employee_l_tbl_name']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_department\"><b>".$_SESSION['employee_l_tbl_department']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_position\"><b>".$_SESSION['employee_l_tbl_position']."</b></th>";
@@ -364,7 +364,7 @@ where (e.department_id='All' or 'All' ='All')
 			//$tableHTML.="<th data-field=\"employee_l_tbl_age_working\"><b>".$_SESSION['employee_l_tbl_age_working']." </b></th>";
 			//$tableHTML.="<th data-field=\"employee_l_tbl_age\"><b>".$_SESSION['employee_l_tbl_age']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_status\"><b>".$_SESSION['employee_l_tbl_status']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_manage\" style='text-align:center;'><b>".$_SESSION['employee_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"employee_l_tbl_manage\" style='text-align:right;'><b>".$_SESSION['employee_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -375,19 +375,31 @@ where (e.department_id='All' or 'All' ='All')
 
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td>".$i."|".$rs[emp_code]."</td>";
-	$tableHTML.="	<td>";
+	//$tableHTML.="	<td>".$i."|".$rs[emp_code]."</td>";
+	$tableHTML.="	<td > <div style='text-align:center;'>";
 	if(empty($rs['emp_picture_thum'])){
 
-		$tableHTML.="	<img class=\"img-circle\" src=\"../view/uploads/avatar.jpg\" width=\"50\">";
+		$tableHTML.="	<img style='opacity:0.1;' class=\"img-circle\" src=\"../view/uploads/avatar.jpg\" width=\"80\" height=\"80\">";
 
 	}else{
 
-		$tableHTML.="	<img class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"50\">";
+		$tableHTML.="	<img   class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\">";
 	
 	}
-	$tableHTML.=" 	</td>";
-	$tableHTML.="	<td>".$rs['emp_first_name']." ".$rs['emp_last_name']."</td>";
+	$tableHTML.=" 	</div></td>";
+	$tableHTML.="	<td>".$rs['emp_first_name']." ".$rs['emp_last_name']."<br>";
+	
+	if($rs['role_id']==1){
+		$tableHTML.="<div style='color:red;'>(สิทธิ์".$rs['role_name'].")</div>";
+	}else if($rs['role_id']==2){
+		$tableHTML.="<div style='color:orange;'>(สิทธิ์".$rs['role_name'].")</div>";
+	}else{
+		$tableHTML.="<div style='color:green;'>(สิทธิ์".$rs['role_name'].")</div>";
+	}
+	
+
+	$tableHTML.="</td>";
+
 	$tableHTML.="	<td>".$rs['department_name']."</td>";
 	$tableHTML.="	<td>".$rs['position_name']."</td>";
 	//$tableHTML.="	<td>".$rs['role_name']."</td>";
@@ -397,9 +409,9 @@ where (e.department_id='All' or 'All' ='All')
 	
 
 	$tableHTML.="	<td>
-	<div style='text-align: center;'>
-			<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
-			<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
+	<div style='text-align: right;'>
+			<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+			<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 	</div>
 			</td>";
 

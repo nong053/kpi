@@ -910,7 +910,7 @@ function detailInit(e) {
 			success:function(data){
 				//alert(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_id_table\" name=\"appraisal_period_id_table\" class=\"form-control input-sm\" style=\"width:80px;\">";
+				htmlDropDrowList+="<select id=\"appraisal_period_id_table\" name=\"appraisal_period_id_table\" class=\"form-control \" style=\"width:80px;\">";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -946,7 +946,7 @@ var fnDropdownListDepartmetnTable=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"department_id_table\" name=\"department_id_table\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"department_id_table\" name=\"department_id_table\" class=\"form-control \" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -984,7 +984,7 @@ var fnDropdownListDepartmetnTable=function(department_id,paramSelectAll){
 				async:false,
 				success:function(data){
 					var htmlDropDrowList="";
-					htmlDropDrowList+="<select id=\"appraisal_year_table\" name=\"appraisal_year_table\" class=\"form-control input-sm\" style=\"width:80px;\">";
+					htmlDropDrowList+="<select id=\"appraisal_year_table\" name=\"appraisal_year_table\" class=\"form-control \" style=\"width:80px;\">";
 						$.each(data,function(index,indexEntry){
 							if(kpi_year!=undefined){
 								if(kpi_year==indexEntry[0]){

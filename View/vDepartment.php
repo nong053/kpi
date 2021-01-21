@@ -116,15 +116,15 @@ if($_SESSION['language']=="th"){
 				<table style="widows: 100%;">
 					<tr>
 						<td style="width: 200px;" class="text-right"><b><?=$_SESSION['department_l_form_department_code']?>  <font color="red">*</font></b></td>
-						<td><input type="text" name="departmentCode" class="form-control input-sm" id="departmentCode"></td>
+						<td><input type="text" name="departmentCode" class="form-control " id="departmentCode"></td>
 					</tr>
 					<tr>
 						<td style="width: 200px;" class="text-right"><b><?=$_SESSION['department_l_form_department_name']?>  <font color="red">*</font></b></td>
-						<td><input type="text" name="departmentName" class="form-control input-sm" id="departmentName"></td>
+						<td><input type="text" name="departmentName" class="form-control " id="departmentName"></td>
 					</tr>
 					<tr>
 						<td class="text-right" valign="top"><b><?=$_SESSION['department_l_form_department_detail']?> </b></td>
-						<td><textarea name="departmentDetail" class="form-control input-sm" id="departmentDetail"></textarea></td>
+						<td><textarea name="departmentDetail" class="form-control " id="departmentDetail"></textarea></td>
 					</tr>
 					
 					<tr>
@@ -159,11 +159,11 @@ if($_SESSION['language']=="th"){
 	
 	<tr>
 		<td class="text-right"><b>Department Name <font color="red">*</font></b></td>
-		<td><input type="text" name="departmentName" class="form-control input-sm" id="departmentName"></td>
+		<td><input type="text" name="departmentName" class="form-control " id="departmentName"></td>
 	</tr>
 	<tr>
 		<td class="text-right" valign="top"><b>Department Detail</b></td>
-		<td><textarea name="departmentDetail" class="form-control input-sm" id="departmentDetail"></textarea></td>
+		<td><textarea name="departmentDetail" class="form-control " id="departmentDetail"></textarea></td>
 	</tr>
 	
 	<tr>

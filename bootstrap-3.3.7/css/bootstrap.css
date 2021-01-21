@@ -2607,10 +2607,10 @@ input[type="search"] {
   input[type="month"].form-control {
     line-height: 34px;
   }
-  input[type="date"].input-sm,
-  input[type="time"].input-sm,
-  input[type="datetime-local"].input-sm,
-  input[type="month"].input-sm,
+  input[type="date"].,
+  input[type="time"].,
+  input[type="datetime-local"].,
+  input[type="month"].,
   .input-group-sm input[type="date"],
   .input-group-sm input[type="time"],
   .input-group-sm input[type="datetime-local"],
@@ -2700,23 +2700,23 @@ fieldset[disabled] .checkbox label {
   margin-bottom: 0;
 }
 .form-control-static.input-lg,
-.form-control-static.input-sm {
+.form-control-static. {
   padding-right: 0;
   padding-left: 0;
 }
-.input-sm {
+. {
   height: 30px;
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
-select.input-sm {
+select. {
   height: 30px;
   line-height: 30px;
 }
-textarea.input-sm,
-select[multiple].input-sm {
+textarea.,
+select[multiple]. {
   height: auto;
 }
 .form-group-sm .form-control {
@@ -2803,7 +2803,7 @@ select[multiple].input-lg {
   height: 46px;
   line-height: 46px;
 }
-.input-sm + .form-control-feedback,
+. + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
   width: 30px;
@@ -3906,7 +3906,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.input-group-addon.input-sm {
+.input-group-addon. {
   padding: 5px 10px;
   font-size: 12px;
   border-radius: 3px;

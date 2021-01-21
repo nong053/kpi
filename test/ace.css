@@ -6238,7 +6238,7 @@ select.form-control {
 select.form-control[multiple], select[multiple] {
     height: auto;
 }
-select.input-sm {
+select. {
     border-radius: 0;
     padding: 2px 3px;
 }
@@ -6372,7 +6372,7 @@ span.input-icon {
     max-width: 100%;
     width: 60px;
 }
-.input-small {
+.all {
     max-width: 100%;
     width: 90px;
 }

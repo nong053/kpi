@@ -75,24 +75,24 @@ if($_POST['action']=="add"){
 			
 			";
 			$resultSelectEmp=mysql_query($strSQLselectEmp);
-			while($rsSelectEmp=mysql_fetch_array($resultSelectEmp)){
+				while($rsSelectEmp=mysql_fetch_array($resultSelectEmp)){
 
-				$strSQL="INSERT INTO assign_kpi_master(assign_kpi_year,appraisal_period_id,position_id,kpi_weight,kpi_type_actual,
-				kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id,created_dt,updated_dt)
-				VALUES('$year','$appraisal_period_id','$rsSelectEmp[position_id]','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
-				'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id','".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."')";
-				
-				/*
-				$rs=mysql_query($strSQL);
-				
-				if($rs){
-					echo'["success"]';
-				}else{
-					echo mysql_error();
+					$strSQL="INSERT INTO assign_kpi_master(assign_kpi_year,appraisal_period_id,position_id,kpi_weight,kpi_type_actual,
+					kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id,created_dt,updated_dt)
+					VALUES('$year','$appraisal_period_id','$rsSelectEmp[position_id]','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
+					'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id','".date("Y-m-d H:i:s")."','".date("Y-m-d H:i:s")."')";
+					
+					/*
+					$rs=mysql_query($strSQL);
+					
+					if($rs){
+						echo'["success"]';
+					}else{
+						echo mysql_error();
+					}
+					*/
+					
 				}
-				*/
-				
-			}
 			
 			}else{
 				

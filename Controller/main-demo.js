@@ -76,7 +76,7 @@ var fnDropdownListDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"department_id\" name=\"department_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"department_id\" name=\"department_id\" class=\"form-control \" style=\"width:auto;\">";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -157,7 +157,7 @@ var fnDropdownListPosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"position_id\" name=\"position_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"position_id\" name=\"position_id\" class=\"form-control \" style=\"width:auto;\">";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -229,7 +229,7 @@ var fnDropdownListDiv=function(division_id){
 		success:function(data){
 			//alert(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"division_id\" name=\"division_id\" class=\"form-control input-sm\" style=\"width:80px;\">";
+			htmlDropDrowList+="<select id=\"division_id\" name=\"division_id\" class=\"form-control \" style=\"width:80px;\">";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(division_id==indexEntry[0]){
@@ -261,7 +261,7 @@ var fnDropdownListRole=function(role_id){
 		success:function(data){
 			//alert(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"role_id\" name=\"role_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"role_id\" name=\"role_id\" class=\"form-control \" style=\"width:auto;\">";
 			
 				$.each(data,function(index,indexEntry){
 					if(role_id==indexEntry[0]){
@@ -296,7 +296,7 @@ var fnDropdownListKPI=function(kpi_id){
 		success:function(data){
 			//alert(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"kpi_id\" name=\"kpi_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"kpi_id\" name=\"kpi_id\" class=\"form-control \" style=\"width:auto;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_id==indexEntry[0]){
 						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -332,7 +332,7 @@ var fnDropdownListEmployee=function(position_id,emp_id){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"employee_id\" name=\"employee_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"employee_id\" name=\"employee_id\" class=\"form-control \" style=\"width:auto;\">";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -381,7 +381,7 @@ $(document).ready(function(){
 			success:function(data){
 				//alert(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_id\" name=\"appraisal_period_id\" class=\"form-control input-sm\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select id=\"appraisal_period_id\" name=\"appraisal_period_id\" class=\"form-control \" style=\"width:auto;\">";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -412,7 +412,7 @@ $(document).ready(function(){
 				async:false,
 				success:function(data){
 					var htmlDropDrowList="";
-					htmlDropDrowList+="<select id=\"appraisal_year\" name=\"appraisal_year\" class=\"form-control input-sm\" style=\"width:auto;\">";
+					htmlDropDrowList+="<select id=\"appraisal_year\" name=\"appraisal_year\" class=\"form-control \" style=\"width:auto;\">";
 						$.each(data,function(index,indexEntry){
 							
 							if(kpi_year!=undefined){

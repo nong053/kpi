@@ -315,7 +315,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select style='width:200px;' id=\"departmentId\" name=\"departmentId\" class=\"form-control input-sm\" style=\"width:auto;\" >";
+				htmlDropDrowList+="<select style='width:200px;' id=\"departmentId\" name=\"departmentId\" class=\"form-control \" style=\"width:auto;\" >";
 				//htmlDropDrowList+="<option value=\"0\">ไม่ระบุ</option>";
 					$.each(data,function(index,indexEntry){
 						if(department_id==indexEntry[0]){
@@ -367,7 +367,7 @@ $(document).ready(function(){
 			success:function(data){
 			
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"formDepartmentId\" name=\"formDepartmentId\" class=\"form-control input-sm\" style=\"width:auto;\" >";
+				htmlDropDrowList+="<select id=\"formDepartmentId\" name=\"formDepartmentId\" class=\"form-control \" style=\"width:auto;\" >";
 				//htmlDropDrowList+="<option value=\"0\">ไม่ระบุ</option>";
 					$.each(data,function(index,indexEntry){
 						if(department_id==indexEntry[0]){

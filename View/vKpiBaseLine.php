@@ -113,20 +113,20 @@ $kpiName=$_GET['kpiName'];
 				
 				<tr>
 					<td style="width:200px;" class='text-right'><b><?=$_SESSION['baseline_l_form_begin']?>  <font color="red">*</font></b></td>
-					<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control input-sm" style="width:100px;" ></td>
+					<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control " style="width:100px;" ></td>
 				</tr>
 				<tr>
 					<td class='text-right'><b><?=$_SESSION['baseline_l_form_end']?>  <font color="red">*</font></b></td>
-					<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control input-sm" style="width:100px;"></td>
+					<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control " style="width:100px;"></td>
 				</tr>
 				<tr>
 					<td class='text-right'><b><?=$_SESSION['baseline_l_form_score']?> <font color="red">*</font></b></td>
-					<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control input-sm" style="width:100px;"></td>
+					<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control " style="width:100px;"></td>
 				</tr>
 				<tr>
 					<td class='text-right' valign="top"><b><?=$_SESSION['baseline_l_form_suggestion']?></b></td>
 					<td>
-						<textarea rows="3" cols="50" name="suggestion" id="suggestion"  class="form-control input-sm" ></textarea>
+						<textarea rows="3" cols="50" name="suggestion" id="suggestion"  class="form-control " ></textarea>
 					</td>
 				</tr>
 				
@@ -241,20 +241,20 @@ $kpiName=$_GET['kpiName'];
 	
 	<tr>
 		<td class='text-right'><b>Begin Baseline <font color="red">*</font></b></td>
-		<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control input-sm" style="width:100px;" ></td>
+		<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control " style="width:100px;" ></td>
 	</tr>
 	<tr>
 		<td class='text-right'><b>End Baseline <font color="red">*</font></b></td>
-		<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control input-sm" style="width:100px;"></td>
+		<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control " style="width:100px;"></td>
 	</tr>
 	<tr>
 		<td class='text-right'><b>Score <font color="red">*</font></b></td>
-		<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control input-sm" style="width:100px;"></td>
+		<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control " style="width:100px;"></td>
 	</tr>
 	<tr>
 		<td class='text-right' valign="top"><b>Suggestion</b></td>
 		<td>
-			<textarea rows="3" cols="50" name="suggestion" id="suggestion"  class="form-control input-sm" ></textarea>
+			<textarea rows="3" cols="50" name="suggestion" id="suggestion"  class="form-control " ></textarea>
 		</td>
 	</tr>
 	

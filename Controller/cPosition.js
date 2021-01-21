@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	
 	//dropdown List Role Start
-		fnDropdownListRole();
+		//fnDropdownListRole();
 	//dropdown List Role END
 	fnDropdownListDiv();
 	var resetDataPosition=function(){
@@ -71,7 +71,7 @@ $(document).ready(function(){
 									$("#positionSubmit").val("Edit");
 								}
 
-								fnDropdownListRole(data[0]["role_id"]);
+								//(data[0]["role_id"]);
 								
 								$("#positionModal").modal('show');
 

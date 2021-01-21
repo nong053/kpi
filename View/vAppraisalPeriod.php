@@ -116,23 +116,23 @@ if($_SESSION['language']=="th"){
 					-->
 					<tr>
 						<td style="width:200px;" class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_des']?> <font color="red">*</font></b></td>
-						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control input-sm" style="width:250px;"></td>
+						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " style="width:250px;"></td>
 					</tr>
 					<!--
 					<tr>
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_start']?> <font color="red">*</font></b></td>
-						<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class="form-control input-sm" style="width:100px;"></td>
+						<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class="form-control " style="width:100px;"></td>
 					</tr>
 					<tr>
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_end']?> <font color="red">*</font></b></td>
-						<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class="form-control input-sm" style="width:100px;"></td>
+						<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class="form-control " style="width:100px;"></td>
 					</tr>
 					-->
 					<tr style="display: none;">
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_target']?>
 							<!-- <font color="red">*</font> -->
 						</b></td>
-						<td><input type="text" name="appraisal_period_target_percentage" id="appraisal_period_target_percentage" class="form-control input-sm" style="width:100px;"></td>
+						<td><input type="text" name="appraisal_period_target_percentage" id="appraisal_period_target_percentage" class="form-control " style="width:100px;"></td>
 					</tr>
 					<tr>
 						<td >
@@ -243,19 +243,19 @@ if($_SESSION['language']=="th"){
 	
 	<tr>
 		<td class='text-right'><b>Description <font color="red">*</font></b></td>
-		<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control input-sm" style="width:250px;"></td>
+		<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " style="width:250px;"></td>
 	</tr>
 	<tr>
 		<td class='text-right'><b>Start Date <font color="red">*</font></b></td>
-		<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class="form-control input-sm" style="width:100px;"></td>
+		<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class="form-control " style="width:100px;"></td>
 	</tr>
 	<tr>
 		<td class='text-right'><b>End Date <font color="red">*</font></b></td>
-		<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class="form-control input-sm" style="width:100px;"></td>
+		<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class="form-control " style="width:100px;"></td>
 	</tr>
 	<tr style="display: none;">
 		<td class='text-right'><b>Target Percentage <font color="red">*</font></b></td>
-		<td><input type="text" name="appraisal_period_target_percentage" id="appraisal_period_target_percentage" class="form-control input-sm" style="width:100px;"></td>
+		<td><input type="text" name="appraisal_period_target_percentage" id="appraisal_period_target_percentage" class="form-control " style="width:100px;"></td>
 	</tr>
 	<tr>
 		<td >

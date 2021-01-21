@@ -6,6 +6,8 @@ if($_GET['language']=='TH'){
 	$_SESSION['language']="th";
 }else if($_GET['language']=='EN'){
 	$_SESSION['language']="en";
+}else{
+	$_SESSION['language']="th";
 }
 //echo $_GET['language'];
 //echo $_SESSION['language'];
@@ -34,7 +36,7 @@ $_SESSION['main_menul_l_kpiDashboard']="แดชบอร์ด BSC";
 $_SESSION['main_menul_l_threshold']="เกณฑ์การประเมิน";
 $_SESSION['main_menul_l_appraisalPeriod']="ช่วงประเมิน";
 $_SESSION['main_menul_l_department']="แผนก";
-$_SESSION['main_menul_l_position']="สิทธิ์";
+$_SESSION['main_menul_l_position']="ตำแหน่ง";
 $_SESSION['main_menul_l_employee']="พนักงาน";
 $_SESSION['main_menul_l_kpi']="ตัวชี้วัด";
 $_SESSION['main_menul_l_assign_master_kpi']="มอบหมายตัวชี้วัด";
@@ -83,7 +85,7 @@ if($_SESSION['login_status']!="1"){
 
 	
 	 <!-- Custom styles for this template -->
-	 <link href="../Css/login.css" rel="stylesheet">
+	 
 	 <link href="../Css/starter-template.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -647,26 +649,23 @@ var checkBrowserFn=function(){
 							<li class="mainMenu menuLevel1">
 					  			<a  href="#" id="appraisalPeriod" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
 					  			<b class="arrow"></b>
-							  </li>
-							  <li class="mainMenu menuLevel1">
+							</li>
+							<li class="mainMenu menuLevel1">
 					  			<a href="#" id="position3" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
 					  			<b class="arrow"></b>
-							  </li>
-							  <li class="mainMenu menuLevel1">
-					  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
-					  			<b class="arrow"></b>
 							</li>
+							
 							
 							<li class="mainMenu menuLevel1"> 
 					  			<a href="#" id="department" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_department']?></span></a>
 					 			<b class="arrow"></b>
 					 		</li>
 							
-							
 							<li class="mainMenu menuLevel1">
-					  			<a href="#" id="position2" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> ตำแหน่ง</span></a>
+					  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
 					  			<b class="arrow"></b>
 							</li>
+							
 							  
 					 		
 					  		<li class="mainMenu menuLevel1">

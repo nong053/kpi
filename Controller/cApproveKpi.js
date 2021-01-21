@@ -156,7 +156,7 @@ var fnDropdownListApproveDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"approve_department_id\" name=\"approve_department_id\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"approve_department_id\" name=\"approve_department_id\" class=\"form-control \" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -204,7 +204,7 @@ var fnDropdownListApprovePosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"approve_position_id\" name=\"approve_position_id\" class=\"form-control input-sm\" >";
+			htmlDropDrowList+="<select id=\"approve_position_id\" name=\"approve_position_id\" class=\"form-control \" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -261,7 +261,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_approve_kpi\" name=\"appraisal_period_approve_kpi\"  class=\"form-control input-sm\" style=\"width:auto;\" >";
+				htmlDropDrowList+="<select id=\"appraisal_period_approve_kpi\" name=\"appraisal_period_approve_kpi\"  class=\"form-control \" style=\"width:auto;\" >";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -295,7 +295,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"ApproveYear\" name=\"ApproveYear\" class=\"form-control input-sm\" style=\"width:auto;\" >";
+				htmlDropDrowList+="<select id=\"ApproveYear\" name=\"ApproveYear\" class=\"form-control \" style=\"width:auto;\" >";
 					$.each(data,function(index,indexEntry){
 						if(kpi_year!=undefined){
 							if(kpi_year==indexEntry[0]){

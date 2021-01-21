@@ -2040,7 +2040,7 @@ fieldset[disabled] .checkbox-inline {
   cursor: not-allowed;
 }
 
-.input-sm {
+. {
   height: 30px;
   padding: 5px 10px;
   font-size: 12px;
@@ -2048,12 +2048,12 @@ fieldset[disabled] .checkbox-inline {
   border-radius: 3px;
 }
 
-select.input-sm {
+select. {
   height: 30px;
   line-height: 30px;
 }
 
-textarea.input-sm {
+textarea. {
   height: auto;
 }
 
@@ -3971,7 +3971,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-radius: 4px;
 }
 
-.input-group-addon.input-sm {
+.input-group-addon. {
   padding: 5px 10px;
   font-size: 12px;
   border-radius: 3px;

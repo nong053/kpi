@@ -480,7 +480,7 @@ var paramMyEvaluateAppraisal = function(year){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"my_evaluate_period\" name=\"my_evaluate_period\" class=\"form-control input-sm\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select id=\"my_evaluate_period\" name=\"my_evaluate_period\" class=\"form-control \" style=\"width:auto;\">";
 					$.each(data,function(index,indexEntry){
 						// if(appraisal_period_id==indexEntry[0]){
 						// 	htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -512,7 +512,7 @@ var paramMyEvaluateYear=function(kpi_year){
 		success:function(data){
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"myEvaluateYear\" name=\"myEvaluateYear\" class=\"form-control input-sm\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"myEvaluateYear\" name=\"myEvaluateYear\" class=\"form-control \" style=\"width:auto;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_year!=undefined){
 						if(kpi_year==indexEntry[0]){

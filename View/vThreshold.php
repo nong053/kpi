@@ -168,19 +168,19 @@ $(function(){
 					
 					<tr>
 						<td style='width:200px' class='text-right'><strong ><?=$_SESSION['threshold_l_tbl_threshold_name']?> <font color="red">*</font></strong></td>
-						<td><input type="text" class="form-control input-sm" name="thresholdName" id="thresholdName"></td>
+						<td><input type="text" class="form-control " name="thresholdName" id="thresholdName"></td>
 					</tr>
 					<tr>
 						<td class='text-right'> <strong><?=$_SESSION['threshold_l_tbl_begin_threshold']?> <font color="red">*</font></strong></td>
-						<td><input style='width:100px;' type="text" class="form-control input-sm" name="thresholdBegin" id="thresholdBegin"></td>
+						<td><input style='width:100px;' type="text" class="form-control " name="thresholdBegin" id="thresholdBegin"></td>
 					</tr>
 					<tr>
 						<td class='text-right'><strong><?=$_SESSION['threshold_l_tbl_end_threshold']?> <font color="red">*</font></strong></td>
-						<td><input style='width:100px;' type="text" class="form-control input-sm" name="thresholdEnd" id="thresholdEnd"></td>
+						<td><input style='width:100px;' type="text" class="form-control " name="thresholdEnd" id="thresholdEnd"></td>
 					</tr>
 					<tr>
 						<td class='text-right'><strong><?=$_SESSION['threshold_l_tbl_threshold_color']?> <font color="red">*</font></strong></td>
-						<td> <input style='width:100px;' type="text" class="form-control input-sm colorPicker_css" value="FFFFFF" name="thresholdColor" id="thresholdColor"></td>
+						<td> <input style='width:100px;' type="text" class="form-control  colorPicker_css" value="FFFFFF" name="thresholdColor" id="thresholdColor"></td>
 					</tr>
 					<tr>
 						<td >
@@ -259,19 +259,19 @@ $(function(){
 			
 			<tr>
 				<td class='text-right'><strong >Threshold Name <font color="red">*</font></strong></td>
-				<td><input type="text" class="form-control input-sm" name="thresholdName" id="thresholdName"></td>
+				<td><input type="text" class="form-control " name="thresholdName" id="thresholdName"></td>
 			</tr>
 			<tr>
 				<td class='text-right'> <strong>Begin Threshold <font color="red">*</font></strong></td>
-				<td><input type="text" class="form-control input-sm" name="thresholdBegin" id="thresholdBegin"></td>
+				<td><input type="text" class="form-control " name="thresholdBegin" id="thresholdBegin"></td>
 			</tr>
 			<tr>
 				<td class='text-right'><strong>End Threshold <font color="red">*</font></strong></td>
-				<td><input type="text" class="form-control input-sm" name="thresholdEnd" id="thresholdEnd"></td>
+				<td><input type="text" class="form-control " name="thresholdEnd" id="thresholdEnd"></td>
 			</tr>
 			<tr>
 				<td class='text-right'><strong>Color Code <font color="red">*</font></strong></td>
-				<td> <input type="text" class="form-control input-sm colorPicker_css" value="FFFFFF" name="thresholdColor" id="thresholdColor"></td>
+				<td> <input type="text" class="form-control  colorPicker_css" value="FFFFFF" name="thresholdColor" id="thresholdColor"></td>
 			</tr>
 			<tr>
 				<td >

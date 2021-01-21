@@ -1,4 +1,45 @@
+//dropdown List Employee start
+var fnDropdownListAsignEmployee=function(department_id,position_id,paramSelectAll='selectAll',emp_id){
 
+
+	$.ajax({
+		url:"../Model/mEmployeeList.php",
+		type:"post",
+		dataType:"json",
+		async:false,
+		data:{"position_id":position_id,
+			"department_id":department_id,
+			"paramSelectAll":paramSelectAll
+		},
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		success:function(data){
+			console.log(data);
+			
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select style='width:160px;' id=\"assign_employee_id\" name=\"employee_id\" class=\"\" >";
+			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+				$.each(data,function(index,indexEntry){
+					
+					if(emp_id==indexEntry[0]){
+						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+					}else{
+						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					}
+					
+					
+					
+				});
+			htmlDropDrowList+="</select>";
+			
+			$("#empAssignArea").html(htmlDropDrowList);
+			$("#assign_employee_id").kendoDropDownList({
+					theme: "silver"
+				});
+			//persDropDrowList
+			
+		}
+	});
+}	
 //dropdown List Department start
 var fnDropdownListAsignDep=function(department_id,paramSelectAll){
 
@@ -12,7 +53,7 @@ var fnDropdownListAsignDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assign_department_id\" name=\"assign_department_id\" class=\"\" >";
+			htmlDropDrowList+="<select style='width:160px;' id=\"assign_department_id\" name=\"assign_department_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -39,7 +80,11 @@ var fnDropdownListAsignDep=function(department_id,paramSelectAll){
 			$("#assign_department_id").kendoDropDownList({
 					theme: "silver"
 				});
-			//persDropDrowList
+			
+			$("#assign_department_id").change(function(){
+			
+				fnDropdownListAsignEmployee($(this).val(),$("#assign_position_id").val());
+			});
 		}
 	});
 }	
@@ -59,7 +104,7 @@ var fnDropdownListAssignPosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"assign_position_id\" name=\"assign_position_id\" class=\"\" >";
+			htmlDropDrowList+="<select style='width:150px;' id=\"assign_position_id\" name=\"assign_position_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -86,11 +131,11 @@ var fnDropdownListAssignPosition=function(position_id,paramSelectAll){
 					theme: "silver"
 				});
 
-			// $("#position1").change(function(){
+			$("#assign_position_id").change(function(){
 				
-			// 	fnDropdownListEmployee($(this).val());
-			// });
-			//persDropDrowList
+				fnDropdownListAsignEmployee($("#assign_department_id").val(),$(this).val());
+			});
+			
 			
 		}
 	});
@@ -294,6 +339,51 @@ var fnDropdownListPositionInform=function(position_id){
 
 //dropdown List Position end
 
+//dropdown List Employee start
+
+var fnDropdownListEmpInform=function(department_id,position_id,paramSelectAll='selectAll',emp_id){
+
+	
+	$.ajax({
+		url:"../Model/mEmployeeList.php",
+		type:"post",
+		dataType:"json",
+		async:false,
+		data:{"position_id":position_id,
+			"department_id":department_id,
+			"paramSelectAll":paramSelectAll
+		},
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		success:function(data){
+			console.log(data);
+			
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select id=\"assignEmpInform\" name=\"assignEmpInform\" class=\"\" >";
+			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+				$.each(data,function(index,indexEntry){
+					
+					if(emp_id==indexEntry[0]){
+						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+					}else{
+						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					}
+					
+					
+					
+				});
+			htmlDropDrowList+="</select>";
+			
+			$("#empAssignInformArea").html(htmlDropDrowList);
+			$("#assignEmpInform").kendoDropDownList({
+					theme: "silver"
+				});
+			
+			
+		}
+	});
+}
+//dropdown List Employee end
+
 
 //dropdown List Department start
 var fnDropdownListDepInform=function(department_id){
@@ -476,7 +566,7 @@ var fnDropdownAssignListKPI=function(kpi_id){
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			async:false,
 			success:function(data){
-				//alert(data[0]['kpi_weight']);
+			
 				//fnDropdownAssignListKPI();
 				//set empty value
 				$("#confirm_kpi").html("");
@@ -512,20 +602,20 @@ var fnDropdownAssignListKPI=function(kpi_id){
 				"position_id":position_id},
 				async:false,
 			success:function(data){
-				//alert(data);
+			
 				$("#assignKpiShowData").html(data).show();
 				$("#formKPI").show();
-				$("#TableassignKpi").kendoGrid({
-					 /*
-                     height: 250,
-                     sortable: true,
-                     pageable: {
-                         refresh: true,
-                         pageSizes: true,
-                         buttonCount: 5
-                     },
-                     */
-                 });
+				// $("#TableassignKpi").kendoGrid({
+				// 	 /*
+                //      height: 250,
+                //      sortable: true,
+                //      pageable: {
+                //          refresh: true,
+                //          pageSizes: true,
+                //          buttonCount: 5
+                //      },
+                //      */
+                //  });
 				 setGridTable();
 				 //action del,edit start
 				 $(".actionEdit").click(function(){
@@ -561,16 +651,26 @@ var fnDropdownAssignListKPI=function(kpi_id){
 
 								*/
 								
-								/*
-								fnDropdownListAppralisalAssignKpi($("#year").val(),data[0]["appraisal_period_id"]);
-								fnDropdownListDep(data[0]["department_id"],"selectAll");
-								fnDropdownListPosition(data[0]["position_id"],"selectAll");
-								*/
-								fnDropdownAssignListKPI(data[0]["kpi_id"]);
 								
+								//fnDropdownListAppralisalAssignKpi(data[0]['assign_kpi_year'],data[0]["appraisal_period_id"]);
+							
+								
+								fnDropdownListYearInform(data[0]['assign_kpi_year']);
+								fnDropdownListAppralisalAssignKpiInForm(data[0]['assign_kpi_year'],data[0]["appraisal_period_id"]);
+								fnDropdownListDepInform(data[0]['department_id']);
+								fnDropdownListPositionInform(data[0]['position_id']);
+								fnDropdownListEmpInform(data[0]['department_id'],data[0]['position_id']);
+
+								fnDropdownAssignListKPI(data[0]["kpi_id"]);
+
+								// department_id
+								// assign_kpi_year
+								// appraisal_period_id
+								// assign_kpi_id
+
 								kpiAction("edit");
 								$("#kpi_id").change();
-								fnDropdownListEmployee($("#position_id").val(),data[0]["empId"]);
+								
 								
 								
 								$("#kpi_weight").val(data[0]["kpi_weight"]);
@@ -785,6 +885,7 @@ $(document).ready(function(){
 	 $("#position_id_emb").val());
 	*/
 	fnDropdownListAssignPosition(sessionStorage.getItem("param_position"),"");
+	fnDropdownListAsignEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),"selectAll");
 	
 	//fnDropdownListDep( $("#department_id_emb").val(),"selectAll");
 	
@@ -1244,9 +1345,9 @@ $(document).ready(function(){
 
 			fnDropdownListYearInform(sessionStorage.getItem("param_year"));
 			fnDropdownListAppralisalAssignKpiInForm(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-			fnDropdownListPositionInform(sessionStorage.getItem("param_position"));
 			fnDropdownListDepInform(sessionStorage.getItem("param_department"));
-
+			fnDropdownListPositionInform(sessionStorage.getItem("param_position"));
+			fnDropdownListEmpInform(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
 
 			$("#assignMasterKPIModal").modal("show");
 			kpiAction();

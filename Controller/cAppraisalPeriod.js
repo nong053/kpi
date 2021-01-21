@@ -255,7 +255,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select style='height: 28px;' id=\"appraisalPeriodYear\" name=\"appraisalPeriodYear\" class=\"form-control input-sm\" style='width:80px;'>";
+				htmlDropDrowList+="<select style='height: 28px;' id=\"appraisalPeriodYear\" name=\"appraisalPeriodYear\" class=\"form-control \" style='width:80px;'>";
 					$.each(data,function(index,indexEntry){
 						if(kpi_year!=undefined){
 							if(kpi_year==indexEntry[0]){

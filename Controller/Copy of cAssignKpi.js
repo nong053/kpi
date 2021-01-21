@@ -13,7 +13,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_assign_kpi\" name=\"appraisal_period_assign_kpi\" class=\"form-control input-sm\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select id=\"appraisal_period_assign_kpi\" name=\"appraisal_period_assign_kpi\" class=\"form-control \" style=\"width:auto;\">";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -894,7 +894,7 @@ $(document).ready(function(){
 				success:function(data){
 					
 					var htmlDropDrowList="";
-					htmlDropDrowList+="<select id=\"year\" name=\"year\" class=\"form-control input-sm\" style=\"width:auto;\">";
+					htmlDropDrowList+="<select id=\"year\" name=\"year\" class=\"form-control \" style=\"width:auto;\">";
 						$.each(data,function(index,indexEntry){
 							if(kpi_year!=undefined){
 								if(kpi_year==indexEntry[1]){

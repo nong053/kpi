@@ -61,8 +61,8 @@ LEFT JOIN role r on pe.role_id=r.role_id
 	$tableHTML.="<table id='Tableposition' class='grid table-striped' style='width:100%'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col  style='width:40%' />";
-			$tableHTML.="<col  style='width:40%' />";
+			$tableHTML.="<col  style='width:80%' />";
+			$tableHTML.="<col  style='width:20%' />";
 
 			
 		
@@ -71,8 +71,8 @@ LEFT JOIN role r on pe.role_id=r.role_id
 		$tableHTML.="<tr>";
 			$tableHTML.="<th data-field=\"position_l_tbl_id\"><b> ".$_SESSION['position_l_tbl_id']."</b></th>";
 			$tableHTML.="<th data-field=\"position_l_tbl_position_name\"><b> ".$_SESSION['position_l_tbl_position_name']."</b></th>";
-			$tableHTML.="<th data-field=\"position_l_tbl_role_name\"><b> ".$_SESSION['position_l_tbl_role_name']." </b></th>";
-			//$tableHTML.="<th data-field=\"position_l_tbl_manage\" style='text-align:center;'><b> ".$_SESSION['position_l_tbl_manage']."</b></th>";
+			//$tableHTML.="<th data-field=\"position_l_tbl_role_name\"><b> ".$_SESSION['position_l_tbl_role_name']." </b></th>";
+			$tableHTML.="<th data-field=\"position_l_tbl_manage\" style='text-align:right;'><b> ".$_SESSION['position_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -84,14 +84,14 @@ LEFT JOIN role r on pe.role_id=r.role_id
 	$tableHTML.="<tr>";
 	$tableHTML.="	<td>".$i."</td>";
 	$tableHTML.="	<td>".$rs['position_name']."</td>";
-	$tableHTML.="	<td>".$rs['role_name']."</td>";
+	//$tableHTML.="	<td>".$rs['role_name']."</td>";
 
-	// $tableHTML.="	<td>
-	// <div style='text-align: center;'>
-	// 		<button type='button' id='idEdit-".$rs['position_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
-	// 		<button type='button' id='idDel-".$rs['position_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
-	// </div>
-	// 		</td>";
+	 $tableHTML.="<td>
+					<div style='text-align: right;'>
+							<button type='button' id='idEdit-".$rs['position_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+							<button type='button' id='idDel-".$rs['position_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+					</div>
+	 			</td>";
 	$tableHTML.="</tr>";
 
 	

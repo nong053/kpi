@@ -736,3 +736,19 @@ ul.submenuHover li:hover:before{
     line-height: 1.42857;
 }
 
+.pre-search-label{
+    padding-left: 15px;
+}
+.object-float-left{
+    float: left;
+}
+.object-float-right{
+    float: right;
+}
+.object-text-left{
+    text-align: left;
+}
+.object-text-right{
+    text-align: right;
+}
+

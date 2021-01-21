@@ -137,7 +137,7 @@ if($_SESSION['language']=="th"){
 						<b><?=$_SESSION['approve_l_form_kpi_peromance']?>%</b>
 					</td>
 					<td>
-						<input type="text" id="adjust_percentage" name="adjust_percentage"   class="form-control input-sm" >
+						<input type="text" id="adjust_percentage" name="adjust_percentage"   class="form-control " >
 					</td>
 				</tr>
 				<tr>
@@ -145,7 +145,7 @@ if($_SESSION['language']=="th"){
 						<b><?=$_SESSION['approve_l_form_kpi_reason']?></b>
 					</td>
 					<td>
-						<textarea id="adjust_reason" name="adjust_reason"   class="form-control input-sm" ></textarea>
+						<textarea id="adjust_reason" name="adjust_reason"   class="form-control " ></textarea>
 					</td>
 					
 				</tr>

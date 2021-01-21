@@ -938,7 +938,7 @@ var fnDropdownListAppralisal=function(year,appraisal_period_id){
 		success:function(data){
 			//alert(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_period_id\" name=\"appraisal_period_id\" class=\"form-control input-sm\" style=\"width:80px;\">";
+			htmlDropDrowList+="<select id=\"appraisal_period_id\" name=\"appraisal_period_id\" class=\"form-control \" style=\"width:80px;\">";
 				$.each(data,function(index,indexEntry){
 					if(appraisal_period_id==indexEntry[0]){
 						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -972,7 +972,7 @@ var paramYear=function(kpi_year){
 			async:false,
 			success:function(data){
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_year\" name=\"appraisal_year\" class=\"form-control input-sm\" style=\"width:80px;\">";
+				htmlDropDrowList+="<select id=\"appraisal_year\" name=\"appraisal_year\" class=\"form-control \" style=\"width:80px;\">";
 					$.each(data,function(index,indexEntry){
 						if(kpi_year!=undefined){
 							if(kpi_year==indexEntry[0]){

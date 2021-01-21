@@ -270,14 +270,14 @@
 	border-bottom: 0px solid #e5e5e5;
 }
 
-select.input-sm{
+select.{
 	height: 25px;
     line-height: 30px;
 }
 .btn-sm, .btn-xs{
 	  padding: 2px 10px;
 }
-.input-sm{
+.{
 	height: 25px;
 	padding: 2px 5px;
 }

@@ -2036,7 +2036,7 @@ input[type="search"] {
 input[type="date"], input[type="datetime-local"], input[type="month"], input[type="time"] {
     line-height: 34px;
 }
-input.input-sm[type="date"], input.input-sm[type="datetime-local"], input.input-sm[type="month"], input.input-sm[type="time"] {
+input.[type="date"], input.[type="datetime-local"], input.[type="month"], input.[type="time"] {
     line-height: 30px;
 }
 input.input-lg[type="date"], input.input-lg[type="datetime-local"], input.input-lg[type="month"], input.input-lg[type="time"] {
@@ -2085,22 +2085,22 @@ input.input-lg[type="date"], input.input-lg[type="datetime-local"], input.input-
     padding-bottom: 7px;
     padding-top: 7px;
 }
-.form-control-static.input-lg, .form-control-static.input-sm {
+.form-control-static.input-lg, .form-control-static. {
     padding-left: 0;
     padding-right: 0;
 }
-.form-horizontal .form-group-sm .form-control, .input-sm {
+.form-horizontal .form-group-sm .form-control, . {
     border-radius: 3px;
     font-size: 12px;
     height: 30px;
     line-height: 1.5;
     padding: 5px 10px;
 }
-select.input-sm {
+select. {
     height: 30px;
     line-height: 30px;
 }
-select.input-sm[multiple], textarea.input-sm {
+select.[multiple], textarea. {
     height: auto;
 }
 .form-horizontal .form-group-lg .form-control, .input-lg {
@@ -2139,7 +2139,7 @@ select.input-lg[multiple], textarea.input-lg {
     line-height: 46px;
     width: 46px;
 }
-.input-sm + .form-control-feedback {
+. + .form-control-feedback {
     height: 30px;
     line-height: 30px;
     width: 30px;
@@ -2856,7 +2856,7 @@ select.input-group-sm[multiple] > .form-control, select.input-group-sm[multiple]
     padding: 6px 12px;
     text-align: center;
 }
-.input-group-addon.input-sm {
+.input-group-addon. {
     border-radius: 3px;
     font-size: 12px;
     padding: 5px 10px;

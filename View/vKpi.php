@@ -123,7 +123,7 @@ if($_SESSION['language']=="th"){
 					
 					 <tr>
 						<td style="width:200px;" class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_code']?>  <font color="red">*</font></b></td>
-						<td><input type="text" id="kpiCode" name="kpiCode"  style='width:100px;'  class="form-control input-sm"></td>
+						<td><input type="text" id="kpiCode" name="kpiCode"  style='width:100px;'  class="form-control "></td>
 					</tr>
 					<tr style="display: none;">
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_department']?> <font color="red">*</font></b></td>
@@ -132,15 +132,15 @@ if($_SESSION['language']=="th"){
 					<tr>
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_name']?> <font color="red">*</font></b></td>
 						<td>
-							<input type="text" id="kpiName" name="kpiName"  style='width:300px;' class="form-control input-sm">
+							<input type="text" id="kpiName" name="kpiName"  style='width:300px;' class="form-control ">
 						</td>
 					</tr>
 
 					<tr id="kpi_better_flag_area" style="display: none;">
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_better_flag']?> <font color="red">*</font></b></td>
 						<td>
-						Yes <input type="radio"  checked="checked" id="kpiBetterFlagY" class="kpiBetterFlag" name="kpiBetterFlag"   class="form-control input-sm" value="Y">
-						&nbsp;No <input type="radio" id="kpiBetterFlagN" class="kpiBetterFlag" name="kpiBetterFlag"   class="form-control input-sm" value="N">
+						Yes <input type="radio"  checked="checked" id="kpiBetterFlagY" class="kpiBetterFlag" name="kpiBetterFlag"   class="form-control " value="Y">
+						&nbsp;No <input type="radio" id="kpiBetterFlagN" class="kpiBetterFlag" name="kpiBetterFlag"   class="form-control " value="N">
 						</td>
 					</tr>
 
@@ -150,26 +150,26 @@ if($_SESSION['language']=="th"){
 					<tr id="kpi_type_score_area" style="display: none;">
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_type_score']?> <font color="red">*</font></b></td>
 						<td>
-						Baseline <input type="radio"  checked="checked" id="kpiTypeScore1" class="kpiTypeScore" name="kpiTypeScore"   class="form-control input-sm" value="1">
+						Baseline <input type="radio"  checked="checked" id="kpiTypeScore1" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="1">
 						&nbsp;
 						Calculate 5 points
-						<input type="radio" id="kpiTypeScore2" class="kpiTypeScore" name="kpiTypeScore"   class="form-control input-sm" value="2">
+						<input type="radio" id="kpiTypeScore2" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="2">
 						&nbsp;
 						True/False
-						<input type="radio" id="kpiTypeScore3" class="kpiTypeScore" name="kpiTypeScore"   class="form-control input-sm" value="3">
+						<input type="radio" id="kpiTypeScore3" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="3">
 						</td>
 					</tr>
 
 					<tr id="kpiDataTargetArea"  style="display: none;">
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_data_target']?> <font color="red">*</font></b></td>
 						<td>
-							<input type="text" id="kpiDataTarget" name="kpiDataTarget"  style='width:300px;' class="form-control input-sm">
+							<input type="text" id="kpiDataTarget" name="kpiDataTarget"  style='width:300px;' class="form-control ">
 						</td>
 					</tr>
 
 					<tr>
 						<td class="text-right"  valign="top"><b><?=$_SESSION['kpi_l_form_kpi_detail']?> </b></td>
-						<td><textarea id="kpiDetail" rows="5" cols="25" name="kpiDetail" class="form-control input-sm"></textarea>
+						<td><textarea id="kpiDetail" rows="5" cols="25" name="kpiDetail" class="form-control "></textarea>
 					</tr>
 					
 
@@ -297,16 +297,16 @@ if($_SESSION['language']=="th"){
 	
 	 <tr>
 		<td class="text-right"><b>KPI Code <font color="red">*</font></b></td>
-		<td><input type="text" id="kpiCode" name="kpiCode"  style='width:100px;'  class="form-control input-sm"></td>
+		<td><input type="text" id="kpiCode" name="kpiCode"  style='width:100px;'  class="form-control "></td>
 	</tr>
 	<tr>
 		<td class="text-right"><b>KPI Name <font color="red">*</font></b></td>
-		<td><input type="text" id="kpiName" name="kpiName"  style='width:300px;' class="form-control input-sm"></td>
+		<td><input type="text" id="kpiName" name="kpiName"  style='width:300px;' class="form-control "></td>
 	</tr>
 	
 	<tr>
 		<td class="text-right"  valign="top"><b>KPI Detail</b></td>
-		<td><textarea id="kpiDetail" rows="5" cols="25" name="kpiDetail" class="form-control input-sm"></textarea>
+		<td><textarea id="kpiDetail" rows="5" cols="25" name="kpiDetail" class="form-control "></textarea>
 	</tr>
 	
 	<tr>
