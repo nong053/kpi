@@ -13,10 +13,10 @@ var fnDropdownListAsignEmployee=function(department_id,position_id,paramSelectAl
 		},
 		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 		success:function(data){
-			console.log(data);
+			
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select style='width:160px;' id=\"assign_employee_id\" name=\"employee_id\" class=\"\" >";
+			htmlDropDrowList+="<select style='width:160px;' id=\"assign_employee_id\" name=\"assign_employee_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -682,7 +682,7 @@ var fnDropdownAssignListKPI=function(kpi_id){
 								fnDropdownListAppralisalAssignKpiInForm(data[0]['assign_kpi_year'],data[0]["appraisal_period_id"]);
 								fnDropdownListDepInform(data[0]['department_id']);
 								fnDropdownListPositionInform(data[0]['position_id']);
-								fnDropdownListEmpInform(data[0]['department_id'],data[0]['position_id']);
+								fnDropdownListEmpInform(data[0]['department_id'],data[0]['position_id'],'selectAll',data[0]['emp_id']);
 
 								fnDropdownAssignListKPI(data[0]["kpi_id"]);
 
@@ -831,6 +831,7 @@ var searchAssignMasterKPIFn = function(){
 		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_assign_kpi").val());
 		sessionStorage.setItem("param_department", $("#assign_department_id").val());
 		sessionStorage.setItem("param_position", $("#assign_position_id").val());
+		sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
 
 		//parameter send to year,appraisal_period_id,department_id,position_id
 		//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
@@ -1037,17 +1038,13 @@ $(document).ready(function(){
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			data:{
 
-			/*	
-			"year":$("#year").val(),
-			"appraisal_period_id":$("#appraisal_period_id_emb").val(),
-			"position_id":positionId,
-			"department_id":depId,
-			*/
+			
 
 			"year":$("#yearInform").val(),
 			"appraisal_period_id":$("#appraisal_period_assign_kpi_inform").val(),
-			"position_id":$("#assignPositionInform").val(),
 			"department_id":$("#assignDepartmentInform").val(),
+			"position_id":$("#assignPositionInform").val(),
+			"emp_id":$("#assignEmpInform").val(),
 
 
 			"kpi_id":$("#kpi_id").val(),
@@ -1370,7 +1367,7 @@ $(document).ready(function(){
 			fnDropdownListAppralisalAssignKpiInForm(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
 			fnDropdownListDepInform(sessionStorage.getItem("param_department"));
 			fnDropdownListPositionInform(sessionStorage.getItem("param_position"));
-			fnDropdownListEmpInform(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+			fnDropdownListEmpInform(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),'selectAll',sessionStorage.getItem("param_emp"));
 
 			$("#assignMasterKPIModal").modal("show");
 			kpiAction();
@@ -1394,6 +1391,10 @@ $(document).ready(function(){
 		searchAssignMasterKPIFn();
 	});
 	$("#assign_position_id").change(function(){
+		searchAssignMasterKPIFn();
+	});
+
+	$("#assign_employee_id").change(function(){
 		searchAssignMasterKPIFn();
 	});
 	//parameter search binding chaange action end	

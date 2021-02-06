@@ -15,7 +15,7 @@ if($jsonArray["login_status"]==1){
 	//$year="2012";
 	if($paramSelectAll=="selectAll"){
 		$strSQL="select * from(
-		select 'All' as appraisal_period_id,'ทั้งหมด' as appraisal_period_desc ,0 as seq
+		select 'All' as appraisal_period_id,'ทุกช่วง' as appraisal_period_desc ,0 as seq
 		UNION
 		select appraisal_period_id,appraisal_period_desc,1 as seq from appraisal_period where  appraisal_period_year ='$year'
 		and admin_id='$admin_id'

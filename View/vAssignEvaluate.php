@@ -11,7 +11,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['assign_l_des_detail']="เพื่อทำการมอบหมายตัวชี้วัดที่ต้องวัดผลการปฏิบัติงานให้กับพนักงาน ตรงนี้จะเป็นการ มอบหมายตัวชี้วัดค่าเริ่มต้นโดยมอบหมายในระดับตำแหน่งซึ่งก็คือพนักงานที่อยู่ภายใต้ตำแหน่งนั้นๆ";
 	$_SESSION['assign_l_des_btn_add']="มอบหมายตัวชี้วัดทั้งหมด";
 	$_SESSION['assign_l_des_btn_confirm']="ส่งประเมินทั้งหมด";
-	$_SESSION['assign_l_des_btn_del_all']="ยกเลิกการมอบหมายทั้งหมด";
+	$_SESSION['assign_l_des_btn_del_all']="ยกเลิกมอบหมายทั้งหมด";
 	
 
 	//Search
@@ -103,7 +103,10 @@ if($_SESSION['language']=="th"){
 		font-weight: bold;
 		color: black;
 	}
-
+	.head-box-assign{
+		font-weight: bold;
+		font-size: 1.5em;
+	}
 	.text-right {
 		text-align: right;
 		padding-right: 10px;
@@ -171,7 +174,7 @@ if($_SESSION['language']=="th"){
 						<div class='col-md-12'>
 							<table style="width: 100%;">
 
-								<tr>
+								<!-- <tr>
 									<td style="width: 150px;" class='text-right'><b><?= $_SESSION['assign_l_search_year'] ?></b></td>
 									<td id="assignYearInformArea">
 
@@ -201,10 +204,15 @@ if($_SESSION['language']=="th"){
 									<td id="empAssignInformArea">
 
 									</td>
+								</tr> -->
+
+								<tr id="kpiTextAllArea" style="display: none;">
+									<td style="width: 150px;" class='text-right'><b><?= $_SESSION['assign_l_form_kpi_name'] ?></b></td>
+									<td id="kpiTextArea">
+
+									</td>
 								</tr>
-
-
-								<tr>
+								<tr id="kpiDropDrowListAllArea">
 									<td style="width: 150px;" class='text-right'><b><?= $_SESSION['assign_l_form_kpi_name'] ?></b></td>
 									<td id="kpiDropDrowListArea">
 
@@ -217,6 +225,7 @@ if($_SESSION['language']=="th"){
 										<input type="text" id="kpi_weight" name="kpi_weight" class="form-control " value="25.00" style="width:150px;">
 									</td>
 								</tr>
+<!--                                 
 								<tr style="display: none;">
 									<td class='text-right'><b>Target Data</b></td>
 									<td>
@@ -272,7 +281,7 @@ if($_SESSION['language']=="th"){
 
 
 									</td>
-								</tr>
+								</tr> -->
 
 
 								<tr>
@@ -280,7 +289,18 @@ if($_SESSION['language']=="th"){
 									<td>
 										<div style="float:left;">
 											<input type="hidden" name="assign_kpi_action" id="assign_kpi_action" value="add">
-											<input type="hidden" name="assign_kpi_id" id="assign_kpi_id" value="">
+											<!-- <input type="hidden" name="assign_kpi_id" id="assign_kpi_id" value=""> -->
+											<input type="hidden" name="assign_kpi_by_emp" id="assign_kpi_by_emp" value="N">
+											
+											<input type="hidden" name="form_year" id="form_year" value="">
+											<input type="hidden" name="form_appraisal_period_id" id="form_appraisal_period_id" value="">
+											<input type="hidden" name="form_department_id" id="form_department_id" value="">
+											<input type="hidden" name="form_position_id" id="form_position_id" value="">
+											<input type="hidden" name="form_emp_id" id="form_emp_id" value="">
+											<input type="hidden" name="form_kpi_id" id="form_kpi_id" value="">
+											
+
+
 											<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="<?= $_SESSION['assign_l_form_btn_add'] ?>" class="btn btn-primary ">
 											<input type="button" value="<?= $_SESSION['assign_l_form_btn_reset'] ?>" id="assign_kpi_reset" class="btn btn-default ">
 
@@ -294,23 +314,7 @@ if($_SESSION['language']=="th"){
 
 							</table>
 						</div>
-						<!--
-						<div class='col-md-3' class="hidden">
-							
-							
-								<div style="margin-top: 0px;" class="panel panel-default panel-bottom">
-								  <div class="panel-heading">
-									<b>Baseline List</b>			
-								  </div>
-								  <div class="panel-body panel-body-top">
-								  
-								 		<div id="baseLineArea" style="display: none;"></div>
-								 		
-										  </div>
-								</div>
-							
-						</div>
-						-->
+						
 						<br style="clear: both">
 					</row>
 
@@ -342,14 +346,7 @@ if($_SESSION['language']=="th"){
 
 			<td><b><?= $_SESSION['assign_l_search_year'] ?></b></td>
 			<td class="assignKpiYearArea">
-				<!-- 
-			<select id="year">
-				<option>2012</option>
-				<option>2013</option>
-				<option>2014</option>
-				<option>2015</option>
-			</select>
-		 -->
+			
 			</td>
 
 			<td><b class='pre-search-label'><?= $_SESSION['assign_l_search_appraisalPeriod'] ?></b></td>
@@ -366,17 +363,7 @@ if($_SESSION['language']=="th"){
 				</div>
 
 			</td>
-			<!-- 
-		<td>
-		Division
-		</td>
-		<td>
-			<div id="divDropDrowListArea" style="float:left;">
 			
-			</div>
-			
-		</td>
-	 	-->
 			<td><b class='pre-search-label'><?= $_SESSION['assign_l_search_position'] ?></b></td>
 			<td id="positionAssignArea">
 
@@ -391,32 +378,13 @@ if($_SESSION['language']=="th"){
 			<td>&nbsp;</td>
 			<td style="display: none;">
 				<input type="button" value="<?= $_SESSION['assign_l_search_btn_search'] ?>" id="assign_kpi_search" class="btn btn-primary btn-sm">
-				<!-- 
-			<button class="actionAssignMasterKPI btn btn-danger btn-xs" id="idAssignMasterKPI" type="button">Assign Master KPI</button>
-			 -->
+				
 			</td>
-			<!-- 
-		<td>&nbsp;</td>
-		<td>
-			<input type="button" value="Assign KPIs" id="assign_kpi_all"  class="btn btn-danger btn-xs">
-		</td>
-		 -->
+			
 		</tr>
 	</table>
 </div>
 
-<!-- 
-	<div style="margin-top: 5px;" class="panel panel-default panel-bottom">
-			  <div class="panel-heading">
-				<b>Employee List</b>			
-			  </div>
-			  <div class="panel-body panel-body-top">
-			  
-			 		<div class="employeeData" id="employeeShowData" style="display:none;"></div>
-			 		
-			  </div>
-	</div>
- -->
 
 <!-- <div class="alert alert-info bg-from  displayHideShow" role="alert" >
 		
@@ -430,7 +398,7 @@ if($_SESSION['language']=="th"){
 	
 		<div class="panel-heading">
 
-			<div class="col-md-6">
+			<!-- <div class="col-md-6">
 				<div id="empNameArea" class="empNameArea"></div>
 				<table>
 					<tr class="summary_kpi">
@@ -454,19 +422,23 @@ if($_SESSION['language']=="th"){
 
 					</tr>
 				</table>
-			</div>
-
+			</div> -->
+            <!-- <div class="col-md-6 text object-text-left">
+            <h3>ทุกช่วงการประเมิน</h3>
+            </div> -->
 			<div class="col-md-12 text object-text-right">
 
-				<input type="button" id="del_all_kpi_assign" name="del_all_kpi_assign" value="<?= $_SESSION['assign_l_des_btn_del_all'] ?>" class="btn btn-danger btn-lg">		
-				<input type="button" id="kpi_process" name="kpi_process" value="<?= $_SESSION['assign_l_des_btn_confirm'] ?>" class="btn btn-warning btn-lg">
+				<input type="button" id="delAllKpiEmpAssign" name="delAllKpiEmpAssign" value="<?= $_SESSION['assign_l_des_btn_del_all'] ?>" class="btn btn-danger btn-lg">		
+				<input type="button" id="sendAllKpiEmpAssign" name="sendAllKpiEmpAssign" value="<?= $_SESSION['assign_l_des_btn_confirm'] ?>" class="btn btn-warning btn-lg">
 				<button class="btn btn-primary btn-lg" id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
 					<?= $_SESSION['assign_l_des_btn_add'] ?>
 				</button>
 			</div>
 			<br style="clear:both">
 		</div>
-		<div class="panel-body panel-body-top">
+
+
+		<div class="panel-body panel-body-top" style="padding: 5px;">
 
 			<!-- <div id="assignKpiShowData" style="display:none;"></div> -->
 			<div id="assignKpiToEmpShowData" style="display:none;"></div>
@@ -479,25 +451,9 @@ if($_SESSION['language']=="th"){
 
 
 
-<div id="formKPI" style="display:none; ">
+<!-- <div id="formKPI" style="display:none; ">
 
-
-
-
-	<!--
-<div class="alert alert-info bg-from displayHideShow" role="alert" style="padding-bottom: 10px;">
-<p class="bg-warning1">
-
-	Assign KPIs Form
-</p>
-<br>
-
-	
-	<br style='clear: both'>
-</div>	
--->
-
-</div>
+</div> -->
 
 
 

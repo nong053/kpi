@@ -265,7 +265,7 @@ if($_POST['action']=="showEmpData"){
 					<div class='caption'>";
 						
 					 $tableHTML.="<p class='emp-text-left'>";
-					 $tableHTML.="".$rs['emp_first_name']." ".$rs['emp_last_name'];
+					 $tableHTML.="<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b>";
 					 $tableHTML.="<br>".$rs['department_name'];
 					 $tableHTML.="<br> ตำแหน่ง".$rs['position_name'];
 					 $tableHTML.="</p>";
@@ -609,7 +609,7 @@ if($_POST['action']=="editAction"){
 
 
 if($_POST['action']=="getDataBaseline"){
-	/*
+/*
 	$strSQL="select baseline_end as max_baseline_data,max(baseline_score)as max_baseline_score from baseline
 where kpi_id='$kpi_id'
 GROUP BY kpi_id";
@@ -649,7 +649,8 @@ ORDER BY baseline_score desc";
 					<tbody>";
 				$i=0;
 				while($rs=mysql_fetch_array($result)){
-					$tableHtml.="<tr id='baseline_radio-".$rs[baseline_id]."'  class='baseline_radio' style ='cursor:pointer;'>
+					$tableHtml.="
+								<tr id='baseline_radio-".$rs[baseline_id]."'  class='baseline_radio' style ='cursor:pointer;'>
 								
 									<td id='baseline_begin_result-".$rs[baseline_id]."'><center>$rs[baseline_begin]</center></td>
 									<td id='baseline_end_result-".$rs[baseline_id]."'><center>$rs[baseline_end]</center></td>
@@ -658,9 +659,7 @@ ORDER BY baseline_score desc";
 <td style='text-align:center;'> 
 	<button class='btn-primary'><i class='glyphicon glyphicon-check'></i></button>
 </td>
-								 <tr>
-						
-						
+								<tr>
 						";
 					$i++;
 				}

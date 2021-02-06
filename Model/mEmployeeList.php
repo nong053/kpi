@@ -16,14 +16,19 @@ if ($jsonArray["login_status"] == 1) {
 	if ($paramSelectAll == "selectAll") {
 
 		$strSQL = "select emp_id,fullname,seq from(
-			SELECT 'All' AS emp_id,'ทั้งหมด' as fullname  ,0 as seq
+			SELECT 'All' AS emp_id,'ทุกคน' as fullname  ,0 as seq
 			UNION
-			SELECT  emp_id, concat(emp_first_name,' ',emp_last_name) as fullname,1 as seq from employee where position_id='$position_id' and department_id='$department_id' 
+			SELECT  emp_id, concat(emp_first_name,' ',emp_last_name) as fullname,1 as seq from employee 
+			where (position_id='$position_id'  or 'All'='$position_id' )
+			and (department_id='$department_id' or 'All'='$department_id' )
 	)queryA
 			ORDER BY seq,emp_id";
 
 	} else {
-		$strSQL = "select emp_id,concat(emp_first_name,' ',emp_last_name) as fullname from employee  where position_id='$position_id' and department_id='$department_id' order by emp_id";
+		$strSQL = "select emp_id,concat(emp_first_name,' ',emp_last_name) as fullname from employee  
+		where (position_id='$position_id'  or 'All'='$position_id' )
+			  and (department_id='$department_id' or 'All'='$department_id' )
+		order by emp_id";
 	}
 
 	$result = mysql_query($strSQL);

@@ -11,6 +11,7 @@ if($jsonArray["login_status"]==1){
 $year =$_POST['year'];
 $appraisal_period_id = $_POST['appraisal_period_id'];
 $department_id=$_POST['department_id'];
+
 $position_id =$_POST['position_id'];
 $employee_id = $_POST['employee_id'];
 $assign_kpi_id = $_POST['assign_kpi_id'];
@@ -233,12 +234,11 @@ year	2012
 		$rsKpiResult=mysql_fetch_array($resultKpiResult);
 
 		$strSQLCountAssignMaster="
-				select count(*)  as  count_assign_evaluate_kpi  from assign_evaluate_kpi where 
+				select count(*)  as  count_assign_master  from assign_kpi_master where 
 				 assign_kpi_year=".$year."
 				and appraisal_period_id=".$appraisal_period_id."
 				and department_id=".$rs['department_id']."  
 				and position_id=".$rs['position_id']." 
-				and emp_id=".$rs['emp_id']." 
 				and confirm_flag='Y'
 		";
 
@@ -287,10 +287,10 @@ year	2012
 			</div>
 			</td>";
 			}
-		}else if($rsKpiCountAssignMaster['count_assign_evaluate_kpi']>0 ){
+		}else if($rsKpiCountAssignMaster['count_assign_master']>0 ){
 			$tableHTML.="<td>
 			<div style='text-align:right;'>
-			<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับการประเมิน</button>
+			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับการประเมิน</button>
 			</div>
 			</td>";
 		}else{
@@ -484,17 +484,15 @@ $division_id=$_POST['division_id'];
 */
 	$strSQL="
 
-	select kpi.kpi_id,ak.appraisal_period_id,ak.assign_kpi_year,ak.department_id,ak.position_id,ak.emp_id,
-	kpi_name,ak.kpi_weight,ak.target_data,ak.target_score,ak.kpi_type_actual,ak.kpi_actual_manual,ak.kpi_actual_query,ak.complete_kpi_score_flag
-	from assign_evaluate_kpi ak
+	select kpi.kpi_id,ak.appraisal_period_id,ak.assign_kpi_id,kpi_name,ak.kpi_weight,ak.target_data,ak.target_score,ak.kpi_type_actual,ak.kpi_actual_manual,ak.kpi_actual_query,ak.complete_kpi_score_flag
+	from assign_kpi ak
 	left JOIN kpi
 	on ak.kpi_id=kpi.kpi_id
-	where 
-	 (ak.assign_kpi_year='$year' )
+	where (ak.emp_id='$employee_id' or '$employee_id'='All')
+	and (ak.assign_kpi_year='$year' or '$year'='All')
     and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
-	and (ak.department_id='$department_id' or '$department_id'='All')
 	and (ak.position_id='$position_id' or '$position_id'='All')
-	and (ak.emp_id='$employee_id' or '$employee_id'='All')
+	and (ak.department_id='$department_id' or '$department_id'='All')
 	and ak.admin_id='$admin_id' 
 	";
 	
@@ -554,11 +552,11 @@ $division_id=$_POST['division_id'];
 	$tableHTML.="	<td>
 			
 	<div style='text-align:center;'>
-			<button type='button' style='display:none;' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+			<button type='button' style='display:none;' id='idEdit-".$rs['assign_kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 
-			<button type='button' id='idAddScore-".$rs['assign_kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['kpi_id']."' class='actionAddScore btn btn-primary'><i class='glyphicon glyphicon-log-in'></i></button>
+			<button type='button' id='idAddScore-".$rs['assign_kpi_id']."' class='actionAddScore btn btn-primary'><i class='glyphicon glyphicon-log-in'></i></button>
 
-			<button type='button' style='display:none;' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+			<button type='button' style='display:none;' id='idDel-".$rs['assign_kpi_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 	</div>
 			</td>";
 	$tableHTML.="</tr>";
@@ -694,29 +692,9 @@ if($_POST['action']=="removeAssignKPIs"){
 
 }
 if($_POST['action']=="edit"){
-/*	
-$year =$_POST['year'];
-$appraisal_period_id = $_POST['appraisal_period_id'];
-$department_id=$_POST['department_id'];
-$position_id =$_POST['position_id'];
-$employee_id = $_POST['employee_id'];
-$assign_kpi_id = $_POST['assign_kpi_id'];
-$kpi_id=$_POST['kpi_id'];
-*/
+	$id=$_POST['id'];
 
-	$strSQL="
-	SELECT *,k.kpi_name FROM assign_evaluate_kpi aek
-	INNER JOIN kpi k on aek.kpi_id=k.kpi_id 
-	WHERE 
-
-	aek.assign_kpi_year=$year 
-	and aek.appraisal_period_id=$appraisal_period_id 
-	and aek.department_id=$department_id 
-	and aek.position_id=$position_id 
-	and aek.emp_id=$employee_id 
-	and aek.kpi_id=$kpi_id 
-	and aek.admin_id='$admin_id'";
-
+	$strSQL="SELECT * FROM assign_kpi WHERE assign_kpi_id=$id and admin_id='$admin_id'";
 	$result=mysql_query($strSQL);
 	if($result){
 		$rs=mysql_fetch_array($result);
@@ -731,20 +709,17 @@ $kpi_id=$_POST['kpi_id'];
 		target_score
 		*/
 		
-		 echo "[
-			 {\"assign_kpi_id\":\"$rs[assign_kpi_id]\",\"assign_kpi_year\":\"$rs[assign_kpi_year]\",
+		 echo "[{\"assign_kpi_id\":\"$rs[assign_kpi_id]\",\"assign_kpi_year\":\"$rs[assign_kpi_year]\",
 		 		\"appraisal_period_id\":\"$rs[appraisal_period_id]\",\"emp_id\":\"$rs[emp_id]\",
 	\"position_id\":\"$rs[position_id]\",\"kpi_id\":\"$rs[kpi_id]\",
 	\"kpi_weight\":\"$rs[kpi_weight]\",\"target_data\":\"$rs[target_data]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",
 	\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",\"target_score\":\"$rs[target_score]\",
 	\"department_id\":\"$rs[department_id]\",\"total_kpi_actual_score\":\"$rs[total_kpi_actual_score]\",
-	\"kpi_actual_score\":\"$rs[kpi_actual_score]\",\"performance\":\"$rs[performance]\",\"kpi_name\":\"$rs[kpi_name]\"
+	\"kpi_actual_score\":\"$rs[kpi_actual_score]\",\"performance\":\"$rs[performance]\"
 	}]";
 		
 	}else{
-
 		echo'["error"]';
-	echo mysql_error();
 	}
 	
 	mysql_close($conn);
@@ -774,36 +749,13 @@ if($_POST['action']=="editAction"){
 	target_score
 	*/
 
-	$strSQL="UPDATE assign_evaluate_kpi 
-	SET 
-	-- assign_kpi_year='$year',
-	-- appraisal_period_id='$appraisal_period_id' ,
-	-- position_id='$position_id' ,
-	-- emp_id='$employee_id' ,
-	-- department_id='$department_id',
-	-- kpi_id='$kpi_id',
-
-	kpi_weight='$kpi_weight',
-	target_data='$target_data',
-	kpi_type_actual='$kpi_type_actual',
-	kpi_actual_manual='$kpi_actual_manual',
-	kpi_actual_query='$kpi_actual_query',
-	target_score='$target_score',
-	kpi_actual_score='$kpi_actual_score',
-	total_kpi_actual_score='$total_kpi_actual_score',
-	performance='$performance',
-	complete_kpi_score_flag='$complete_kpi_score_flag'
-	
-	WHERE 
-
-	assign_kpi_year=$year 
-	and appraisal_period_id=$appraisal_period_id 
-	and department_id=$department_id 
-	and position_id=$position_id 
-	and emp_id=$employee_id 
-	and kpi_id=$kpi_id 
-
-
+	$strSQL="UPDATE assign_kpi SET assign_kpi_year='$year',appraisal_period_id='$appraisal_period_id' ,
+	position_id='$position_id' ,emp_id='$employee_id' ,department_id='$department_id',
+	kpi_id='$kpi_id',
+	kpi_weight='$kpi_weight',target_data='$target_data',kpi_type_actual='$kpi_type_actual',kpi_actual_manual='$kpi_actual_manual',
+	kpi_actual_query='$kpi_actual_query',target_score='$target_score',kpi_actual_score='$kpi_actual_score',
+	total_kpi_actual_score='$total_kpi_actual_score',performance='$performance',complete_kpi_score_flag='$complete_kpi_score_flag'
+	WHERE assign_kpi_id='$assign_kpi_id'
 	and admin_id='$admin_id'
 	";
 	$result=mysql_query($strSQL);
@@ -885,6 +837,7 @@ left JOIN baseline base
 on kpi.kpi_id=base.kpi_id
 where kpi.kpi_id='$kpi_id'
 GROUP BY kpi.kpi_id";
+
 	$result=mysql_query($strSQL);
 	$rs=mysql_fetch_array($result);
 	echo "[{\"kpi_target_data\":\"$rs[max_baseline_data]\",\"target_score\":\"$rs[max_baseline_score]\"}]";
@@ -962,8 +915,8 @@ if($_POST['action']=="getSumWeightKpi"){
 }
 if($_POST['action']=="getKPIPercentage"){
 
-	$strSQL="select sum(total_kpi_actual_score) as sum_kpi_weight from assign_evaluate_kpi where
-	(assign_kpi_year='$year') and
+	$strSQL="select sum(total_kpi_actual_score) as sum_kpi_weight from assign_kpi where
+	(assign_kpi_year='$year' or '$year'='All') and
 	(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
 	(department_id='$department_id' or '$department_id'='All') and
 	(position_id='$position_id' or '$position_id'='All') and

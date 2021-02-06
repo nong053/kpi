@@ -14,7 +14,7 @@ if($jsonArray["login_status"]==1){
 	if($paramSelectAll=="selectAll"){
 		$strSQL="
 		select position_id,position_name from(
-		SELECT 'All' AS position_id,'ทั้งหมด' as position_name,0 as seq,0 as role_id
+		SELECT 'All' AS position_id,'ทุกตำแหน่ง' as position_name,0 as seq,0 as role_id
 		UNION
 		select position_id,position_name,1 as seq,role_id from position_emp 
         where admin_id='$admin_id'  and role_id!=1 

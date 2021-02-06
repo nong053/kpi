@@ -14,7 +14,7 @@ if($jsonArray["login_status"]==1){
 if($paramSelectAll=="selectAll"){
 
 	$strSQL="select department_id,department_name,department_detail from(
-	SELECT 'All' AS department_id,'ทั้งหมด' as department_name,'ทั้งหมด' as department_detail,0 as seq
+	SELECT 'All' AS department_id,'ทุกแผนก' as department_name,'ทุกแผนก' as department_detail,0 as seq
 	UNION
 	SELECT department_id,department_name,department_detail,1 as seq FROM department where admin_id='$admin_id'
 	)queryA

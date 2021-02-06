@@ -151,7 +151,7 @@ var Level3FunctionFn = function(){
 }
 
 //assign page
-var resetDataAssignKpi=function(activeKPIs){
+var resetDataAssignKpi_bk=function(activeKPIs){
 		if(activeKPIs==true){
 			fnDropdownAssignListKPI();
 		}
@@ -192,7 +192,7 @@ var resetDataAssignKpi=function(activeKPIs){
 
 
 	/*KPI lIST START*/
-	var kpiAction=function(action){
+	var kpiAction_bk=function(action){
 		
 		
 	
@@ -1003,14 +1003,14 @@ $(document).ready(function(){
 		
 		$(".topParameter").hide();
 		$.ajax({
-			url:"../View/vAssignMasterKPI.php",
+			url:"../View/vAssignEvaluate.php",
 			type:"get",
 			dataType:"html",
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			sync:false,
 			success:function(data){
 				$("#mainContent").html(data);
-				callProgramControl("cAssignMasterKpi.js");
+				callProgramControl("cAssignEvaluate.js");
 				//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#division_id").val(),$("#position_id").val(),$("#employee_id").val());
 				//showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#division_id_emb").val(),$("#position_id_emb").val());
 				
