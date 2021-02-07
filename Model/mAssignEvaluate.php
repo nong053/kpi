@@ -408,8 +408,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
                 $tableHTML .= "</td>";
                 $tableHTML .= "<td>";
                 $tableHTML .= "<div style=\"text-align: right;\">
-                                    <button type=\"button\" id=\"idEdit-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."\" class=\"actionEdit btn btn-primary \"><i class=\"glyphicon glyphicon-pencil\"></i></button>
-                                    <button type=\"button\" id=\"idDel-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."\" class=\" actionDel btn btn-danger \"><i class=\"glyphicon glyphicon-trash\"></i></button>
+                                    <button type=\"button\" id=\"idEdit-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."\" class=\"actionEdit actionEdit-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']." btn btn-primary \"><i class=\"glyphicon glyphicon-pencil\"></i></button>
+                                    <button type=\"button\" id=\"idDel-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."\" class=\" actionDel actionDel-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']." btn btn-danger \"><i class=\"glyphicon glyphicon-trash\"></i></button>
                                </div>";
                 $tableHTML .= "</td>";
             $tableHTML .= "</tr>";

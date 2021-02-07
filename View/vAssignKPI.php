@@ -21,13 +21,13 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_result_emp_l_tbl_list']="พนักงาน";
 	$_SESSION['kpi_result_emp_l_tbl_id']="#";
 	$_SESSION['kpi_result_emp_l_tbl_pticture']="รูป";
-	$_SESSION['kpi_result_emp_l_tbl_fullname']="ชื่อ-นามสกุล";
+	$_SESSION['kpi_result_emp_l_tbl_fullname']="ข้อมูลส่วนตัว";
 	$_SESSION['kpi_result_emp_l_tbl_department']="แผนก";
 	$_SESSION['kpi_result_emp_l_tbl_position']="ระดับ";
 	$_SESSION['kpi_result_emp_l_tbl_age']="อายุ";
 	$_SESSION['kpi_result_emp_l_tbl_result']="สรุปผลการประเมิน";
 	$_SESSION['kpi_result_emp_l_tbl_chief_result']="หัวหน้าประเมิน";
-	$_SESSION['kpi_result_emp_l_tbl_emp_result']="พนักงานประเมิน";
+	$_SESSION['kpi_result_emp_l_tbl_emp_result']="ประเมินตนเอง";
 	$_SESSION['kpi_result_emp_l_tbl_adjust_result']="ปรับคะแนน";
 	
 	
@@ -197,7 +197,7 @@ if($_SESSION['language']=="th"){
 		float:left;
 	}
 	.empName1{
-		font-weight: bold;
+		/* font-weight: bold; */
 		font-size: 20px;
 	}
 	
@@ -236,13 +236,14 @@ if($_SESSION['language']=="th"){
 					 	<?=$_SESSION['kpi_result_l_form_kpi_weight']?>
 					</div>
 					<div style="display: none;;">
-						<div id="kpi_weight_total"><strong></strong></div> 
+						น้ำหนัก:<div id="kpi_weight_total"><strong></strong></div> 
 					</div>
 					<div>
 					 	 <?=$_SESSION['kpi_result_l_form_kpi_percentage']?> 
 					</div>
 					<div>
 						<div id="score_sum_percentage"></div>
+						<div style="display: inline;" id="confirm_kpi"></div>
 					</div>
 					<!--
 					<td>
@@ -287,9 +288,9 @@ if($_SESSION['language']=="th"){
 		<table style="width: 100%;">
 		
 		<tr>
-			<td style="width:150px;" class='text-right'><b><?=$_SESSION['kpi_result_l_form_kpi_name']?></b></td>
-			<td id="kpiDropDrowListArea">
-				
+			<!-- <td style="width:150px;" class='text-right'><b><?=$_SESSION['kpi_result_l_form_kpi_name']?></b></td> -->
+			<td colspan='2'>
+			<span style="font-weight: bold;"><?=$_SESSION['kpi_result_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
 			</td>
 		</tr>
 		
@@ -319,8 +320,8 @@ if($_SESSION['language']=="th"){
 		
 		</tr>
 		<tr>
-			<td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['kpi_result_l_form_baseline']?></b></td>
-			<td>
+			<!-- <td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['kpi_result_l_form_baseline']?></b></td> -->
+			<td colspan='2'>
 				<div style="margin-top: 0px;margin-bottom:0px;" class="panel panel-default panel-bottom">
 				  <!--
 				  <div class="panel-heading">
@@ -381,6 +382,14 @@ if($_SESSION['language']=="th"){
 			<td >
 				<div style="float:left;">
 					<input type="hidden" name="assign_kpi_action" id ="assign_kpi_action"  value="add">
+
+					<input type="hidden" name="assign_kpi_year" id ="assign_kpi_year"  value="">
+					<input type="hidden" name="assign_kpi_appraisal_period" id ="assign_kpi_appraisal_period"  value="">
+					<input type="hidden" name="assign_kpi_department" id ="assign_kpi_department"  value="">
+					<input type="hidden" name="assign_kpi_position" id ="assign_kpi_position"  value="">
+					<input type="hidden" name="assign_kpi_emp" id ="assign_kpi_emp"  value="">
+
+
 					<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
 					<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="Add" class="btn btn-primary btn-sm">
 					<input type="button" value="Reset" id="assign_kpi_reset" class="btn btn-default btn-sm">
@@ -444,7 +453,7 @@ if($_SESSION['language']=="th"){
 
 
 		<div style="float: right;">
-			<div style="display: inline;" id="confirm_kpi"></div>
+			<!-- <div style="display: inline;" id="confirm_kpi"></div> -->
 			
 			
 			<input type="button" id="kpi_process" name="kpi_process" value="ยืนยันผลการประเมิน" class="btn btn-warning ">

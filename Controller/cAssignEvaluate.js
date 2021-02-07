@@ -473,7 +473,12 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 				
 				if($("#check_status-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).hasClass('confirm_flag_complete')){
 					
-					$("#status_confirm_flag-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).html("ส่งประเมินเรียบร้อย").parent().parent().removeClass("alert-warning").addClass("alert-info");;
+					$("#status_confirm_flag-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).html("ส่งประเมินเรียบร้อย").parent().parent().removeClass("alert-warning").addClass("alert-info");
+					$("#assignKpiByEmp-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).prop("disabled",true);
+					$("#sendKpiAssignByEmp-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).prop("disabled",true);
+
+					$(".actionEdit-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).prop("disabled",true);
+					$(".actionDel-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).prop("disabled",true);
 				}
 		
 

@@ -189,15 +189,31 @@ select e.*,pe.position_name,r.role_name,d.department_name
 		// <img class=\"img-circle\"  src=".$rs['emp_picture_thum']." width=50>
 		if(empty($rs['emp_picture_thum'])){
 
-			$tableHTML.="	<img style='opacity:0.1;' class=\"img-circle shadow\" src=\"../view/uploads/avatar.jpg\" width=\"80\" height='80'>";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../view/uploads/avatar.jpg\" width=\"80\" height='80'>";
 
 		}else{
 
-			$tableHTML.="	<img class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>";
 		
 		}
 		$tableHTML.="</td>";
-		$tableHTML.="	<td>".$rs['emp_first_name']." ".$rs['emp_last_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span><span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";
+		$tableHTML.="	<td>
+		<span  id='fullName-".$rs['emp_id']."'>
+		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br>
+		</span>
+		<span style='display:none;' id='depId-".$rs['emp_id']."'>
+		".$rs['department_id'].
+		"</span>
+		<span style='display:none;' id='depName-".$rs['emp_id']."'>
+		".$rs['department_name'].
+		"</span>
+		<span  style='display:none;' id='positionId-".$rs['emp_id']."'>
+		".$rs['position_id']."
+		</span>
+		<span  style='display:none;' id='positionName-".$rs['emp_id']."'>
+		".$rs['position_name']."
+		</span>
+		</td>";
 		//$tableHTML.="	<td>".$rs['department_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span></td>";
 		//$tableHTML.="	<td>".$rs['position_name']."<span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";
 
@@ -274,23 +290,32 @@ year	2012
 				// </td>";
 				$tableHTML.="	<td>
 				<div style='text-align:right;'>
-				<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>ผลประเมินอนุมัติแล้ว</button>
-				<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
+				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>ผลประเมินอนุมัติแล้ว</button>
+				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
 				</div>
 				</td>";
 
-			}else{
+			}else if($rsKpiResult[confirm_flag]=="Y"){
 			$tableHTML.="	<td>
 			<div style='text-align:right;'>
-			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>รออนุมัติผลประเมิน</button>
-			<button type='button' id='idAssignKPI-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
-			</div>
+			<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>รออนุมัติ</button>";
+			$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
+			//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionEditAssign btn btn-danger '>แก้ไขตัวชี้วัด</button>";
+
+			$tableHTML.="</div>
+			</td>";
+			}else{
+			$tableHTML.="<td>
+				<div style='text-align:right;'>
+				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับประเมิน</button>
+				</div>
 			</td>";
 			}
+			
 		}else if($rsKpiCountAssignMaster['count_assign_evaluate_kpi']>0 ){
 			$tableHTML.="<td>
 			<div style='text-align:right;'>
-			<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับการประเมิน</button>
+			<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับประเมิน</button>
 			</div>
 			</td>";
 		}else{
@@ -515,18 +540,19 @@ $division_id=$_POST['division_id'];
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th data-field=\"column1\"><b>".$_SESSION['kpi_result_l_tbl_id']."</b></th>";
+			$tableHTML.="<th data-field=\"column1\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_id']."</b></th>";
 			$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['kpi_result_l_tbl_kpi_name']." </b></th>";
-			$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['kpi_result_l_tbl_weight']."</b></th>";
-			$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['kpi_result_l_tbl_target']." </b></th>";
-			$tableHTML.="<th data-field=\"column5\"><b>".$_SESSION['kpi_result_l_tbl_target_score']."</b></th>";
+			$tableHTML.="<th data-field=\"column3\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_weight']."</b></th>";
+			$tableHTML.="<th data-field=\"column4\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_target']." </b></th>";
+			$tableHTML.="<th  data-field=\"column5\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_target_score']."</b></th>";
 			//$tableHTML.="<th><b>Target Score</b></th>";
-			$tableHTML.="<th data-field=\"column6\" style='text-align:center;'><b>".$_SESSION['kpi_result_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_manage']."</b></th>";
 	
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentassignKpi\">";
+	
 	while($rs=mysql_fetch_array($result)){
 		
 		if($rs['kpi_type_actual']=="0"){
@@ -544,16 +570,16 @@ $division_id=$_POST['division_id'];
 
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td style='background:yellow;'>".$rs['kpi_id']." <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
+	$tableHTML.="	<td style='background:yellow;'><div style='text-align:right;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
-	$tableHTML.="	<td>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</td>";
-	$tableHTML.="	<td>".number_format((float)$rs['target_data'], 2, '.', '')."</td>";
-	$tableHTML.="	<td>".number_format((float)$kpi_actual, 2, '.', '') ."</td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$kpi_actual, 2, '.', '') ."</div></td>";
 	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
 	
 	$tableHTML.="	<td>
 			
-	<div style='text-align:center;'>
+	<div style='text-align:right;'>
 			<button type='button' style='display:none;' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 
 			<button type='button' id='idAddScore-".$rs['assign_kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['kpi_id']."' class='actionAddScore btn btn-primary'><i class='glyphicon glyphicon-log-in'></i></button>
@@ -658,7 +684,7 @@ if($_POST['action']=="removeAssignKPIs"){
 
 
 	*/
-			$strSQL="DELETE FROM assign_kpi  
+			$strSQL="DELETE FROM assign_evaluate_kpi  
 			WHERE  assign_kpi_year='$year'
 			and appraisal_period_id='$appraisal_period_id'
 			and department_id='$department_id'
@@ -793,7 +819,7 @@ if($_POST['action']=="editAction"){
 	total_kpi_actual_score='$total_kpi_actual_score',
 	performance='$performance',
 	complete_kpi_score_flag='$complete_kpi_score_flag'
-	
+
 	WHERE 
 
 	assign_kpi_year=$year 
@@ -946,7 +972,7 @@ if($_POST['action']=="getKpiScore"){
 }
 if($_POST['action']=="getSumWeightKpi"){
 	
-	$strSQL="select sum(kpi_weight) as sum_kpi_weight from assign_kpi where
+	$strSQL="select sum(kpi_weight) as sum_kpi_weight from assign_evaluate_kpi where
 		(assign_kpi_year='$year' or '$year'='All') and
 		(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
 		(department_id='$department_id' or '$department_id'='All') and

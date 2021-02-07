@@ -639,11 +639,11 @@ ORDER BY baseline_score desc";
 				 	<thead>
 						<tr>
 							
-							<th><center>เริ่ม</center></th>
-							<th><center>ถึง</center></th>
-							<th><center>คะแนน</center></th>
-							<th>เกฑณ์ประเมิน</th>
-							<th style='text-align:center;'>เลือก</th>
+							<th style='text-align:right; width:110px;'>เริ่ม</th>
+							<th style='text-align:right;width:110px;'>ถึง</th>
+							<th style='text-align:right;width:80px;'>คะแนน</th>
+							<th><div style='padding-left:10px;'>เกฑณ์ประเมิน</div></th>
+							<th style='text-align:right;'>เลือก</th>
 						</tr>
 				  	</thead>
 					<tbody>";
@@ -652,11 +652,11 @@ ORDER BY baseline_score desc";
 					$tableHtml.="
 								<tr id='baseline_radio-".$rs[baseline_id]."'  class='baseline_radio' style ='cursor:pointer;'>
 								
-									<td id='baseline_begin_result-".$rs[baseline_id]."'><center>$rs[baseline_begin]</center></td>
-									<td id='baseline_end_result-".$rs[baseline_id]."'><center>$rs[baseline_end]</center></td>
-									<td><center>$rs[baseline_score]</center></td>
-									<td>".$rs[suggestion]."</td>
-<td style='text-align:center;'> 
+									<td id='baseline_begin_result-".$rs[baseline_id]."'><div style='text-align:right'>$rs[baseline_begin]</div></td>
+									<td id='baseline_end_result-".$rs[baseline_id]."'><div style='text-align:right'>$rs[baseline_end]</div></td>
+									<td><div style='text-align:right'>$rs[baseline_score]</div></td>
+									<td><div style='padding-left:10px;'>".$rs[suggestion]."</div></td>
+<td style='text-align:right;'> 
 	<button class='btn-primary'><i class='glyphicon glyphicon-check'></i></button>
 </td>
 								<tr>

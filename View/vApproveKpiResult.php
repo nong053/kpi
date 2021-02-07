@@ -11,9 +11,9 @@ if($_SESSION['language']=="th"){
 
 	//Search
 	$_SESSION['approve_l_search_year']="ปีประเมิน";
-	$_SESSION['approve_l_search_appraisalPeriod']="ช่วงการประเมิน";
+	$_SESSION['approve_l_search_appraisalPeriod']="ช่วงประเมิน";
 	$_SESSION['approve_l_search_department']="แผนก";
-	$_SESSION['approve_l_search_position']="ระดับ";
+	$_SESSION['approve_l_search_position']="ตำแหน่ง";
 	$_SESSION['approve_l_search_btn_search']="ค้นหา";
 
 	//column1
