@@ -290,33 +290,38 @@ year	2012
 				// </td>";
 				$tableHTML.="	<td>
 				<div style='text-align:right;'>
-				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>ผลประเมินอนุมัติแล้ว</button>
-				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
+				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>ผลประเมินอนุมัติแล้ว</button>";
+				//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
+				$tableHTML.="
 				</div>
 				</td>";
 
 			}else if($rsKpiResult[confirm_flag]=="Y"){
 			$tableHTML.="	<td>
-			<div style='text-align:right;'>
-			<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>รออนุมัติ</button>";
-			$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
-			//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionEditAssign btn btn-danger '>แก้ไขตัวชี้วัด</button>";
+			<div style='text-align:right;'>";
+			$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
+			$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>รออนุมัติ</button> ";
+			//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
+			
 
 			$tableHTML.="</div>
 			</td>";
 			}else{
 			$tableHTML.="<td>
 				<div style='text-align:right;'>
-				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับประเมิน</button>
+				<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>พร้อมรับประเมิน</button>
+
 				</div>
 			</td>";
 			}
 			
 		}else if($rsKpiCountAssignMaster['count_assign_evaluate_kpi']>0 ){
 			$tableHTML.="<td>
-			<div style='text-align:right;'>
-			<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-danger '>พร้อมรับประเมิน</button>
-			</div>
+			<div style='text-align:right;'>";
+			$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
+			$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>พร้อมรับประเมิน</button> ";
+			
+			$tableHTML.="</div>
 			</td>";
 		}else{
 			$tableHTML.="<td style='text-align:right;'>
@@ -719,6 +724,36 @@ if($_POST['action']=="removeAssignKPIs"){
 	echo'["success"]';
 
 }
+
+if($_POST['action']=="backToAssignKPI"){
+	
+		
+			
+			
+			$strSQL2="
+			UPDATE assign_evaluate_kpi
+			SET confirm_flag = 'N'
+			
+			WHERE
+			assign_kpi_year='$year' 
+			and appraisal_period_id='$appraisal_period_id' 
+			and department_id='$department_id' 
+			and position_id='$position_id' 
+			and emp_id='$employee_id' 
+			and admin_id='$admin_id'
+			";
+			$result2=@mysql_query($strSQL2);
+			if(!$result2){
+				echo mysql_error();
+			}else{
+				echo'["success"]';
+			}
+	
+	
+
+}
+
+
 if($_POST['action']=="edit"){
 /*	
 $year =$_POST['year'];

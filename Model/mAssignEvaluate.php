@@ -37,7 +37,28 @@ if ($jsonArray["login_status"] == 1) {
 
     if($_POST['action'] == "delAllKpiAssignEmp"){
        
+        /*
+        $strSQLCheckEmpIsConfirmed = "
+        SELECT count(*) as count_flag_confirmed FROM assign_evaluate_kpi aek
+        where 
+        assign_kpi_year='".$year."' 
+        and (appraisal_period_id='".$appraisal_period_id."' or 'All' = '".$appraisal_period_id."')
+        and (department_id='".$department_id."' or 'All' = '".$department_id."') 
+        and (position_id='".$position_id."' or 'All' = '".$position_id."')
+        and (emp_id='".$emp_id."' or 'All' = '".$emp_id."')
+        and aek.confirm_flag='N'
+        and aek.admin_id='$admin_id'
+        
+        ";
 
+        $resultEmpConfirmed = mysql_query($strSQLCheckEmpIsConfirmed);
+        $rsEmpConfirmed = mysql_fetch_array($resultEmpConfirmed);
+       
+        print_r($rsEmpConfirmed['count_flag_confirmed']);
+        if($rsEmpConfirmed['count_flag_confirmed']==0){
+            */
+       
+        
         $strSQL = "
         DELETE FROM assign_evaluate_kpi 
         WHERE 
@@ -46,14 +67,35 @@ if ($jsonArray["login_status"] == 1) {
             and (department_id='".$department_id."' or 'All' = '".$department_id."') 
             and (position_id='".$position_id."' or 'All' = '".$position_id."')
             and (emp_id='".$emp_id."' or 'All' = '".$emp_id."')
+            and (confirm_flag='N' or confirm_flag='' or confirm_flag=null) 
         ";
 
         $result = mysql_query($strSQL);
         if ($result) {
-            echo '["success"]';
+            $strSQL2 = "
+            DELETE FROM kpi_result 
+            WHERE 
+                kpi_year='".$year."' 
+                and (appraisal_period_id='".$appraisal_period_id."' or 'All' = '".$appraisal_period_id."')
+                and (department_id='".$department_id."' or 'All' = '".$department_id."') 
+                and (position_id='".$position_id."' or 'All' = '".$position_id."')
+                and (emp_id='".$emp_id."' or 'All' = '".$emp_id."')
+                 and confirm_flag='N'
+      
+            ";
+    
+            $result2 = mysql_query($strSQL2);
+            if($result2){
+                echo '["success"]';
+            }else{
+                echo mysql_error();
+            }
+
+            
         }else{
             echo mysql_error();
         }
+   // }
 
 
     }
@@ -89,7 +131,7 @@ if ($jsonArray["login_status"] == 1) {
 
 
 
-
+        /*
         $strSQLUpdate = "
 		UPDATE assign_evaluate_kpi SET confirm_flag='N', updated_dt='" . date("Y-m-d H:i:s") . "'
 		where (assign_kpi_year='$year' or '$year'='All') 
@@ -104,6 +146,7 @@ if ($jsonArray["login_status"] == 1) {
         if (!$rsResultUpdate) {
             echo mysql_error();
         } 
+        */
 
 
         $strSQLseleAppraisalPeriod = "
@@ -162,6 +205,26 @@ if ($jsonArray["login_status"] == 1) {
                 echo "[{\"kpi_target_data\":\"$rs[max_baseline_data]\",\"target_score\":\"$rs[max_baseline_score]\"}]";
                 */
 
+                $strSQLCheckEmpIsConfirmed = "
+                SELECT count(*) as count_flag_confirmed FROM assign_evaluate_kpi aek
+                where aek.assign_kpi_year='".$year."'
+                and aek.appraisal_period_id='".$rsSelecAppraisalPeriod['appraisal_period_id']."'
+                and aek.department_id='".$rsEmployee['department_id']."'
+                and aek.position_id='".$rsEmployee['position_id']."'
+                and aek.emp_id='".$rsEmployee['emp_id']."'
+                and aek.confirm_flag='Y'
+                and aek.admin_id='$admin_id'
+                
+                ";
+
+                $resultEmpConfirmed = mysql_query($strSQLCheckEmpIsConfirmed);
+                $rsEmpConfirmed = mysql_fetch_array($resultEmpConfirmed);
+               
+                //print_r($rsEmpConfirmed['count_flag_confirmed']);
+                if($rsEmpConfirmed['count_flag_confirmed']==0){
+                
+               
+
                 $strSQL = "INSERT INTO assign_evaluate_kpi(
                                                         assign_kpi_year,
                                                         appraisal_period_id,
@@ -197,6 +260,8 @@ if ($jsonArray["login_status"] == 1) {
                 if (!$rs) {
                     $error_count = 1;
                 }
+
+            }
             }
         }
 
@@ -275,11 +340,11 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 	from employee e
 	INNER JOIN position_emp pe on e.position_id=pe.position_id
 	INNER JOIN role r on e.role_id=r.role_id
-	INNER JOIN department d on e.department_id=d.department_id
+    INNER JOIN department d on e.department_id=d.department_id
 	where (e.department_id='$department_id' or '$department_id' ='All')
     and (e.position_id='$position_id' or '$position_id' ='All')
     and (e.emp_id='$emp_id' or '$emp_id' ='All')
-	and e.emp_status_work_id='1'
+    and e.emp_status_work_id='1'
 	and e.admin_id='$admin_id'
 	order by e.emp_id
 

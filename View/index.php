@@ -42,8 +42,8 @@ $_SESSION['main_menul_l_kpi']="ตัวชี้วัด";
 $_SESSION['main_menul_l_assign_master_kpi']="มอบหมายตัวชี้วัด";
 $_SESSION['main_menul_l_assign_kpi']="ประเมิน";
 $_SESSION['main_menul_l_assign_kpi_emp']="พนักงานตประเมินเอง";
-$_SESSION['main_menul_l_approve_kpi_result']="อนุมัติผลการประเมิน";
-$_SESSION['main_menul_l_appraisal_result']="ผลการประเมิน";
+$_SESSION['main_menul_l_approve_kpi_result']="อนุมัติผลประเมิน";
+$_SESSION['main_menul_l_appraisal_result']="ผลประเมิน";
 
 }
 // Sett Main Menu End

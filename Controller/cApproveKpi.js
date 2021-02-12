@@ -27,18 +27,23 @@
 				//Edit For Approve kpi START
 					$(".actionApproveEditKPI").click(function(){
 						
-						 var emp_id=this.id.split("-");
-						 emp_id=emp_id[1];
-						  var  empDepId =$("#depId-"+emp_id).text();
-						  var  empPositionId =$("#positionId-"+emp_id).text();
+
+						var  data_id=this.id.split("-");
+						var kpi_year=data_id[1];
+						var appraisal_period_id=data_id[2];
+						var department_id=data_id[3];
+						var position_id=data_id[4];
+						var emp_id=data_id[5];
+
+						
+						
+						$("#year_approve_emb").val(kpi_year);
+						$("#appraisal_period_emb").val(appraisal_period_id);
+						$("#dep_approve_id_emb").val(department_id);
+						$("#position_approve_id_emb").val(position_id);
+						$("#employee_id_emb").val(emp_id);
 						  
-						  $("#employee_id_emb").remove();
-						  $("#dep_approve_id_emb").remove();
-						  $("#position_approve_id_emb").remove();
-						  
-						  $("body").append("<input type='hidden' name='employee_id_emb' class='emp_param' id='employee_id_emb' value='"+emp_id+"'>");
-						  $("body").append("<input type='hidden' name='dep_approve_id_emb' class='emp_param' id='dep_approve_id_emb' value='"+empDepId+"'>");
-						  $("body").append("<input type='hidden' name='position_approve_id_emb' class='emp_param' id='position_approve_id_emb' value='"+empPositionId+"'>");
+						 
 						  
 						 // alert($("#employee_id_emb").val());
 						  $.ajax({
@@ -47,9 +52,9 @@
 								dataType:"json",
 								headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 								data:{
-								"year":sessionStorage.getItem("param_year"),
-								"appraisal_period_id":sessionStorage.getItem("param_appraisal_period"),
-								"employee_id":$("#employee_id_emb").val(),
+								"year":kpi_year,
+								"appraisal_period_id":appraisal_period_id,
+								"employee_id":emp_id,
 								"action":"edit"
 								},
 								success:function(data){
@@ -57,7 +62,11 @@
 									$(".formAdjust").show();
 									$("#adjust_reason").val(data[0]['adjust_reason']);
 									$("#adjust_percentage").val(data[0]['adjust_percentage']);
-									showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
+									showDataEmployee(
+										kpi_year,
+										appraisal_period_id,
+										department_id,
+										position_id);
 
 									$("#approveModal").modal('show');
 
@@ -68,13 +77,60 @@
 						  
 					});
 				//EDIT For Approve kpi END
-					
+				//actionNewEvaluate start
+				$(".actionNewEvaluate").click(function(){
+					var  data_id=this.id.split("-");
+					var kpi_year=data_id[1];
+					var appraisal_period_id=data_id[2];
+					var department_id=data_id[3];
+					var position_id=data_id[4];
+					var emp_id=data_id[5];
+
+
+					if(confirm("Do you want to new evaluate.")){
+						$.ajax({
+							   url:"../Model/mApproveKpi.php",
+							   type:"post",
+							   dataType:"json",
+							   headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+							   data:{
+								   "year":kpi_year,
+								   "appraisal_period_id":appraisal_period_id,
+								   "department_id":department_id,
+								   "position_id":position_id,
+								   "employee_id":emp_id,
+								   "action":"newEvaluateAction"
+									},
+							   success:function(data){
+								   
+								   
+								   if(data[0]=="success"){
+									   
+									   showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+								   }
+								   
+							   }
+							   
+						   });
+					}
+						
+				   
+			   });
+
+
+				
+				//actionNewEvaluate end
 				//actionApproveKPI Action start
+
 				$(".actionApproveKPI").click(function(){
-					 var  emp_id=this.id.split("-");
-					      emp_id=emp_id[1];
-					 var  empDepId =$("#depId-"+emp_id).text();
-					 var  empPositionId =$("#positionId-"+emp_id).text();
+					 var  data_id=this.id.split("-");
+					 var kpi_year=data_id[1];
+					 var appraisal_period_id=data_id[2];
+					 var department_id=data_id[3];
+					 var position_id=data_id[4];
+					 var emp_id=data_id[5];
+					 
+					
 					 
 					 
 					/* 
@@ -88,11 +144,11 @@
 								dataType:"json",
 								headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 								data:{
-									"year":sessionStorage.getItem("param_year"),
-									"appraisal_period_id":sessionStorage.getItem("param_appraisal_period"),
-									"position_id":empPositionId,
+									"year":kpi_year,
+									"appraisal_period_id":appraisal_period_id,
+									"department_id":department_id,
+									"position_id":position_id,
 									"employee_id":emp_id,
-									"department_id":empDepId,
 									"total_score_percentage":$("#total_score_percentage-"+emp_id).text(),	
 									"action":"approveKpiAction"
 									 },
@@ -156,7 +212,7 @@ var fnDropdownListApproveDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"approve_department_id\" name=\"approve_department_id\" class=\"form-control \" >";
+			htmlDropDrowList+="<select id=\"approve_department_id\" name=\"approve_department_id\" class=\" \" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -204,7 +260,7 @@ var fnDropdownListApprovePosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"approve_position_id\" name=\"approve_position_id\" class=\"form-control \" >";
+			htmlDropDrowList+="<select id=\"approve_position_id\" name=\"approve_position_id\" class=\" \" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -261,7 +317,7 @@ $(document).ready(function(){
 			success:function(data){
 				console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_approve_kpi\" name=\"appraisal_period_approve_kpi\"  class=\"form-control \" style=\"width:auto;\" >";
+				htmlDropDrowList+="<select id=\"appraisal_period_approve_kpi\" name=\"appraisal_period_approve_kpi\"  class=\" \" style=\"width:auto;\" >";
 					$.each(data,function(index,indexEntry){
 						if(appraisal_period_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -295,7 +351,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"ApproveYear\" name=\"ApproveYear\" class=\"form-control \" style=\"width:auto;\" >";
+				htmlDropDrowList+="<select id=\"ApproveYear\" name=\"ApproveYear\" class=\"\" style=\"width:auto;\" >";
 					$.each(data,function(index,indexEntry){
 						if(kpi_year!=undefined){
 							if(kpi_year==indexEntry[0]){

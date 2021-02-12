@@ -20,7 +20,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['approve_emp_l_tbl_list']="พนักงาน";
 	$_SESSION['approve_emp_l_tbl_id']="#";
 	$_SESSION['approve_emp_l_tbl_pticture']="รูป";
-	$_SESSION['approve_emp_l_tbl_fullname']="ชื่อ-นามสกุล";
+	$_SESSION['approve_emp_l_tbl_fullname']="ข้อมูลพนักงาน";
 	$_SESSION['approve_emp_l_tbl_department']="แผนก";
 	$_SESSION['approve_emp_l_tbl_position']="ระดับ";
 	$_SESSION['approve_emp_l_tbl_age']="อายุ";
@@ -154,8 +154,14 @@ if($_SESSION['language']=="th"){
 					
 					</td>
 					<td>
-					<input type="button" id="btnSubmit" name="btnSubmit" value="<?=$_SESSION['approve_l_form_btn_save']?>"  class="btn btn-primary btn-sm">
-					<input type="reset" id="btnReset" name="btnReset" value="<?=$_SESSION['approve_l_form_btn_reset']?>"  class="btn btn-default btn-sm">
+					<input type="hidden" value="" name="year_approve_emb" id="employee_id_emb">
+					<input type="hidden" value="" name="appraisal_period_emb" id="appraisal_period_emb">
+					<input type="hidden" value="" name="dep_approve_id_emb" id="dep_approve_id_emb">
+					<input type="hidden" value="" name="position_approve_id_emb" id="position_approve_id_emb">
+					<input type="hidden" value="" name="employee_id_emb" id="employee_id_emb">
+
+					<input type="button" id="btnSubmit" name="btnSubmit" value="<?=$_SESSION['approve_l_form_btn_save']?>"  class="btn btn-primary">
+					<input type="reset" id="btnReset" name="btnReset" value="<?=$_SESSION['approve_l_form_btn_reset']?>"  class="btn btn-default">
 					</td>
 				</tr>
 			</table>
@@ -196,13 +202,13 @@ if($_SESSION['language']=="th"){
 		 -->
 		</td>
 	
-		<td><b><?=$_SESSION['approve_l_search_appraisalPeriod']?></b> </td>
+		<td><b class='pre-search-label'><?=$_SESSION['approve_l_search_appraisalPeriod']?></b> </td>
 		<td id="periodApproveArea">
 			
 		</td>
 	
 		<td>
-			<b><?=$_SESSION['approve_l_search_department']?></b>
+			<b class='pre-search-label'><?=$_SESSION['approve_l_search_department']?></b>
 		</td>
 		<td>
 			<div id="approveDepDropDrowListArea" style="float:left;">
@@ -221,7 +227,7 @@ if($_SESSION['language']=="th"){
 			
 		</td>
 	 -->
-		<td><b><?=$_SESSION['approve_l_search_position']?></b></td>
+		<td><b class='pre-search-label'><?=$_SESSION['approve_l_search_position']?></b></td>
 		<td id="approvePositionArea">
 			
 		</td>

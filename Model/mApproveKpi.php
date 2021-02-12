@@ -30,7 +30,7 @@ if($_POST['action']=="showEmpData"){
 	$strSQL="select e.*,pe.position_name,kr.*,r.role_name,department_name  from employee e
 	INNER JOIN position_emp pe on e.position_id=pe.position_id
 	INNER JOIN kpi_result kr ON e.emp_id=kr.emp_id
-	INNER JOIN role r on pe.role_id=r.role_id
+	INNER JOIN role r on e.role_id=r.role_id
 	INNER JOIN department d on e.department_id=d.department_id
 	where (kr.department_id='$department_id' or '$department_id' ='All')
 	
@@ -53,10 +53,10 @@ if($_POST['action']=="showEmpData"){
 	$i=1;
 	$tableHTML.="<table id='Tableemployee' class='grid table table-striped'>";
 	$tableHTML.="<colgroup>";
-	$tableHTML.="<col style='width:5%' />";
+	// $tableHTML.="<col style='width:5%' />";
 	$tableHTML.="<col style='width:7%' />";
 	$tableHTML.="<col style='width:12%' />";
-	$tableHTML.="<col style='width:10% text-align:right;'/>";
+	//$tableHTML.="<col style='width:10% text-align:right;'/>";
 	// $tableHTML.="<col style='width:10%' />";
 	//$tableHTML.="<col style='width:8%'/>";
 	//$tableHTML.="<col style='width:5%'/>";
@@ -68,10 +68,10 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 	$tableHTML.="<tr>";
-	$tableHTML.="<th data-field=\"column1\"><b>".$_SESSION['approve_emp_l_tbl_id']."</b></th>";
+	// $tableHTML.="<th data-field=\"column1\"><b>".$_SESSION['approve_emp_l_tbl_id']."</b></th>";
 	$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['approve_emp_l_tbl_picture']."</b></th>";
 	$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['approve_emp_l_tbl_fullname']."</b></th>";
-	$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['approve_emp_l_tbl_department']."</b></th>";
+	//$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['approve_emp_l_tbl_department']."</b></th>";
 	// $tableHTML.="<th data-field=\"column5\"><b>".$_SESSION['approve_emp_l_tbl_position']."</b></th>";
 	//$tableHTML.="<th data-field=\"column6\"><b>Role</b></th>";
 	//$tableHTML.="<th data-field=\"column7\"><b>Age W</b></th>";
@@ -110,10 +110,23 @@ if($_POST['action']=="showEmpData"){
 
 		$tableHTML.="<tbody class=\"contentemployee\">";
 		$tableHTML.="<tr>";
-		$tableHTML.="	<td>".$i."|".$rs['emp_id']."</td>";
-		$tableHTML.="	<td><img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=50></td>";
-		$tableHTML.="	<td>".$rs['emp_first_name']." ".$rs['emp_last_name']."</td>";
-		$tableHTML.="	<td>".$rs['department_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span></td>";
+		//$tableHTML.="	<td>".$i."|".$rs['emp_id']."</td>";
+		$tableHTML.="	<td style='text-align:center;'>";
+		
+		if (empty($rs['emp_picture_thum'])) {
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../view/uploads/avatar.jpg\" >";
+		} else {
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" >";
+		}
+		// <img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=80 height=80></td>";
+		$tableHTML.="	<td>
+		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>"
+		.$rs['department_name']."<br>
+		ตำแหน่ง".$rs['position_name']."<br>
+
+		
+		</td>";
+		//$tableHTML.="	<td>".$rs['department_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span></td>";
 		// $tableHTML.="	<td>".$rs['position_name']."<span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";
 		//$tableHTML.="	<td>".$rs['role_name']."</td>";
 		//$tableHTML.="	<td>".$rs['emp_age_working']."</td>";
@@ -152,15 +165,18 @@ year	2012
 		if($rsKpiResult[approve_flag]=="Y"){
 		$tableHTML.="	<td>
 			<div style='text-align:right'>
-				<button type='button' id='idApproveKPI-".$rs['emp_id']."' class='actionApproveKPI btn btn-success btn-xs'>Approved </button>
-				<button type='button' id='idApproveEditKPI-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary btn-xs'>Edit</button>
+			<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
+				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary'>ปรับคะแนน</button>
+				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveKPI btn btn-success '>อนุมัติแล้ว </button>
 			</div>
 			</td>";
 		}else{
 			$tableHTML.="<td>
 			<div style='text-align:right'>
-				<button type='button' id='idApproveKPI-".$rs['emp_id']."' class='actionApproveKPI btn btn-warning btn-xs'>Approve </button>
-				<button type='button' id='idApproveEditKPI-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary btn-xs'>Edit</button>
+				<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
+				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary '>ปรับคะแนน</button>
+				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveKPI btn btn-warning '>กดอนุมัติ </button>
+				
 			</div>
 					</td>";
 		}
@@ -328,6 +344,39 @@ if($_POST['action']=="approveKpiAction"){
 
 	mysql_close($conn);
 }
+
+
+
+if($_POST['action']=="newEvaluateAction"){
+
+
+
+	
+			$strSQLUpdate="
+			DELETE FROM kpi_result   
+			where kpi_year='$year' 
+			and appraisal_period_id='$appraisal_period_id' 
+			and department_id='$department_id' 
+			and position_id='$position_id' 
+			and emp_id='$employee_id' 
+			
+			";	
+
+
+		$rsResultUpdate=mysql_query($strSQLUpdate);
+		
+		if($rsResultUpdate){
+		echo '["success"]';
+		}else{
+		echo mysql_error();
+		}
+	
+	
+	
+	
+	mysql_close($conn);
+}
+
 
 }else{
 	echo'{"status":"400","error":"not token."}';

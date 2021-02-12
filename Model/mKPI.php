@@ -377,7 +377,21 @@ if($_POST['action']=="del"){
 		$strSQL2="delete from  baseline  WHERE kpi_id='$id'";
 		$result2=mysql_query($strSQL2);
 
-		echo'["success"]';
+		if($result2){
+			$strSQL3="delete from  assign_evaluate_kpi  WHERE kpi_id='$id'";
+			$result3=mysql_query($strSQL3);
+
+			if($result3){
+				echo'["success"]';
+			}else{
+				echo'["error"]';
+			}
+			
+		}else{
+			echo'["error"]';
+		}
+
+		
 	}else{
 		echo'["error"]';
 	}
