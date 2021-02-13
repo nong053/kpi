@@ -445,7 +445,7 @@ var checkBrowserFn=function(){
 	
    	$(window).resize(function(){
    		//checkBrowserFn();
-   		$("#appraisalPeriodSubmit").click();
+   		//$("#appraisalPeriodSubmit").click();
 	   
    	});
 
@@ -643,15 +643,15 @@ var checkBrowserFn=function(){
 					  			<b class="arrow"></b>
 					  		</li>
 					  		
-							<li class="mainMenu menuLevel1">
+							<!-- <li class="mainMenu menuLevel1">
 							  <a  href="#" id="threshold" class=" "><i class="iconMenu glyphicon glyphicon-th-large"></i> <span class="menu-text"> <?=$_SESSION['main_menul_l_threshold']?></span></a>
-							</li>
+							</li> -->
 							<li class="mainMenu menuLevel1">
 					  			<a  href="#" id="appraisalPeriod" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
 					  			<b class="arrow"></b>
 							</li>
 							<li class="mainMenu menuLevel1">
-					  			<a href="#" id="position3" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
+					  			<a href="#" id="perspective" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
 					  			<b class="arrow"></b>
 							</li>
 							

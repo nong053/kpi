@@ -53,8 +53,8 @@ if($_POST['action']=="showData"){
 	$tableHTML.="<table id='Tabledepartment' class='grid table-striped' style='width:100%'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col style='width:10%' />";
-			$tableHTML.="<col  style='width:25%'/>";
+			//$tableHTML.="<col style='width:10%' />";
+			$tableHTML.="<col  style='width:35%'/>";
 			$tableHTML.="<col style='width:35%'/>";
 	
 		
@@ -62,10 +62,10 @@ if($_POST['action']=="showData"){
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
 			$tableHTML.="<th data-field=\"column1\"><b>".$_SESSION['department_l_tbl_id']."</b></th>";
-			$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['department_l_tbl_department_code']."</b></th>";
+			//$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['department_l_tbl_department_code']."</b></th>";
 			$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['department_l_tbl_department_name']."</b></th>";
 			$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['department_l_tbl_department_detail']."</b></th>";
-			$tableHTML.="<th data-field=\"column5\" style='text-align:center;'><b>".$_SESSION['department_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"column5\" style='text-align:right;'><b>".$_SESSION['department_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -76,13 +76,13 @@ if($_POST['action']=="showData"){
 	$tableHTML.="<tbody class=\"contentdepartment\">";
 	$tableHTML.="<tr>";
 	$tableHTML.="	<td>".$i."</td>";
-	$tableHTML.="	<td>".$rs['department_code']."</td>";
+	//$tableHTML.="	<td>".$rs['department_code']."</td>";
 	$tableHTML.="	<td>".$rs['department_name']."</td>";
 	$tableHTML.="	<td>".$rs['department_detail']."</td>";
 
 	$tableHTML.="	<td>
 
-				<div style='text-align: center;'>
+				<div style='text-align: right;'>
 					<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
 					<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
 				</div>

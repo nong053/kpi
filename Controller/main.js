@@ -16,8 +16,24 @@ $( document ).ajaxStop(function() {
 
 // reuse function start
 
+var currentDate = function(){
+	var d = new Date();
+	var month = d.getMonth()+1;
+	var day = d.getDate();
+	var output = d.getFullYear() + '-' +
+		((''+month).length<2 ? '0' : '') + month + '-' +
+		((''+day).length<2 ? '0' : '') + day;
 
+	return output;
+}
+var currentYear = function(){
+	var d = new Date();
 	
+	var year = d.getFullYear();
+	
+
+	return year;
+}
 	
 // reuse function end
 
@@ -1084,6 +1100,31 @@ $(document).ready(function(){
 				callProgramControl("cThreshold.js");
 				/*add subject on page*/
 				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon  glyphicon-th-large\"></i> "+$("#threshold >.menu-text").text()+"</b>";
+				$("#subjectPage").html(subjectPage);
+				
+			}
+		});
+	});
+
+	/* end call threshold  */
+
+
+	/* start call threshold  */
+	$("#perspective").click(function(){
+		$(".topParameter").hide();
+		
+		$.ajax({
+			url:"../View/vPerspective.php",
+			type:"get",
+			dataType:"html",
+			sync:false,
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			sync:false,
+			success:function(data){
+				$("#mainContent").html(data);
+				callProgramControl("cPerspective.js");
+				/*add subject on page*/
+				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon  glyphicon-th-large\"></i> "+$("#perspective >.menu-text").text()+"</b>";
 				$("#subjectPage").html(subjectPage);
 				
 			}

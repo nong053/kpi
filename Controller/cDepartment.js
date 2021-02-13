@@ -154,10 +154,11 @@ $(document).ready(function(){
 			 
 			
 		}
-
+		/*
 		if($("#departmentCode").val()==""){
 	 		validate+=departmentCode+"\n";
-	 	}
+		 }
+		 */
 		if($("#departmentName").val()==""){
 	 		validate+=departmentName+"\n";
 	 	}

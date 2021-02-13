@@ -13,7 +13,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['appraisalPeriod_l_tbl_id']="#";
 	$_SESSION['appraisalPeriod_l_tbl_year']="ปีการประเมิน";
 	$_SESSION['appraisalPeriod_l_tbl_des']="ช่วงประเมิน";
-	$_SESSION['appraisalPeriod_l_tbl_start']="จาก";
+	$_SESSION['appraisalPeriod_l_tbl_start']="เริ่ม";
 	$_SESSION['appraisalPeriod_l_tbl_end']="ถึง";
 	$_SESSION['appraisalPeriod_l_tbl_target']="เป้าหมายYTD%";
 
@@ -23,7 +23,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['appraisalPeriod_l_form_required']="จำเป็นต้องกรอก";
 	$_SESSION['appraisalPeriod_l_form_name']="ฟร์อมช่วงประเมิน";
 	$_SESSION['appraisalPeriod_l_form_des']="ชื่อช่วงประเมิน";
-	$_SESSION['appraisalPeriod_l_form_start']="จาก";
+	$_SESSION['appraisalPeriod_l_form_start']="เริ่ม";
 	$_SESSION['appraisalPeriod_l_form_end']="ถึง";
 	$_SESSION['appraisalPeriod_l_form_target']="เป้าหมายYTD%";
 	$_SESSION['appraisalPeriod_l_form_btn_add']="เพิ่ม";
@@ -118,16 +118,16 @@ if($_SESSION['language']=="th"){
 						<td style="width:200px;" class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_des']?> <font color="red">*</font></b></td>
 						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " style="width:250px;"></td>
 					</tr>
-					<!--
+					
 					<tr>
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_start']?> <font color="red">*</font></b></td>
-						<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class="form-control " style="width:100px;"></td>
+						<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class=" " style="width:150px;"></td>
 					</tr>
 					<tr>
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_end']?> <font color="red">*</font></b></td>
-						<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class="form-control " style="width:100px;"></td>
+						<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class=" " style="width:150px;"></td>
 					</tr>
-					-->
+					
 					<tr style="display: none;">
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_target']?>
 							<!-- <font color="red">*</font> -->
@@ -141,8 +141,8 @@ if($_SESSION['language']=="th"){
 						(<font color="red">*</font>)<?=$_SESSION['appraisalPeriod_l_form_required']?><br>
 							<input type="hidden" name="appraisalPeriodAction" id ="appraisalPeriodAction" class="appraisalPeriodAction" value="add">
 							<input type="hidden" name="appraisalPeriodId" id ="appraisalPeriodId"  class="appraisalPeriodId" value="">
-							<input type="submit" id="appraisalPeriodSubmit" name="appraisalPeriodSubmit" class="btn btn-primary btn-sm" value="<?=$_SESSION['appraisalPeriod_l_form_btn_add']?>">
-							<input type="reset" value="<?=$_SESSION['appraisalPeriod_l_form_btn_reset']?>" class="btn default  btn-sm" id="appraisalPeriodReset">
+							<input type="submit" id="appraisalPeriodSubmit" name="appraisalPeriodSubmit" class="btn btn-primary " value="<?=$_SESSION['appraisalPeriod_l_form_btn_add']?>">
+							<input type="reset" value="<?=$_SESSION['appraisalPeriod_l_form_btn_reset']?>" class="btn default  " id="appraisalPeriodReset">
 						</td>
 					</tr>
 				</table>
@@ -163,8 +163,8 @@ if($_SESSION['language']=="th"){
 
 					<span style="float:left;" class='appraisalYearArea'></span>
 
-					<span style="float:left;">
-						<button data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary btn-xs" id="btnAppraisalPeriod" type="button"><i class="glyphicon  glyphicon-plus"></i>
+					<span style="float:left;" class="pre-search-label">
+						<button data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary " id="btnAppraisalPeriod" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['appraisalPeriod_l_des_btn_add']?>
 						</button>
 					</span>

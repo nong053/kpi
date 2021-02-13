@@ -189,8 +189,8 @@ $(function(){
 						(<font color="red">*</font>)<?=$_SESSION['threshold_l_form_required']?><br>
 							<input type="hidden" name="thresholdAction" id ="thresholdAction" class="thresholdAction " value="add">
 							<input type="hidden" name="thresholdId" id ="thresholdId"  class="thresholdId" value="">
-							<input type="submit" id="submitThreshold" name="submitThreshold " class="btn btn-primary btn-sm" value="<?=$_SESSION['threshold_btn_add']?>">
-							<input type="reset" value="<?=$_SESSION['threshold_btn_reset']?>" class="btn default  btn-sm" id="thresholdReset">
+							<input type="submit" id="submitThreshold" name="submitThreshold " class="btn btn-primary " value="<?=$_SESSION['threshold_btn_add']?>">
+							<input type="reset" value="<?=$_SESSION['threshold_btn_reset']?>" class="btn default  " id="thresholdReset">
 						</td>
 					</tr>
 				</table>
@@ -218,7 +218,7 @@ $(function(){
    
       <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
-						<button style="display: none;" data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary btn-xs" id="btnAddThreshold" type="button"><i class="glyphicon  glyphicon-plus"></i>
+						<button style="display: none;" data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary " id="btnAddThreshold" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['threshold_l_btn_add']?>
 						</button>		
 			  </div>

@@ -40,7 +40,12 @@ $(document).ready(function(){
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			type:"post",
 			dataType:"html",
-			data:{"action":"showData","paramKpiId":kpi_id},
+			data:{"action":"showData",
+			"paramKpiId":kpi_id,
+			"paramkpiTypeScore":$("#paramkpiTypeScore").val(),
+			"paramKpiBetterFlag":$("#paramKpiBetterFlag").val()
+			
+		},
 			success:function(data){
 				$("#kpiBaselineShowData").html(data);
 				
@@ -265,4 +270,6 @@ $(document).ready(function(){
 		resetDatabaseline();
 		$("#kpiBaseLineModal").modal('show');
 	});
+
+
 });

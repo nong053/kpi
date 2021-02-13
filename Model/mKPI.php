@@ -9,6 +9,7 @@ if($jsonArray["login_status"]==1){
 
 
 $kpiName =$_POST['kpiName'];
+$perspectiveId =$_POST['perspectiveId'];
 $kpiBetterFlag =$_POST['kpiBetterFlag'];
 $kpiDetail = $_POST['kpiDetail'];
 $kpiActualManual = $_POST['kpiActualManual'];
@@ -61,8 +62,8 @@ if($_POST['action']=="add"){
 	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$departmentId','$kpiTypeScore','$kpiDataTarget')";
 	*/
 
-	$strSQL="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target)
-	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget')";
+	$strSQL="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target,perspective_id)
+	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget','$perspectiveId')";
 	$rs=mysql_query($strSQL);
 	$id = mysql_insert_id();
 	if($rs){
@@ -256,20 +257,21 @@ if($_POST['action']=="add"){
 
 if($_POST['action']=="showData"){
 	//echo "Show Data";
-	$strSQL="SELECT * FROM kpi  
-	where kpi.admin_id='$admin_id' 
+	$strSQL="SELECT k.*,p.perspective_name FROM kpi k
+	left join perspective p on k.perspective_id=p.perspective_id
+	where k.admin_id='$admin_id' 
 	-- and department_id='$departmentId' 
-			order by kpi_id  desc";
+			order by k.kpi_id  desc";
 	$result=mysql_query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tablekpi' class='grid table-striped'>";
 		$tableHTML.="<colgroup>";
-			$tableHTML.="<col style='width:8%' />";
-			$tableHTML.="<col  style='width:25%'/>";
-			$tableHTML.="<col style='width:25%'/>";
-			$tableHTML.="<col style='width:9%'/>";
-			$tableHTML.="<col style='width:9%'/>";
+			$tableHTML.="<col style='width:5%' />";
+			$tableHTML.="<col  style='width:30%'/>";
+			$tableHTML.="<col style='width:20%'/>";
+			$tableHTML.="<col style='width:13%'/>";
+			$tableHTML.="<col style='width:13%'/>";
 		
 			/*
 			$tableHTML.="<col />";
@@ -282,9 +284,10 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th data-field=\"kpi_l_tbl_id\"><b>".$_SESSION['kpi_l_tbl_id']." </b></th>";
+			$tableHTML.="<th style='text-align:right;' data-field=\"kpi_l_tbl_id\"><b>".$_SESSION['kpi_l_tbl_id']." </b></th>";
 			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_name\"><b>".$_SESSION['kpi_l_tbl_kpi_name']."</b></th>";
-			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_detail\"><b>".$_SESSION['kpi_l_tbl_kpi_detail']." </b></th>";
+			//$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_detail\"><b>".$_SESSION['kpi_l_tbl_kpi_detail']." </b></th>";
+			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_perspective\"><b>".$_SESSION['kpi_l_tbl_kpi_perspective']." </b></th>";
 			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_better_flag\"><b>".$_SESSION['kpi_l_tbl_kpi_better_flag']."</b></th>";
 			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_type_score\"><b>".$_SESSION['kpi_l_tbl_kpi_type_score']."</b></th>";
 
@@ -294,11 +297,12 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<th><b>Actual by Query</b></th>";
 			$tableHTML.="<th><b>Kpi Target</b></th>";
 			*/
-			$tableHTML.="<th data-field=\"kpi_l_tbl_manage\" style='text-align:center;'><b>".$_SESSION['kpi_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"kpi_l_tbl_manage\" style='text-align:right;'><b>".$_SESSION['kpi_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentkpi\">";
+
 	while($rs=mysql_fetch_array($result)){
 		
 		if($rs['kpi_type_actual']==1){
@@ -310,25 +314,32 @@ if($_POST['action']=="showData"){
 	
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td>".$rs['kpi_code']."</td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".$i."</div></td>";
 	
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
 	
-	$tableHTML.="	<td>".$rs['kpi_detail']."</td>";
-	$tableHTML.="	<td>".$rs['kpi_better_flag']."</td>";
+	$tableHTML.="	<td>".$rs['perspective_name']."</td>";
+	if($rs['kpi_better_flag']=='Y'){
+		$tableHTML.="	<td>ยิ่งมากยิ่งดี</td>";
+	}else if($rs['kpi_better_flag']=='N'){
+		$tableHTML.="	<td>ยิ่งน้อยยิ่งดี</td>";
+	}else{
+		$tableHTML.="	<td>-</td>";
+	}
+	
 
 	$tableHTML.="	<td>";
 	if($rs['kpi_type_score']==1){
 
-		$tableHTML.="Baseline";
+		$tableHTML.="กำหนดเอง";
 	}else if($rs['kpi_type_score']==2){
 
-		$tableHTML.="5 points";
+		$tableHTML.="1-5 คะแนน";
 	}else if($rs['kpi_type_score']==3){
 
-		$tableHTML.="True/False";
+		$tableHTML.="ถูก/ผิด";
 	}else{
-		$tableHTML.="Baseline";
+		$tableHTML.="กำหนดเอง";
 	}
 	$tableHTML.="	</td>";
 
@@ -344,12 +355,12 @@ if($_POST['action']=="showData"){
 	
 
 		$tableHTML.="	<td>
-			<div style='text-align: center;'>
-			<button type='button' id='idKPI-".$rs['kpi_id']."-".$rs['kpi_type_score']."' class=' actionBaseline btn btn-primary btn-xs'><i class='glyphicon glyphicon-transfer'></i></button>
+			<div style='text-align: right;'>
+			<button type='button' id='idKPI-".$rs['kpi_id']."-".$rs['kpi_type_score']."-".$rs['kpi_better_flag']."' class=' actionBaseline btn btn-primary '><i class='glyphicon glyphicon-transfer'></i></button>
 
-			<button type='button' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
+			<button type='button' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			
-			<button type='button' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
+			<button type='button' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 			
 				</div>	
 			</td>";
@@ -422,7 +433,7 @@ if($_POST['action']=="editAction"){
 
 
 	$strSQL="UPDATE kpi SET kpi_name='$kpiName',kpi_better_flag='$kpiBetterFlag',kpi_detail='$kpiDetail',
-	kpi_code='$kpiCode',department_id='$departmentId'
+	kpi_code='$kpiCode',department_id='$departmentId',perspective_id='$perspectiveId'
 	WHERE kpi_id='$kpiId'";
 	$result=mysql_query($strSQL);
 	if($result){

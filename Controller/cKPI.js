@@ -23,8 +23,10 @@ $(document).ready(function(){
 
 		if($("#kpiTypeScore1").prop( "checked")==true){
 			$("#kpiDataTargetArea").show();
+			$("#kpi_better_flag_area").show();
 		}else{
 			$("#kpiDataTargetArea").hide();
+			$("#kpi_better_flag_area").hide();
 		}
 	
 	});
@@ -69,7 +71,8 @@ $(document).ready(function(){
 		$("#kpiCode").val("");
 		$("#kpiName").val("");
 		$("#kpiBetterFlagY").prop("checked",true);
-		$("#kpiTypeScore1").prop("checked",true);
+		$("#kpiTypeScore2").prop("checked",true);
+		//$("#kpiDataTargetArea").show();
 		
 		$("#kpiTarget").val("");
 		$("#kpiDetail").val("");
@@ -79,9 +82,9 @@ $(document).ready(function(){
 		$("#kpiAction").val("add");
 		$("#kpiId").val("");
 
-		$("#kpi_better_flag_area").show();
+		//$("#kpi_better_flag_area").hide();
 		$("#kpi_type_score_area").show();
-		$("#kpiDataTargetArea").show();
+		
 		
 
 		$("#kpiDataTarget").val("");
@@ -183,7 +186,7 @@ $(document).ready(function(){
 								$("#kpiActualQuery").val(data[0]["kpi_actual_query"]);
 								
 								//formFnDropdownListDep(data[0]["department_id"]);
-								fnDropdownListDiv(data[0]["division_id"]);
+								//fnDropdownListDiv(data[0]["division_id"]);
 								fnRadioKpiTypeTargetArea(data[0]["kpi_type_target"]);
 								
 								$("#kpiAction").val("editAction");
@@ -198,6 +201,7 @@ $(document).ready(function(){
 								}
 
 								
+								formFnDropdownListPerspective(data[0]["perspective_id"]);
 
 
 								$("#kpiModal").modal('show');
@@ -271,7 +275,8 @@ $(document).ready(function(){
 					 var idKPI=this.id.split("-");
 					 var id=idKPI[1];
 					 var kpiTypeScore=idKPI[2];
-					var kpiName=$(this).parent().parent().prev().prev().prev().text()+"("+$(this).parent().parent().prev().prev().text()+")";
+					 var kpiBetterFlag=idKPI[3];
+					var kpiName=$(this).parent().parent().prev().prev().prev().prev().text()+"("+$(this).parent().parent().prev().prev().text()+")";
 					// alert(id);
 					 $.ajax({
 							url:"../View/vKpiBaseLine.php",
@@ -288,6 +293,7 @@ $(document).ready(function(){
 								$(".paramKPI").remove();
 								$("body").append("<input type=\"hidden\" name=\"paramKpiId\" id=\"paramKpiId\" class=\"paramKPI\" value="+id+">");
 								$("body").append("<input type=\"hidden\" name=\"paramkpiTypeScore\" id=\"paramkpiTypeScore\" class=\"paramKPI\" value="+kpiTypeScore+">");
+								$("body").append("<input type=\"hidden\" name=\"paramKpiBetterFlag\" id=\"paramKpiBetterFlag\" class=\"paramKPI\" value="+kpiBetterFlag+">");
 								
 									
 							
@@ -409,7 +415,46 @@ $(document).ready(function(){
 			}
 		});
 	}	
-	//dropdown List Department start
+	//dropdown List perspective start
+
+	var formFnDropdownListPerspective=function(perspective_id){
+
+
+		
+		$.ajax({
+			url:"../Model/mPerspectiveList.php",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			type:"post",
+			dataType:"json",
+			async:false,
+			success:function(data){
+			
+				var htmlDropDrowList="";
+				htmlDropDrowList+="<select id=\"formPerspective\" name=\"formPerspective\" class=\"\" style=\"width:auto;\" >";
+				//htmlDropDrowList+="<option value=\"0\">ไม่ระบุ</option>";
+					$.each(data,function(index,indexEntry){
+						
+						if(perspective_id==indexEntry[0]){
+							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+						}else{
+							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+						}
+						
+						
+					});
+				htmlDropDrowList+="</select>";
+				
+				$("#formPerspectiveDropDrowListArea").html(htmlDropDrowList);
+
+				$("#formPerspective").kendoDropDownList({
+					theme: "silver"
+				});
+				//persDropDrowList
+			}
+		});
+	}	
+	//dropdown List perspective end
+
 	//dropdown List Division start
 	var fnDropdownListDiv=function(division_id,department_id){
 		//alert(perspective_id);
@@ -504,14 +549,20 @@ $(document).ready(function(){
 
 
 		if($("#kpiAction").val()!="editAction"){
+			/*
 			UniqueKPICodeStatus=checkUniqueKPICodeFn();
 			if(UniqueKPICodeStatus>0){
 				validate+=checkUnigueKPICode+"\n";
 			}
+			*/
+
 		}
+		/*
 		if($("#kpiCode").val()==""){
 	 		validate+=checkKPICode+"\n";
-	 	}if($("#kpiName").val()==""){
+		}
+		 */
+		 if($("#kpiName").val()==""){
 	 		validate+=checkKPIName+"\n";
 	 	} 
 
@@ -568,9 +619,12 @@ $(document).ready(function(){
 				headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 				type:"post",
 				dataType:"json",
-				data:{"kpiName":$("#kpiName").val(),"kpiBetterFlag":$(".kpiBetterFlag:checked").val(),"kpiDetail":$("#kpiDetail").val(),
-					"action":$("#kpiAction").val(),"kpiId":$("#kpiId").val(),
-					//"departmentId":department_id,"divisionId":$("select#divisionId option:selected").val(),
+				data:{"kpiName":$("#kpiName").val(),
+					"kpiBetterFlag":$(".kpiBetterFlag:checked").val(),
+					"kpiDetail":$("#kpiDetail").val(),
+					"action":$("#kpiAction").val(),
+					"kpiId":$("#kpiId").val(),
+					"perspectiveId":$("#formPerspective").val(),
 					"kpiActualQuery":$("#kpiActualQuery").val(),"kpiActualManual":$("#kpiActualManual").val(),
 					"kpiTypeActual":$(".kpiTypeActual:checked").val(),"kpiTarget":$("#kpiTarget").val(),
 					"kpiCode":$("#kpiCode").val(),
@@ -607,6 +661,7 @@ $(document).ready(function(){
 		resetDatakpi();
 		//formFnDropdownListDep($("#kpiEmpbedDepartmentIDParam").val());
 		$("#kpiModal").modal('show');
+		formFnDropdownListPerspective();
 
 	});
 	

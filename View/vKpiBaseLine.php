@@ -16,7 +16,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['baseline_l_tbl_kpi_begin']="เริ่ม";
 	$_SESSION['baseline_l_tbl_kpi_end']="ถึง";
 	$_SESSION['baseline_l_tbl_kpi_score']="คะแนน";
-	$_SESSION['baseline_l_tbl_kpi_suggestion']="ข้อเสนอแนะ";
+	$_SESSION['baseline_l_tbl_kpi_suggestion']="อธิบาย";
 	$_SESSION['baseline_l_tbl_manage']="จัดการ";
 
 	//form
@@ -25,7 +25,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['baseline_l_form_begin']="เริ่ม";
 	$_SESSION['baseline_l_form_end']="ถึง";
 	$_SESSION['baseline_l_form_score']="คะแนน";
-	$_SESSION['baseline_l_form_suggestion']="ข้อเสนอแนะ";
+	$_SESSION['baseline_l_form_suggestion']="อธิบาย";
 	$_SESSION['baseline_l_form_btn_add']="เพิ่ม";
 	$_SESSION['baseline_l_form_btn_reset']="เคลียร์";
 	$_SESSION['baseline_l_form_required']="จำเป็นต้องกรอก";
@@ -119,11 +119,12 @@ $kpiName=$_GET['kpiName'];
 					<td class='text-right'><b><?=$_SESSION['baseline_l_form_end']?>  <font color="red">*</font></b></td>
 					<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control " style="width:100px;"></td>
 				</tr>
-				<tr>
+				
+				<tr style='display:none;'>
 					<td class='text-right'><b><?=$_SESSION['baseline_l_form_score']?> <font color="red">*</font></b></td>
 					<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control " style="width:100px;"></td>
 				</tr>
-				<tr>
+				<tr style='display:none;'>
 					<td class='text-right' valign="top"><b><?=$_SESSION['baseline_l_form_suggestion']?></b></td>
 					<td>
 						<textarea rows="3" cols="50" name="suggestion" id="suggestion"  class="form-control " ></textarea>
@@ -137,8 +138,8 @@ $kpiName=$_GET['kpiName'];
 						(<font color="red">*</font>)<?=$_SESSION['baseline_l_form_required']?><br>
 						<input type="hidden" name="baselineAction" id ="baselineAction" class="baselineAction" value="add">
 						<input type="hidden" name="baselineId" id ="baselineId"  class="baselineId" value="">
-						<input type="submit" id="baselineSubmit" name="baselineSubmit" class="btn btn-primary btn-sm" value="<?=$_SESSION['baseline_l_form_btn_add']?>">
-						<input type="reset" value="<?=$_SESSION['baseline_l_form_btn_reset']?>" id="baselineReset" class="btn default  btn-sm">
+						<input type="submit" id="baselineSubmit" name="baselineSubmit" class="btn btn-primary " value="<?=$_SESSION['baseline_l_form_btn_add']?>">
+						<input type="reset" value="<?=$_SESSION['baseline_l_form_btn_reset']?>" id="baselineReset" class="btn default  ">
 						<!---
 						<input type="button" id="kpiButton" name="kpiButton" class="btn default  btn-sm" value="back">
 						-->
@@ -165,10 +166,12 @@ $kpiName=$_GET['kpiName'];
     
     <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
-						<button class="btn btn-primary btn-xs" id="addBaseLine" type="button"><i class="glyphicon  glyphicon-plus"></i>
+	 					<!--
+						<button class="btn btn-primary " id="addBaseLine" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['baseline_l_des_btn_add']?>
 						</button>
-						<input type="button" id="kpiButton" name="kpiButton" class="btn default  btn-sm" value="<?=$_SESSION['baseline_l_des_btn_back']?>">		
+						-->
+						<input type="button" id="kpiButton" name="kpiButton" class="btn btn-primary  " value="<?=$_SESSION['baseline_l_des_btn_back']?>">		
 			  </div>
 			  <div class="panel-body panel-body-top">
 			  

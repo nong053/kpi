@@ -17,7 +17,9 @@ $baselineEnd = $_POST['baselineEnd'];
 $baselinetargetScore = $_POST['baselinetargetScore'];
 $baselineId = $_POST['baselineId'];
 $paramKpiId = $_POST['paramKpiId'];
-//$paramkpiTypeScore = $_POST['paramkpiTypeScore'];
+$paramkpiTypeScore = $_POST['paramkpiTypeScore'];
+$paramKpiBetterFlag = $_POST['paramKpiBetterFlag'];
+
 
 
 $suggestion = $_POST['suggestion'];
@@ -55,7 +57,8 @@ if($_POST['action']=="add"){
 
 if($_POST['action']=="showData"){
 	//echo "Show Data";
-	$strSQL="SELECT * FROM baseline where kpi_id=$paramKpiId order by baseline_begin,kpi_id";
+	$strSQL="SELECT * FROM baseline where kpi_id=$paramKpiId 
+	order by baseline_score";
 	$result=mysql_query($strSQL);
 	$$tableHTML="";
 	$i=1;
@@ -72,35 +75,50 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th data-field=\"column1\"><b> ".$_SESSION['baseline_l_tbl_id']."</b></th>";
-			$tableHTML.="<th data-field=\"column2\"><b> ".$_SESSION['baseline_l_tbl_kpi_begin']."</b></th>";
-			$tableHTML.="<th data-field=\"column3\"><b> ".$_SESSION['baseline_l_tbl_kpi_end']."</b></th>";
-			$tableHTML.="<th data-field=\"column4\"><b> ".$_SESSION['baseline_l_tbl_kpi_score']."</b></th>";
+			$tableHTML.="<th  style='text-align:right;' data-field=\"column1\"><b> ".$_SESSION['baseline_l_tbl_id']."</b></th>";
+			$tableHTML.="<th  style='text-align:right;' data-field=\"column2\"><b> ".$_SESSION['baseline_l_tbl_kpi_begin']."</b></th>";
+			$tableHTML.="<th  style='text-align:right;' data-field=\"column3\"><b> ".$_SESSION['baseline_l_tbl_kpi_end']."</b></th>";
+			$tableHTML.="<th  style='text-align:right;' data-field=\"column4\"><b> ".$_SESSION['baseline_l_tbl_kpi_score']."</b></th>";
 			$tableHTML.="<th data-field=\"column5\"><b> ".$_SESSION['baseline_l_tbl_kpi_suggestion']."</b></th>";
-			$tableHTML.="<th data-field=\"column6\" style='text-align:center;'><b>".$_SESSION['baseline_l_tbl_manage']."</b></th>";
+			if($paramkpiTypeScore==1){
+			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['baseline_l_tbl_manage']."</b></th>";
+			}
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
+
+	$colorThreshold = array("","#DD0000", "#FFFF99", "#FFCC66", "#99FF00", "#339933", "#336666");
+	$colorThresholdTrueFalse = array("","#DD0000", "#336666");
+	
 	
 	while($rs=mysql_fetch_array($result)){
 		
 
 	$tableHTML.="<tbody class=\"contentkpi\">";
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td>".$i."</td>";
-	$tableHTML.="	<td>".$rs['baseline_begin']."</td>";
-	$tableHTML.="	<td>".$rs['baseline_end']."</td>";
-	$tableHTML.="	<td>".$rs['baseline_score']."</td>";
-	$tableHTML.="	<td>".$rs['suggestion']."</td>";
+	$tableHTML.="	<td><div  style='text-align:right;'>".$i."</div></td>";
+	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_begin']."</div></td>";
+	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_end']."</div></td>";
+	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_score']."</div></td>";
+	
+	if($paramkpiTypeScore!=3){
+		
+		$tableHTML.="	<td><div style=\"width:20px; float:left; height:20px; background:".$colorThreshold[$i]."\"></div> &nbsp;".$rs['suggestion']."</td>";
+		
+	}else if($paramkpiTypeScore==3){
+		$tableHTML.="	<td><div style=\"width:20px; float:left; height:20px; background:".$colorThresholdTrueFalse[$i]."\"></div> &nbsp;".$rs['suggestion']."</td>";
+	}
 
-
-	$tableHTML.="	<td>
-	<div style='text-align: center;'>
-			<button type='button' id='idEdit-".$rs['baseline_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
-			<button type='button' id='idDel-".$rs['baseline_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
+	if($paramkpiTypeScore==1){
+	$tableHTML.="
+	<td>
+	<div style='text-align: right;'>
+			<button type='button' id='idEdit-".$rs['baseline_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+			<!-- <button type='button' id='idDel-".$rs['baseline_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button> -->
 			
 	</div>				
-			</td>";
+	</td>";
+	}
 	$tableHTML.="</tr>";
 
 	

@@ -46,15 +46,15 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 	$tableHTML.="<tr>";
-	$tableHTML.="<th data-field=\"threshold_l_tbl_id\"><b>".$_SESSION['threshold_l_tbl_id']."</b></th>";
+	$tableHTML.="<th style='text-align:right;' data-field=\"threshold_l_tbl_id\"><b>".$_SESSION['threshold_l_tbl_id']."</b></th>";
 	$tableHTML.="<th data-field=\"threshold_l_tbl_threshold_name\"><b>".$_SESSION['threshold_l_tbl_threshold_name']."</b></th>";
-	$tableHTML.="<th data-field=\"threshold_l_tbl_begin_threshold\"><b>".$_SESSION['threshold_l_tbl_begin_threshold']."</b></th>";
-	$tableHTML.="<th data-field=\"threshold_l_tbl_end_threshold\"><b>".$_SESSION['threshold_l_tbl_end_threshold']."</b></th>";
+	$tableHTML.="<th style='text-align:right;' data-field=\"threshold_l_tbl_begin_threshold\"><b>".$_SESSION['threshold_l_tbl_begin_threshold']."</b></th>";
+	$tableHTML.="<th style='text-align:right;' data-field=\"threshold_l_tbl_end_threshold\"><b>".$_SESSION['threshold_l_tbl_end_threshold']."</b></th>";
 	$tableHTML.="<th data-field=\"threshold_l_tbl_threshold_color\"><b>".$_SESSION['threshold_l_tbl_threshold_color']."</b></th>";
 
-	$tableHTML.="<th data-field=\"threshold_l_tbl_threshold_score\"><b>".$_SESSION['threshold_l_tbl_threshold_score']."</b></th>";
+	$tableHTML.="<th style='text-align:right;' data-field=\"threshold_l_tbl_threshold_score\"><b>".$_SESSION['threshold_l_tbl_threshold_score']."</b></th>";
 
-	//$tableHTML.="<th data-field=\"threshold_l_tbl_threshold_manage\" style='text-align:center;'><b>".$_SESSION['threshold_l_tbl_threshold_manage']."</b></th>";
+	$tableHTML.="<th data-field=\"threshold_l_tbl_threshold_manage\" style='text-align:right;'><b>".$_SESSION['threshold_l_tbl_threshold_manage']."</b></th>";
 
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -64,10 +64,10 @@ if($_POST['action']=="showData"){
 	
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td>".$i."</td>";
+	$tableHTML.="	<td><div style='text-align: right;'>".$i."</div></td>";
 	$tableHTML.="	<td>".$rs['threshold_name']."</td>";
-	$tableHTML.="	<td>".$rs['threshold_begin']."%</td>";
-	$tableHTML.="	<td>".$rs['threshold_end']."%</td>";
+	$tableHTML.="	<td><div style='text-align: right;'>".$rs['threshold_begin']."%</div></td>";
+	$tableHTML.="	<td> <div style='text-align: right;'>".$rs['threshold_end']."%</div></td>";
 	$tableHTML.="	<td>
 					<div style='width:50px;'>
 					<div style='width:20px; float:left; height:20px; background:#".$rs['threshold_color']."'></div>
@@ -75,13 +75,13 @@ if($_POST['action']=="showData"){
 					</div>
 						
 			</td>";
-	//$tableHTML.="	<td>".$rs['score']."</td>";		
-	// $tableHTML.="<td>
-	// 		<div style='text-align: center;'>
-	// 			<button type='button' id='idEdit-".$rs['threshold_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
-	// 			<button type='button' id='idDel-".$rs['threshold_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
-	// 		</div>
-	// 		</td>";
+	$tableHTML.="	<td><div style='text-align: right;'>".$rs['score']."</div></td>";		
+	$tableHTML.="<td>
+			<div style='text-align: right;'>
+				<button type='button' id='idEdit-".$rs['threshold_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+				<!-- <button type='button' id='idDel-".$rs['threshold_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button> -->
+			</div>
+			</td>";
 	$tableHTML.="	<td>".$rs['score']."</td>";	
 	$tableHTML.="</tr>";
 

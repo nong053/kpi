@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['department_l_des_title']="แผนก";
-	$_SESSION['department_l_des_detail']="เพื่อกำหนดมุมมองหรือกลุ่มของตัวชี้วัดที่ต้องการวัดผลการปฏิบัติงาน ";
+	$_SESSION['department_l_des_detail']="เพื่อกำหนดตำแผนกที่ต้องการวัดผลการปฏิบัติงาน ";
 	$_SESSION['department_l_des_btn_add']="แผนก";
 
 	//column
@@ -84,7 +84,7 @@ if($_SESSION['language']=="th"){
     <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
 					
-				<button data-toggle="modal" data-target="" class="btn btn-primary btn-xs" id="btnAddDepartment" type="button"><i class="glyphicon  glyphicon-plus"></i>
+				<button data-toggle="modal" data-target="" class="btn btn-primary " id="btnAddDepartment" type="button"><i class="glyphicon  glyphicon-plus"></i>
 				<?=$_SESSION['department_l_des_btn_add']?>
 				</button>		
 			  </div>
@@ -114,10 +114,12 @@ if($_SESSION['language']=="th"){
 	   		<!-- content start-->
 	   		<form id="departmentForm">
 				<table style="widows: 100%;">
+					<!--
 					<tr>
 						<td style="width: 200px;" class="text-right"><b><?=$_SESSION['department_l_form_department_code']?>  <font color="red">*</font></b></td>
 						<td><input type="text" name="departmentCode" class="form-control " id="departmentCode"></td>
 					</tr>
+					-->
 					<tr>
 						<td style="width: 200px;" class="text-right"><b><?=$_SESSION['department_l_form_department_name']?>  <font color="red">*</font></b></td>
 						<td><input type="text" name="departmentName" class="form-control " id="departmentName"></td>
@@ -133,8 +135,8 @@ if($_SESSION['language']=="th"){
 							(<font color="red">*</font>)<?=$_SESSION['department_l_form_required']?><br>
 							<input type="hidden" name="departmentAction" id ="departmentAction" class="departmentAction" value="add">
 							<input type="hidden" name="departmentId" id ="departmentId"  class="departmentId" value="">
-							<input type="submit" id="departmentSubmit" name="departmentSubmit"  class="btn btn-primary btn-sm" value="<?=$_SESSION['department_l_form_btn_add']?>">
-							<input type="reset" value="<?=$_SESSION['department_l_form_btn_reset']?>" class="btn default  btn-sm" id="departmentReset">
+							<input type="submit" id="departmentSubmit" name="departmentSubmit"  class="btn btn-primary " value="<?=$_SESSION['department_l_form_btn_add']?>">
+							<input type="reset" value="<?=$_SESSION['department_l_form_btn_reset']?>" class="btn default  " id="departmentReset">
 						</td>
 					</tr>
 				</table>

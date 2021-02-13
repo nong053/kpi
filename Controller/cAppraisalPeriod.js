@@ -2,10 +2,20 @@ $(document).ready(function(){
 	
 
 
-
+	
 	//binding date start
-	$("#appraisalPeriodStart").kendoDatePicker();
-	$("#appraisalPeriodEnd").kendoDatePicker();
+	
+
+	$("#appraisalPeriodStart").datepicker({
+		
+		dateFormat: 'yy-mm-dd'
+	});
+	
+
+	$("#appraisalPeriodEnd").datepicker({
+		dateFormat: 'yy-mm-dd',
+		
+	});
 	//binding date end
 	
 	$("#btnAppraisalPeriod").click(function(){
@@ -15,9 +25,13 @@ $(document).ready(function(){
 
 	var resetDataAppraisalPeriod=function(){
 		//$("#appraisalPeriodYear").val("");
+
 		$("#appraisalPeriodDesc").val("");
-		$("#appraisalPeriodStart").val("");
-		$("#appraisalPeriodEnd").val("");
+
+		$("#appraisalPeriodStart").val(currentDate());
+
+		$("#appraisalPeriodEnd").val(currentDate());
+
 		$("#appraisal_period_target_percentage").val("");
 		$("#appraisalPeriodAction").val("add");
 		$("#appraisalPeriodId").val("");
@@ -36,6 +50,7 @@ $(document).ready(function(){
 			dataType:"html",
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			data:{"action":"showData","appraisalPeriodYear":paramYear},
+			sync:false,
 			success:function(data){
 				$("#appraisalPeriodShowData").html(data);
 				
@@ -159,7 +174,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	showDataAppraisalPeriod($("#appraisalPeriodYear").val());
+	//showDataAppraisalPeriod($("#appraisalPeriodYear").val());
 	
 	var validateAppraisalPeriodFn=function(){
 		var AppraisalPeriodDesction="";
@@ -255,7 +270,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select style='height: 28px;' id=\"appraisalPeriodYear\" name=\"appraisalPeriodYear\" class=\"form-control \" style='width:80px;'>";
+				htmlDropDrowList+="<select style='height: 28px; width:100px;' id=\"appraisalPeriodYear\" name=\"appraisalPeriodYear\" class=\" \" > ";
 					$.each(data,function(index,indexEntry){
 						if(kpi_year!=undefined){
 							if(kpi_year==indexEntry[0]){
@@ -284,9 +299,9 @@ $(document).ready(function(){
 						showDataAppraisalPeriod($(this).val());
 						$("#paramYearEmb").val($(this).val());	
 					});
-					setTimeout(function(){
-						$("#appraisalPeriodYear").change();
-					},500);
+					//setTimeout(function(){
+						//$("#appraisalPeriodYear").change();
+					//},500);
 					
 				
 			}
@@ -296,5 +311,8 @@ $(document).ready(function(){
 		paramYear($("#paramYearEmb").val());
 	}else{
 		paramYear();
+		showDataAppraisalPeriod(currentYear());
+		
+		
 	}
 });
