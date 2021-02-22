@@ -287,6 +287,7 @@ Detail Perspective Here.
 		</td>
 	</tr>
 </table>
+<script src="../Controller/cResultKpi.js"></script>
 
 
 

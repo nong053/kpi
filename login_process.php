@@ -32,9 +32,9 @@ and a.admin_id='$admin_id'";
 //$strSQL="select * from admin where admin_username='$user' and admin_password='$pass' and admin_id='$admin_id'";
 $result=mysql_query($strSQL);
 
-$strSQLEmp="select e.*,r.role_name as role_name,ad.* from employee e
+$strSQLEmp="select e.*,r.role_id,r.role_name as role_name,ad.* from employee e
 INNER JOIN position_emp pe on e.position_id=pe.position_id
-INNER JOIN role r on pe.role_id=r.role_id
+INNER JOIN role r on e.role_id=r.role_id
 INNER JOIN admin ad  on e.admin_id=ad.admin_id
 where e.emp_user='$user'
 and e.emp_pass=MD5('$pass')
@@ -87,6 +87,8 @@ if($num=mysql_num_rows($result)){
 		$_SESSION['emp_name']=$rsEmp['emp_name'];
 		$_SESSION['admin_status']=0;
 		$_SESSION['emp_role_leve']=$rsEmp['role_name'];
+		$_SESSION['emp_role_level_id']=$rsEmp['role_id'];
+		
 
 		$_SESSION['ERORRLOGIN']="";
 		$_SESSION['login_status']=1;

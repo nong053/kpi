@@ -1,5 +1,11 @@
-var  getColorEasyPieChart=function(score){
+
+	//var kpi_year="2012";
+	//var appraisal_period_id="All";
+	//var department_id="1";
+	
+	var  getColorEasyPieChart=function(score){
 		
+		//alert(score);
 		
 		var color = "";
 		$.ajax({
@@ -131,7 +137,7 @@ var  getColorEasyPieChart=function(score){
 		return ballScoll;
 	  }
 
-	var gaugeOwner_bk=function(kpi_year,appraisal_period_id,department_id){
+	var gaugeOwner=function(kpi_year,appraisal_period_id,department_id){
 
 		//Guage Owner START
 		$.ajax({
@@ -245,159 +251,12 @@ var  getColorEasyPieChart=function(score){
 		});
 		
 		
-		//Guage Owner END  
+		//Guage Owner END
+		
+		  
 		
 	}
 	
-
-
-	var gaugeOwnerPerspective=function(kpi_year){
-
-		//Guage Perspective START
-		$.ajax({
-			url:"../Model/mGetOwnerKpiResult.php",
-			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-			type:"get",
-			data:{"kpi_year":kpi_year,
-			"action":"perspective_result"
-			},
-			dataType:"json",
-			success:function(data){
-
-
-				try {
-				
-				var $ranges="";
-				
-				
-					$ranges+=" [";
-
-						$ranges+=" {";
-							$ranges+="from:\"0\",";
-							$ranges+="to: \"19\",";
-							$ranges+="color: \"#DD0000\"";
-						$ranges+=" }, {";
-							$ranges+="from:\"20\",";
-							$ranges+="to: \"39\",";
-							$ranges+="color: \"#FFFF99\"";
-						$ranges+="},"; 
-						$ranges+="{";
-							$ranges+="from:\"40\",";
-							$ranges+="to: \"59\",";
-							$ranges+="color: \"#FFCC66\"";
-						$ranges+= " },";
-						$ranges+="{";
-							$ranges+="from:\"60\",";
-							$ranges+="to: \"79\",";
-							$ranges+="color: \"#99FF00\"";
-						$ranges+= " },";
-						$ranges+="{";
-							$ranges+="from:\"80\",";
-							$ranges+="to: \"99\",";
-							$ranges+="color: \"#339933\"";
-						$ranges+= " },";
-						$ranges+="{";
-							$ranges+="from:\"100\",";
-							$ranges+="to: \"100\",";
-							$ranges+="color: \"#336666\"";
-						$ranges+= " }";
-						$ranges+= "]";
-						
-						var objRanges=eval("("+$ranges+")");
-				
-				//Gauge for check data value end
-
-				  $("#perspectiveArea").html("");
-				  let pers_result=0.00;
-				  let pers_weight=0.00;
-				  let org_result=0.00;
-				  $(data).each(function(index,indexEntry){
-
-
-					console.log(indexEntry);
-					pers_result+=parseFloat(indexEntry[4]);
-					pers_weight+=parseFloat(indexEntry[3]);
-					
-					
-					//alert(parseFloat(indexEntry[3]).toFixed(2));
-
-
-					var htmlPerspectiveHTML="";
-					htmlPerspectiveHTML+="<div class=\"col-md-3\">";
-						htmlPerspectiveHTML+="<div class=\"panel panel-default panel-bottom\" style=\"margin-top: 5px;\">";
-							htmlPerspectiveHTML+="<div class=\"panel-heading\">";
-								htmlPerspectiveHTML+="<b><i class=\"glyphicon glyphicon-eye-open\"></i> "+indexEntry[1]+"</b>";	
-								htmlPerspectiveHTML+="</div>";
-								htmlPerspectiveHTML+="<div class=\"panel-body panel-body-top\">";
-								htmlPerspectiveHTML+="<div id=\"gauge-container\">";
-								htmlPerspectiveHTML+="<div class=\"gaugePerspective\" id=\"gaugePerspective-"+indexEntry[0]+"\"></div>";
-								htmlPerspectiveHTML+="<div class='gaugePerspectiveValue' id=\"gaugePerspectiveValue-"+indexEntry[0]+"\"></div>";
-								htmlPerspectiveHTML+="</div>";
-							htmlPerspectiveHTML+="</div>";
-						htmlPerspectiveHTML+="</div>";
-					htmlPerspectiveHTML+="</div>";
-					$("#perspectiveArea").append(htmlPerspectiveHTML);
-
-					$("#gaugePerspective-"+indexEntry[0]).kendoRadialGauge({
-					 		
-						pointer: {
-							value:parseFloat(indexEntry[2]).toFixed(2)
-						},
-						scale: {
-							minorUnit: 5,
-							startAngle: -30,
-							endAngle: 210,
-							max: 100,
-							labels: {
-							   // position: labelPosition || "inside"
-							},
-							ranges:objRanges
-						   
-						}
-					});
-				    $("#gaugePerspectiveValue-"+indexEntry[0]).html(parseFloat(indexEntry[2]).toFixed(2)+"%");
-
-
-
-				  });
-				  
-				  org_result=pers_result/pers_weight;
-				  org_result=parseFloat(org_result).toFixed(2);
-
-				  $("#gaugeOwner").kendoRadialGauge({
-					 		
-					pointer: {
-						value:parseFloat(org_result).toFixed(2)
-					},
-					scale: {
-						minorUnit: 5,
-						startAngle: -30,
-						endAngle: 210,
-						max: 100,
-						labels: {
-						   // position: labelPosition || "inside"
-						},
-						ranges:objRanges
-					   
-					}
-				});
-				$("#gaugeOwnerValue").html(org_result+"%");
-				  //alert(org_result);
-
-
-				 }catch(err) {
-				 console.log(err.message);
-				}
-				
-			}
-		});
-		
-		
-		//Guage Perspective END  
-		
-	}
-
-
 	var gaugeDep=function(kpi_year,appraisal_period_id,department_id){
 
 		//Guage Owner START
@@ -509,7 +368,7 @@ var  getColorEasyPieChart=function(score){
 
 
 	//BARCHART START
-var barChart=function(kpi_year){
+var barChart=function(kpi_year,department_id){
 	
 	 /*bar chart  appraisal period start*/
 	$.ajax({
@@ -517,15 +376,11 @@ var barChart=function(kpi_year){
 		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 		type:"get",
 		dataType:"json",
-		data:{"kpi_year":kpi_year,
-		"action":"appraialBarChartOwner",
-		},
+		data:{"kpi_year":kpi_year,"action":"appraialBarChartOwner","department_id":department_id},
 		success:function(data){
 			
-			try {
-			
+
 			// ####### Create Category Bargrpah Start.
-			$("#barChartOwner").empty();
 			var  $categoriesArray=data[0][2];
 			$categoriesArray=$categoriesArray.split(",");
 			var $categories="";
@@ -545,13 +400,13 @@ var barChart=function(kpi_year){
 			var seriesArray="";
 			seriesArray+="[";
 			$.each(data,function(index,indexEntry){
-				
+				console.log("-----------------");
+					console.log(indexEntry);
 					
 					if(index==0){
 						seriesArray+="{";
 						if(indexEntry[0]=="Target" || indexEntry[0]=="Target YTD"){
 							seriesArray+="type: \"line\",";
-							
 						}
 					}else{
 						
@@ -617,9 +472,7 @@ var barChart=function(kpi_year){
 			    });
 			 
 			/*bar chart power by kendo ui end*/
-				}catch(err) {
-					console.log(err.message);
-			}
+
 		}
 	});
 	
@@ -632,20 +485,51 @@ var barChart=function(kpi_year){
 //BARCHART END
 
 //################# Easy Pie Chart Start #################
-var departmentResultFn = function(kpi_year){
+var easyPieChartMainFn = function(kpi_year,appraisal_period_id){
 	$.ajax({
 		url:"../Model/mGetOwnerKpiResult.php",
 		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 		type:"get",
 		dataType:"json",
-		data:{"kpi_year":kpi_year,"action":"scoreDepartmentOwner"},
+		data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"action":"scoreDepartmentOwner"},
 		success:function(data){
 			//alert(data);
 			if(data==0){
 				return false;
 			}
 			
+			/*
+		
+			 
+	.bgColorGreen{
+		background:#5CB85C;
+	}
+	.bgColorYellow{
+		background:yellow;
+	}
+	.bgColorRed{
+		background:#D9534F;
+	}
+	.bgColorGray{
+		background:#cccccc;
+	}
+	.bgColorBlue{
+		background:#5BC0DE;
+	}
+	.bgColorOrange{
+		background:#F0AD4E;
+	}
+		
+			 */
 			var colorArray=Array();
+			/*
+			#1c9ec4
+			#ff63a5
+			#10c4b2
+			#ff7663
+			#ffb74f
+			#a2df53
+			*/
 			
 			colorArray[0]="#10c4b2";
 			colorArray[1]="#ff7663";
@@ -653,13 +537,17 @@ var departmentResultFn = function(kpi_year){
 			colorArray[3]="#a2df53";
 			colorArray[4]="#1c9ec4";
 			colorArray[5]="#ff63a5";
-			colorArray[6]="#A9DFBF";
-			colorArray[7]="#FAD7A0";
-			colorArray[8]="#138D75";
-			colorArray[9]="#2980B9";
-			colorArray[10]="#8E44AD";
 			
-			$("#areaPieByDepartment").empty();
+			/*
+			colorArray[0]="#5CB85C";
+			colorArray[1]="#5BC0DE";
+			colorArray[2]="#F0AD4E";
+			colorArray[3]="#D9534F";
+			colorArray[4]="#cccccc";
+			colorArray[5]="yellow";
+			*/
+			
+			
 			$.each(data,function(index,indexEntry){
 			var easyChartAreaLayout="";
 				//KpiPerspective
@@ -682,9 +570,59 @@ var departmentResultFn = function(kpi_year){
 			easyChartAreaLayout+="</div>";
 			
 				
-			$("#areaPieByDepartment").append(easyChartAreaLayout);
+			$("#pieByDepartment").append(easyChartAreaLayout);
 			easyPieChartFn(indexEntry[0],indexEntry[2]);
 			});
+			
+			//$("#pieByDepartment").html(easyChartAreaLayout);
+			//easyPieChartFn(indexEntry[0],);
+			//#################  Table Kpi Result End   #####################
+
+			//click perspective for open view start
+			/* start call KpiPerspective */
+			$(".KpiPerspective").off("click");
+			$(".KpiPerspective").on("click",function(){
+				//alert("hello click perspective");
+				var department_id=this.id.split("-");
+				department_id=department_id[1];
+				var department_name=$(this).children().children().next().text();
+				
+				//### Embed Page and  Embed Department Start ###
+				$(".pageEmb").remove();
+				$(".department_emp").remove();
+
+				
+				
+
+				$("body").append("<input type=\"hidden\" name=\"pageDepartment\" id=\"pageDepartment\" class=\"pageEmb\" value=\"pageDepartment\">");
+
+				sessionStorage.setItem("param_department", department_id);
+				sessionStorage.setItem("department_name_emp", department_name);
+				/*
+				$("body").append("<input type=\"hidden\" name=\"paramDepartmentEmb\" id=\"paramDepartmentEmb\" class=\"department_emp\" value="+department_id+">");
+				$("body").append("<input type=\"hidden\" name=\"department_name_emp\" id=\"department_name_emp\" class=\"department_emp\" value="+department_name+">");
+				*/
+				//### Embed Page Embed Department End ###
+				
+				$.ajax({
+					url:"../View/vKpiDashboard.php",
+					type:"get",
+					dataType:"html",
+					async:false,
+					data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"department_id":department_id,"department_name":department_name},
+					success:function(data){
+						$("#mainContent").html(data);
+						callProgramControl("cKpiDashboard.js");
+						kpiDasboardMainFn(kpi_year,appraisal_period_id,department_id,department_name);
+					}
+				});
+				
+				//alert(department_id);
+				
+			});
+			/* end call KpiPerspective */
+			
+			
 		}
 	});
 	
@@ -1064,8 +1002,13 @@ var paramYear=function(kpi_year){
 				$("#appraisal_year").kendoDropDownList({
 					theme: "silver"
 				});
-				sessionStorage.setItem("param_year", $("#appraisal_year").val());
-				
+				/*
+				$("#appraisal_year").change(function(){
+					
+					fnDropdownListAppralisal($(this).val());
+
+				});
+				*/
 			}
 		});
 		
@@ -1156,26 +1099,283 @@ $(".glyphicon-remove-bottom").click(function(){
 
 
 //#################  submit button action start #####################
+var searchKPIOwnerFn = function(){
+//alert($(".RoleEmb").val());
+				$(".paramEmb").remove();
+				$(".department_emp").remove();
 
 
+				/*
+				$("body").append("<input type='hidden' class='paramEmb' name='paramYearEmb' id='paramYearEmb' value='"+$("#appraisal_year").val()+"'>");
+				$("body").append("<input type='hidden' class='paramEmb' name='paramAppraisalEmb' id='paramAppraisalEmb' value='"+$("#appraisal_period_id").val()+"'>");
+				$("body").append("<input type='hidden' class='paramEmb' name='paramDepartmentEmb' id='paramDepartmentEmb' value='"+$("#department_id").val()+"'>");
+				$("body").append("<input type='hidden' class='paramEmb' name='paramDepartmentNameEmb' id='paramDepartmentNameEmb' value='"+$("#department_id option:selected").text()+"'>");
+				*/
+				sessionStorage.setItem("param_year", $("#appraisal_year").val());
+				sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id").val());
+				sessionStorage.setItem("param_department", $("#department_id").val());
+				sessionStorage.setItem("department_name_emp", $("#department_id option:selected").text());
+
+				/*
+				alert(sessionStorage.getItem("param_year"));
+				alert(sessionStorage.getItem("param_appraisal_period"));
+				alert(sessionStorage.getItem("param_department"));
+				alert(sessionStorage.getItem("department_name_emp"));
+				*/
+				if($(".pageEmb").val()=="pageDepartment"){
+					if($(".RoleEmb").val()=="roleEmp"){
+						
+						//### Call kpiDasboardMainFn for emp role Start ###
+						$.ajax({
+							url:"../View/vKpiDashboard.php",
+							type:"get",
+							dataType:"html",
+							async:false,
+							data:{"kpi_year":sessionStorage.getItem("param_year"),"appraisal_period_id":sessionStorage.getItem("param_appraisal_period"),
+								"department_id":sessionStorage.getItem("param_department"),"department_name":sessionStorage.getItem("department_name_emp")
+								},
+							success:function(data){
+								$("#mainContent").html(data);
+								callProgramControl("cKpiDashboard.js");
+								
+								kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),$("#departmentIdEmp").val(),$("#departmentNameEmp").val(),$("#emp_id").val());
+								//### drawdown grid for show detail within ###
+								//$(".k-icon").click();
+							}
+						});
+						//### Call kpiDasboardMainFn for emp role End ###
+						
+					}else{
+					
+					//### Call Program department Page Start ###
+						kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),$("#department_id_emp").val(),$("#department_name_emp").val());
+					//### Call Program department Page Start ###
+					}
+					
+					
+				}else{//else2
+					//alert('hello 2');
+					//kpiOwnerFn();
+					// call function index page
+					if(sessionStorage.getItem("param_department")==null){
+						$("#areaPieByDepartment").empty();
+						
+						$("#areaPieByDepartment").html("<div id='pieByDepartment'></div>");
+						easyPieChartMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
+						$("#pieChartByDepartment").show();
+						$("#pieChartKpiResult").hide();
+
+						
+
+						if($("#embed_language").val()=="th"){
+							$("#titleKpiAndDep").html(" ผลประเมินตามแผนก");
+							$("#titleDepTop").html(" ผลประเมินแต่ละแผนก");
+						}else{
+							$("#titleKpiAndDep").html(" Departmental evaluation results");
+							$("#titleDepTop").html(" Evaluation results of each department");
+						}
+
+
+						
+
+
+						//pieChartDepResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val());
+					}else{
+						$("#areaPieByDepartment").empty();
+						var htmlGaugeArea="";
+						htmlGaugeArea+="<div id=\"gauge-container\">";
+						htmlGaugeArea+="<div class=\"gaugeDep\" id=\"gaugeDep\"></div>";
+						htmlGaugeArea+="<div id=\"gauge-dep-value\"></div>";
+						htmlGaugeArea+="</div>";
+						
+						$("#areaPieByDepartment").html(htmlGaugeArea);
+						
+						gaugeDep(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"));
+						//Click Department to Show Detail into Start.
+						actionGaugeDep();
+						// Click Department to Show Detail into End.
+						
+						$("#pieChartByDepartment").hide();
+						$("#pieChartKpiResult").show();
+
+						
+						if($("#embed_language").val()=="th"){
+
+							$("#titleKpiAndDep").html(" ผลประเมินตามตัวชี้วัด");
+							//$("#titleDepTop").html("ผลการประเมินแผนก("+$("#paramDepartmentNameEmb").val()+")");
+							$("#titleDepTop").html("  ผลประเมินแผนก");
+
+
+						}else{
+
+							$("#titleKpiAndDep").html(" Evaluation results by KPIs.");
+							$("#titleDepTop").html(" Departmental evaluation results.");
+							//$("#titleDepTop").html("Departmental evaluation results ("+$("#paramDepartmentNameEmb").val()+")");
+
+						}
+
+						piChartkpiResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"));
+					}
+					gaugeOwner(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),"All");
+					barChart(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_department"));
+					TableKpiResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"));
+					
+				
+			
+		}
+
+};
+/*
+$("#appraisalPeriodSubmit").off("click");
+$("#appraisalPeriodSubmit").on("click",function(){
+				
+				$(".paramEmb").remove();
+				$(".department_emp").remove();
+				
+				$("body").append("<input type='hidden' class='paramEmb' name='paramYearEmb' id='paramYearEmb' value='"+$("#appraisal_year").val()+"'>");
+				$("body").append("<input type='hidden' class='paramEmb' name='paramAppraisalEmb' id='paramAppraisalEmb' value='"+$("#appraisal_period_id").val()+"'>");
+				$("body").append("<input type='hidden' class='paramEmb' name='paramDepartmentEmb' id='paramDepartmentEmb' value='"+$("#department_id").val()+"'>");
+				$("body").append("<input type='hidden' class='paramEmb' name='paramDepartmentNameEmb' id='paramDepartmentNameEmb' value='"+$("#department_id option:selected").text()+"'>");
+				
+				if($(".pageEmb").val()=="pageDepartment"){
+					if($(".RoleEmb").val()=="roleEmp"){
+						
+						//### Call kpiDasboardMainFn for emp role Start ###
+						$.ajax({
+							url:"../View/vKpiDashboard.php",
+							type:"get",
+							dataType:"html",
+							async:false,
+							data:{"kpi_year":$("#paramYearEmb").val(),"appraisal_period_id":$("#paramAppraisalEmb").val(),
+								"department_id":$("#departmentIdEmp").val(),"department_name":$("#departmentNameEmp").val()
+								},
+							success:function(data){
+								$("#mainContent").html(data);
+								callProgramControl("cKpiDashboard.js");
+								
+								kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#departmentIdEmp").val(),$("#departmentNameEmp").val(),$("#emp_id").val());
+								//### drawdown grid for show detail within ###
+								//$(".k-icon").click();
+							}
+						});
+						//### Call kpiDasboardMainFn for emp role End ###
+						
+					}else{
+					
+					//### Call Program department Page Start ###
+						kpiDasboardMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#department_id_emp").val(),$("#department_name_emp").val());
+					//### Call Program department Page Start ###
+					}
+					
+					
+				}else{//else2
+
+					// call function index page
+					if($("#paramDepartmentEmb").val()=="All"){
+						$("#areaPieByDepartment").empty();
+						
+						$("#areaPieByDepartment").html("<div id='pieByDepartment'></div>");
+						easyPieChartMainFn($("#paramYearEmb").val(),$("#paramAppraisalEmb").val());
+						$("#pieChartByDepartment").show();
+						$("#pieChartKpiResult").hide();
+
+						
+
+						if($("#embed_language").val()=="th"){
+							$("#titleKpiAndDep").html(" ผลการประเมินตามแผนก");
+							$("#titleDepTop").html(" ผลการประเมินแต่ละแผนก");
+						}else{
+							$("#titleKpiAndDep").html(" Departmental evaluation results");
+							$("#titleDepTop").html(" Evaluation results of each department");
+						}
+
+
+						
+
+
+						//pieChartDepResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val());
+					}else{
+						$("#areaPieByDepartment").empty();
+						var htmlGaugeArea="";
+						htmlGaugeArea+="<div id=\"gauge-container\">";
+						htmlGaugeArea+="<div class=\"gaugeDep\" id=\"gaugeDep\"></div>";
+						htmlGaugeArea+="<div id=\"gauge-dep-value\"></div>";
+						htmlGaugeArea+="</div>";
+						
+						$("#areaPieByDepartment").html(htmlGaugeArea);
+						
+						gaugeDep($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val());
+						//Click Department to Show Detail into Start.
+						actionGaugeDep();
+						// Click Department to Show Detail into End.
+						
+						$("#pieChartByDepartment").hide();
+						$("#pieChartKpiResult").show();
+
+						
+						if($("#embed_language").val()=="th"){
+
+							$("#titleKpiAndDep").html(" ผลการประเมินตามตัวชี้วัด");
+							//$("#titleDepTop").html("ผลการประเมินแผนก("+$("#paramDepartmentNameEmb").val()+")");
+							$("#titleDepTop").html("  ผลการประเมินแผนก");
+
+
+						}else{
+
+							$("#titleKpiAndDep").html(" Evaluation results by KPIs.");
+							$("#titleDepTop").html(" Departmental evaluation results.");
+							//$("#titleDepTop").html("Departmental evaluation results ("+$("#paramDepartmentNameEmb").val()+")");
+
+						}
+
+						piChartkpiResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val());
+					}
+					gaugeOwner($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),"All");
+					barChart($("#paramYearEmb").val(),$("#paramDepartmentEmb").val());
+					TableKpiResult($("#paramYearEmb").val(),$("#paramAppraisalEmb").val(),$("#paramDepartmentEmb").val());
+					
+				
+			
+		}
+				
+				
+				
+
+});
+*/
 
 
 $(document).ready(function(){
 	
 
-	paramYear(sessionStorage.getItem("param_year"));
+	//paramYear($("#paramYearEmb").val());
+	//fnDropdownListAppralisal($("#appraisal_year").val());
+	//fnDropdownListDep("","selectAll");
+
+	
+	  
+	
+
 	$( "body" ).off( "change", "#appraisal_year");
 	$( "body" ).on( "change", "#appraisal_year", function() {
-		//searchKPIOwnerFn();
-		sessionStorage.setItem("param_year", $("#appraisal_year").val());
-		gaugeOwnerPerspective(sessionStorage.getItem("param_year"));
-		barChart(sessionStorage.getItem("param_year"));
-		departmentResultFn(sessionStorage.getItem("param_year"));
+	
+		searchKPIOwnerFn();
 	});
+	$( "body" ).off( "change", "#department_id");
+	$( "body" ).on( "change", "#department_id", function() {
+		
+		searchKPIOwnerFn();
+	});
+	$( "body" ).off( "change", "#appraisal_period_id");
+	$( "body" ).on( "change", "#appraisal_period_id", function() {
+	
+		searchKPIOwnerFn();
+	});
+	setTimeout(function(){
+		//searchKPIOwnerFn();
+	},500);
+	
 
-	gaugeOwnerPerspective(sessionStorage.getItem("param_year"));
-	barChart(sessionStorage.getItem("param_year"));
-	departmentResultFn(sessionStorage.getItem("param_year"));
 });
 
 

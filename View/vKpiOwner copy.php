@@ -12,9 +12,9 @@ if($_SESSION['language']=="th"){
 
 	
 	//page owner
-	$_SESSION['kpi_owner_l_by_owner']="วิสัยทัศน์และยุทธวิธี";
+	$_SESSION['kpi_owner_l_by_owner']="ผลประเมินองค์กร";
 	$_SESSION['kpi_owner_l_by_appraisal']="ผลประเมินตามช่วงประเมิน";
-	$_SESSION['kpi_owner_l_by_department']="ผลประเมินตามแผนก";
+	$_SESSION['kpi_owner_l_by_department']="ผลประเมินแต่ละแผนก/ฝ่าย";
 	$_SESSION['kpi_owner_l_by_kpi']="ผลประเมินรายตัวชี้วัด";
 
 	//table
@@ -153,17 +153,8 @@ if($_SESSION['language']=="th"){
 				#areaPieByDepartment{
 					cursor: pointer;
 				}
-				#gaugeOwnerValue{
+				#gauge-value{
 					font-weight: bold;
-					font-size: 24px;
-				}
-				.box1{
-					text-align:right; 
-					padding:5px;
-				}
-				.gaugePerspectiveValue{
-					font-weight: bold;
-					font-size: 24px;
 				}
                  
 
@@ -181,14 +172,13 @@ if($_SESSION['language']=="th"){
 										
 										<!-- Parameter Top KPI Owner Page Start-->
 											<row class="topParameter">
-<!-- 												
-												<div class="box1" >
+												<div class="box1" style='text-align:right; ' >
 													<div >
 														<b style="color:#31708f;">
 														<?=$_SESSION['kpi_owner_search_year']?>
 														</b>
 													</div>
-												</div> -->
+												</div>
 												
 												<div class="box2">
 														<div id="appraisalYearArea"></div>
@@ -196,11 +186,27 @@ if($_SESSION['language']=="th"){
 												
 
 
+												<div class="box7"  style='text-align:right;'><div >
+													<b style="color:#31708f;">
+													<?=$_SESSION['kpi_owner_l_search_department']?>
+													</b>
+												</div>
+												</div>
+												<div class="box8">
+														<div id="depDropDrowListArea"></div>
+												</div>
 												
-												
-												<!-- <div class="box5"  style="display: none;">
+												<div class="box3" style='text-align:right;'>
+													<b style="color:#31708f;">
+													<?=$_SESSION['kpi_owner_l_search_appraisalPeriod']?>
+													</b>
+													</div>
+												<div class="box4">
+													<div id="appraisalPeriodAea"></div>
+												</div>
+												<div class="box5"  style="display: none;">
 													<button href="#appraisalPeriodSubmit" id="appraisalPeriodSubmit" class="btn btn-primary btn-sm" style="margin-top: 2px; margin-left:10px; "><?=$_SESSION['kpi_owner_l_search_btn_search']?></button>
-												</div> -->
+												</div>
 												
 												
 											</row>
@@ -263,7 +269,7 @@ if($_SESSION['language']=="th"){
 								  
 								 		<div id="gauge-container">
 						    				<div class="gaugeOwner" id="gaugeOwner"></div>
-						    				<div id="gaugeOwnerValue"></div>
+						    				<div id="gauge-value"></div>
 						    			</div>
 								 		
 								  </div>
@@ -275,14 +281,27 @@ if($_SESSION['language']=="th"){
 		    			
 		    		</div>
 		    		
-		    	
+		    		<?
+		    		//echo "emp_role_leve=".$_SESSION['emp_role_leve'];
+		    		if($_SESSION['emp_role_leve']=="Level1" 
+		    			or $_SESSION['admin_status']==1 
+		    			or $_SESSION['admin_status']==3
+		    			){
+		    			?>
+		    			<div class="col-md-4 ">
+		    			<?
+		    		}else{
+		    			?>
+		    			<div class="col-md-3 ">
+		    			<?
+		    		}
+		    		?>
 		    		
 		    		
-		    		<div class="col-md-4 ">
 		    			<!-- ### Panel Start ### -->
 						<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 								  <div class="panel-heading">
-									<b> <i class="glyphicon glyphicon-random"></i>&nbsp;<span id='titleDepTop'></span>	<?=$_SESSION['kpi_owner_l_by_department']?></b>	
+									<b> <i class="glyphicon glyphicon-random"></i>&nbsp;<span id='titleDepTop'></span>	</b>	
 								  </div>
 								  <div class="panel-body panel-body-top" style="padding: 0px;margin-bottom: 0px;">
 								  
@@ -295,8 +314,21 @@ if($_SESSION['language']=="th"){
 		    			
 		    		</div>
 		    		
-		    		
-		    		<div class="col-md-5 col-sm-12">
+		    		<?
+		    		if($_SESSION['emp_role_leve']=="Level1"
+						or $_SESSION['admin_status']==1 
+		    			or $_SESSION['admin_status']==3
+		    			){
+		    			?>
+		    			<div class="col-md-5 col-sm-12">
+		    			<?
+		    		}else{
+		    			?>
+		    			<div class="col-md-6 col-sm-12">
+		    			<?
+		    		}
+		    		?>
+		    			
 		    			<!-- ### Panel Start ### -->
 						<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 								  <div class="panel-heading">
@@ -320,14 +352,79 @@ if($_SESSION['language']=="th"){
 
 		    	
 		    	<row>
-				<div id="perspectiveArea">
-					
+
+				<div class="col-md-3">
+					<!-- ### Panel Start ### -->
+					<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+						<div class="panel-heading">
+						<b><i class=" glyphicon glyphicon-edit"></i> <?=$_SESSION['kpi_owner_l_by_appraisal']?></b>			
+						</div>
+						<div class="panel-body panel-body-top">
+						
+							<div id="gauge-container">
+								<div class="gaugePerspective" id="gaugePerspective"></div>
+								<div id="gaugePerspectiveValue"></div>
+							</div>
+							
+						</div>
+					</div>
+					<!-- ### Panel End ### -->
 				</div>
-				
+				<div class="col-md-3">
+					<!-- ### Panel Start ### -->
+					<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+						<div class="panel-heading">
+						<b><i class=" glyphicon glyphicon-edit"></i> <?=$_SESSION['kpi_owner_l_by_appraisal']?></b>			
+						</div>
+						<div class="panel-body panel-body-top">
+						
+							<div id="gauge-container">
+								<div class="gaugePerspective" id="gaugePerspective"></div>
+								<div id="gaugePerspectiveValue"></div>
+							</div>	
+							
+						</div>
+					</div>
+					<!-- ### Panel End ### -->
+				</div>
+				<div class="col-md-3">
+					<!-- ### Panel Start ### -->
+					<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+						<div class="panel-heading">
+						<b><i class=" glyphicon glyphicon-edit"></i> <?=$_SESSION['kpi_owner_l_by_appraisal']?></b>			
+						</div>
+						<div class="panel-body panel-body-top">
+						
+							<div id="gauge-container">
+								<div class="gaugePerspective" id="gaugePerspective"></div>
+								<div id="gaugePerspectiveValue"></div>
+							</div>	
+							
+						</div>
+					</div>
+					<!-- ### Panel End ### -->
+				</div>
+				<div class="col-md-3">
+					<!-- ### Panel Start ### -->
+					<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+						<div class="panel-heading">
+						<b><i class=" glyphicon glyphicon-edit"></i> <?=$_SESSION['kpi_owner_l_by_appraisal']?></b>			
+						</div>
+						<div class="panel-body panel-body-top">
+						
+							<div id="gauge-container">
+								<div class="gaugePerspective" id="gaugePerspective"></div>
+								<div id="gaugePerspectiveValue"></div>
+							</div>	
+							
+						</div>
+					</div>
+					<!-- ### Panel End ### -->
+				</div>
 
 		    		
-		    		<!-- <div class="col-md-12">
-		    		 		
+		    		<div class="col-md-12">
+		    		 		<!-- ### Panel Start ### -->
 							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 									  <div class="panel-heading">
 									<b><i class="glyphicon glyphicon-record"></i> <?=$_SESSION['kpi_owner_l_tbl_title2']?> 	</b>		
@@ -338,10 +435,34 @@ if($_SESSION['language']=="th"){
 									 		
 									  </div>
 							</div>
-							
-		    		</div> -->
+							<!-- ### Panel End ### -->
+		    		</div>
 		    		<!-- ### Panel Start ### -->
-		    		
+		    		<!--
+		    		<div class="col-md-3">
+			    			
+							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+									  <div class="panel-heading">
+									<b><i class="glyphicon glyphicon-flash"></i>	<span id='titleKpiAndDep'></span>			</b>
+									  </div>
+									  <div class="panel-body panel-body-bottom" style="padding: 5px;margin-bottom: 5px;">
+									  
+									 		<div class="col-md-12">
+									 		<center>
+									 			<div id="pieChartByDepartment" style="height:270px; text-align:center"></div>
+									 		</center>
+									 			<div id="pieChartKpiResult"  style="height:200px; text-align:center"></div>
+									 		</div>
+								    		</div>
+									 		
+									  </div>
+							</div>
+							
+							
+							
+							
+		    		</div>
+		    		-->
 		    		<!-- ### Panel End ### -->
 		    	</row>
 		 <br style="clear: both;">   	

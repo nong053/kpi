@@ -272,3 +272,4 @@ if($_SESSION['language']=="th"){
 </form>
 -->
 </div>
+<script src="../Controller/cAppraisalPeriod.js"></script>

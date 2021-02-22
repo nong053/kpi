@@ -15,7 +15,7 @@ $perspectiveWeight =$_POST['perspectiveWeight'];
 $admin_id=$_SESSION['admin_id'];
 
 if($_POST['action']=="add"){
-	$strSQL="INSERT INTO perspective(perspective_nameม,perspective_weight,admin_id)
+	$strSQL="INSERT INTO perspective(perspective_name,perspective_weight,admin_id)
 	VALUES('$perspectiveName','$perspectiveWeight','$admin_id')";
 	$rs=mysql_query($strSQL);
 	if($rs){

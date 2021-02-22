@@ -277,3 +277,4 @@ $kpiName=$_GET['kpiName'];
 </form>
 </div>
 -->
+<script src="../Controller/cKpiBaseLine.js"></script>

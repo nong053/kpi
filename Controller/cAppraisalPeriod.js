@@ -182,7 +182,7 @@ $(document).ready(function(){
 		var AppraisalPeriodEnd="";
 		if($("#embed_language").val()=="th"){
 
-			 AppraisalPeriodDesction="กรอกชื่องวดการปรเมินด้วยครับ";
+			 AppraisalPeriodDesction="กรอกชื่องวดการประเมินด้วยครับ";
 			 AppraisalPeriodStart="กรอกวันเริ่มประเมินด้วยครับ";
 			 AppraisalPeriodEnd="กรอกวันสิ้นสุดการประเมินด้วยครับ";
 		

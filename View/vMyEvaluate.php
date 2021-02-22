@@ -258,12 +258,12 @@ if($_SESSION['language']=="th"){
 						<div class="impageEmpClass">
 							<img class="img-circle" id="empDisplayImage" src="../View/uploads/avatar.jpg" width="100px;">
 						</div>
-						<div class="infoEmpClass" style="border: 1px solid #ddd; padding: 5px; margin-top: 0px;" >
-							<div id="empDisplayFullName" style="font-weight: bold;font-size: 16px; border-bottom: 1px solid #ddd; "></div>
-							
-							ระดับ:<strong><span id="empDisplayRole"></span></strong><br>
-							ตำแหน่ง:<strong><span id="empDisplayPosition"></span></strong><br>
-							แผนก:<strong><span id="empDisplayDepartment"></span></strong><br>
+						<div class="infoEmpClass" style="border: 0px solid #ddd; padding: 5px; margin-top: 0px;" >
+							<div id="empDisplayFullName" style="font-weight: bold;font-size: 16px; border-bottom: 0px solid #ddd; "></div>
+		
+							ตำแหน่ง:<span id="empDisplayPosition"></span><br>
+							แผนก:<span id="empDisplayDepartment"></span><br>
+							สิทธิ์:<span id="empDisplayRole"></span><br>
 						</div>
 					</div>
 				</div>
@@ -345,15 +345,15 @@ if($_SESSION['language']=="th"){
 </p>
 <br>
 	
-	<row>
+<row>
 		<div class='col-md-12'><!-- colum12 -->
 		<form id="AssignKpiForm">
 		<table style="width: 100%;">
 		
 		<tr>
-			<td style="width:150px;" class='text-right'><b><?=$_SESSION['emp_evaluate_l_form_kpi_name']?></b></td>
-			<td id="kpiDropDrowListArea">
-				
+			<!-- <td style="width:150px;" class='text-right'><b><?=$_SESSION['kpi_result_l_form_kpi_name']?></b></td> -->
+			<td colspan='2'>
+			<span style="font-weight: bold;"><?=$_SESSION['kpi_result_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
 			</td>
 		</tr>
 		
@@ -383,8 +383,8 @@ if($_SESSION['language']=="th"){
 		
 		</tr>
 		<tr>
-			<td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['emp_evaluate_l_form_baseline']?></b></td>
-			<td>
+			<!-- <td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['kpi_result_l_form_baseline']?></b></td> -->
+			<td colspan='2'>
 				<div style="margin-top: 0px;margin-bottom:0px;" class="panel panel-default panel-bottom">
 				  <!--
 				  <div class="panel-heading">
@@ -400,11 +400,11 @@ if($_SESSION['language']=="th"){
 			</td>
 		</tr>
 		 
-		<tr  style="display: ;">
-			<td class='text-right'><b> <?=$_SESSION['emp_evaluate_l_form_acutal_data']?></b></td>
+		<tr  style="display: none;">
+			<td class='text-right'><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></td>
 			<td id="areaKPIActual">
 			 
-				<input id="kpi_actual_manual" name="kpi_actual_manual" value="11"  class="form-control " style="width:100px;">
+				<input id="kpi_actual_manual" name="kpi_actual_manual" value=""  class="form-control " style="width:100px;">
 				<textarea id="kpi_actual_query" name="kpi_actual_query" style="display: none;"></textarea> 
 			</td>
 		</tr>
@@ -440,11 +440,19 @@ if($_SESSION['language']=="th"){
 
 
 		
-		<tr style="display: ;">
+		<tr style="display: none;">
 			<td ></td>
 			<td >
 				<div style="float:left;">
 					<input type="hidden" name="assign_kpi_action" id ="assign_kpi_action"  value="add">
+
+					<input type="hidden" name="assign_kpi_year" id ="assign_kpi_year"  value="">
+					<input type="hidden" name="assign_kpi_appraisal_period" id ="assign_kpi_appraisal_period"  value="">
+					<input type="hidden" name="assign_kpi_department" id ="assign_kpi_department"  value="">
+					<input type="hidden" name="assign_kpi_position" id ="assign_kpi_position"  value="">
+					<input type="hidden" name="assign_kpi_emp" id ="assign_kpi_emp"  value="">
+
+
 					<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
 					<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="Add" class="btn btn-primary btn-sm">
 					<input type="button" value="Reset" id="assign_kpi_reset" class="btn btn-default btn-sm">
@@ -459,17 +467,24 @@ if($_SESSION['language']=="th"){
 		</tr>
 
 		</form>
-		
-		
 	</table>
-
-	
-
-
 	</div><!-- column12-->
-	
-		
-
+	<!--
+		<div class='col-md-3'>
+			
+				<div style="margin-top: 0px;" class="panel panel-default panel-bottom">
+				  <div class="panel-heading">
+					<b>Baseline List</b>			
+				  </div>
+				  <div class="panel-body panel-body-top">
+				  
+				 		<div id="baseLineArea" style="display: none;"></div>
+				 		
+						  </div>
+				</div>
+			
+		</div>
+		-->
 	</row>
 	
 	<br style='clear: both'>
@@ -496,7 +511,7 @@ if($_SESSION['language']=="th"){
 	<div id='paramEmbedAssignKPI'></div>
 	
 	
-
+	<script src="../Controller/cMyEvaluate.js"></script>
 
 	
 	

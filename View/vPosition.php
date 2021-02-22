@@ -149,6 +149,8 @@ if($_SESSION['language']=="th"){
 			  </div>
 	</div>
 
+	<script src="../Controller/cPosition.js"></script>
+
 
  
  

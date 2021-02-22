@@ -15,6 +15,7 @@ if($jsonArray["login_status"]==1){
 $kpi_year=$_GET['kpi_year'];
 $appraisal_period_id=$_GET['appraisal_period_id'];
 $department_id=$_GET['department_id'];
+$position_id=$_GET['position_id'];
 $emp_id=$_GET['emp_id'];
 $kpi_id=$_GET['kpi_id'];
 $admin_id=$_SESSION['admin_id'];
@@ -29,11 +30,20 @@ echo "department_id".$department_id."<br>";
 */
 
 if($_GET['action']=="list_emp_score"){
-	if($_GET['emp_id']!=""){
+	// if($_GET['emp_id']!=""){
 		
-		$strSQL="select e.emp_picture_thum,CONCAT(e.emp_first_name,' ',e.emp_last_name) as emp_name,d.department_name,pe.position_name,
+		$strSQL="select e.emp_picture_thum,
+		CONCAT(e.emp_first_name,' ',e.emp_last_name) as emp_name,
+		d.department_name,pe.position_name,
 ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) as score_final_percentage,
-(select max(threshold_begin) from threshold ) as scoreTarget,e.emp_id,kr.appraisal_period_id
+-- (select max(threshold_begin) from threshold )
+100 as scoreTarget,
+
+ifnull(kr.adjust_percentage,0) as adjust_percentage,
+ifnull(kr.score_sum_percentage,0) as score_sum_percentage,
+ifnull(kr.emp_score_sum_percentage,0)as emp_score_sum_percentage,
+
+e.emp_id,kr.appraisal_period_id
  from employee e
 		INNER JOIN position_emp pe
 		ON e.position_id=pe.position_id
@@ -42,15 +52,14 @@ ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) as score_f
 		INNER JOIN department d on e.department_id=d.department_id
 		WHERE kr.kpi_year='$kpi_year'
 		and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
-		-- and kr.department_id='$department_id'
-		and kr.emp_id='$_GET[emp_id]'
+		and (kr.department_id='$department_id' or 'All'='$department_id')
+	    and (kr.position_id='$position_id' or 'All'='$position_id')
+		and (kr.emp_id='$_GET[emp_id]' or 'All'='$_GET[emp_id]')
 		and kr.admin_id='$admin_id'
 		and kr.approve_flag='Y'
 		GROUP BY e.emp_id
-		
-		
-		
 		";
+	/*
 	}else{
 		$strSQL="
 				select e.emp_picture_thum,CONCAT(e.emp_first_name,' ',e.emp_last_name) as emp_name,d.department_name,pe.position_name,
@@ -65,16 +74,17 @@ ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) as score_f
 		WHERE kr.kpi_year='$kpi_year'
 		and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 		and (kr.department_id='$department_id' or '$department_id'='All')
-		-- and kr.department_id='$department_id'
+		and (kr.position_id='$position_id' or 'All'='$position_id')
 		and kr.admin_id='$admin_id'
 		and kr.approve_flag='Y'
 		GROUP BY e.emp_id
 				";
 	}
+	*/
 	
 
 
-	$columnName="emp_picture_thum,emp_name,position_name,score_final_percentage,scoreTarget,emp_id,department_name";
+	$columnName="emp_picture_thum,emp_name,position_name,score_final_percentage,scoreTarget,emp_id,department_name,adjust_percentage,emp_score_sum_percentage,score_sum_percentage";
 	genarateJson($strSQL,$columnName,$conn);
 }
 

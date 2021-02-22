@@ -32,8 +32,8 @@ if($_GET['action']=="guageOwner"){
 	
 	from kpi_result kr 
 	where kr.kpi_year='$kpi_year'
-	and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
-	and (kr.department_id='$department_id' or '$department_id'='All')
+	-- and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	-- and (kr.department_id='$department_id' or '$department_id'='All')
 	and kr.admin_id='$admin_id'
 	and kr.approve_flag='Y'
 	GROUP BY kr.kpi_year
@@ -44,6 +44,7 @@ if($_GET['action']=="guageOwner"){
 }
 if($_GET['action']=="appraialBarChartOwner"){
 	$kpi_year_plus=$kpi_year+1;
+	$kpi_year_minus=$kpi_year-1;
 	$strSQL="
 	
 	select kpi_year,GROUP_CONCAT(IFNULL(actual_score,0)) as actual_score ,
@@ -53,8 +54,8 @@ if($_GET['action']=="appraialBarChartOwner"){
 	from kpi_result kr
 	INNER JOIN appraisal_period ap 
 	on kr.appraisal_period_id=ap.appraisal_period_id
-	where kpi_year BETWEEN '$kpi_year' and '$kpi_year_plus'
-	and (kr.department_id='$department_id' or '$department_id'='All')
+	where kpi_year BETWEEN '$kpi_year_minus' and '$kpi_year'
+	-- and (kr.department_id='$department_id' or '$department_id'='All')
 	and kr.admin_id='$admin_id'
 	and kr.approve_flag='Y'
 	GROUP BY kr.appraisal_period_id
@@ -62,15 +63,19 @@ if($_GET['action']=="appraialBarChartOwner"){
 	GROUP BY kpi_year	
 	
 
-
+/*
 	UNION
 		select kpi_year,group_concat(target),appraisal from (
-select 'Target' as kpi_year, (select max(threshold_begin) from threshold
-where admin_id='$admin_id') as 'target' ,'' as appraisal
+select 'Target' as kpi_year, 
+-- (select max(threshold_begin) from threshold where admin_id='$admin_id') 
+100 as 'target' ,'' as appraisal
 from appraisal_period 
 where admin_id ='$admin_id'
 and appraisal_period_year='$kpi_year'
+
+
 )query_a
+*/
 
 /*
 union
@@ -85,20 +90,28 @@ and appraisal_period_year='$kpi_year'
 	$columnName="kpi_year,actual_score,appraisal";
 	genarateJson($strSQL,$columnName,$conn);
 }
+
 if($_GET['action']=="scoreDepartmentOwner"){
 	$strSQL="
-		
+
+
 	select d.department_id,
-	d.department_name,
-	sum(kr.score_final_percentage)/count(kr.emp_id) as total_score
-	from  kpi_result kr 
-	inner JOIN department d
-	on kr.department_id=d.department_id
-	where kpi_year='$kpi_year'
+	d.department_name,ifnull(
+     (select
+	 sum(kr.score_final_percentage)/count(kr.emp_id) 
+     from kpi_result kr
+     where kpi_year='$kpi_year'
 	and kr.admin_id='$admin_id'
 	and kr.approve_flag='Y'
-	and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
-	GROUP BY kr.department_id
+	-- and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+    and kr.department_id=d.department_id
+	),0) as total_score
+     
+	from  department d
+	where d.admin_id='$admin_id'
+	GROUP BY d.department_id
+
+		
 	
 	";
 	$columnName="department_id,department_name,total_score";
@@ -195,6 +208,112 @@ GROUP BY ak.assign_kpi_year,ak.kpi_id
 	$columnName="kpi_id,kpi_name,kpi_target,kpi_actual,kpi_performance,kpi_code,kpi_target_percentage,kpi_better_flag";
 	genarateJson($strSQL,$columnName,$conn);
 }
+
+if($_GET['action']=="perspective_result"){
+	$strSQL_bk="
+	select pp.perspective_id,pp.perspective_name, 
+ifnull(
+(
+
+	select  sum(aek.performance*p.perspective_weight)/sum(p.perspective_weight) as pers_result  from assign_evaluate_kpi aek
+	inner join kpi k on k.kpi_id=aek.kpi_id
+	inner join perspective p on k.perspective_id=p.perspective_id
+	where aek.assign_kpi_year='$kpi_year'
+	and aek.admin_id='$admin_id'
+	and p.perspective_id=pp.perspective_id
+	group by p.perspective_id
+
+),0) as pers_performance,pp.perspective_weight,
+
+
+ifnull(
+pp.perspective_weight *(
+
+	select  sum(aek.performance*p.perspective_weight)/sum(p.perspective_weight) as pers_result  from assign_evaluate_kpi aek
+	inner join kpi k on k.kpi_id=aek.kpi_id
+	inner join perspective p on k.perspective_id=p.perspective_id
+	where aek.assign_kpi_year='$kpi_year'
+	and aek.admin_id='$admin_id'
+	and p.perspective_id=pp.perspective_id
+	group by p.perspective_id
+
+),0) as pers_result
+from perspective pp
+where pp.admin_id='$admin_id'
+
+
+
+";
+$strSQL="
+
+select pp.perspective_id,pp.perspective_name, 
+
+(ifnull(
+(
+
+	select  sum(aek.performance*p.perspective_weight)/sum(p.perspective_weight) as pers_result  from assign_evaluate_kpi aek
+	inner join kpi k on k.kpi_id=aek.kpi_id
+	inner join perspective p on k.perspective_id=p.perspective_id
+	where aek.assign_kpi_year='$kpi_year'
+	and aek.admin_id='$admin_id'
+	and p.perspective_id=pp.perspective_id
+	group by p.perspective_id
+
+),0)*60/100 )
++
+(ifnull(
+(
+
+	select  sum(aek.emp_performance*p.perspective_weight)/sum(p.perspective_weight) as pers_result  from assign_evaluate_kpi aek
+	inner join kpi k on k.kpi_id=aek.kpi_id
+	inner join perspective p on k.perspective_id=p.perspective_id
+	where aek.assign_kpi_year='$kpi_year'
+	and aek.admin_id='$admin_id'
+	and p.perspective_id=pp.perspective_id
+	group by p.perspective_id
+
+),0)*40/100)
+
+ as pers_performance,
+ 
+
+ifnull(
+pp.perspective_weight *(
+
+	select  (sum((aek.performance*60/100)*p.perspective_weight)/sum(p.perspective_weight)) as pers_result  from assign_evaluate_kpi aek
+	inner join kpi k on k.kpi_id=aek.kpi_id
+	inner join perspective p on k.perspective_id=p.perspective_id
+	where aek.assign_kpi_year='$kpi_year'
+	and aek.admin_id='$admin_id'
+	and p.perspective_id=pp.perspective_id
+	group by p.perspective_id
+
+),0) +
+ifnull(
+pp.perspective_weight *(
+
+	select  (sum((aek.emp_performance*40/100)*p.perspective_weight)/sum(p.perspective_weight)) as pers_result  from assign_evaluate_kpi aek
+	inner join kpi k on k.kpi_id=aek.kpi_id
+	inner join perspective p on k.perspective_id=p.perspective_id
+	where aek.assign_kpi_year='$kpi_year'
+	and aek.admin_id='$admin_id'
+	and p.perspective_id=pp.perspective_id
+	group by p.perspective_id
+
+),0) as pers_result,
+pp.perspective_weight
+
+from perspective pp
+where pp.admin_id='$admin_id'
+";
+
+
+
+	/*kpi_id,kpi_name,kpi_better_flag,kpi_target,kpi_actual,kpi_performance*/
+	$columnName="perspective_id,perspective_name,pers_performance,perspective_weight,pers_result";
+	genarateJson($strSQL,$columnName,$conn);
+}
+
 
 }else{
 echo'{"status":"400","error":"not token."}';

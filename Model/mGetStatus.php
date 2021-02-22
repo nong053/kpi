@@ -20,10 +20,10 @@ from threshold where admin_id='$admin_id' order by threshold_begin
 		
 ";
 */
+
 $strSQL="
 	select threshold_name,threshold_begin,threshold_end,threshold_color
-from threshold  order by threshold_begin
-		
+from threshold  order by score		
 ";
 $columnName="threshold_name,threshold_begin,threshold_end,threshold_color";
 genarateJson($strSQL,$columnName,$conn);

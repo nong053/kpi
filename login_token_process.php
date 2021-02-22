@@ -39,7 +39,7 @@ $result=mysql_query($strSQL);
 
 $strSQLEmp="select e.*,r.role_name as role_name,ad.* from employee e
 INNER JOIN position_emp pe on e.position_id=pe.position_id
-INNER JOIN role r on pe.role_id=r.role_id
+INNER JOIN role r on e.role_id=r.role_id
 INNER JOIN admin ad  on e.admin_id=ad.admin_id
 where e.emp_user='$user'
 and e.emp_pass=MD5('$pass')

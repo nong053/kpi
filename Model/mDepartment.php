@@ -61,7 +61,7 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th data-field=\"column1\"><b>".$_SESSION['department_l_tbl_id']."</b></th>";
+			$tableHTML.="<th style='text-align:right;' data-field=\"column1\"><b>".$_SESSION['department_l_tbl_id']."</b></th>";
 			//$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['department_l_tbl_department_code']."</b></th>";
 			$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['department_l_tbl_department_name']."</b></th>";
 			$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['department_l_tbl_department_detail']."</b></th>";
@@ -75,7 +75,7 @@ if($_POST['action']=="showData"){
 	
 	$tableHTML.="<tbody class=\"contentdepartment\">";
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td>".$i."</td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".$i."</div></td>";
 	//$tableHTML.="	<td>".$rs['department_code']."</td>";
 	$tableHTML.="	<td>".$rs['department_name']."</td>";
 	$tableHTML.="	<td>".$rs['department_detail']."</td>";

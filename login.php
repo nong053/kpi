@@ -5,7 +5,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign in</title>
+    <title>ลงชื่อเข้าใช้งาน</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -139,7 +139,8 @@ error_reporting (E_ALL ^ E_NOTICE);
                         <div class="box_cont">
                             <div class="social">
                                <img src="admin/images/adminloginhead.jpg">
-                               <br>
+                               
+                               <!-- <br> -->
                                 <font  style='color:red;' >
                                 <?=$_SESSION['activated_message'];?>
                                 </font>
@@ -165,11 +166,11 @@ error_reporting (E_ALL ^ E_NOTICE);
 
                                     if($_SESSION['activated_trial']==0 && $_SESSION['activated']==0){
                                         ?>
-                                        <input disabled="disabled" type="button" class="submit" id='btnSubmit' value="sign up">
+                                        <input disabled="disabled" type="button" class="submit" id='btnSubmit' value="ลงชื่อเข้าใช้งาน">
                                         <?
                                     }else{
                                         ?>
-                                        <input type="button" class="submit" id='btnSubmit' value="sign up">
+                                        <input type="button" class="submit" id='btnSubmit' value="ลงชื่อเข้าใช้งาน">
                                         <?
                                     }
                                     ?>
@@ -271,30 +272,24 @@ sessionStorage.clear();
                 success:function(data){
                    // console.log(data);
                     console.log(data.token);
+                    
                     if(data.status=='200'){
-                       $("#warning").hide();
-                       sessionStorage.setItem('token', data.token); 
-                       //alert(data.emp_id);
-                       //window.location="View/index.php?emp_id="+data.emp_id;
-                      // window.location = "http://www.yoururl.com";
+                        $("#warning").hide();
+                        sessionStorage.setItem('token', data.token); 
+                        var formHtml="";
+                        formHtml+="<form style=\"display: none;\" action=\"login_process.php\" id=\"formSubmit2\" method=\"post\">";
+                        formHtml+="<input type=\"text\" placeholder=\"User name\" id=\"user\" name=\"user\" value="+data.user+">";
+                        formHtml+="<input type=\"password\" placeholder=\"Password\" id=\"pass\" name=\"pass\" value="+data.pass+">";
+                        formHtml+="<input type=\"hidden\" name=\"admin_id\" id=\"admin_id\" value="+data.admin_id+">";
+                        formHtml+="<input class='submit' type=\"submit\" id='btnSubmit2' value=\"sign up\">";
+                        formHtml+="</form>";
+                        $("body").append(formHtml);
+                        $("#btnSubmit2").click();
 
-                    //alert(data.user);
-                    var formHtml="";
+                        }else if(data.status=='error'){
 
-                    formHtml+="<form style=\"display: none;\" action=\"login_process.php\" id=\"formSubmit2\" method=\"post\">";
-                    formHtml+="<input type=\"text\" placeholder=\"User name\" id=\"user\" name=\"user\" value="+data.user+">";
-                    formHtml+="<input type=\"password\" placeholder=\"Password\" id=\"pass\" name=\"pass\" value="+data.pass+">";
-                    formHtml+="<input type=\"hidden\" name=\"admin_id\" id=\"admin_id\" value="+data.admin_id+">";
-                    formHtml+="<input class='submit' type=\"submit\" id='btnSubmit2' value=\"sign up\">";
-                    formHtml+="</form>";
-
-                    $("body").append(formHtml);
-                    $("#btnSubmit2").click();
-
-                    }else if(data.status=='error'){
-
-                            $("#warning").show();
-                    }
+                                $("#warning").show();
+                        }
                     
                   
 

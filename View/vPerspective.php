@@ -144,7 +144,9 @@ if($_SESSION['language']=="th"){
 			 		<div id="showDataPerspective"></div>
 			 		
 			  </div>
-	</div>
+    </div>
+    
+    <script src="../Controller/cPerspective.js"></script>
 
 
  

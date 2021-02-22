@@ -532,3 +532,4 @@ if($_SESSION['language']=="th"){
 <br style='clear: both'>
 </div>
 -->
+<script src="../Controller/cEmployee.js"></script>

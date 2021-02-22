@@ -460,3 +460,5 @@ if($_SESSION['language']=="th"){
 
 <div class="assignData" style="display: none;" id="resultKpiShowData"></div>
 <input type="hidden" name="paramYearInformEmb">
+
+<script src="../Controller/cAssignEvaluate.js"></script>

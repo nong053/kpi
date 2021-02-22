@@ -137,7 +137,7 @@
 					 alert(empDepId);
 					 alert(empPositionId);
 					 */
-					 if(confirm("Do You Want to Confirm Approve KPI?")){
+					 if(confirm("ยืนยันการอนุมัติผลประเมิน?")){
 					     $.ajax({
 								url:"../Model/mApproveKpi.php",
 								type:"post",
@@ -243,7 +243,7 @@ var fnDropdownListApproveDep=function(department_id,paramSelectAll){
 		}
 	});
 }	
-fnDropdownListApproveDep();
+fnDropdownListApproveDep('','selectAll');
 //dropdown List Department start
 //dropdown List Position start
 
@@ -522,7 +522,7 @@ $(document).ready(function(){
 					showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
 					$("#approveModal").modal('hide');
 				}else{
-					alert("Error");
+					alert("เกิดข้อผิดผลาด");
 				}
 				
 			}

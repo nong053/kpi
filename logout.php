@@ -15,6 +15,7 @@ if($_POST['unset_session']=="loguout"){
 		$_SESSION['emp_role_leve']="";
 		$_SESSION['ERORRLOGIN']="";
 		$_SESSION['login_status']=0;
+		$_SESSION['emp_role_level_id']="";
 
 		//Admin Session
 		$_SESSION['admin_id']="";

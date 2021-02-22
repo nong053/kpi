@@ -832,7 +832,7 @@ $(document).ready(function(){
 	});
 	
 	$("#delAllKpiEmpAssign").click(function(){
-		if(confirm("Confirm to delete assign kpi all?")){
+		if(confirm("ยืนยันลบการมอบหมายตัวชี้วัดทั้งหมด?")){
 		
 			delAllKpiEmpAssign(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 		
@@ -840,7 +840,7 @@ $(document).ready(function(){
 
 	});
 	$("#sendAllKpiEmpAssign").click(function(){
-		if(confirm("Confirm to assign kpi all?")){
+		if(confirm("ยืนยันเพื่อส่งพนักงานไปประเมินทั้งหมด?")){
 			var status_not_complete=0;
 			$(".status_not_complete").each(function(index,indexEntry){
 				status_not_complete+=1;
@@ -849,7 +849,7 @@ $(document).ready(function(){
 			if(status_not_complete==0){
 				sendKPIAsignToEvaluate("confrimKpi",sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 			}else{
-				alert("can't send to approval beacause kpi weight is't equals 100%");
+				alert("ไม่สามารถส่งไปประเมินได้เพราะว่านำ้หนักตัวชี้วัดที่มอบหมายให้แต่ละคนไม่เท่ากับ 100%");
 			}
 		}
 	});

@@ -111,7 +111,7 @@ var fnDropdownListAppraisalDep=function(department_id,paramSelectAll){
 			
 			$("#depDropDrowListArea").html(htmlDropDrowList);
 
-			if($("#embed_emp_role_leve").val()=="Level2"){
+			if($("#embed_emp_role_level_id").val()==2){
 				$("#appraisal_department_id").prop("disabled",true);
 			}else{
 				$("#appraisal_department_id").prop("disabled",false);
@@ -383,13 +383,13 @@ var manageFn = function(this_id,actionType){
 	 var emp_id=this_id[5];
 	 var kpi_id=this_id[6];
 
-	 console.log("year="+year+
-	 "appraisal_period_id="+appraisal_period_id+
-	 "department_id="+department_id+
-	 "position_id="+position_id+
-	 "emp_id="+emp_id+
-	 "kpi_id="+kpi_id
-	 );
+	//  console.log("year="+year+
+	//  "appraisal_period_id="+appraisal_period_id+
+	//  "department_id="+department_id+
+	//  "position_id="+position_id+
+	//  "emp_id="+emp_id+
+	//  "kpi_id="+kpi_id
+	//  );
 
 	 
 	 
@@ -911,9 +911,9 @@ $(document).ready(function(){
 	fnDropdownListAppraisalPosition(sessionStorage.getItem("param_position"),"selectAll");
 
 	
-	if($("#depDisable").val()!=undefined){
-		fnDropdownListAppraisalDep($("#departmentIdEmp").val());
-		$("#appraisal_department_id").prop('disabled', 'disabled');
+	if($("#embed_emp_role_level_id").val()==2){
+		fnDropdownListAppraisalDep($("#emp_department_id").val());
+		$("#appraisal_department_id").prop('disabled', true);
 	}else{
 		fnDropdownListAppraisalDep( sessionStorage.getItem("param_department"),"selectAll");
 	}

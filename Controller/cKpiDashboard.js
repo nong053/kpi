@@ -1,120 +1,223 @@
-
-	
-	
-	//fixed varible for waiting start here..
-/*
-	var kpi_year="2012";
-	var appraisal_period_id="2";
-	var department_id="1";
-*/	
-
-var searchListEmpByKPIFn =function(){
-		//alert($(".pageEmb").val());
-					//alert($(".RoleEmb").val());
-					$(".paramEmb").remove();
-					//$(".department_emp").remove();
-
-					sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
-					sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
-					sessionStorage.setItem("param_department", $("#department_id_table").val());
-					sessionStorage.setItem("department_name_emp", $("#department_id_table option:selected").text());
-					/*
-					$("body").append("<input type='hidden' class='paramEmb' name='paramYearEmb' id='paramYearEmb' value='"+$("#appraisal_year_table").val()+"'>");
-					$("body").append("<input type='hidden' class='paramEmb' name='paramAppraisalEmb' id='paramAppraisalEmb' value='"+$("#appraisal_period_id_table").val()+"'>");
-					$("body").append("<input type='hidden' class='paramEmb' name='paramDepartmentEmb' id='paramDepartmentEmb' value='"+$("#department_id_table").val()+"'>");
-					$("body").append("<input type='hidden' class='paramEmb' name='department_name_emp' id='department_name_emp' value='"+$("#department_id_table option:selected").text()+"'>");
-					*/
-					
-
-					
-					if($(".pageEmb").val()=="pageDepartment" || $(".pageEmb").val()=="pageKpiDashboard"){
-						
-						
-						if($(".RoleEmb").val()=="roleEmp"){
-							//alert("2");
-							//### Call kpiDasboardMainFn for emp role Start ###
-							$.ajax({
-								url:"../View/vKpiDashboard.php",
-								type:"get",
-								dataType:"html",
-								async:false,
-								data:{"kpi_year":sessionStorage.getItem("param_year"),"appraisal_period_id":sessionStorage.getItem("param_appraisal_period"),
-									"department_id":sessionStorage.getItem("param_department"),"department_name":$("#paramDepartmentNameEmb").val()
-									},
-								success:function(data){
-									$("#mainContent").html(data);
-									callProgramControl("cKpiDashboard.js");
-									//check if Level 3 get page is show all becuace one emp_id
-									if($("#roleLevelEmp").val()=="Level3"){
-
-										
-
-										kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("department_name_emp"),$("#emp_id").val());
-										//### drawdown grid for show detail within ###
-										$("#gridDeparment .k-icon").click();
-
-
-										//hide parameter for role is level3
-										$("#kpiDashboardSearchParamDepLabelArea").hide();
-										$("#appraisalDepDropDrowListArea").hide();
-										$("#dashboardBackBtn").hide();
-
-									}else{
-										kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("department_name_emp"));
-
-										
-									}
-								}
-							});
-							//### Call kpiDasboardMainFn for emp role End ###
-							
+//#################  Create Parameter Year Start   ############
+var fnDropdownListYearKpiDashboard=function(kpi_year){
+	$.ajax({
+		url:"../Model/mAppraisalYearList.php",
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		type:"post",
+		dataType:"json",
+		async:false,
+		success:function(data){
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select id=\"appraisal_year_table\" name=\"appraisal_year_table\" class=\" \" style=\"width:80px;\">";
+				$.each(data,function(index,indexEntry){
+					if(kpi_year!=undefined){
+						if(kpi_year==indexEntry[0]){
+							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[0]+"</option>";	
 						}else{
-							//alert("3");
-						//### Call Program department Page Start ###
-							/*
-							alert("paramYearEmb"+$("#paramYearEmb").val());
-							alert("paramAppraisalEmb"+$("#paramAppraisalEmb").val());
-							alert("paramDepartmentEmb"+$("#paramDepartmentEmb").val());
-							alert("department_name_emp"+$("#department_name_emp").val());
-							*/
-							kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("department_name_emp"));
-						//### Call Program department Page Start ###
+							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
 						}
 						
+					}else{
+						if(indexEntry[1]==1){
+							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[0]+"</option>";	
+						}else{
+							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
+						}
+					}
 						
-					}else{//else2
+								
 						
-						//alert("4");
-						kpiOwnerFn();
-						// call function index page
-						gaugeOwner(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						barChart(sessionStorage.getItem("param_year"));
-						easyPieChartMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						pieChartDepResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						piChartkpiResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						TableKpiResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
 						
 					
+				});
+			htmlDropDrowList+="</select>";
+			$("#appraisalYearArea").html(htmlDropDrowList);
+			$("#appraisal_year_table").kendoDropDownList({
+			theme: "silver"
+			});
+			$("#appraisal_year_table").change(function(){
 				
-			}
-	}
-var kpiDasboardMainFn = function(kpi_year,appraisal_period_id,department_id,department_name,emp_id){
+				fnDropdownListAppraisalKpiDashboard($(this).val());
+			});
+		}
+	});
 	
-	// alert(kpi_year);
-	// alert(appraisal_period_id);
 
-	// alert(department_name);
-	// alert(emp_id);
+}
+//dropdown List AppralisalPeriod start
+var fnDropdownListAppraisalKpiDashboard=function(year,appraisal_period_id){
+	//alert(year);
+	$.ajax({
+		url:"../Model/mAppralisalPeriodList.php",
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		type:"post",
+		dataType:"json",
+		async:false,
+		data:{"year":year,"paramSelectAll":""},
+		success:function(data){
+			//alert(data);
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select id=\"appraisal_period_id_table\" name=\"appraisal_period_id_table\" class=\" \" style=\"width:auto;\">";
+				$.each(data,function(index,indexEntry){
+					if(appraisal_period_id==indexEntry[0]){
+						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+					}else{
+						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					}
+					
+				});
+			htmlDropDrowList+="</select>";
+			//alert(htmlDropDrowList);
+			$("#appraisalPeriodAea").html(htmlDropDrowList);
+			$("#appraisal_period_id_table").kendoDropDownList({
+				theme: "silver"
+				});
+			//persDropDrowList
+		}
+	});
+}	
+
+//#################  Create Parameter End #####################
 
 
+//dropdown List Department start
+var fnDropdownListDepartmentKpiDashboard=function(department_id,paramSelectAll){
+//alert(department_id);
+$.ajax({
+	url:"../Model/mDepartmentList.php",
+	type:"post",
+	dataType:"json",
+	async:false,
+	data:{"paramSelectAll":paramSelectAll},
+	headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+	success:function(data){
+		console.log(data);
+		var htmlDropDrowList="";
+		htmlDropDrowList+="<select id=\"department_id_table\" name=\"department_id_table\" class=\" \"  style='width:150px;'>";
+		//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+			$.each(data,function(index,indexEntry){
+				if(department_id==indexEntry[0]){
+					
+					htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+					
+				}else{
+					
+					htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					
+				}
+				
+			});
+		htmlDropDrowList+="</select>";
+		//alert(htmlDropDrowList);
+		$("#appraisalDepDropDrowListArea").html(htmlDropDrowList);
+		$("#department_id_table").kendoDropDownList({
+				theme: "silver"
+			});
+		//persDropDrowList
+
+		$("#department_id_table").change(function(){
+				
+			fnDropdownListEmpKpiDashboard($(this).val(),$("#assign_position_id").val());
+		});
+
+	}
+});
+}
+
+//dropdown List Position start
+var fnDropdownListPositionKpiDashboard=function(position_id,paramSelectAll){
+	
+	$.ajax({
+		url:"../Model/mPositionList.php",
+		type:"post",
+		dataType:"json",
+		async:false,
+		data:{"paramSelectAll":paramSelectAll},
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		success:function(data){
+			
+			
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select style='width:150px;' id=\"assign_position_id\" name=\"assign_position_id\" class=\"\" >";
+			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+				$.each(data,function(index,indexEntry){
+					
+					//if($("#embed_role_executive_position_id").val()!=indexEntry[0]){
+						if(position_id==indexEntry[0]){
+							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+						}else{
+							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+						}
+					//}
+					
+				});
+			htmlDropDrowList+="</select>";
+			
+			$("#appraisalPositionDropDrowListArea").html(htmlDropDrowList);
+			$("#assign_position_id").kendoDropDownList({
+					theme: "silver"
+			});
+
+			$("#assign_position_id").change(function(){
+				
+				fnDropdownListEmpKpiDashboard($("#department_id_table").val(),$(this).val());
+			});
+		}
+	});
+}		
 
 
+//dropdown List Employee start
+var fnDropdownListEmpKpiDashboard=function(department_id,position_id,paramSelectAll='selectAll'){
+
+
+	$.ajax({
+		url:"../Model/mEmployeeList.php",
+		type:"post",
+		dataType:"json",
+		async:false,
+		data:{"position_id":position_id,
+			"department_id":department_id,
+			"paramSelectAll":paramSelectAll
+		},
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		success:function(data){
+			
+			
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select style='width:160px;' id=\"assign_employee_id\" name=\"assign_employee_id\" class=\"\" >";
+			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+				$.each(data,function(index,indexEntry){
+					
+					
+						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+					
+					
+					
+					
+				});
+			htmlDropDrowList+="</select>";
+			
+			$("#appraisalEmpDropDrowListArea").html(htmlDropDrowList);
+			$("#assign_employee_id").kendoDropDownList({
+					theme: "silver"
+				});
+			//persDropDrowList
+			
+		}
+	});
+}	
+
+
+var kpiDasboardMainFn = function(kpi_year,appraisal_period_id,department_id,position_id,emp_id){
+
+	
 	var sparklineBulet=function(graphName){
 		$(graphName).sparkline("html", {
 		    type: 'bullet',
 		    });
 		}
-	//sparklineBulet();
+	
 	var sparklineLine=function(graphName){
 		$(graphName).sparkline("html", {
 		    type: 'line',
@@ -126,7 +229,7 @@ var kpiDasboardMainFn = function(kpi_year,appraisal_period_id,department_id,depa
 
 var  getColorBall=function(score)
 {
-	//alert("hello"+score);
+	
 	var ballScoll = "";
 	$.ajax({
 		url:"../Model/mGetStatus.php",
@@ -138,78 +241,66 @@ var  getColorBall=function(score)
 		success:function(data){
 			
 			//get data from model for loop value is between value is coret this argument   
-			$.each(data,function(index,indexIntry){
+			$.each(data,function(index,indexEntry){
 				
-				 /*
-				 if(index==0 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
-					 
-					   ballScoll+="<div id='ball1'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   ballScoll+="<div id='ball2'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   ballScoll+="<div id='ball3'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 				
-				 }else if(index==1 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
-					 
-					   ballScoll+="<div id='ball1' class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   
-				 }else if(index==2 && (parseInt(indexIntry[1])<= score  )){
-					 
-					   ballScoll+="<div id='ball1'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   ballScoll+="<div id='ball2'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   ballScoll+="<div id='ball3'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-	                   
-				 }
-				 */
 
 
-				  if(index==0 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
+				  	if(index==0 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						
 						   //ballScoll+="<div id='ball1'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<div id='ball'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold;font-size:20px; color:green;'>"+parseFloat(score).toFixed(2)+"%</span>";
 		                   
-					 }else if(index==1 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
+						   
+						   
+						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold;  color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> ";
+						   ballScoll+="<div  class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+		                   
+					 }else if(index==1 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						 
 						   //ballScoll+="<div id='ball1' class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<div id='ball'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold;font-size:20px; color:green;'>"+parseFloat(score).toFixed(2)+"%</span>";
 		                   
-					 }else if(index==2 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+		                   
+					 }else if(index==2 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						
 						   //ballScoll+="<div id='ball1' class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<div id='ball'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold;font-size:20px; color:green;'>"+parseFloat(score).toFixed(2)+"%</span>";
 		                   
-					 }else if(index==3 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+		                   
+					 }else if(index==3 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						
 						   //ballScoll+="<div id='ball1' class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<div id='ball'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold;font-size:20px; color:green;'>"+parseFloat(score).toFixed(2)+"%</span>";
 		                   
-					 }else if(index==4 && (parseInt(indexIntry[1])<= score  ) &&( parseInt(indexIntry[2])>= score)){
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+		                   
+					 }else if(index==4 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						 
 						   //ballScoll+="<div id='ball1' class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<div id='ball'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold;font-size:20px; color:green;'>"+parseFloat(score).toFixed(2)+"%</span>";
 		                   
-					 }else if(index==5 && (parseInt(indexIntry[1])<= score  ) ){
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+		                   
+					 }else if(index==5 && (parseInt(indexEntry[1])<= score  ) ){
 						 
 						   //ballScoll+="<div id='ball1'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<div id='ball'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
-		                   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold;font-size:20px; color:green;'>"+parseFloat(score).toFixed(2)+"%</span>";
+		                   
+						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 					 }
 				
 			});
@@ -267,48 +358,32 @@ function detailInit(e) {
 							var textJson="";
 							textJson+="[";
 							$.each(data,function(index,EntryIndex){
-								$.ajax({
-									url:"../Model/mGetPersonKpiResult.php",
-									headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-									type:"get",
-									dataType:"json",
-									async:false,
-									data:{"kpi_year":kpi_year,"emp_id":e.data.fieldId,"kpi_id":EntryIndex[0],"action":"score_graph"},
-									success:function(data){
-										//alert(data);
-										var score_spraph=data[0][0];
+								
 											if(index==0){
 												textJson+="{";
 											}else{
 												textJson+=",{";
 											}
-											//alert(score_spraph);
-												/*
-												    KPI CODE
-													KPI NAME
-													KPI TARGET
-													KPI ACTUAL
-													TARGET/ACTUAL =bullet
-													KPI GRAPH=line
-													STATUS=ball status
-													
-												 */
-												//alert(EntryIndex[1]);
 											
 												textJson+="\"Field1\":\"<div class='textR'>"+EntryIndex[0]+"</div>\",";
 												textJson+="\"Field2\":\"<div class=''>"+EntryIndex[1]+"</div>\",";
-												textJson+="\"Field3\":\"<div class='textR'>"+EntryIndex[2]+"</div>\",";
-												textJson+="\"Field4\":\"<div class='textR'>"+EntryIndex[3]+"</div>\",";
-												textJson+="\"Field5\":\"<div class='textR'><div class='lineSparklinekpi-"+e.data.fieldId+"'>"+score_spraph+"</div></div>\",";
-												textJson+="\"Field6\":\"<div class='textR'><div class='sparklineBulletKpi-"+e.data.fieldId+"'>"+EntryIndex[5]+",100,100,"+EntryIndex[4]+"</div></div>\",";
-												textJson+="\"Field7\":\"<div class='textR'>"+getColorBall(EntryIndex[4])+"<div>\"";
+												textJson+="\"Field3\":\"<div class='textR' >"+EntryIndex[2]+"</div>\",";
+												textJson+="\"Field4\":\"<div class='textR'>"+EntryIndex[6]+"</div>\",";
+												textJson+="\"Field5\":\"<div class='textR'>"+EntryIndex[3]+"</div>\",";
+												//textJson+="\"Field5\":\"<div class='textR'><div class='lineSparklinekpi-"+e.data.fieldId+"'>"+score_spraph+"</div></div>\",";
+												//textJson+="\"Field6\":\"<div class=''><div class='sparklineBulletKpi-"+e.data.fieldId+"'>"+EntryIndex[5]+",100,100,"+EntryIndex[4]+"</div></div>\",";
+												var performance_emp=EntryIndex[7]*40/100;
+												var performance_chief=EntryIndex[4]*60/100;
+												
+												var performance_total=performance_emp+performance_chief;
+
+												performance_total =parseFloat(performance_total).toFixed(2);
+												
+												textJson+="\"Field7\":\"<div class='textR'>"+getColorBall(performance_total)+"<div>\"";
 											textJson+="}";
-											//alert(textJson);
-									}
-								});
+									
 							});
 							textJson+="]";
-							//alert(textJson);
 							var objJson2=eval("("+textJson+")");
 							
 							$("#gridPersonalKPI-"+e.data.fieldId).kendoGrid({
@@ -319,52 +394,10 @@ function detailInit(e) {
 						   	});
 							
 							sparklineBulet(".sparklineBulletKpi-"+e.data.fieldId);
-							sparklineLine(".lineSparklinekpi-"+e.data.fieldId);
+							//sparklineLine(".lineSparklinekpi-"+e.data.fieldId);
 						}
 					});
-					// ################ Genarate Person KPI GRID  END  ################# //
-					// ################ Genarate Person KPI GRID  MISSION START ################# //
-					/*
-					$.ajax({
-						url:"../Model/mGetPersonKpiResult.php",
-						type:"get",
-						dataType:"json",
-						async:false,
-						data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"emp_id":e.data.fieldId,"action":"suggestion_result"},
-						success:function(data){
-							//alert(data);
-							var textJson="";
-							textJson+="[";
-							$.each(data,function(index,EntryIndex){
-								//alert(EntryIndex[6]);
-								if(index==0){
-									textJson+="{";
-								}else{
-									textJson+=",{";
-								}
-								
-									textJson+="\"Field1\":\"<div class='textR'>"+EntryIndex[0]+"</div>\",";
-									textJson+="\"Field2\":\"<div class=''>"+EntryIndex[1]+"</div>\",";
-								
-								textJson+="}";
-						
-									
-								
-							});
-							textJson+="]";
-							//alert(textJson);
-							var objJson2=eval("("+textJson+")");
-				
-							$("#gridPersonalSuggestion-"+e.data.fieldId).kendoGrid({
-								 dataSource: {
-							          data:objJson2 
-							          },
-						        sortable: true
-						   	});
-
-						}
-					});
-					*/
+					
 					// ################ Genarate Person KPI GRID MISSION END  ################# //
 					// Gauge for check data value start
 					/*
@@ -488,7 +521,7 @@ function detailInit(e) {
 					              }
 					          });
 							 
-							 $("#gauge-value-"+e.data.fieldId).html("<b>"+e.data.field1+""+parseFloat(data[0][0]).toFixed(2)+"% </b>");
+							 $("#gauge-value-"+e.data.fieldId).html("<b>"+parseFloat(data[0][0]).toFixed(2)+"% </b>");
 							$(".gaugePersonal > svg").css({"top":"6px"});
 
 
@@ -554,7 +587,7 @@ function detailInit(e) {
 							seriesArray+="]";
 							//alert(seriesArray);
 							var seriesArrayObj=eval("("+seriesArray+")");
-							console.log(seriesArrayObj);
+							//console.log(seriesArrayObj);
 							
 							//###### Create Series Bargraph End
 							/*
@@ -622,76 +655,6 @@ function detailInit(e) {
 
 						}
 					});
-					
-					 /*bar chart end*/
-					 /*pie Chart Personal start*/
-					/*
-					$.ajax({
-						//url:"../Model/mGetPersonKpiResult.php",
-						url:"../Model/mGetPersonKpiResult.php",
-						type:"get",
-						dataType:"json",
-						data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"emp_id":e.data.fieldId,"action":"pie_chart_kpi"},
-						success:function(data){
-							//alert(data);
-							var textJson="[";
-				        	$.each(data,function(index,indexEntry){
-				        		//[[\"Heavy Industry\",12],[\"Retail\",9],[\"Light Industry\",14],[\"Out of home\",16],[\"Commuting\", 7],[\"Orientation\", 9]]";
-				        		if(index==0){
-				        			textJson+="{";
-				        		}else{
-				        			textJson+=",{";
-				        		}
-				        		textJson+="category:\""+indexEntry[0]+"\",";
-			        			textJson+="value:"+indexEntry[1]+"";
-			        			
-				        		textJson+="}";
-				        		
-				        	});
-				        	textJson+="]";
-				        	//alert(textJson);
-				        	var objJson=eval("("+textJson+")");
-				        	//alert(textJson);
-							console.log(objJson);
-							 
-							
-							//kendo ui pie start
-							$("#pieChartPersonal-"+e.data.fieldId).kendoChart({
-								theme:"Flat",
-				                title: {
-				                    position: "bottom",
-				                    //text: "ผลการประเมินแยกตาม KPI"
-				                },
-				                legend: {
-				                    visible: false
-				                },
-				                chartArea: {
-				                    background: ""
-				                },
-				                seriesDefaults: {
-				                    labels: {
-				                        visible: false,
-				                        background: "transparent",
-				                        template: "#= category #: \n #= value#%"
-				                    }
-				                },
-				                series: [{
-				                    type: "pie",
-				                    startAngle: 150,
-				                    data: objJson
-				                }],
-				                tooltip: {
-				                    visible: true,
-				                    //format: "{0}%"
-				                    template: "#= category # - #= kendo.format('{0:P}', percentage) #"
-				                }
-				            });
-							//kendo ui pie end
-							
-						}
-					});
-					*/
-					 /*pie Chart Personal end*/
 					 
 					 /*startline start*/
 					 var sparklineBuletPerso=function(){
@@ -721,52 +684,52 @@ function detailInit(e) {
 		type:"get",
 		dataType:"json",
 		async:false,
-		data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"department_id":department_id,"action":"list_emp_score","emp_id":emp_id},
+		data:{"kpi_year":kpi_year,
+		"appraisal_period_id":appraisal_period_id,
+		"department_id":department_id,
+		"position_id":position_id,
+		"emp_id":emp_id,
+		"action":"list_emp_score",
+		},
 		success:function(data){
 			
+
 			var textJson="";
+			
 			textJson+="[";
 			$.each(data,function(index,EntryIndex){
 				
-				$.ajax({
-					url:"../Model/mDashboardDivision.php",
-					headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-					type:"get",
-					dataType:"json",
-					async:false,
-					data:{"kpi_year":kpi_year,"emp_id":EntryIndex[5],"action":"score_spraph_emp"},
-					success:function(data){
+				if(EntryIndex==0){
+					
+					textJson+="";
+					return false;
+				}
 
-						//console.log("-------------");
-						//console.log(data[0][0]);
-						if(data[0][0]==0){
-							return false;
-						}
-						var score_spraph=data[0][0];
-						
-						//alert(""+score_spraph+"");
-						//return "0,80,80";
 							if(index==0){
 								textJson+="{";
 							}else{
 								textJson+=",{";
 							}
+							
 								textJson+="\"fieldId\":\""+EntryIndex[5]+"\",";
-								textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg'><img width='50' class='img-circle'  src='"+EntryIndex[0]+"'></div>\",";
-								textJson+="\"field1\":\"<div class='kpi'>"+EntryIndex[1]+"</div>\",";
-								textJson+="\"field2\":\""+EntryIndex[6]+"\",";
-								textJson+="\"field3\":\""+EntryIndex[2]+"\",";
-								/*textJson+="\"field3\":\"<div class='textR'>"+EntryIndex[3]+"</div>\",";*/
-								textJson+="\"field4\":\"<div class='textR'>"+EntryIndex[4]+"</div>\",";
-								textJson+="\"field5\":\"<div class='textR'>"+EntryIndex[3]+"</div>\",";
-								textJson+="\"field6\":\"<div class='textR'><div class='lineSparkline'>"+score_spraph+"</div></div>\",";
-								textJson+="\"field7\":\"<div class='textR'><div class='sparklineBullet'>"+EntryIndex[4]+",100,100,"+EntryIndex[3]+"</div></div>\",";
-								textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<div>\",";
+								textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80' class='img-circle'  src='"+EntryIndex[0]+"'></div>\",";
+								textJson+="\"field1\":\"<div class='kpi'>";
+								textJson+="<b>"+EntryIndex[1]+"</b><br>";
+								textJson+=""+EntryIndex[6]+"<br>";
+								textJson+="ตำแหน่ง"+EntryIndex[2]+"";
+								textJson+="</div>\",";
+								textJson+="\"field3\":\"<div class='textR' style='font-weight:bold;'>"+EntryIndex[8]+"%</div>\",";
+								textJson+="\"field7\":\"<div class='textR' style='font-weight:bold;'>"+EntryIndex[9]+"%</div>\",";
+								if(EntryIndex[7]==0){
+									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<div>\",";
+								}else{
+									textJson+="\"field8\":\"<div class='textR'>ปรับ("+EntryIndex[7]+")"+getColorBall(EntryIndex[3])+"<div>\",";
+								}
 								//textJson+="\"field9\":\"<div class='textR'><center><a href='#' class='downloadPDFbyPerson' id='id-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></center><div>\"";
 								
 							textJson+="}";
-					}
-				});
+				// 	}
+				// });
 			});
 			textJson+="]";
 			//alert(textJson);
@@ -778,7 +741,7 @@ function detailInit(e) {
 			var gridDepartment="";
 			gridDepartment+="<table id=\"gridDeparment\">";
 			gridDepartment+="<colgroup>";
-				gridDepartment+="<col style=\"width:10%\"/>";
+				gridDepartment+="<col style=\"width:7%\"/>";
 				gridDepartment+="<col style=\"width:15%\" />";
 				gridDepartment+="<col style=\"width:13%\" />";
 				gridDepartment+="<col style=\"width:15%\" />";
@@ -792,26 +755,18 @@ function detailInit(e) {
 					gridDepartment+="<tr>";
 				
 					if($("#embed_language").val()=="th"){
-						gridDepartment+="<th data-field=\"field0\" ><b></b></th>";
-						gridDepartment+="<th data-field=\"field1\" ><b>ชื่อ-นามสกุล</b></th>";
-						gridDepartment+="<th data-field=\"field2\"><b>แผนก</b></th>";
-						gridDepartment+="<th data-field=\"field3\"><b>ตำแหน่ง</b></th>";
-						//gridDepartment+="<th data-field=\"field4\"><b>เป้า</b></th>";
-						//gridDepartment+="<th data-field=\"field5\"><b>ผล</b></th>";
-						gridDepartment+="<th data-field=\"field6\"><b>กราฟ</th>";
-						gridDepartment+="<th data-field=\"field7\"><b>เทียบเป้า</b></th>";
-						gridDepartment+="<th data-field=\"field8\"><b>ผลการประเมิน</b></th>";
+						gridDepartment+="<th style='text-align:center;'  data-field=\"field0\" ><b></b></th>";
+						gridDepartment+="<th data-field=\"field1\" ><b>ข้อมูลส่วนตัว</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field3\"><b>ประเมินตนเอง%</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field7\"><b>หัวหน้าประเมิน%</b></th>";
+						gridDepartment+="<th style='text-align:right' data-field=\"field8\"><b>ผลประเมิน%</b></th>";
 						//gridDepartment+="<th data-field=\"field9\"><b>ดาวน์โหลด</b></th>";
 						  
 					}else{
 						gridDepartment+="<th data-field=\"field0\" ><b></b></th>";
-						gridDepartment+="<th data-field=\"field1\" ><b>Full Name</b></th>";
-						gridDepartment+="<th data-field=\"field2\"><b>Department</b></th>";
-						gridDepartment+="<th data-field=\"field3\"><b>Position</b></th>";
-						//gridDepartment+="<th data-field=\"field4\"><b>Target</b></th>";
-						//gridDepartment+="<th data-field=\"field5\"><b>Acutal</b></th>";
-						gridDepartment+="<th data-field=\"field6\"><b>Graph</th>";
-						gridDepartment+="<th data-field=\"field7\"><b>Actual/Target</b></th>";
+						gridDepartment+="<th data-field=\"field1\" ><b>Employee Info</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field3\"><b>Evaluate</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field7\"><b>Chief Evaluate</b></th>";
 						gridDepartment+="<th data-field=\"field8\"><b>Result</b></th>";
 						//gridDepartment+="<th data-field=\"field9\"><b>Download</b></th>";
 						  
@@ -890,271 +845,88 @@ function detailInit(e) {
 	$(".glyphicon-remove").click(function(){
 		$(".panel").hide();
 	});
-	 //glyphicon-minus
-	 //glyphicon-resize-full
-	 //glyphicon-remove
-	// ################ button top right start in panel ###########
-
+}
 	
 
-	//dropdown List AppralisalPeriod start
-	var fnDropdownListAppralisalTable=function(year,appraisal_period_id){
-		//alert(year);
-		$.ajax({
-			url:"../Model/mAppralisalPeriodList.php",
-			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-			type:"post",
-			dataType:"json",
-			async:false,
-			data:{"year":year,"paramSelectAll":"selectAll"},
-			success:function(data){
-				//alert(data);
-				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"appraisal_period_id_table\" name=\"appraisal_period_id_table\" class=\"form-control \" style=\"width:80px;\">";
-					$.each(data,function(index,indexEntry){
-						if(appraisal_period_id==indexEntry[0]){
-							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
-						}else{
-							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
-						}
-						
-					});
-				htmlDropDrowList+="</select>";
-				//alert(htmlDropDrowList);
-				$("#appraisalPeriodAea").html(htmlDropDrowList);
-				$("#appraisal_period_id_table").kendoDropDownList({
-					theme: "silver"
-					});
-				//persDropDrowList
-			}
-		});
-	}	
+$(document).ready(function(){
 
-	//#################  Create Parameter End #####################
-
-
-//dropdown List Department start
-var fnDropdownListDepartmetnTable=function(department_id,paramSelectAll){
-	//alert(department_id);
-	$.ajax({
-		url:"../Model/mDepartmentList.php",
-		type:"post",
-		dataType:"json",
-		async:false,
-		data:{"paramSelectAll":paramSelectAll},
-		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-		success:function(data){
-			console.log(data);
-			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"department_id_table\" name=\"department_id_table\" class=\"form-control \" >";
-			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
-				$.each(data,function(index,indexEntry){
-					if(department_id==indexEntry[0]){
-						
-						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
-						
-					}else{
-						
-						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
-						
-					}
-					
-				});
-			htmlDropDrowList+="</select>";
-			//alert(htmlDropDrowList);
-			$("#appraisalDepDropDrowListArea").html(htmlDropDrowList);
-
-
-			$("#department_id_table").kendoDropDownList({
-					theme: "silver"
-				});
-			//persDropDrowList
-		}
-	});
-}	
-	//#################  Create Parameter Year Start   ############
-	var paramYearTable=function(kpi_year){
-
-		
-			$.ajax({
-				url:"../Model/mAppraisalYearList.php",
-				headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-				type:"post",
-				dataType:"json",
-				async:false,
-				success:function(data){
-					var htmlDropDrowList="";
-					htmlDropDrowList+="<select id=\"appraisal_year_table\" name=\"appraisal_year_table\" class=\"form-control \" style=\"width:80px;\">";
-						$.each(data,function(index,indexEntry){
-							if(kpi_year!=undefined){
-								if(kpi_year==indexEntry[0]){
-									htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[0]+"</option>";	
-								}else{
-									htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
-								}
-								
-							}else{
-								if(indexEntry[1]==1){
-									htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[0]+"</option>";	
-								}else{
-									htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
-								}
-							}
-								
-										
-								
-								
-							
-						});
-					htmlDropDrowList+="</select>";
-					$("#appraisalYearArea").html(htmlDropDrowList);
-					$("#appraisal_year_table").kendoDropDownList({
-					theme: "silver"
-					});
-					$("#appraisal_year_table").change(function(){
-						
-						fnDropdownListAppralisalTable($(this).val());
-					});
-				}
-			});
-			
-
-	}
-	//kpi_year,appraisal_period_id
-	if(kpi_year!=""){
-		paramYearTable(kpi_year);
-	}else{
-		paramYearTable($("#appraisal_year_table").val());
-	}
-
-
-
-
-	if(department_id!=""){
-		fnDropdownListDepartmetnTable(department_id,"selectAll");
-	}else{
-		fnDropdownListDepartmetnTable("","selectAll");
-	}
-
-	if(appraisal_period_id!=""){
-		fnDropdownListAppralisalTable(kpi_year,appraisal_period_id);
-	}else{
-		fnDropdownListAppralisalTable($("#appraisal_year_table").val(),$("#appraisal_period_id_table").val());
-	}
+	fnDropdownListYearKpiDashboard(sessionStorage.getItem("param_year"));
+	fnDropdownListAppraisalKpiDashboard(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),"selectAll");
+	fnDropdownListDepartmentKpiDashboard(sessionStorage.getItem("param_department"),"selectAll");
+	fnDropdownListPositionKpiDashboard(sessionStorage.getItem("param_position"),"selectAll");
+	fnDropdownListEmpKpiDashboard(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),"selectAll");
 	
-	//fnDropdownListAppralisal($("#appraisal_year").val());
-	//#################  Create Parameter Year End   ############
-
+	sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
+	sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
+	sessionStorage.setItem("param_department", $("#department_id_table").val());
+	sessionStorage.setItem("param_position", $("#assign_position_id").val());
+	sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
 	
+	kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 
-	//#################  submit button action start #####################
-	
-	$("#kpiDashboardSubmit").off("click");
-	$("#kpiDashboardSubmit").on("click",function(){
-					//alert($(".pageEmb").val());
-					//alert($(".RoleEmb").val());
-					$(".paramEmb").remove();
-					sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
-					sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
-					/*
-					$("body").append("<input type='hidden' class='paramEmb' name='paramYearEmb' id='paramYearEmb' value='"+$("#appraisal_year_table").val()+"'>");
-					$("body").append("<input type='hidden' class='paramEmb' name='paramAppraisalEmb' id='paramAppraisalEmb' value='"+$("#appraisal_period_id_table").val()+"'>");
-					*/
-					if($(".pageEmb").val()=="pageDepartment" || $(".pageEmb").val()=="pageKpiDashboard"){
-						
-						
-						if($(".RoleEmb").val()=="roleEmp"){
-							//alert("2");
-							//### Call kpiDasboardMainFn for emp role Start ###
-							$.ajax({
-								url:"../View/vKpiDashboard.php",
-								type:"get",
-								dataType:"html",
-								async:false,
-								data:{"kpi_year":sessionStorage.getItem("param_year"),"appraisal_period_id":sessionStorage.getItem("param_appraisal_period"),
-									"department_id":sessionStorage.getItem("param_year"),"department_name":$("#paramDepartmentNameEmb").val()
-									},
-								success:function(data){
-									$("#mainContent").html(data);
-									callProgramControl("cKpiDashboard.js");
-									//check if Level 3 get page is show all becuace one emp_id
-									if($("#roleLevelEmp").val()=="Level3"){
-										kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("department_name_emp"),$("#emp_id").val());
-										//### drawdown grid for show detail within ###
-										$("#gridDeparment .k-icon").click();
-									}else{
-										kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("department_name_emp"));
-									}
-								}
-							});
-							//### Call kpiDasboardMainFn for emp role End ###
-							
-						}else{
-							//alert("3");
-						//### Call Program department Page Start ###
-							/*
-							alert("paramYearEmb"+$("#paramYearEmb").val());
-							alert("paramAppraisalEmb"+$("#paramAppraisalEmb").val());
-							alert("paramDepartmentEmb"+$("#paramDepartmentEmb").val());
-							alert("department_name_emp"+$("#department_name_emp").val());
-							*/
-							kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("department_name_emp"));
-						//### Call Program department Page Start ###
-						}
-						
-						
-					}else{//else2
-						
-						//alert("4");
-						kpiOwnerFn();
-						// call function index page
-						gaugeOwner(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						barChart(sessionStorage.getItem("param_year"));
-						easyPieChartMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						pieChartDepResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						piChartkpiResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						TableKpiResult(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"));
-						
-					
-				
-			}
-
-	});
-	//$("#kpiDashboardSubmit").click();
 
 
 	$( "body" ).off( "change", "#appraisal_year_table");
 	$( "body" ).on( "change", "#appraisal_year_table", function() {
+
 		
-		searchListEmpByKPIFn();
+		sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
+		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
+		sessionStorage.setItem("param_department", $("#department_id_table").val());
+		sessionStorage.setItem("param_position", $("#assign_position_id").val());
+		sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
+		kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+		
+		//searchListEmpByKPIFn();
+	});
+
+	$( "body" ).off( "change", "#appraisal_period_id_table");
+	$( "body" ).on( "change", "#appraisal_period_id_table", function() {
+		
+		sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
+		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
+		sessionStorage.setItem("param_department", $("#department_id_table").val());
+		sessionStorage.setItem("param_position", $("#assign_position_id").val());
+		sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
+		kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+		//searchListEmpByKPIFn();
 	});
 
 	$( "body" ).off( "change", "#department_id_table");
 	$( "body" ).on( "change", "#department_id_table", function() {
 		
-		searchListEmpByKPIFn();
-	});
-
-
-	
-
-	$( "body" ).off( "change", "#appraisal_period_id_table");
-	$( "body" ).on( "change", "#appraisal_period_id_table", function() {
-	
-		searchListEmpByKPIFn();
-	});
-
-
-	//#################  submit button action end   #####################
-	
-	$("#dashboardBackBtn").click(function(){
-		$("#kpiDashboard").click();
-	});
-};
-
-$(document).ready(function(){
-	setTimeout(function(){
-		
+		sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
+		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
+		sessionStorage.setItem("param_department", $("#department_id_table").val());
+		sessionStorage.setItem("param_position", $("#assign_position_id").val());
+		sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
+		kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 		//searchListEmpByKPIFn();
-	},500);
+	});
+
+	$( "body" ).off( "change", "#assign_position_id");
+	$( "body" ).on( "change", "#assign_position_id", function() {
+		
+		sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
+		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
+		sessionStorage.setItem("param_department", $("#department_id_table").val());
+		sessionStorage.setItem("param_position", $("#assign_position_id").val());
+		sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
+		kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+		//searchListEmpByKPIFn();
+	});
+
+	$( "body" ).off( "change", "#assign_employee_id");
+	$( "body" ).on( "change", "#assign_employee_id", function() {
+		
+		sessionStorage.setItem("param_year", $("#appraisal_year_table").val());
+		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_id_table").val());
+		sessionStorage.setItem("param_department", $("#department_id_table").val());
+		sessionStorage.setItem("param_position", $("#assign_position_id").val());
+		sessionStorage.setItem("param_emp", $("#assign_employee_id").val());
+		kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+		//searchListEmpByKPIFn();
+	});
+
 });
+

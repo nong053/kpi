@@ -341,7 +341,7 @@ if($_SESSION['language']=="th"){
 			<td class='text-right'><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></td>
 			<td id="areaKPIActual">
 			 
-				<input id="kpi_actual_manual" name="kpi_actual_manual" value="11"  class="form-control " style="width:100px;">
+				<input id="kpi_actual_manual" name="kpi_actual_manual" value=""  class="form-control " style="width:100px;">
 				<textarea id="kpi_actual_query" name="kpi_actual_query" style="display: none;"></textarea> 
 			</td>
 		</tr>
@@ -554,7 +554,7 @@ if($_SESSION['language']=="th"){
 	</div>
 
 	<div id='paramEmbedAssignKPI'></div>
-	
+	<script src="../Controller/cAssignKPI.js"></script>
 	
 
 

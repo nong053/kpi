@@ -17,30 +17,31 @@ $kpi_id=$_GET['kpi_id'];
 $admin_id=$_SESSION['admin_id'];
 
 if($_GET['action']=='list_kpi'){
-$strSQL="
-	select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
-ak.target_data as 'kpi_target' ,ak.kpi_actual_manual as 'kpi_actual' ,
-sum(ak.performance)/count(ak.appraisal_period_id)  as 'kpi_performent',
-(select max(threshold_begin) from threshold
-where admin_id='$admin_id') as 'kpi_target_percentage'
-from assign_kpi ak
-inner JOIN kpi 
-ON ak.kpi_id=kpi.kpi_id
-INNER JOIN kpi_result kr on ak.assign_kpi_year=kr.kpi_year
-and ak.appraisal_period_id=kr.appraisal_period_id
-and ak.department_id=kr.department_id
-and ak.emp_id=kr.emp_id
+	$strSQL="
+		select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
+	ak.target_data as 'kpi_target' ,ak.kpi_actual_manual as 'kpi_actual' ,
+	sum(ak.performance)/count(ak.appraisal_period_id)  as 'kpi_performent',
+	ifnull(ak.emp_kpi_actual_manual,0) as 'emp_kpi_actual' ,
+	ifnull(ak.emp_performance,0) as 'emp_performance' ,
+	100 as 'kpi_target_percentage'
+	from assign_evaluate_kpi ak
+	inner JOIN kpi 
+	ON ak.kpi_id=kpi.kpi_id
+	INNER JOIN kpi_result kr on ak.assign_kpi_year=kr.kpi_year
+	and ak.appraisal_period_id=kr.appraisal_period_id
+	and ak.department_id=kr.department_id
+	and ak.emp_id=kr.emp_id
 
-where ak.assign_kpi_year='$kpi_year'
-and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
-and ak.emp_id='$emp_id'
-and ak.admin_id='$admin_id'
-and kr.approve_flag='Y'
-GROUP BY kpi.kpi_id
+	where ak.assign_kpi_year='$kpi_year'
+	-- and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	and ak.emp_id='$emp_id'
+	and ak.admin_id='$admin_id'
+	and kr.approve_flag='Y'
+	GROUP BY kpi.kpi_id
 
-";
-$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,kpi_target_percentage";
-genarateJson($strSQL,$columnName,$conn);
+	";
+	$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,kpi_target_percentage,emp_kpi_actual,emp_performance";
+	genarateJson($strSQL,$columnName,$conn);
 }
 
 if($_GET['action']=='score_graph'){
@@ -49,7 +50,7 @@ if($_GET['action']=='score_graph'){
 select kr.kpi_year,kr.appraisal_period_id,ROUND(ak.performance,2) as score,
 ak.kpi_id,ak.emp_id
 from kpi_result kr
-INNER JOIN assign_kpi ak
+INNER JOIN assign_evaluate_kpi ak
 on kr.kpi_year=ak.assign_kpi_year
 and kr.admin_id=ak.admin_id
 and kr.department_id=ak.department_id
@@ -142,7 +143,7 @@ and kr.admin_id='$admin_id'
 and kr.approve_flag='Y'
 GROUP BY kpi_year
 
-
+/*
 union
 select kpi_year,group_concat(target),appraisal from (
 select 'Target' as kpi_year, (select max(threshold_begin) from threshold
@@ -151,7 +152,7 @@ from appraisal_period
 where admin_id ='$admin_id'
 and appraisal_period_year='$kpi_year'
 )query_a
-
+*/
 	";
 	$columnName="kpi_year,actual_score,appraisal";
 	genarateJson($strSQL,$columnName,$conn);

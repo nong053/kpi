@@ -41,20 +41,24 @@ $_SESSION['main_menul_l_employee']="พนักงาน";
 $_SESSION['main_menul_l_kpi']="ตัวชี้วัด";
 $_SESSION['main_menul_l_assign_master_kpi']="มอบหมายตัวชี้วัด";
 $_SESSION['main_menul_l_assign_kpi']="ประเมิน";
-$_SESSION['main_menul_l_assign_kpi_emp']="ประเมินตนเอง";
+$_SESSION['main_menul_l_assign_kpi_emp']="พนักงานตประเมินเอง";
 $_SESSION['main_menul_l_approve_kpi_result']="อนุมัติผลประเมิน";
 $_SESSION['main_menul_l_appraisal_result']="ผลประเมิน";
 
 }
 // Sett Main Menu End
+
 ?>
 <?php include_once '../config.inc.php';?>
 <?php 
 
+
+
 //if(($_SESSION['emp_id']=="") and ($_SESSION['admin_id']=="")){
 if($_SESSION['login_status']!="1"){
 
-	
+	//header( "location: ../login.php?admin_name=".$_SESSION['admin_name']."" );
+	//header( "location: ../login.php?admin_name=Demo.V1" );
 	header( "location: ../".$_SESSION['admin_username']);
 
 	exit(0);	
@@ -77,11 +81,21 @@ if($_SESSION['login_status']!="1"){
     <link href="../bootstrap-3.0.2/css/bootstrap.css" rel="stylesheet">
     -->
      <link href="../bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+    
 
+	
 	 <!-- Custom styles for this template -->
 	 
 	 <link href="../Css/starter-template.css" rel="stylesheet">
 
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
       <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -115,8 +129,6 @@ if($_SESSION['login_status']!="1"){
 	<script src="../js/angular.min.js"></script>
 	<script src="../js/angular-route.js"></script>
 
-	
-
     <script src="../Controller/main.js"></script>
     
 	<!-- spark line start -->
@@ -134,246 +146,246 @@ if($_SESSION['login_status']!="1"){
     <link href="../Css/executive.css" rel="stylesheet">
     <!--  css customize -->
 
+	
+<script>
 
-	<script>
+  var withdrawEnlargeCom=function(thisParam){
+	  
+	$("#slideLeft").css({"width":"200px"});
+	$(".sidebar-background").css({"width":"200px"});
+	$("#mainContent").css({"margin-left":"201px"});
 
-		var withdrawEnlargeCom=function(thisParam){
+	$(thisParam).addClass("active");
+	$(".menu-text").show();
+	$(".boxTitle").css({"width":"200px"});
+	$(".boxLeftTopSmall").hide();
+	$(".boxLeftTopLarge").show();
+	$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
+	$("#slideLeft").show();
+  };
+
+  var withdrawEnlargeMobile=function(thisParam){
+		$("#slideLeft").css({"width":"50px"});
+		$(".sidebar-background").css({"width":"50px"});
+		$("#mainContent").css({"margin-left":"51px"});
+		$(thisParam).addClass("active");
+		$(".menu-text").hide();
+		$(".boxTitle").css({"width":"50px"});
+		$(".boxLeftTopSmall").show();
+		$(".boxLeftTopLarge").hide();
+		$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
+		$("#slideLeft").show();
+   };
+	  
+  
+var moblieFn = function(){
+	 $(".topParameter .box1").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+	   $(".topParameter .box2").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+	   $(".topParameter .box3").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+	   $(".topParameter .box4").css({
+		    "width":"100%",
+			"margin-top":"2px"
+	   });
+
+	   $(".topParameter .box5").css({
+			 
+			"margin-top":"5px"
 			
-			$("#slideLeft").css({"width":"200px"});
-			$(".sidebar-background").css({"width":"200px"});
-			$("#mainContent").css({"margin-left":"201px"});
+	   });
 
-			$(thisParam).addClass("active");
-			$(".menu-text").show();
-			$(".boxTitle").css({"width":"200px"});
-			$(".boxLeftTopSmall").hide();
-			$(".boxLeftTopLarge").show();
-			$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
-			$("#slideLeft").show();
-		};
+	   $(".topParameter .box7").css({
+		   	"width":"100%",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px"
+	   });
 
-		var withdrawEnlargeMobile=function(thisParam){
-				$("#slideLeft").css({"width":"50px"});
-				$(".sidebar-background").css({"width":"50px"});
-				$("#mainContent").css({"margin-left":"51px"});
-				$(thisParam).addClass("active");
-				$(".menu-text").hide();
-				$(".boxTitle").css({"width":"50px"});
-				$(".boxLeftTopSmall").show();
-				$(".boxLeftTopLarge").hide();
-				$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
-				$("#slideLeft").show();
-		};
-			
-		
-		var moblieFn = function(){
-			$(".topParameter .box1").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-			$(".topParameter .box2").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-			$(".topParameter .box3").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-			$(".topParameter .box4").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
+	   $(".topParameter .box8").css({
+		   	"width":"100%",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px",
+	   });
 
-			$(".topParameter .box5").css({
-					
-					"margin-top":"5px"
-					
-			});
+	   $("select#appraisal_year").css({
+		   	"width":"100%",
+	   });
 
-			$(".topParameter .box7").css({
-					"width":"100%",
-					"float": "left",
-					"margin-top":"2px",
-					"margin-left":"0px"
-			});
+	   $("select#department_id").css({
+		   	"width":"100%",
+	   });
 
-			$(".topParameter .box8").css({
-					"width":"100%",
-					"float": "left",
-					"margin-top":"2px",
-					"margin-left":"0px",
-			});
+	   $("select#appraisal_period_id").css({
+		   	"width":"100%",
+	   });
 
-			$("select#appraisal_year").css({
-					"width":"100%",
-			});
+	   $("#appraisalPeriodSubmit").css({
 
-			$("select#department_id").css({
-					"width":"100%",
-			});
+		   	"margin-bottom": "5px",
+	   		"margin-top": "10px",
+	    	"width": "100%"
+	   }).removeClass("btn-sm");
+	   withdrawEnlargeMobile();
+	   $("#withdrawEnlarge").removeClass("active");
+	   $(".topParameter").show();
 
-			$("select#appraisal_period_id").css({
-					"width":"100%",
-			});
-
-			$("#appraisalPeriodSubmit").css({
-
-					"margin-bottom": "5px",
-					"margin-top": "10px",
-					"width": "100%"
-			}).removeClass("btn-sm");
-			withdrawEnlargeMobile();
-			$("#withdrawEnlarge").removeClass("active");
-			$(".topParameter").show();
-
-				$("#appraisalPeriodSubmit").attr("href","#appraisalPeriodSubmit");
-			$('#appraisalPeriodSubmit').click(function(){
-					$('html, body').animate({
-						scrollTop: $( $(this).attr('href') ).offset().top
-					}, 500);
-					return false;
-				});
-				
-			// $("#slideLeft").show();
-				//$("#withdrawEnlarge").click();
-		}
-		var computerFn = function(){
-				//alert("computerFn");
-				$(".topParameter .box1").css({
-					// "width":"120px",
-					"margin-top":"10px",
-					// "padding-left":"10px;",
-					"float":"left"
-			});
-			$(".topParameter .box2").css({
-					"width":"160px",
-					"margin-top":"2px",
-					"float":"left"
-			});
-			$(".topParameter .box3").css({
-					"width":"140px",
-					"margin-top":"10px",
-					"float":"left"
-			});
-			$(".topParameter .box4").css({
-					"width":"90px",
-					"margin-top":"2px",
-					"float":"left"
-			});
-
-			$(".topParameter .box5").css({
-
-					"margin-top":"1px",
-					"width":"90px",
-					"float": "left"
-					
-			});
-
-			$(".topParameter .box7").css({
-					// "width":"100px",
-					"float": "left",
-					"margin-top":"10px",
-					"margin-left":"0px"
-			});
-
-			$(".topParameter .box8").css({
-					"width":"150px",
-					"float": "left",
-					"margin-top":"2px",
-					"margin-left":"0px"
-			});
-
-			$("select#appraisal_period_id").css({
-					"width":"80px",
-			});
-
-			$("#appraisalPeriodSubmit").css({
-					"width":"auto",
-					"margin-bottom": "0px",
-					"margin-top": "2px",
-					
-			}).addClass("btn-sm");
-			/*
-			withdrawEnlargeCom(this);
-			$(".topParameter").show();
-			$("#withdrawEnlarge").addClass("active");
-			$("#appraisalPeriodSubmit").attr("href","");
-			*/
-			//  $("#slideLeft").show();
-		}
-		var widthWindow=$(window).width();
-		//alert(widthWindow);
-		$(window).resize(function(){
-			
-			var widthWindowPercentage= (parseFloat($(window).width())/parseFloat(widthWindow))*100;
-			
-			/*console.log(widthWindowPercentage+"%");*/
-			/*widthWindowPercentage=(widthWindowPercentage);*/
-			//console.log(widthWindowPercentage+"%");
-			//$(".KpiPerspective").css({"min-width":(widthWindowPercentage+60)+"px"});
-			if($(window).width() < 980){
-				
-				//$(".KpiPerspective").css({"min-width":"100px"});
-			}
-			if($(window).width() > 980){
-				//$(".KpiPerspective").css({"min-width":"160px"});
-			}
+		$("#appraisalPeriodSubmit").attr("href","#appraisalPeriodSubmit");
+	   $('#appraisalPeriodSubmit').click(function(){
+		    $('html, body').animate({
+		        scrollTop: $( $(this).attr('href') ).offset().top
+		    }, 500);
+		    return false;
 		});
+		
+	  // $("#slideLeft").show();
+		//$("#withdrawEnlarge").click();
+}
+var computerFn = function(){
+		//alert("computerFn");
+	 	$(".topParameter .box1").css({
+		    // "width":"120px",
+			"margin-top":"10px",
+			// "padding-left":"10px;",
+			"float":"left"
+	   });
+	   $(".topParameter .box2").css({
+		    "width":"160px",
+			"margin-top":"2px",
+			"float":"left"
+	   });
+	   $(".topParameter .box3").css({
+		    "width":"140px",
+			"margin-top":"10px",
+			"float":"left"
+	   });
+	   $(".topParameter .box4").css({
+		    "width":"90px",
+			"margin-top":"2px",
+			"float":"left"
+	   });
 
-		//CHECK BROWSER FN
-		var checkBrowserFn=function(){
-				
-				if($(window).width()<980){
-					//alert($(window).width());
-					//console.log($(window).width()); 
-					/*
-					$("#slideLeft").hide();
-					$(".boxTitle").hide();
-					$(".sidebar-background").hide();
-					$("#mainContent").css({"margin-left":"0px"});
-					*/
-					/*
+	   $(".topParameter .box5").css({
 
-					$("#slideLeft").show();
-					$("#mainContent").css({"margin-left":"50px"});
-					$(".boxTitle").show();
-					$(".sidebar-background").show();
-					*/
-					
-					moblieFn();
-
-				}else{
-					/*
-					$("#slideLeft").show();
-					$("#mainContent").css({"margin-left":"201px"});
-					$(".boxTitle").show();
-					$(".sidebar-background").show();
-					*/
-					computerFn();
-				}
-			};
-
+			"margin-top":"1px",
+			"width":"90px",
+			"float": "left"
 			
-			$(document).ready(function(){
+	   });
 
-			$(".topParameter").hide();
-			checkBrowserFn();
-			setTimeout(function(){
-				$("#kpiDashboard").click();
-				$("#appraisalPeriodSubmit").click();
-			});
-			
-			$(window).resize(function(){
-				//checkBrowserFn();
-				//$("#appraisalPeriodSubmit").click();
-			
-			});
+	   $(".topParameter .box7").css({
+		   	// "width":"100px",
+			"float": "left",
+			"margin-top":"10px",
+			"margin-left":"0px"
+	   });
 
-			$("#kpiDashboard").click(function(){
-				checkBrowserFn();
-			});
-			
-		});//document ready
+	   $(".topParameter .box8").css({
+		   	"width":"150px",
+			"float": "left",
+			"margin-top":"2px",
+			"margin-left":"0px"
+	   });
+
+	   $("select#appraisal_period_id").css({
+		   	"width":"80px",
+	   });
+
+	   $("#appraisalPeriodSubmit").css({
+		   	"width":"auto",
+		 	"margin-bottom": "0px",
+	   		"margin-top": "2px",
+	   		
+	   }).addClass("btn-sm");
+	/*
+	  withdrawEnlargeCom(this);
+	  $(".topParameter").show();
+	  $("#withdrawEnlarge").addClass("active");
+	  $("#appraisalPeriodSubmit").attr("href","");
+	  */
+	 //  $("#slideLeft").show();
+}
+var widthWindow=$(window).width();
+//alert(widthWindow);
+$(window).resize(function(){
+	
+	var widthWindowPercentage= (parseFloat($(window).width())/parseFloat(widthWindow))*100;
+	
+	/*console.log(widthWindowPercentage+"%");*/
+	/*widthWindowPercentage=(widthWindowPercentage);*/
+	//console.log(widthWindowPercentage+"%");
+	//$(".KpiPerspective").css({"min-width":(widthWindowPercentage+60)+"px"});
+	if($(window).width() < 980){
+		
+		//$(".KpiPerspective").css({"min-width":"100px"});
+	}
+	 if($(window).width() > 980){
+		//$(".KpiPerspective").css({"min-width":"160px"});
+	}
+});
+
+//CHECK BROWSER FN
+var checkBrowserFn=function(){
+		
+		if($(window).width()<980){
+			   //alert($(window).width());
+			   //console.log($(window).width()); 
+			   /*
+			   $("#slideLeft").hide();
+			   $(".boxTitle").hide();
+			   $(".sidebar-background").hide();
+			   $("#mainContent").css({"margin-left":"0px"});
+			   */
+			  /*
+
+			   $("#slideLeft").show();
+			   $("#mainContent").css({"margin-left":"50px"});
+			   $(".boxTitle").show();
+			   $(".sidebar-background").show();
+			   */
+			   
+			   moblieFn();
+
+		   }else{
+			   /*
+			   $("#slideLeft").show();
+			   $("#mainContent").css({"margin-left":"201px"});
+			   $(".boxTitle").show();
+			   $(".sidebar-background").show();
+			   */
+			   computerFn();
+		   }
+	};
+
+	
+    $(document).ready(function(){
+
+    $(".topParameter").hide();
+	checkBrowserFn();
+	setTimeout(function(){
+		$("#kpiDashboard").click();
+		$("#appraisalPeriodSubmit").click();
+	});
+	
+   	$(window).resize(function(){
+   		//checkBrowserFn();
+   		//$("#appraisalPeriodSubmit").click();
+	   
+   	});
+
+   	$("#kpiDashboard").click(function(){
+   		checkBrowserFn();
+   	});
+   	
+});//document ready
    </script>
 
    <style type="text/css">
@@ -394,16 +406,12 @@ if($_SESSION['login_status']!="1"){
 	.dropdown-menu > li > a{
 		border-bottom: 0.5px solid #cccc;
 	}
-	.img-circle {
-    border:oldlace 2px solid;
-	}
-
 
    </style>
   
   </head>
 
-  <body ng-app="myApp">
+  <body ng-app="myApp" >
 
     <div class="navbar navbar-blue navbar-fixed-top shadow-sm" role="navigation">
       <div class="container">
@@ -421,33 +429,22 @@ if($_SESSION['login_status']!="1"){
         
         <div class="collapse navbar-collapse">
        	
-		  <?php
-		  if($_SESSION['admin_status']==3 or $_SESSION['admin_status']==1)
-		  {
-		  ?>
+          
           <ul class="nav navbar-nav navbar-right" style='margin-top:10px'>
-		  <?php
-		  }else{
-			?>
-          <ul class="nav navbar-nav navbar-right" style='margin-top:3px'>
-		  <?php
-		  }
-		  ?>
+          
            
            
-            <li class="dropdown" style="cursor: pointer;">
-			<a class="dropdown-toggle" href="#" id='logout' data-toggle="dropdown">
+            <li class="dropdown">
+			<a class="dropdown-toggle" href="#" data-toggle="dropdown">
 					
 					<?php 
 					// GET EMPLOYEE FOR DISPLAY HERE..
 					if($_SESSION[emp_ses_id]!=""){
-					$strSQLEmp="select e.*,pe.*,d.*,r.role_name from employee  e
+					$strSQLEmp="select e.*,pe.*,d.* from employee  e
 								inner join  position_emp pe 
 								on e.position_id=pe.position_id
 								inner join  department d 
 								on d.department_id=e.department_id
-								inner join  role r
-								on r.role_id=e.role_id
 								where emp_id=$_SESSION[emp_ses_id]";
 
 					$resultEmp=mysql_query($strSQLEmp);
@@ -457,16 +454,12 @@ if($_SESSION['login_status']!="1"){
 					?>
 					<img src="<?=$rsEmp['emp_picture_thum']?>" width="45" class="img-circle">
 
-					<strong>
-						<?=$rsEmp['emp_first_name']?> <?=$rsEmp['emp_last_name']?>, <?=$rsEmp['department_name']?> (<span style="color:orange"><?=$rsEmp['role_name']?></span>)
-					</strong>
+					<strong><?=$rsEmp['emp_first_name']?> <?=$rsEmp['emp_last_name']?></strong>
 					<input type="hidden" name="emp_id" id="emp_id"  value="<?=$rsEmp['emp_id']?>">
 					<input type="hidden" name="emp_first_name" id="emp_first_name"  value="<?=$rsEmp['emp_first_name']?>">
 					<input type="hidden" name="emp_last_name" id="emp_last_name"  value="<?=$rsEmp['emp_last_name']?>">
 					<input type="hidden" name="emp_department" id="emp_department"  value="<?=$rsEmp['department_name']?>">
-					<input type="hidden" name="emp_department_id" id="emp_department_id"  value="<?=$rsEmp['department_id']?>">
 					<input type="hidden" name="emp_position" id="emp_position"  value="<?=$rsEmp['position_name']?>">
-					<input type="hidden" name="emp_position_id" id="emp_position_id"  value="<?=$rsEmp['position_id']?>">
 					<input type="hidden" name="emp_image" id="emp_image"  value="<?=$rsEmp['emp_picture_thum']?>">
 					
 						
@@ -490,17 +483,14 @@ if($_SESSION['login_status']!="1"){
 					}
 					?>
 					
-			<span class="glyphicon glyphicon-off" style="color:red;"></span>
-			<form method="post" action="../logout.php" style='display: none;' id='formLogout'>
-				<input type='hidden' id='admin_username' name='admin_username' value='<?php echo $_SESSION[admin_username]?>'>
-				<input type='hidden' id='unset_session' name='unset_session' value='loguout'>
-				<input type='submit' id='btnLogoutSumit' name='btnLogoutSumit'>
-			</form>
-			<!-- <span class="caret"></span> -->
+			
+			<span class="caret"></span>
 
 			</a>
-<!-- 			
 				<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+					
+					
+
 					<li>
 					<?php
 					
@@ -544,12 +534,14 @@ if($_SESSION['login_status']!="1"){
 							<input type='hidden' id='unset_session' name='unset_session' value='loguout'>
 							<input type='submit' id='btnLogoutSumit' name='btnLogoutSumit'>
 						</form>
-						
+						<!--
+						<a href="../logout.php?role=<?=$role?>&superUser=<?=$_SESSION[admin_id]?>">
+							<i class="icon-off"></i>
+							Logout
+						</a>
+						-->
 					</li>
-				</ul> -->
-
-
-
+				</ul>
 			</li>
 			
           </ul>
@@ -565,27 +557,21 @@ if($_SESSION['login_status']!="1"){
 			<div class="list-group listGroupTop">
 				
 					<ul class="nav nav-list">
-
 						<?php
-						/*
-						echo "admin_status=".$_SESSION['admin_status']."<br>";
-						echo "emp_role_level=".$_SESSION['emp_role_leve']."<br>";
-						echo "emp_role_level_id=".$_SESSION['emp_role_level_id']."<br>";
-						*/
-
-				  		if(($_SESSION['admin_status']==3) //super admin
-				  		or ($_SESSION['admin_status']==1  //admin system
-						or ($_SESSION['emp_role_level_id']=="1") //1 super evaluate,2 evaluate, 3 user
+						
+				  		if(($_SESSION['admin_status']==3) 
+				  		or ($_SESSION['admin_status']==1 
+						or ($_SESSION['emp_role_leve']=="Level1")
 						)){
 				  		?>
 							
 							
 							<li  class="active mainMenu menuLevel1">
-					  			<a  href="index.php#/pages/vKpiOwner" id="kpiDashboardMenu" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
+					  			<a  href="#" id="kpiDashboard" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		<li class="mainMenu menuLevel1">
-					  			<a href="index.php#/pages/vKpiDashboard" id="appraisalResultMenu" class=""><i class="iconMenu glyphicon glyphicon-record"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisal_result']?></span></a>
+					  			<a href="#" id="appraisalResult" class=""><i class="iconMenu glyphicon glyphicon-record"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisal_result']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		
@@ -593,44 +579,45 @@ if($_SESSION['login_status']!="1"){
 							  <a  href="#" id="threshold" class=" "><i class="iconMenu glyphicon glyphicon-th-large"></i> <span class="menu-text"> <?=$_SESSION['main_menul_l_threshold']?></span></a>
 							</li> -->
 							<li class="mainMenu menuLevel1">
-					  			<a  href="index.php#/pages/vAppraisalPeriod" id="appraisalPeriodMenu" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
+					  			<a  href="#" id="appraisalPeriod" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
 					  			<b class="arrow"></b>
 							</li>
 							<li class="mainMenu menuLevel1">
-								  <a href="index.php#/pages/vPerspective" id="perspectiveMenu" 
+								  <a href="#" id="perspective" 
+								  
 								  class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
 					  			<b class="arrow"></b>
 							</li>
 							
 							
 							<li class="mainMenu menuLevel1"> 
-					  			<a href="index.php#/pages/vDepartment" id="departmentMenu" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_department']?></span></a>
+					  			<a href="#" id="department" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_department']?></span></a>
 					 			<b class="arrow"></b>
 					 		</li>
 							
 							<li class="mainMenu menuLevel1">
-					  			<a href="index.php#/pages/vPosition" id="positionMenu" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
+					  			<a href="#" id="position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
 					  			<b class="arrow"></b>
 							</li>
 							
 							  
 					 		
 					  		<li class="mainMenu menuLevel1">
-					  			<a href="index.php#/pages/vEmployee" id="employeeMenu" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_employee']?></span></a>
+					  			<a href="#" id="employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_employee']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		<li class="mainMenu menuLevel1 menuLevel2">
-					 			 <a href="index.php#/pages/vKpi" id="kpiMenu" class=""><i class="iconMenu glyphicon glyphicon-signal"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpi']?></span></a>
+					 			 <a href="#" id="kpi" class=""><i class="iconMenu glyphicon glyphicon-signal"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpi']?></span></a>
 					 		 	<b class="arrow"></b>
 					 		 </li>
 					 		 <li class="mainMenu menuLevel1 menuLevel2">
-					  			<a href="index.php#/pages/vAssignEvaluate" id="assignMasterKPIMenu" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_master_kpi']?></span></a>
+					  			<a href="#" id="assignMasterKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_master_kpi']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		
 					 		
 					  		<li class="mainMenu menuLevel1 menuLevel2">
-					  			<a href="index.php#/pages/vAssignKPI" id="assignKPIMenu" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi']?></span></a>
+					  			<a href="#" id="assignKPI" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		<!-- 
@@ -641,51 +628,118 @@ if($_SESSION['login_status']!="1"){
 					  		
 					  		
 					  		<li class="mainMenu menuLevel1">
-					  			<a href="index.php#/pages/vApproveKpiResult" id="approveKpiResultMenu" class=""><i class="iconMenu glyphicon glyphicon-edit"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_approve_kpi_result']?></span></a>
+					  			<a href="#" id="approveKpiResult" class=""><i class="iconMenu glyphicon glyphicon-edit"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_approve_kpi_result']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 
 
 					  		
 				  		<?
-						}else if($_SESSION['emp_role_level_id']=="2"){//chief
+						}else if($_SESSION['emp_role_leve']=="Level2"){//chief
 						?>
 
 							<li class="active mainMenu menuLevel1">
-					  			<a  href="index.php#/pages/vKpiOwner" id="kpiDashboardMenu" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
+					  			<a  href="#" id="kpiDashboard" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
-					  		
+					  		<!-- 
+							<li class="#mainMenu menuLevel1" style="background: #dddddd;">
+							  <a style="background: #dddddd; cursor: default;";  href="#" id="#threshold" class=" "><i class="iconMenu glyphicon glyphicon-th-large"></i> <span class="menu-text"> <?=$_SESSION['main_menul_l_threshold']?></span></a>
+							</li>
+							<li class="#mainMenu menuLevel1">
+					  			<a  style="background: #dddddd; cursor: default;" href="#" id="#appraisalPeriod" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+							<li class="#mainMenu menuLevel1"> 
+					  			<a style="background: #dddddd; cursor: default;" href="#" id="#department" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_department']?></span></a>
+					 			<b class="arrow"></b>
+					 		</li>
+					 		
+					 		<li class="#mainMenu menuLevel1">
+					  			<a style="background: #dddddd; cursor: default;" href="#" id="#position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		 -->
+					  		<!-- <li class="mainMenu menuLevel1">
+					  			<a href="#" id="employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_employee']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		<li class="mainMenu menuLevel1 menuLevel2">
+					 			 <a href="#" id="kpi" class=""><i class="iconMenu glyphicon glyphicon-signal"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpi']?></span></a>
+					 		 	<b class="arrow"></b>
+					 		 </li>
+					 		 <li class="mainMenu menuLevel1 menuLevel2">
+					  			<a href="#" id="assignMasterKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_master_kpi']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li> -->
 					  		
 					 		
 					  		<li class="mainMenu menuLevel1 menuLevel2">
-					  			<a href="index.php#/pages/vAssignKPI" id="assignKPIMenu" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi']?></span></a>
-					  			<b class="arrow"></b>
-							</li>
-							  
-							<li class="mainMenu menuLevel1 menuLevel2">
-					  			<a href="index.php#/pages/vMyEvaluate" id="myEvaluateMenu" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi_emp']?></span></a>
+					  			<a href="#" id="assignKPI" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		
 					  		
-					  		
+					  		<!-- <li class="#mainMenu menuLevel1">
+					  			<a style="background: #dddddd; cursor: default;" href="#" id="#approveKpiResult" class=""><i class="iconMenu glyphicon glyphicon-edit"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_approve_kpi_result']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		 -->
 						
 						<?
 
-						}else if($_SESSION['emp_role_level_id']=="3"){//emp
+						}else if($_SESSION['emp_role_leve']=="Level3"){//emp
 						?>
 				  		
 							<li class=" mainMenu menuLevel1">
-					  			<a  href="index.php#/pages/vKpiOwner" id="kpiDashboardEmpMenu" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
+					  			<a  href="#" id="kpiDashboardEmp" class=""><i class="iconMenu glyphicon glyphicon-dashboard"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpiDashboard']?></span></a>
 					  			<b class="arrow"></b>
-							  </li>
-					
+					  		</li>
 					  		<li class="mainMenu menuLevel1 menuLevel2">
-					  			<a href="index.php#/pages/vMyEvaluate" id="myEvaluateMenu" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi_emp']?></span></a>
+					  			<a href="#" id="myEvaluate" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi_emp']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		<!-- 
+					  		
+							<li class="#mainMenu menuLevel1" style="background: #dddddd;">
+							  <a style="background: #dddddd; cursor: default;";  href="#" id="#threshold" class=" "><i class="iconMenu glyphicon glyphicon-th-large"></i> <span class="menu-text"> <?=$_SESSION['main_menul_l_threshold']?></span></a>
+							</li>
+							<li class="#mainMenu menuLevel1">
+					  			<a  style="background: #dddddd; cursor: default;" href="#" id="#appraisalPeriod" class=""><i class="iconMenu glyphicon glyphicon-time"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_appraisalPeriod']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+							<li class="#mainMenu menuLevel1"> 
+					  			<a style="background: #dddddd; cursor: default;" href="#" id="#department" class=""><i class="iconMenu glyphicon glyphicon-road"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_department']?></span></a>
+					 			<b class="arrow"></b>
+					 		</li>
+					 		
+					 		<li class="#mainMenu menuLevel1">
+					  			<a style="background: #dddddd; cursor: default;" href="#" id="#position" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		<li class="#mainMenu menuLevel1">
+					  			<a  style="background: #dddddd; cursor: default;"  href="#" id="#employee" class=""><i class="iconMenu glyphicon glyphicon-user"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_employee']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		<li class="#mainMenu menuLevel1 menuLevel2">
+					 			 <a style="background: #dddddd; cursor: default;"  href="#" id="#kpi" class=""><i class="iconMenu glyphicon glyphicon-signal"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_kpi']?></span></a>
+					 		 	<b class="arrow"></b>
+					 		 </li>
+					 		 <li class="#mainMenu menuLevel1 menuLevel2">
+					  			<a style="background: #dddddd; cursor: default;"  href="#" id="#assignMasterKPI" class=""><i class="iconMenu glyphicon glyphicon-indent-left"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_master_kpi']?></span></a>
 					  			<b class="arrow"></b>
 					  		</li>
 					  		
+					  		<li class="#mainMenu menuLevel1 menuLevel2">
+					  			<a style="background: #dddddd;cursor: default;"  href="#" id="#assignKPI" class=""><i class="iconMenu glyphicon glyphicon-list-alt"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_assign_kpi']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li>
+					  		
+					  		
+					  		<li class="#mainMenu menuLevel1">
+					  			<a style="background: #dddddd; cursor: default;"  style="background: #dddddd" href="#" id="#approveKpiResult" class=""><i class="iconMenu glyphicon glyphicon-edit"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_approve_kpi_result']?></span></a>
+					  			<b class="arrow"></b>
+					  		</li> -->
 
 				  		<?
 				  		}
@@ -786,14 +840,15 @@ if($_SESSION['login_status']!="1"){
 	</div>
 	<div class="container">
 		
-		<div id="mainContent" class="ng-view">
+		<div id="mainContent">
 			
 		</div>
 	</div>
 
 	<input type='hidden' id='embed_admin_username' name='embed_admin_username' value='<?=$_SESSION['admin_username']?>'>
+
 	<input type='hidden' id='embed_emp_role_leve' name='embed_emp_role_leve' value='<?=$_SESSION['emp_role_leve']?>'>
-	<input type='hidden' id='embed_emp_role_level_id' name='embed_emp_role_level_id' value='<?=$_SESSION['emp_role_level_id']?>'>
+
 	<input type='hidden' id='embed_admin_id' name='embed_admin_id' value='<?=$_SESSION['admin_id']?>'>
 	<input type='hidden' id='embed_admin_name' name='embed_admin_name' value='<?=$_SESSION['admin_name']?>'>
 	<input type='hidden' id='embed_admin_surname' name='embed_admin_surname' value='<?=$_SESSION['admin_surname']?>'>
@@ -803,8 +858,15 @@ if($_SESSION['login_status']!="1"){
 	<input type='hidden' id='embed_appraisal_amount' name='embed_appraisal_amount' value='<?=$_SESSION['appraisal_amount']?>'>
 	<input type='hidden' id='embed_previous_amount' name='embed_previous_amount' value='<?=$_SESSION['previous_amount']?>'>
 	<input type='hidden' id='embed_language' name='embed_language' value='<?=$_SESSION['language']?>'>
+
 	<input type='hidden' id='embed_role_underling_position_id' name='embed_role_underling_position_id' value='<?=$_SESSION['role_underling_position_id']?>'>
+
+
 	<input type='hidden' id='embed_role_executive_position_id' name='embed_role_executive_position_id' value='<?=$_SESSION['role_executive_position_id']?>'>
+	
+
+	 
+
   </body>
 </html>
 

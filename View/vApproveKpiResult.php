@@ -265,7 +265,7 @@ if($_SESSION['language']=="th"){
 
 	</div>
 	-->
-
+	<script src="../Controller/cApproveKpi.js"></script>
 
 	
 

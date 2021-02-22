@@ -72,7 +72,99 @@ $.ajax({
 	
 }
 
+var Level3FunctionFn = function(){
+	// Defualt Click this Element on Start Up Start.
+	$.ajax({
+		url:"../Model/mCheckRole.php",
+		type:"get",
+		dataType:"json",
+		async:false,
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		data:{"emp_id":$("#emp_id").val()},
+		
+		success:function(data){
 
+			//console.log(data['status']);
+		
+
+			if(data[0][0]=="emp"){
+				$(".pageEmb").remove();
+				$(".RoleEmb").remove();
+				/*
+				setTimeout(function(){
+					//### withdrow panel left ###
+					//$("#withdrawEnlarge").click();
+				});
+				*/
+				
+				
+				$("body").append("<input type=\"hidden\" name=\"pageDepartment\" id=\"pageDepartment\" class=\"pageEmb\" value=\"pageDepartment\">");
+				$("body").append("<input type=\"hidden\" name=\"roleEmp\" id=\"roleEmp\" class=\"RoleEmb\" value=\"roleEmp\">");
+				$("body").append("<input type=\"hidden\" name=\"departmentIdEmp\" id=\"departmentIdEmp\" class=\"RoleEmb\" value=\""+data[0][1]+"\">");
+				$("body").append("<input type=\"hidden\" name=\"positionIdEmp\" id=\"positionIdEmp\" class=\"RoleEmb\" value=\""+data[0][5]+"\">");
+
+				$("body").append("<input type=\"hidden\" name=\"departmentNameEmp\" id=\"departmentNameEmp\" class=\"RoleEmb\" value=\""+data[0][2]+"\">");
+				$("body").append("<input type=\"hidden\" name=\"roleLevelEmp\" id=\"roleLevelEmp\" class=\"RoleEmb\" value=\""+data[0][4]+"\">");
+				if((data[0][4]=="Level3") || (data[0][4]=="Level2")){
+					$("body").append("<input type=\"hidden\" name=\"depDisable\" id=\"depDisable\" class=\"RoleEmb\" value=\"disable\">");
+				}
+				
+				//Define Role for display on dashboord
+
+				if($("#roleLevelEmp").val()=="Level3"){
+
+					
+
+				$.ajax({
+					url:"../View/vKpiDashboard.php",
+					type:"get",
+					dataType:"html",
+					async:false,
+					headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+					data:{"kpi_year":data[0][3],"appraisal_period_id":"All","department_id":data[0][1],"department_name":data[0][2]},
+					success:function(data2){
+						
+						$("#mainContent").html(data2);
+						callProgramControl("cKpiDashboard.js");
+						
+						//kpiDasboardMainFn(2015,"All","9","แผนก11","2");
+					
+						kpiDasboardMainFn(data[0][3],"All",data[0][1],data[0][2],$("#emp_id").val());
+						//kpiDasboardMainFn(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),$("#departmentIdEmp").val(),$("#departmentNameEmp").val(),$("#emp_id").val());
+						//$("#appraisalPeriodSubmit").click();
+
+
+						//hide parameter for role is level3
+						$("#kpiDashboardSearchParamDepLabelArea").hide();
+						$("#appraisalDepDropDrowListArea").hide();
+						$("#dashboardBackBtn").hide();
+
+					}
+				});
+				}else if($("#roleLevelEmp").val()=="Level2"){
+					
+					//ownnerDisplayFn();
+					
+				}else if($("#roleLevelEmp").val()=="Level1"){
+					
+					//ownnerDisplayFn();
+				}
+				
+			
+			}else{
+	
+				$(".RoleEmb").remove();
+				$("body").append("<input type=\"hidden\" name=\"roleAdmin\" id=\"roleAdmin\" class=\"RoleEmb\" value=\"roleAdmin\">");
+				
+			}
+				
+				
+			}
+	});
+	
+	// Defualt Click this Element on Start Up End.
+
+}
 
 //assign page
 var resetDataAssignKpi_bk=function(activeKPIs){
@@ -205,7 +297,7 @@ var resetDataAssignKpi_bk=function(activeKPIs){
 	
 	
 	// function kpi dashboard
-	var kpiOwnerFn_bk=function(){
+	var kpiOwnerFn=function(){
 		$(".pageEmb").remove();
 		$("body").append("<input type='hidden' name='pageKpiDashboard' id='pageKpiDashboard' class='pageEmb' value='pageKpiDashboard'>");
 		$(".topParameter").show();
@@ -626,7 +718,8 @@ $(document).ready(function(){
 	
 	//################START CLICK kpiDashboard DISPLAY OWNER DAASHBOARD ##################
 	var ownnerDisplayFn=function(){
-	
+		//alert($("#depDisable").val());
+		//alert("ownnerDisplayFn");
 		
 		if($("#depDisable").val()=="disable"){
 			kpiOwnerFn();
@@ -742,25 +835,23 @@ $(document).ready(function(){
 	
 	//################END CLICK kpiDashboard DISPLAY OWNER DAASHBOARD ####################
 	
-
 	$("#kpiDashboard").off("click");
 	$("#kpiDashboard").on("click",function(){
-	
-		//ownnerDisplayFn();
-		kpiOwnerFn();
-		
+		//call fn
+		ownnerDisplayFn();
+		//location.reload();
 		
 		
 	});
 
-	// $("#kpiDashboardEmp").off("click");
-	// $("#kpiDashboardEmp").on("click",function(){
-	// 	//call fn
-	// 	Level3FunctionFn();
+	$("#kpiDashboardEmp").off("click");
+	$("#kpiDashboardEmp").on("click",function(){
+		//call fn
+		Level3FunctionFn();
 		
 		
-	// });
-	// Level3FunctionFn();
+	});
+	Level3FunctionFn();
 
 	
 	
@@ -825,7 +916,7 @@ $(document).ready(function(){
 	
 	
 	/* start call position  */
-	$("#position_bk").click(function(){
+	$("#position").click(function(){
 		$(".topParameter").hide();
 		//### Embed Page Start ###
 		$(".pageEmb").remove();
@@ -1125,6 +1216,28 @@ $(document).ready(function(){
 	
 	
 	/* end call executive summary */
+	
+	/* start call traffic */
+	$("#traffic").click(function(){
+		$(".topParameter").hide();
+		$.ajax({
+			url:"../View/traffic.html",
+			type:"get",
+			dataType:"html",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			sync:false,
+			success:function(data){
+				$("#mainContent").html(data);
+				/*add subject on page*/
+				var subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#traffic >.menu-text").text()+"</b>";
+				$("#subjectPage").html(subjectPage);
+			}
+		});
+	});
+	
+	
+	
+
 	$("#kpi").click(function(){
 		$(".topParameter").hide();
 		$.ajax({
@@ -1142,11 +1255,54 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	$("#hr").click(function(){
+		$(".topParameter").hide();
+		$.ajax({
+			url:"../View/hr.html",
+			type:"get",
+			dataType:"html",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			success:function(data){
+				$("#mainContent").html(data);
+			}
+		});
+	});
+	
+	$("#education").click(function(){
+		$(".topParameter").hide();
+		$.ajax({
+			url:"../View/education.html",
+			type:"get",
+			dataType:"html",
+			success:function(data){
+				$("#mainContent").html(data);
+			}
+		});
+	});
+	
+	/*start manufactoring*/
+	$("#manufactoring").click(function(){
+		$.ajax({
+			url:"../View/manufacturing.html",
+			type:"get",
+			dataType:"html",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			success:function(data){
+				$("#mainContent").html(data);
+			}
+		});
+	});
+	/*end manufactoring*/
+	
+	
+
+   	  
    	  	
    	  $("li.list-group-item a").click(function(){
    		  
       	if($(this).hasClass("dropdownCollapse")){
-      		
+      		//alert("dropdownCollapse");
       		$(this).removeClass("dropdownCollapse");
       		$(this).addClass("dropdownEnlarge");
       		$( "li.list-group-item  ul").show();
@@ -1179,8 +1335,8 @@ $(document).ready(function(){
    	  var EnlargeFn=function(thisParam){
    		    $("#slideLeft").css({"width":"200px","opacity":1});
 			$(".sidebar-background").css({"width":"200px"});
-			$("#mainContent").css({"margin-left":"201px"});
-			//$("#mainContent").css({"margin-left":"50px"});
+			//$("#mainContent").css({"margin-left":"201px"});
+			$("#mainContent").css({"margin-left":"50px"});
 			//$(thisParam).addClass("active");
 			$(".menu-text").show();
 			$(".boxTitle").css({"width":"200px"});
@@ -1218,7 +1374,7 @@ $(document).ready(function(){
 	  });
 	  */
 		 
-	 /*
+	 
 	  $( "#slideLeft" )
 		.mouseover(function() {
 			EnlargeFn();
@@ -1227,7 +1383,6 @@ $(document).ready(function(){
 			withdrawFn();
 		});
 		withdrawFn();
-*/
    	/*withdraw Enlarge end */
    	  
    	  //full screen start
@@ -1377,127 +1532,3 @@ $(document).ready(function(){
      	position: "top"
       });
 });
-
-
-/*start route single page*/
-var app = angular.module("myApp", ["ngRoute"]);
-app.config(function($routeProvider) {
-	$routeProvider
-	.when("/", {
-		templateUrl : "vKpiOwner.php"
-	})
-	.when("/pages/:url", {
-		templateUrl : "home1.php",
-		controller:"pageController"
-		
-	})
-	.otherwise({
-		templateUrl : "home1.php"
-	});
-});
-
-
-app.controller("pageController",function($scope, $route, $routeParams){
-
-	$route.current.templateUrl = $routeParams.url + ".php";
-	  $.get($route.current.templateUrl, function (data){
-	       $("#mainContent").html(data);
-
-		   //alert($routeParams.url);
-		   var subjectPage="";
-	          $(".mainMenu").removeClass("active");
-			  if($routeParams.url=="vKpiOwner"){
-
-				
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#kpiDashboardMenu >.menu-text").text()+"</b>";
-				$("#kpiDashboardMenu").parent().addClass("active");
-			 	$("#kpiDashboardEmpMenu").parent().addClass("active");
-
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vKpiDashboard"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-record\"></i> "+$("#appraisalResultMenu >.menu-text").text()+"</b>";
-				$("#appraisalResultMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vAppraisalPeriod"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-time\"></i> "+$("#appraisalPeriodMenu >.menu-text").text()+"</b>";
-				$("#appraisalPeriodMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vPerspective"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-fire\"></i> "+$("#perspectiveMenu >.menu-text").text()+"</b>";
-				$("#perspectiveMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vDepartment"){
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-road\"></i> "+$("#departmentMenu >.menu-text").text()+"</b>";
-				$("#departmentMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vPosition"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-fire\"></i> "+$("#positionMenu >.menu-text").text()+"</b>";
-				$("#positionMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vEmployee"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-user\"></i> "+$("#employeeMenu >.menu-text").text()+"</b>";
-				$("#employeeMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-				
-			  }else if($routeParams.url=="vKpi"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-signal\"></i> "+$("#kpiMenu >.menu-text").text()+"</b>";
-				$("#kpiMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vAssignEvaluate"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-indent-left\"></i> "+$("#assignMasterKPIMenu >.menu-text").text()+"</b>";
-				$("#assignMasterKPIMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vAssignKPI"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-list-alt\"></i> "+$("#assignKPIMenu >.menu-text").text()+"</b>";
-				$("#assignKPIMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vApproveKpiResult"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-edit\"></i> "+$("#approveKpiResultMenu >.menu-text").text()+"</b>";
-				$("#approveKpiResultMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vKpiDashboard"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-record\"></i> "+$("#kpiDashboardEmpMenu >.menu-text").text()+"</b>";
-				$("#kpiDashboardEmpMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }else if($routeParams.url=="vMyEvaluate"){
-
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-list-alt\"></i> "+$("#myEvaluateMenu >.menu-text").text()+"</b>";
-				$("#myEvaluateMenu").parent().addClass("active");
-				$("#subjectPage").html(subjectPage);
-				
-			  }
-			  
-			//   else if($routeParams.url=="vKpiOwner"){
-			// 	subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-record\"></i> "+$("#kpiDashboardEmpMenu >.menu-text").text()+"</b>";
-			// 	$("#kpiDashboardEmpMenu").parent().addClass("active");
-			// 	$("#subjectPage").html(subjectPage);
-			//   }
-
-
-
-	  });
-
-});
-/*end route single page*/
