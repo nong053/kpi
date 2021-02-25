@@ -1,6 +1,4 @@
 <? session_start();
- $_SESSION['admin_surname'];
-
 
  ?>
 <!-- CKE-->
@@ -91,9 +89,9 @@
 
 
 <form action="#" method="post" name="frm-admin" id="frm-admin-form">
-<strong>Organization Information </strong>
+<strong>ข้อมูลองค์กร </strong>
 <div id="admin-line-frm">
-<div id="frm-admin">Organization Name</div>
+<div id="frm-admin" style="text-align: right; padding-right:5px;">ชื่อบริษัท</div>
 <div id="frm-admin2">
   <input name="admin_name" type="text" class="frm-text" value="<?=$vAadmin_name1?>" />
 </div>
@@ -101,13 +99,13 @@
 </div>
 
 <div id="admin-line-frm">
-<div id="frm-admin">Organization Logo</div>
+<div id="frm-admin" style="text-align: right; padding-right:5px;">โลโก้บริษัท</div>
 <div id="frm-admin2"><input name="admin_surname" type="file" class="" value="<?=$vAdmin_surname?>"></div>
 <br style="clear:both"  />
 </div>
 
 <div id="admin-line-frm">
-<div id="frm-admin">Background</div>
+<div id="frm-admin" style="text-align: right; padding-right:5px;">พื้นหลัง</div>
 <div id="frm-admin2"><input name="admin_surname" type="text" class="frm-text" style='width:80px' value="#FFFFFF"></div>
 <br style="clear:both"  />
 </div>
@@ -115,7 +113,9 @@
 
 
 <div id="admin-line-frm">
-<div id="frm-admin">Organization info</div>
+<div id="frm-admin">
+	<strong>ข้อมูลข่าวสาร</strong>
+</div>
 <div id="frm-admin2" style='width:auto;'>
 
 <!-- <input name="admin_surname" type="text" class="frm-text" style='width:80px' value="#FFFFFF"> -->
@@ -142,27 +142,11 @@
 </div>
 <br style="clear:both"  />
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="admin-line-frm">
-
 <div id="frm-admin2">
 <input class="button" name="admin_id" id="admin_id" type="submit" value="บันทึก">
-<input class="button" name="action" id="action" type="hidden" value="<?=$action2?>">
-<input class="button" name="admin_id" id="admin_id" type="hidden" value="<?=$vAdmin_id?>">
+<input class="button" name="action" id="action" type="hidden" value="edit">
+<input class="button" name="admin_id" id="admin_id" type="hidden" value="<?=$_SESSION['admin_id']?>">
 <input class="button" name="admin_id" id="admin_id" type="reset" value="ยกเลิก">
 </div>
 <br style="clear:both"  />

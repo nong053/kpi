@@ -8,9 +8,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link rel="stylesheet" href="../jquery-ui/css/cupertino/jquery-ui-1.10.3.custom.min.css" type="text/css" media="all" />
-<script src="../jquery-ui/js/jquery-1.9.1.js" type="text/javascript"></script>
-<script src="../jquery-ui/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-
+<!-- <script src="../jquery-ui/js/jquery-1.9.1.js" type="text/javascript"></script>
+<script src="../jquery-ui/js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+jQuery.noConflict();
+jQuery( function() {
+    jQuery( "#datepicker" ).datepicker();
+  } );
+</script>
+</head>
+<body>
+ 
+<p>Date: <input type="text" id="datepicker"></p>
 
 
 <style type="text/css">
@@ -92,7 +103,7 @@
 			<div id="no">ลำดับ</div>
 			<div id="name" >ชื่อ</div>
 			<div id="sname">นามสกุล</div>
-            <div id="sname">E-mail</div> 
+            <div id="sname">ชื่อผู้ใช้งาน</div> 
             <!--
             <div id="sname">อื่นๆ</div>  
             -->
@@ -126,7 +137,7 @@
 				
 				echo "<div id=\"sname\"><a href=\"admin_detail.php?admin_id=".$row['admin_id']."&TB_iframe=true&height=200&width=500\" rel=\"sexylightbox\" title=\"".$row['admin_name']." ".$row['admin_surname']."\">".$row['admin_surname']."</a></div>\r\n";
 				
-				echo "<div id=\"sname\"><a href=\"admin_detail.php?admin_id=".$row['admin_id']."&TB_iframe=true&height=200&width=500\" rel=\"sexylightbox\" title=\"".$row['admin_name']." ".$row['admin_surname']."\">".$row['admin_email']."<br></a></div>\r\n";
+				echo "<div id=\"sname\"><a href=\"admin_detail.php?admin_id=".$row['admin_id']."&TB_iframe=true&height=200&width=500\" rel=\"sexylightbox\" title=\"".$row['admin_name']." ".$row['admin_surname']."\">".$row['admin_username']."<br></a></div>\r\n";
 				
 				
 				/*
@@ -198,6 +209,7 @@
 				$vExpired_date=$row['expired_date'];
 				$vPackage=$row['package'];
 				$vActivated=$row['activated'];
+				$vAdmin_company=$row['admin_company'];
 
 
 				
@@ -245,11 +257,19 @@
 
 <form action="admin_process.php" method="post" name="frm-admin" id="frm-admin-form">
 <div id="admin-line-frm">
-<div id="frm-admin">ชื่อ</div>
-<div id="frm-admin2">
-  <input name="admin_name" type="text" class="frm-text" value="<?=$vAadmin_name1?>" />
+	<div id="frm-admin">ชื่อบริษัท</div>
+	<div id="frm-admin2">
+	<input name="admin_company" type="text" class="frm-text" value="<?=$vAdmin_company?>" />
+	</div>
+	<br style="clear:both"  />	
 </div>
-<br style="clear:both"  />
+
+<div id="admin-line-frm">
+	<div id="frm-admin">ชื่อ</div>
+	<div id="frm-admin2">
+	<input name="admin_name" type="text" class="frm-text" value="<?=$vAadmin_name1?>" />
+	</div>
+	<br style="clear:both"  />	
 </div>
 
 <div id="admin-line-frm">
@@ -297,9 +317,10 @@
 
 <div id="admin-line-frm">
 	<div id="frm-admin">รหัสผ่าน</div>
-	<div id="frm-admin2"><input name="admin_password" type="password" class="frm-text" value="<?=$vAdmin_password?>"></div>
+	<div id="frm-admin2"><input name="admin_password" type="password" class="frm-text" value=""></div>
 	<br style="clear:both"  />
 </div>
+<input name="admin_status" id="admin_status" type="hidden" value="<?=$vAdmin_status1?>">
 <?php
 if($_SESSION['admin_status']=="3"){
 
@@ -357,6 +378,7 @@ if($_SESSION['admin_status']=="3"){
 
 
 
+
 <div id="admin-line-frm">
 <div id="frm-admin">สถานะ</div>
 	<div id="frm-admin2">
@@ -392,21 +414,18 @@ if($_SESSION['admin_status']=="3"){
 </form>
 
 <script>
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		
-
 		
 		var action="<?=$_GET['action']?>";
 		if(action=="edit"){
 
-			$("#expired_date").datepicker();
-			$("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
-			$("#expired_date").datepicker('setDate', '<?=$vExpired_date?>');
+			jQuery("#expired_date").datepicker();
+			jQuery("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
+			jQuery("#expired_date").datepicker('setDate', '<?=$vExpired_date?>');
 		}else{
-			$("#expired_date").datepicker();
-			$("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
+			jQuery("#expired_date").datepicker();
+			jQuery("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
 		}
-		
 	});
 </script>
-

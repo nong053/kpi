@@ -21,7 +21,7 @@ if($_POST['action']=="add"){
 	if($rs){
 		echo'["success"]';
 	}else{
-		echo'["error"]';
+		echo'error '.mysql_error();
 	}
 	mysql_close($conn);
 }

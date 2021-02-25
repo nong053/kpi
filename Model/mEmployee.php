@@ -120,12 +120,21 @@ if($_POST['action']=="checkUserForPackage"){
 
 //checkUserDuplicate
 if($_POST['action']=="checkUserDuplicate"){
-	$sqlSQL="select count(*) as countEmp from employee
-	where emp_user = '$empUser'";
+	$sqlSQL="
+	
+	select sum(countUser) as totalUser from(
+		select count(*) as countUser from employee
+		where emp_user = '$empUser'
+		union
+		select count(*) as countUser from admin
+		where admin_username = '$empUser'
+		)as checkUser
+
+	";
 	$result=mysql_query($sqlSQL);
 	$rs=mysql_fetch_array($result);
 	
-	echo "[\"$rs[countEmp]\"]";
+	echo "[\"$rs[totalUser]\"]";
 }
 
 #####  This function will proportionally resize image #####
@@ -307,8 +316,9 @@ if($_POST['empAction']=="add"){
 )";
 		$rs=mysql_query($strSQL);
 		if($rs){
-			echo'success';
-			//echo"<script>alert(บันทึกข้อมูลเรียบร้อย);</script>";
+			//echo'success';
+			echo"<script>alert(บันทึกข้อมูลเรียบร้อย);</script>";
+			echo"<script>window.location.href = \"../View/index.php#/pages/vEmployee\";</script>";
 		}else{
 			echo mysql_error();
 		}

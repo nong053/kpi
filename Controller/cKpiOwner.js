@@ -267,6 +267,11 @@ var  getColorEasyPieChart=function(score){
 
 				try {
 				
+				if(data[0]==0){
+					
+					return false;
+				}
+				
 				var $ranges="";
 				
 				
@@ -663,7 +668,7 @@ var departmentResultFn = function(kpi_year){
 			$.each(data,function(index,indexEntry){
 			var easyChartAreaLayout="";
 				//KpiPerspective
-			easyChartAreaLayout+="<div class='KpiPerspective  col-xs-6 col-sm-6 col-md-6' id='KpiPerspective-"+indexEntry[0]+"' style='height:83px; cursor:pointer; background:"+colorArray[index]+"'>";
+			easyChartAreaLayout+="<div class='KpiPerspective  col-xs-6 col-sm-6 col-md-6' id='KpiPerspective-"+indexEntry[0]+"' style='height:83px;  background:"+colorArray[index]+"'>";
 				easyChartAreaLayout+="<div class='boxStatus'>";
 				easyChartAreaLayout+="<div class='boxGraphTop ' >";
 				easyChartAreaLayout+="<div id='donutStatus1 '>";

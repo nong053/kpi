@@ -13,11 +13,15 @@ error_reporting (E_ALL ^ E_NOTICE);
     <link href="Css/bootstrap.min.css" rel="stylesheet">
     <link href="Css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="Css/bootstrap-overrides.css" rel="stylesheet">
+    
     <!-- <link rel="stylesheet" type="text/css" href="Css/theme.css"> -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
 
     <link rel="stylesheet" type="text/css" href="Css/lib/animate.css" media="screen, projection">
     <link rel="stylesheet" href="Css/sign-up.css" type="text/css" media="screen" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="Css/font-awesome/css/font-awesome.min.css">
+    <link href="favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -44,7 +48,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 
     .submit{
 
-    background: #187ccc none repeat scroll 0 0;
+    background: #333867 none repeat scroll 0 0;
     border: 0 none;
     border-radius: 3px;
     color: #fff;
@@ -53,11 +57,43 @@ error_reporting (E_ALL ^ E_NOTICE);
     text-transform: uppercase;
     transition: background 0.2s linear 0s, box-shadow 0.2s linear 0s;
     }
-        </style>
+    #sign_up2{
+    /* background: url('./img/backgrounds/ocean.jpg') no-repeat; */
+    display: block;
+    height: 540px;
+    color:white;
+    /* margin-bottom: 90px;
+    margin-top: -35px; */
+    }
+    #sign_up2 .left_box {
+    color: white;
+    }
+    #sign_up2 .left_box .perk_box .perk {
+    color: white;
+    }
+
+    #sign_up2 .left_box .perk_box .perk p strong {
+    color: aliceblue;
+    }
+    body {
+    overflow-x: hidden;
+    /* color: rgba(244,244,245,.9); */
+    background: radial-gradient(farthest-side ellipse at 10% 0,#333867 20%,#17193b);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+    .font-white{
+        color:white;
+    }
+
+    </style>
     
 </head>
 <body>
-  
+
+
+
     <div id="sign_up2">
         <div class="container">
         <!--
@@ -108,39 +144,44 @@ error_reporting (E_ALL ^ E_NOTICE);
                             <p><strong><a href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> เมื่อพบปัญหาการใช้งานติดต่อที่ 080-992-6565 อีเมลล์: nn.it@hotmail.com <br> </p>
                         </div>
                         -->
-                        
-                     <div class="perk">
-                            <span class="icos ico1" style="height: 77px"></span>
-                            <p><strong>ข้อมูลการใช้งาน</strong> <br>
-
-            <?php
-                         echo "วันที่สมัครใช้งาน:".$rs[register_date];
-                         echo "<br>";
-                         echo "วันที่ปัจจุบัน:".$c;
-                         echo "<br>";
-                        // echo "จำนวนวันที่ใช้ไป:".$diff->format("%R%a days");
-                        // echo "<br>";
 
 
-                    ?>
+
+
+                        <!-- <div class="perk">
+                                <span class="icos ico1" style="height: 77px"></span>
+                                <p><strong>ข้อมูลการใช้งาน</strong> <br>
+                                <?php
+                                    echo "วันที่สมัครใช้งาน:".$rs[register_date];
+                                    echo "<br>";
+                                    echo "วันที่ปัจจุบัน:".$c;
+                                    echo "<br>";
+                                
+
+                                ?>
                             </p>
-                        </div>
-                     <div class="perk">
-                            <span class="icos ico3"></span>
-                            <p><strong><a href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
+                        </div> -->
+                        <div class="perk">
+                            
+                            <p><strong><a style="color:white;" href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
                                 อีเมลล์: nn.it@hotmail.com ,Line:nongnuyit
                             </p>
                         </div>
                     </div>
+
+                    
                 </div>
 
                 <div class="span6 signin_box">
                     <div class="box">
                         <div class="box_cont">
                             <div class="social">
-                               <img src="admin/images/adminloginhead.jpg">
+                               <!-- <img src="admin/images/adminloginhead.jpg"> -->
                                
-                               <!-- <br> -->
+                               <i class="fa fa-lock" style="font-size: 120px; color:#333867;"></i>
+                                <h3 style="color:#333867">
+                                ลงชื่อเข้าใช้งานระบบประเมินด้วย KPI<i class='fa fa-angle-double-right'></i>BSC
+                                </h3>
                                 <font  style='color:red;' >
                                 <?=$_SESSION['activated_message'];?>
                                 </font>
@@ -157,8 +198,8 @@ error_reporting (E_ALL ^ E_NOTICE);
 
                             <div class="form"  >
                                 <form action="#" id='formSubmit' method="post">
-                                    <input type="text" placeholder="User name" id='user' name="user">
-                                    <input type="password" placeholder="Password" id='pass' name="pass">
+                                    <input type="text" placeholder="ชื่อผู้ใช้งาน" id='user' name="user">
+                                    <input type="password" placeholder="รหัสผ่าน" id='pass' name="pass">
                                     <input type="hidden" name="admin_id" id='admin_id' value=<?=$_SESSION['admin_id']?>>
 
                                     <?
@@ -166,11 +207,17 @@ error_reporting (E_ALL ^ E_NOTICE);
 
                                     if($_SESSION['activated_trial']==0 && $_SESSION['activated']==0){
                                         ?>
-                                        <input disabled="disabled" type="button" class="submit" id='btnSubmit' value="ลงชื่อเข้าใช้งาน">
+                                        <input style="float: right;" disabled="disabled" type="button" class="submit" id='btnSubmit' value="เข้าสู่ระบบ">
                                         <?
                                     }else{
                                         ?>
-                                        <input type="button" class="submit" id='btnSubmit' value="ลงชื่อเข้าใช้งาน">
+                                        
+                                        <span style="float: left; color:blue;">
+                                        <a href="register.php">สร้างบัญชีผู้ใช้งาน</a>
+                                        </span>
+                                        <span style="float: right;">
+                                            <input  type="button" class="submit" id='btnSubmit' value="เข้าสู่ระบบ">
+                                        </span>
                                         <?
                                     }
                                     ?>

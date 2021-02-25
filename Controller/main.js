@@ -1308,22 +1308,25 @@ $(document).ready(function(){
      connect-mission
      */
      $(".connect-database").click(function(){
-    	alert("Access Denied, You don't have permission."); 
+    	alert("สำหรับผู้ดูแลระบบสูงสุด");   
      });
      $(".connect-admin").click(function(){
-    	 alert("Access Denied, You don't have permission."); 
+		alert("สำหรับผู้ดูแลระบบสูงสุด");  
       });
      $(".connect-message").click(function(){
-    	 alert("Access Denied, You don't have permission."); 
+		alert("สำหรับผู้ดูแลระบบสูงสุด");  
       });
      $(".connect-mission").click(function(){
-    	 alert("Access Denied, You don't have permission.");  
+		alert("สำหรับผู้ดูแลระบบสูงสุด");   
       });
+	  $(".notClick").click(function(){
+		alert("สำหรับผู้ดูแลระบบสูงสุด");  
+	 });
      /*button left top in main menu action start*/
      
      /*option start action start*/
      $(".themeAction").click(function(){
-    	 alert("Access Denied, You don't have permission."); 
+		alert("สำหรับผู้ดูแลระบบสูงสุด");  
       });
      /*option start action start*/
      
@@ -1376,6 +1379,10 @@ $(document).ready(function(){
      	filter: "a[title]",
      	position: "top"
       });
+
+
+
+	  
 });
 
 
@@ -1397,6 +1404,7 @@ app.config(function($routeProvider) {
 });
 
 
+
 app.controller("pageController",function($scope, $route, $routeParams){
 
 	$route.current.templateUrl = $routeParams.url + ".php";
@@ -1404,6 +1412,7 @@ app.controller("pageController",function($scope, $route, $routeParams){
 	       $("#mainContent").html(data);
 
 		   //alert($routeParams.url);
+		   
 		   var subjectPage="";
 	          $(".mainMenu").removeClass("active");
 			  if($routeParams.url=="vKpiOwner"){
@@ -1487,6 +1496,12 @@ app.controller("pageController",function($scope, $route, $routeParams){
 				$("#myEvaluateMenu").parent().addClass("active");
 				$("#subjectPage").html(subjectPage);
 				
+			  }else{
+				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#kpiDashboardMenu >.menu-text").text()+"</b>";
+				$("#kpiDashboardMenu").parent().addClass("active");
+			 	$("#kpiDashboardEmpMenu").parent().addClass("active");
+
+				$("#subjectPage").html(subjectPage);
 			  }
 			  
 			//   else if($routeParams.url=="vKpiOwner"){

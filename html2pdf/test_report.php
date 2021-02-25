@@ -36,7 +36,7 @@ while($rs=mysql_fetch_array($result)){
 				select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
 				ak.target_data as 'kpi_target' ,ak.kpi_actual_manual as 'kpi_actual' ,
 				ak.performance  as 'kpi_performence'
-				from assign_kpi ak
+				from assign_evaluate_kpi ak
 				inner JOIN kpi
 				ON ak.kpi_id=kpi.kpi_id
 				where ak.assign_kpi_year='2012'
@@ -63,7 +63,7 @@ while($rs=mysql_fetch_array($result)){
 //echo $htmlcontent;
 $strSQLKpi="
   	
-				select * from assign_kpi
+				select * from assign_evaluate_kpi
   	
 		";
 $resultKpi=mysql_query($strSQLKpi);

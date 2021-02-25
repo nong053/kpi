@@ -151,7 +151,7 @@ if($_SESSION['language']=="th"){
 				}
 
 				#areaPieByDepartment{
-					cursor: pointer;
+					/* cursor: pointer; */
 				}
 				#gaugeOwnerValue{
 					font-weight: bold;
@@ -181,14 +181,14 @@ if($_SESSION['language']=="th"){
 										
 										<!-- Parameter Top KPI Owner Page Start-->
 											<row class="topParameter">
-<!-- 												
+												
 												<div class="box1" >
 													<div >
-														<b style="color:#31708f;">
+														<b style="color:#31708f;" class='pre-search-label'>
 														<?=$_SESSION['kpi_owner_search_year']?>
 														</b>
 													</div>
-												</div> -->
+												</div> 
 												
 												<div class="box2">
 														<div id="appraisalYearArea"></div>

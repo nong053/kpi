@@ -1,161 +1,237 @@
-<?php session_start(); 
-error_reporting(0);
-error_reporting(E_ERROR | E_PARSE);
-//error_reporting (E_ALL ^ E_NOTICE);
+<? session_start();
+error_reporting (E_ALL ^ E_NOTICE);
+?>
 
-//Get Host Name 
-$host=$_SERVER['HTTP_HOST'];
-$domain = explode(".", $host);
-$admin_username = "";
-$_SESSION['activated_message']="";
-$_SESSION['activated_trial']=0;
-$_SESSION['activated']=0;
-
-
-
-
-
-
-
-include_once 'config.inc.php';
-
-//for demo delete start;
-//$_GET['userName']="demo_admin";
-//for demo delete end;
-
-$userName = (isset($_GET['userName'])) ? $_GET['userName'] : '';
-
-if(!$userName){
-	
-	if(count($domain)>2){
-		$admin_username=$domain[1];
-	}else{
-		$admin_username=$domain[0];
-	}
-	$_SESSION['subDomain']="";
-	
-}else{
-	$admin_username=$_GET['userName'];
-	$_SESSION['subDomain']=$_GET['userName'];
-}
-
-if($_SESSION['subDomain']!=""){
-	$subDomain=$_SESSION['subDomain'];
-}else{
-	$subDomain="";
-}
-
-
-
-$query_admin="select * from admin where admin_username='$admin_username' and admin_status!=0";
-
-//echo $query_admin."<br>";
-$result_admin=mysql_query($query_admin);
-$rs_num=mysql_num_rows($result_admin);
-$rs=@mysql_fetch_array($result_admin);
-
-
-if($rs_num){
-	$_SESSION['admin_id']=$rs[admin_id];
-	$_SESSION['admin_username']=$rs[admin_username];
-
-	$_SESSION['register_date']=$rs[register_date];
-	$_SESSION['activated']=$rs[activated];
-
-
-
-	 if($rs[activated]==0){
-
-	 //Check Activated Trial
-	$now = new DateTime();
-	$c= $now->format('Y-m-d H:i:s');    // MySQL datetime format
-	$register_date=date_create($rs[register_date]);
-
-	 // echo "วันที่สมัครทดลองใช้งาน:".$rs[register_date];
-	 // echo "<br>";
-	 // echo "วันที่ปัจจุบัน:".$c;
-	 // echo "<br>";
-
-    $current_date=date_create($c);
-    $diff=date_diff($register_date,$current_date);
-
-    // echo "จำนวนวันที่ใช้ไป:".$diff->format("%R%a days");
-    // echo "<br>";
-
-    $date_dff=$diff->format("%R%a");
-    $date_dff=(int)$date_dff;
-
-
-
-   // echo $date_dff;
-   // echo "<br>";
-
-	    if($date_dff>=30){
-
-
-	    $_SESSION['activated_message']='หมดอายุการใช้งาน<br>ต่ออายุการใช้งานโทร. 0809926565';
-	    $_SESSION['activated_trial']=0;
-	    }else{
-
-
-
-	    $_SESSION['activated_message']="เหลือเวลาการใช้งาน <b style='font-size:20px;'>".(30-$date_dff)."</b> วัน";
-	    $_SESSION['activated_trial']=1;
-
-	    }
-	}else if($rs[activated]==1){
-
-	//Check Activated 
-	$now = new DateTime();
-	$c= $now->format('Y-m-d H:i:s'); 
-	
-	$expired_date=date_create($rs[expired_date]);
-    $current_date=date_create($c);
-
-    //echo "current_date".$current_date."<br>";
-    $diff=date_diff($expired_date,$current_date);
-    $date_dff=$diff->format("%R%d");
-    //echo "date_dff1".$date_dff;
-    $date_dff=(int)$date_dff;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ลงชื่อเข้าใช้งาน</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Styles -->
+    <link href="Css/bootstrap.min.css" rel="stylesheet">
+    <link href="Css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="Css/bootstrap-overrides.css" rel="stylesheet">
     
 
+    <link rel="stylesheet" type="text/css" href="Css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="Css/sign-up.css" type="text/css" media="screen" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="Css/font-awesome/css/font-awesome.min.css">
+    <link href="favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    @import url(./Css/fonts/thsarabunnew.css);
 
-    if($date_dff>0){
-    	$_SESSION['activated_message']='หมดอายุการใช้งาน<br>ต่ออายุการใช้งานโทร. 0809926565';
-    	//update active flag ==0
-    	$strSQL="UPDATE admin set activated='0' where admin_id='".$_SESSION['admin_id']."'";
-		$result=mysql_query($strSQL);
+    body{
 
-
-    }else{
-
- 		//$_SESSION['activated_message']="เหลือเวลาการใช้งาน <b style='font-size:20px;'>".abs($date_dff)."</b> วัน";
+    font-family: 'THSarabunNew', sans-serif; 
 
     }
-	//$_SESSION['activated_trial']=1;
+
    
-
-
-	}
-    //Check Activated End..
-
-	
-
-	$admin_id=$_SESSION['admin_id'];
-	
-	// ###################   INCLUDE FILE FOR INDEX.PHP START   ################
-	
-	include("login.php");
-	
-}else{
-	?>
-	<title>System is running..</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<center>
-	<!--<img src="images/c.png"><br>-->
-	<h1>กรอก <font color="red">username</font> ต่อจาก url ตัวอย่าง http://kpi.dashboardweb.com/<font color='red'>admin1</font></h1>
-	</center>
-	<?php
-	exit();
+    #sign_up2 .signin_box .box .form input[type="password"] {
+    border-radius: 3px;
+    color: black;
+    font-size: 16px;
+    height: 27px;
+    margin-bottom: 16px;
+    width: 96%;
 }
+
+    .submit{
+
+    background: #333867 none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 15px;
+    padding: 8px 18px;
+    text-transform: uppercase;
+    transition: background 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    }
+    #sign_up2{
+    /* background: url('./img/backgrounds/ocean.jpg') no-repeat; */
+    display: block;
+    height: 540px;
+    color:white;
+    /* margin-bottom: 90px;
+    margin-top: -35px; */
+    }
+    #sign_up2 .left_box {
+    color: white;
+    }
+    #sign_up2 .left_box .perk_box .perk {
+    color: white;
+    }
+
+    #sign_up2 .left_box .perk_box .perk p strong {
+    color: aliceblue;
+    }
+    body {
+    overflow-x: hidden;
+    /* color: rgba(244,244,245,.9); */
+    background: radial-gradient(farthest-side ellipse at 10% 0,#333867 20%,#17193b);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+    .font-white{
+        color:white;
+    }
+
+    </style>
+    
+</head>
+<body>
+
+
+
+    <div id="sign_up2">
+        <div class="container">
+        
+            <div class="row login" style='margin-top: 20px;'>
+                <div class="span6 left_box">
+                    <h4>เข้าสู่ระบบประเมินบุคคล<br>
+                   
+                </h4>
+
+                    <div class="perk_box">
+                     
+                        <div class="perk">
+                            
+                            <p><strong><a style="color:white;" href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
+                                อีเมลล์:nn.it@hotmail.com ,Line:nongnuyit
+                            </p>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="span6 signin_box">
+                    <div class="box">
+                        <div class="box_cont">
+                            <div class="social">
+                               
+                               <i class="fa fa-lock" style="font-size: 120px; color:#333867;"></i>
+                                <h3 style="color:#333867">
+                                ลงชื่อเข้าใช้งานระบบประเมินด้วย KPI<i class='fa fa-angle-double-right'></i>BSC
+                                </h3>
+                                <font  style='color:red;' >
+                                <?=$_SESSION['activated_message'];?>
+                                </font>
+                                <br>
+                                <font id='warning' style='display: none; color:red;' >username หรือ password ไม่ถูกต้อง</font>
+
+                                <?php
+                               
+                                if(!empty($_SESSION['ERORRLOGIN'])){
+                                    ?>
+                                     <font  style='color:red;' >
+                                     <?php
+                                    echo $_SESSION['ERORRLOGIN'];
+                                    ?>
+                                     </font>
+                                    <?
+                                }
+                                ?>
+                            </div>
+
+                            <div class="division">
+                                <div class="line l"></div>
+                                <span></span>
+                                <div class="line r"></div>
+                            </div>
+
+                            <div class="form"  >
+                                <form action="#" id='formSubmit' method="post">
+                                    <input type="text" placeholder="ชื่อผู้ใช้งาน" id='user' name="user">
+                                    <input type="password" placeholder="รหัสผ่าน" id='pass' name="pass">
+                                    <input type="hidden" name="admin_id" id='admin_id' value=<?=$_SESSION['admin_id']?>>
+
+                                   
+                                        
+                                        <span style="float: left; color:blue;">
+                                        <a href="register.php">สร้างบัญชีผู้ใช้งาน</a>
+                                        </span>
+                                        <span style="float: right;">
+                                            <input  type="button" class="submit" id='btnSubmit' value="เข้าสู่ระบบ">
+                                        </span>
+                                        
+                                    
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+
+
+<script src='kendoCommercial/js/jquery.min.js'></script>
+<script>
+    $(document).ready(function(){
+
+        // var admin_id="<?=$_SESSION['admin_id']?>";
+        // var admin_username="<?=$_SESSION['subDomain']?>";
+        // if(admin_username=="" && admin_username==0){
+
+        //     window.location = "admin_kpi";
+        //     return false;
+        // }
+
+        
+        $("#btnSubmit").click(function(){
+
+            $.ajax({
+                url:"login_token_process.php",
+                type:"post",
+                dataType:"json",
+                data:{
+                    "username":$("#user").val(),
+                    "password":$("#pass").val()
+                    // ,"admin_id":$("#admin_id").val()
+                },
+                success:function(data){
+                   // console.log(data);
+                    console.log(data.token);
+                    
+                    if(data.status=='200'){
+                        $("#warning").hide();
+                        sessionStorage.setItem('token', data.token); 
+                        var formHtml="";
+                        formHtml+="<form style=\"display: none;\" action=\"login_process.php\" id=\"formSubmit2\" method=\"post\">";
+                        formHtml+="<input type=\"text\" placeholder=\"User name\" id=\"user\" name=\"user\" value="+data.user+">";
+                        formHtml+="<input type=\"password\" placeholder=\"Password\" id=\"pass\" name=\"pass\" value="+data.pass+">";
+                        // formHtml+="<input type=\"hidden\" name=\"admin_id\" id=\"admin_id\" value="+data.admin_id+">";
+                        formHtml+="<input class='submit' type=\"submit\" id='btnSubmit2' value=\"sign up\">";
+                        formHtml+="</form>";
+                        $("body").append(formHtml);
+                        $("#btnSubmit2").click();
+
+                        }else if(data.status=='error'){
+
+                                $("#warning").show();
+                        }
+                    
+                  
+
+
+                }
+            })
+
+            return false;
+        });
+    });
+
+</script>
+    
+  

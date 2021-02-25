@@ -1005,7 +1005,7 @@ $("#status_work_search_id").change(function(){
 	//Add employee start
 	$("#btnAddEmployee").click(function(){
 
-		if(checkPackageFn()<=$("#embed_user_amount").val()){
+		if(checkPackageFn()<$("#embed_user_amount").val()){
 
 			resetDataEmployee();
 			fnDropdownListEmpPostion($("#position_id_emb").val());
@@ -1014,7 +1014,7 @@ $("#status_work_search_id").change(function(){
 			$("#employeeModal").modal('show');
 
 		}else{
-			alert("Please upgrade package.");
+			alert("ไม่สามารถเพิ่มผู้ใช้งานได้ \nติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจ โทร.0809926565");
 		}
 	});
 

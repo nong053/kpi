@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 		//description
 	$_SESSION['position_l_des_title']="ตำแหน่ง";
-	$_SESSION['position_l_des_detail']="เพื่อกำหนดว่าพนักงานคนใดเป็นระดับ อยู่ใน Role ใดเพื่อใช้เป็นข้อมูลในกำหนดสิทธิ์ในการปรับผลการปฏิบัติงาน ";
+	$_SESSION['position_l_des_detail']="เพื่อกำหนดตำตำแหน่งที่ต้องการวัดผลการปฏิบัติงาน ";
 	$_SESSION['position_l_des_btn_add']="ตำแหน่ง";
 
 	//column

@@ -123,17 +123,17 @@ if (!defined('K_TCPDF_EXTERNAL_CONFIG')) {
 	/**
 	 * header title
 	 */
-	define ('PDF_HEADER_TITLE', 'KPI Apprasial Report');
+	define ('PDF_HEADER_TITLE', 'รายงานผลปฏิบัติงานรายบุคคล');
 	
 	/**
 	 * header description string
 	 */
-	define ('PDF_HEADER_STRING', "Create By KOSIT - dashboardweb.com\nwww.dashboardweb.com");
+	define ('PDF_HEADER_STRING', "Key Performance Indicator Report");
 	
 	/**
 	 * image logo
 	 */
-	define ('PDF_HEADER_LOGO', 'logo.png');
+	define ('PDF_HEADER_LOGO', 'kpibsc_logo.jpg');
 	
 	/**
 	 * header logo image width [mm]

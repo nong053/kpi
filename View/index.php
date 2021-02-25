@@ -77,6 +77,8 @@ if($_SESSION['login_status']!="1"){
     <link href="../bootstrap-3.0.2/css/bootstrap.css" rel="stylesheet">
     -->
      <link href="../bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+	 <!-- Font Awesome -->
+	 <link rel="stylesheet" href="../Css/font-awesome/css/font-awesome.min.css">
 
 	 <!-- Custom styles for this template -->
 	 
@@ -133,7 +135,7 @@ if($_SESSION['login_status']!="1"){
     <!--  css customize -->
     <link href="../Css/executive.css" rel="stylesheet">
     <!--  css customize -->
-
+	<link href="../favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 	<script>
 
@@ -414,9 +416,9 @@ if($_SESSION['login_status']!="1"){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-		  <a style='height: 0px;' class="navbar-brand" href="#" > 
+		  <a style='height: 0px; font-weight:bold;' class="navbar-brand" href="#" > 
 		  <!-- <span class="iconMenu glyphicon glyphicon-dashboard" style="font-size:30px;"></span> -->
-		   โปรแกรมประเมินผลปฎิบัติงานโดยตัวชี้วัด (Key Performance Indicators)</a>
+		   <?=$_SESSION['admin_company']?> KPI <i class="fa fa-angle-double-right"></i> BSC</a>
         </div>
         
         <div class="collapse navbar-collapse">
@@ -726,18 +728,18 @@ if($_SESSION['login_status']!="1"){
 					}else{
 					?>
 
-					<a href="#"  class="boxC btn btn-success ">
+					<button class="boxC btn btn-success notClick">
 						<i class=" glyphicon glyphicon-tasks"></i>
-					</a>
+					</button>
 					<a href="../admin/index.php?page=admin"  class="boxC btn btn-info ">
 						<i class="glyphicon  glyphicon-user"></i>
 					</a>
-					<a href="#"  class="boxC btn btn-warning ">
+					<button class="boxC btn btn-warning notClick">
 						<i class="glyphicon glyphicon-pencil"></i>
-					</a>
-					<a href="../admin/index.php?page=clearData"  class="boxC btn btn-danger ">
+					</button>
+					<button  class="boxC btn btn-danger notClick">
 						<i class="glyphicon glyphicon glyphicon-save"></i>
-					</a>
+					</button>
 
 					<?
 					}

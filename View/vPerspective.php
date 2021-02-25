@@ -8,7 +8,7 @@ error_reporting(E_ERROR | E_PARSE);
 if($_SESSION['language']=="th"){
 	
 	$_SESSION['perspective_l_title']="มุมมองธุรกิจ";
-	$_SESSION['perspective_l_detail']="กำหนดมุมมองทางธุรกิจสำหรับนำไปคำนวณ Balance Scorecard นัำหนักของมุมมองธุรกิจต้องเท่ากับ 100%";
+	$_SESSION['perspective_l_detail']="กำหนดมุมมองทางธุรกิจสำหรับนำไปคำนวณ Balance Scorecard น้ำหนักของมุมมองธุรกิจต้องเท่ากับ 100% <br>*** BSC คือเครื่องมือทางด้านการจัดการที่ช่วยในการนากลยุทธ์ไปสู่การ ปฏิบัติ(Strategic Implementation) โดยอาศัยการวัดหรือประเมิน (Measurement)";
 	$_SESSION['perspective_l_btn_add']="มุมมองธุรกิจ";
 
 	$_SESSION['perspective_l_tbl_id']="#";

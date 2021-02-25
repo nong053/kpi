@@ -100,8 +100,12 @@ $(document).ready(function(){
 	var validatePerspectiveFn=function(){
 		var validate="";
 		if($("#perspectiveName").val()==""){
-	 		validate+="กรอกชื่อมุมมองทางธุรกิจด้วยครับ \n";
+	 		validate+="กรอกชื่อมุมมองธุรกิจด้วยครับ \n";
 	 	}  
+
+		if($("#perspectiveWeight").val()==""){
+			validate+="กรอกนำ้หนักมุมมองธุรกิจด้วยครับ \n";
+		}  
 	 	
 	 	return validate;
 	}

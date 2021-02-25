@@ -365,7 +365,7 @@ function detailInit(e) {
 												textJson+=",{";
 											}
 											
-												textJson+="\"Field1\":\"<div class='textR'>"+EntryIndex[0]+"</div>\",";
+												textJson+="\"Field1\":\"<div class='textR'>"+(index+1)+"</div>\",";
 												textJson+="\"Field2\":\"<div class=''>"+EntryIndex[1]+"</div>\",";
 												textJson+="\"Field3\":\"<div class='textR' >"+EntryIndex[2]+"</div>\",";
 												textJson+="\"Field4\":\"<div class='textR'>"+EntryIndex[6]+"</div>\",";
@@ -721,9 +721,9 @@ function detailInit(e) {
 								textJson+="\"field3\":\"<div class='textR' style='font-weight:bold;'>"+EntryIndex[8]+"%</div>\",";
 								textJson+="\"field7\":\"<div class='textR' style='font-weight:bold;'>"+EntryIndex[9]+"%</div>\",";
 								if(EntryIndex[7]==0){
-									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<div>\",";
+									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div>\",";
 								}else{
-									textJson+="\"field8\":\"<div class='textR'>ปรับ("+EntryIndex[7]+")"+getColorBall(EntryIndex[3])+"<div>\",";
+									textJson+="\"field8\":\"<div class='textR'>ปรับ("+EntryIndex[7]+")"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div>\",";
 								}
 								//textJson+="\"field9\":\"<div class='textR'><center><a href='#' class='downloadPDFbyPerson' id='id-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></center><div>\"";
 								
@@ -812,18 +812,27 @@ function detailInit(e) {
 	// press button for download by person start
 		$(".downloadPDFbyPerson").click(function(){
 			
-			var emp_id= this.id.split("-");
-			emp_id=emp_id[1];
-			fnLinkToPDF(emp_id);
+			
+			fnLinkToPDF(this.id);
+			return false;
 		});
 	// press button for download by person end
 	// press button for download KPI PDF
-	var fnLinkToPDF=function(emp_id){
-		if(undefined!=emp_id){
-			window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"&emp_id="+emp_id+"", "_blank");
-		}else{
-			window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"", "_blank");
-		}
+	var fnLinkToPDF=function(data_id){
+
+		var data_array= data_id.split("-");
+		var	kpi_year=data_array[1];
+		var	appraisal_period_id=data_array[2];
+		var	department_id=data_array[3];
+		var	position_id=data_array[4];
+		var	emp_id=data_array[5];
+
+		window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"&position_id="+position_id+"&emp_id="+emp_id+"", "_blank");
+		// if(undefined!=emp_id){
+		// 	window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"&emp_id="+emp_id+"", "_blank");
+		// }else{
+		// 	window.open("../html2pdf/kpi_report.php?kpi_year="+kpi_year+"&appraisal_period_id="+appraisal_period_id+"&department_id="+department_id+"", "_blank");
+		// }
 	}
 	$(".glyphicon-download-alt").click(function(){
 		

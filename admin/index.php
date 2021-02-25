@@ -2,10 +2,10 @@
 require("../config.inc.php");
 if(isset($_GET['logout'])){
 	session_destroy();
-	header("location:../login.php");
+	header("location:../index.php");
 }
 if(!$_SESSION['admin_name']){//กรณี check การloginของ admin
-	header("location:../login.php"); 
+	header("location:../index.php"); 
 }
 ?>
 
@@ -208,25 +208,8 @@ p{
 	padding:2px 5px 2px 5px;
 	color:#333;
 }
--->
 </style>
 
-<!--
-<link rel="stylesheet" href="sexylightbox.css" type="text/css" media="all" />
--->
-<!--
-<script type="text/javascript" src="js/slide_menu.js"></script>
--->
-<!--
-<script src="mootools.js" type="text/javascript"></script>
-<script src="sexylightbox.packed.js" type="text/javascript"></script>
-<script type="text/javascript">
-  window.addEvent('domready', function(){
-    new SexyLightBox();
-    new SexyLightBox({find:'sexywhite',color:'white', OverlayStyles:{'background-color':'#000'}});
-  });
-</script>
--->
 
 
 <title>Back office</title></head>
@@ -260,20 +243,20 @@ p{
 				<!--
 				<li><a href="#"><img src="images/pic_small/Settings.png"  border="0" align="absbottom" /> เลือกรายการ</a></li>
 				-->
-           		<li><a href="index.php?page=admin"><img src="images/details.gif" width="16" height="16" border="0" align="absbottom" /> Admin</a></li>
+           		<li><a href="index.php?page=admin"><img src="images/details.gif" width="16" height="16" border="0" align="absbottom" /> ผู้ดูแลระบบ</a></li>
            		 <!--
                 <li><a href="index.php?page=setConnectDb"><img src="images/pic_small/Macristocracy.png" border="0" align="absbottom" /> Set Database</a></li>
                
       			<li><a href="index.php?page=setEmail"><img src="images/order.gif" width="16" height="16" border="0" align="absbottom" /> Set E-mail</a></li>
 				-->
-				<li><a href="index.php?page=setHomePage"><img src="images/clientarea.gif" border="0" align="absbottom" /> Set Home page</a></li>
+				<!-- <li><a href="index.php?page=setHomePage"><img src="images/clientarea.gif" border="0" align="absbottom" /> ตั้งค่า</a></li>-->
 			
-				<li><a href="index.php?page=clearData"><img src="images/Photos.png" border="0" align="absbottom" /> Clear Data</a></li>
+				<!--<li><a href="index.php?page=clearData"><img src="images/Photos.png" border="0" align="absbottom" /> Clear Data</a></li>-->
 				<!--
 				<li><a href="#" id="btnResetData"><img src="images/iFile.png" width="16" height="16" border="0" align="absbottom" /> Get KPI Example </a></li>
 				-->
 
-				<li><a href="../View/index.php"><img src="images/support.gif" width="16" height="16" border="0" align="absbottom" /> KPI System</a></li>
+				<li><a href="../View/index.php"><img src="images/support.gif" width="16" height="16" border="0" align="absbottom" /> ระบบประเมินผล</a></li>
 
 					
 				

@@ -15,7 +15,7 @@ $admin_id=186;
 $emp_id=82;
 */
 require_once("setPDFKPIReport.php");
-include '../config.php';
+include '../Model/config.php';
 if($emp_id!=""){
 	$strSQL="
 	
@@ -25,7 +25,7 @@ if($emp_id!=""){
 		kr.adjust_reason,ap.appraisal_period_desc,
 		(select max(threshold_begin) from threshold) as scoreTarget,e.emp_id from employee e
 		INNER JOIN position_emp pe
-		ON e.position_id=pe.position_id
+		ON e.position_id=e.position_id
 		INNER JOIN kpi_result kr
 		ON e.emp_id=kr.emp_id
 		INNER JOIN appraisal_period ap 
@@ -49,7 +49,7 @@ if($emp_id!=""){
 		kr.adjust_reason,ap.appraisal_period_desc,
 		(select max(threshold_begin) from threshold) as scoreTarget,e.emp_id from employee e
 		INNER JOIN position_emp pe
-		ON e.position_id=pe.position_id
+		ON e.position_id=e.position_id
 		INNER JOIN kpi_result kr
 		ON e.emp_id=kr.emp_id
 		INNER JOIN appraisal_period ap 
@@ -66,7 +66,9 @@ if($emp_id!=""){
 $result=mysql_query($strSQL);
 $htmlcontent="";
 $appraisal_period_desc="";
-		
+if(!$result){
+	echo mysql_error();
+}		
 while($rs=mysql_fetch_array($result)){
 	//echo "emp_picture_thum=".$rs['emp_picture_thum']."<br>";
 	if($appraisal_period_id=="All"){
@@ -75,82 +77,81 @@ while($rs=mysql_fetch_array($result)){
 		$appraisal_period_desc=$rs['appraisal_period_desc'];
 	}
 	$htmlcontent.="  
-			<table class=\"table-striped\" border=\"1\" spacing=\"0\" style=\"margin-top:5px;margin-left:20px\">	
-			<tr>
-  				<td ><b>ปีการประเมิน</b></td>
-  				<td><b>".$kpi_year."</b></td>
-  				<td ><b>รอบการประเมิน</b></td>
-  						
-  				<td> <b>".$appraisal_period_desc."</b></td>
-  			</tr>
-  			</table>
-  			<br>
-			<table class=\"table-striped\" border=\"1\" spacing=\"0\" style=\"margin-top:5px;margin-left:20px\">	
-			<tr>
-  				<td ><b>ชื่อ</b></td>
-  				<td>".$rs['emp_first_name']."</td>
-  				<td ><b>นามสกุล</b></td>
-  				<td>".$rs['emp_last_name']."</td>
+
+				
+			<h1>".$rs['emp_first_name']." ".$rs['emp_last_name']." ปีประเมิน".$kpi_year.", ".$appraisal_period_desc." ผลประเมิน <span style=\"color:#0D3DFF;\">".$rs['score_final_percentage']."%</span></h1>
+			<hr>
+			<h3><u>ข้อมูลส่วนตัว</u></h3>
+			<div style=\"\">
+			<table width='100%' class=\"table-striped\" border=\"\" spacing=\"\" >	
+			<tr >
+  				<td ><b>ชื่อ</b> ".$rs['emp_first_name']."</td>
+  				
+  				<td ><b>นามสกุล</b> ".$rs['emp_last_name']."</td>
+  				
   			</tr>
 
 
   			<tr>
-  				<td ><b>ตำแหน่ง</b></td>
-  				<td>".$rs['position_name']."</td>
-  				<td ><b>อายุการทำางาน</b></td>
-  				<td>".$rs['emp_age_working']." ปี</td>
+  				<td ><b>ตำแหน่ง</b> ".$rs['position_name']."</td>
+  				
+  				<td ><b>อายุการทำงาน</b> ".$rs['emp_age_working']." ปี</td>
+  				
   			</tr>
   			
         <tr>
-  				<td><b>วันเดือนปีเกิด</b></td>
-  				<td>".$rs['emp_date_of_birth']."</td>
-  				<td><b>อายุ</b></td>
-  				<td>".$rs['emp_age']." ปี</td>
+  				<td><b>วันเดือนปีเกิด</b> ".$rs['emp_date_of_birth']."</td>
+  				
+  				<td><b>อายุ</b> ".$rs['emp_age']." ปี</td>
+  				
   			</tr>
   			<tr>
-  				<td><b>สถานนะ</b></td>
-  				<td>".$rs['emp_status']."</td>
-  				<td><b>อีเมลล์</b></td>
-  				<td>".$rs['emp_email']."</td>
+  				<td><b>สถานนะ</b> ".$rs['emp_status']."</td>
+  				
+  				<td><b>อีเมลล์</b> ".$rs['emp_email']."</td>
+  			
   			</tr>
   			<tr>
-  				<td><b>เบอร์บ้าน</b></td>
-  				<td>".$rs['emp_tel']."</td>
-  				<td><b>เบอร์มือถือ</b></td>
-  				<td>".$rs['emp_mobile']."</td>
+  				<td><b>เบอร์บ้าน</b> ".$rs['emp_tel']."</td>
+  				
+  				<td><b>เบอร์มือถือ</b> ".$rs['emp_mobile']."</td>
+  				
   			</tr>
   			<tr>
-  				<td><b>ที่อยู่</b></td>
-  				<td>".$rs['emp_adress']."</td>
-  				<td><b>ตำบล/แขวง</b></td>
-  				<td>".$rs['emp_sub_district']."</td>
+  				<td><b>ที่อยู่</b> ".$rs['emp_adress']."</td>
+  				
+  				<td><b>ตำบล/แขวง</b> ".$rs['emp_sub_district']."</td>
+  				
   			</tr>
   			<tr>
-  				<td><b>อำเภอ/เขต</b></td>
-  				<td>".$rs['emp_district']."</td>
-  				<td><b>จังหวัด</b></td>
-  				<td>".$rs['emp_province']."</td>
+  				<td><b>อำเภอ/เขต</b> ".$rs['emp_district']."</td>
+  				
+  				<td><b>จังหวัด</b> ".$rs['emp_province']."</td>
+  				
   			</tr>
   			
   			<tr>
-  				<td><b>รหัสไปรษณี</b></td>
-  				<td>".$rs['emp_postcode']."</td>
-  				<td><b>รหัสพนักงาน</b></td>
-  				<td>".$rs['emp_id']."</td>
+  				<td><b>รหัสไปรษณี</b> ".$rs['emp_postcode']."</td>
+  				
+  				
+  				
   				
   			</tr>
   			
   		</table>
-  		<br>
+		</div>
+		  <br>
+		  <h3><u>ผลประเมินรายตัวชี้วัด</u></h3>
+  		
   		";
 	
-  		$htmlcontent.="<table border=\"1\">
+  		$htmlcontent.="<table border=\"0.1\">
   			<thead>
-  				<tr>
-  					<th width='10%'><strong>KPI CODE</strong></th>
-  					<th width='50%'><strong>KPI Name</strong></th>
-  					<th width='20%'><strong>KPI Target</strong></th>
-  					<th width='20%'><strong>KPI Actual</strong></th>
+  				<tr style=\"background-color:#ddd;\">
+  					
+  					<th width='60%'><div style=\"padding:5px; font-weight:bold;\">ชื่อตัวชี้วัด</div></th>
+  					<th width='20%'><div style=\"padding:5px; font-weight:bold; text-align:right;\">ประเมินตนเอง</div></th>
+  					<th width='20%'><div style=\"padding:5px; font-weight:bold; text-align:right;\">หัวหน้าประเมิน</div></th>
   					
   				</tr>
   			</thead>
@@ -166,9 +167,9 @@ while($rs=mysql_fetch_array($result)){
   			
   			select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
 				ak.target_data as 'kpi_target' ,
-				round(sum(ak.kpi_actual_manual)/count(ak.appraisal_period_id),2) as 'kpi_actual' ,
-				round(sum(ak.performance)/count(ak.appraisal_period_id),2)  as 'kpi_performence'
-				from assign_kpi ak
+				ifnull(round(sum(ak.emp_performance)/count(ak.appraisal_period_id),2),0.00) as 'emp_performence' ,
+				round(sum(ak.performance)/count(ak.appraisal_period_id),2)  as 'chief_performence'
+				from assign_evaluate_kpi ak
 				inner JOIN kpi
 				ON ak.kpi_id=kpi.kpi_id
 				INNER JOIN kpi_result kr on ak.assign_kpi_year=kr.kpi_year
@@ -193,10 +194,10 @@ GROUP BY kpi.kpi_id
   				
 	  				$htmlcontent.="
   					<tr>
-		  				<td width='10%'>".$rsKPI['kpi_code']."</td>
-		  				<td width='50%'>".$rsKPI['kpi_name']."</td>
-		  				<td width='20%'>".$rsKPI['kpi_target']."</td>
-		  				<td width='20%'>".$rsKPI['kpi_actual']."</td>
+		  				
+		  				<td width='60%'>".$rsKPI['kpi_name']."</td>
+		  				<td width='20%'><div style=\"text-align:right;\">".$rsKPI['emp_performence']."%</div></td>
+		  				<td width='20%'><div style=\"text-align:right;\">".$rsKPI['chief_performence']."%</div></td>
 		  				
 	  				</tr>";
 				
@@ -209,33 +210,28 @@ GROUP BY kpi.kpi_id
   			$htmlcontent.="</tbody>
   			
   		</table>
+		  <br>
   		<table>
   			<tbody>
+  				
   				<tr>
-  					<td><strong> Perfomance</strong></td>
-  					<td>".$rs['score_sum_percentage']."%</td>
-  					<td></td>
-  					<td></td>
+  					<td><strong>ปรับคะแนน</strong></td>
+  					<td><div style=\"text-align:right;\">".$rs['adjust_percentage']."%</div></td>
+  					
   				</tr>
   				<tr>
-  					<td><strong>Adjust</strong></td>
-  					<td>".$rs['adjust_percentage']."%</td>
-  					<td></td>
-  					<td></td>
-  				</tr>
-  				<tr>
-  					<td><strong>Total</strong></td>
-  					<td>".$rs['score_final_percentage']."%</td>
-  					<td></td>
-  					<td></td>
+				  
+  					<td><strong style=\"text-align:left; color:#0D3DFF\">ผลประเมิน</strong></td>
+  					<td><div style=\"text-align:right; color:#0D3DFF\">".$rs['score_final_percentage']."%</div></td>
+  					
   				</tr>
   			</tbody>
   		</table>
-  							<hr>
+  		<hr>				
   							";
 	
-} 
-	//echo $htmlcontent;
+}
+	//echo "content=";$htmlcontent;
 
 // เพิ่มหน้าใน PDF 
 

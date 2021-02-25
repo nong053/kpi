@@ -9,9 +9,9 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // กำหนดรายละเอียดของเอกสาร pdf แสดงเมื่อคลิกขวาที่ไฟล์ PDF แล้วเลือก Document Property
 $pdf->SetCreator(PDF_CREATOR); // เครื่องมือสร้าง PDF  ค่าเริ่ม PDF_CREATOR = TCPDF
-$pdf->SetAuthor('Kosit'); // ชื่อผู้สร้างไฟล์ PDF
-$pdf->SetTitle('KPI Dashboard');//  กำหนด Title
-$pdf->SetSubject('KPI Dashboard'); // กำหนด Subject
+$pdf->SetAuthor('KPIToBSC'); // ชื่อผู้สร้างไฟล์ PDF
+$pdf->SetTitle('รายงานผลปฏิบัติงานรายบุคคล');//  กำหนด Title
+$pdf->SetSubject('รายงานผลปฏิบัติงานรายบุคคล'); // กำหนด Subject
 $pdf->SetKeywords('kpi, report, pdf'); // กำหนด Keyword
 
 
@@ -44,5 +44,5 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 $pdf->setLanguageArray($l); 
 
 // กำหนด Font กรณีใช้ภาษาไทยใช้ freeserif
-$pdf->SetFont('freeserif', '', 10);
+$pdf->SetFont('freeserif', '', 12);
 ?>
