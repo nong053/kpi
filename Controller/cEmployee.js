@@ -366,12 +366,12 @@ $(document).ready(function(){
 				
 				 $("#Tableemployee").kendoGrid({
                     // height: 350,
-                     sortable: true,
-                     pageable: {
-                         refresh: true,
-                         pageSizes: true,
-                         buttonCount: 5
-                     },
+                    //  sortable: true,
+                    //  pageable: {
+                    //      refresh: true,
+                    //      pageSizes: true,
+                    //      buttonCount: 5
+                    //  },
                  });
 				 setGridTable();
 				 
@@ -505,7 +505,7 @@ $(document).ready(function(){
 										
 									}else{
 										//alert("ไม่สามารถลยข้อมูลได้เนื่องจาก รหัสพนักงานนี้มีการใช้งานอยู่");
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่? เนื่องจาก รหัสพนักงานนี้มีการใช้งานอยู่")){	
+										if(confirm("ต้องการลบข้อมูลนี้หรือไม่? เนื่องจากรหัสพนักงานนี้มีการใช้งานอยู่")){	
 										 $.ajax({
 												url:"../Model/mEmployee.php",
 												headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
@@ -771,7 +771,6 @@ $(document).ready(function(){
 	 $('#MyUploadForm').submit(function() { 
 
 		 
-		 
 		 if(validateFn()!=""){	
 	 		alert(validateFn());
 	 	 }else if(validateFn()==""){	
@@ -997,8 +996,10 @@ $("#status_work_search_id").change(function(){
 })
 /*change param action end*/
 
-	$("#empBrithDay").kendoDatePicker();
-	$("#empAgeWorking").kendoDatePicker();
+	$("#empBrithDay").datepicker();
+	$( "#empBrithDay" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+	$("#empAgeWorking").datepicker();
+	$( "#empAgeWorking" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	
 
 	$("#customerSearch").click();
@@ -1014,7 +1015,7 @@ $("#status_work_search_id").change(function(){
 			$("#employeeModal").modal('show');
 
 		}else{
-			alert("ไม่สามารถเพิ่มผู้ใช้งานได้ \nติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจ โทร.0809926565");
+			alert("ไม่สามารถเพิ่มพนักงานได้ \nติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจ โทร.0809926565");
 		}
 	});
 

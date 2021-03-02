@@ -154,7 +154,7 @@ select e.*,pe.position_name,r.role_name,d.department_name
 	$tableHTML.="<colgroup>";
 	// $tableHTML.="<col style='width:5%' />";
 	$tableHTML.="<col style='width:8%' />";
-	$tableHTML.="<col style='width:18%' />";
+	$tableHTML.="<col style='width:13%' />";
 	$tableHTML.="<col style='width:13%' />";
 	$tableHTML.="<col style='width:13%' />";
 	$tableHTML.="<col style='width:13%' />";
@@ -164,7 +164,7 @@ select e.*,pe.position_name,r.role_name,d.department_name
 	$tableHTML.="<thead>";
 	$tableHTML.="<tr>";
 	// $tableHTML.="<th  data-field=\"column1\"><b>".$_SESSION['kpi_result_emp_l_tbl_id']."</b></th>";
-	$tableHTML.="<th style='text-align:center;' data-field=\"column2\"><b>".$_SESSION['kpi_result_emp_l_tbl_pticture']."</b></th>";
+	$tableHTML.="<th style='text-align:center;' data-field=\"column2\"></th>";
 	$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['kpi_result_emp_l_tbl_fullname']."</b></th>";
 	//$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['kpi_result_emp_l_tbl_department']."</b></th>";
 	//$tableHTML.="<th data-field=\"column5\"><b>".$_SESSION['kpi_result_emp_l_tbl_position']."</b></th>";
@@ -306,7 +306,7 @@ distinct complete_kpi_score_flag
 				// </td>";
 				$tableHTML.="	<td>
 				<div style='text-align:right;'>
-				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>ผลประเมินอนุมัติแล้ว</button>";
+				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>อนุมัติแล้ว</button>";
 				//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
 				$tableHTML.="
 				</div>
@@ -319,7 +319,7 @@ distinct complete_kpi_score_flag
 				if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==1 ){
 					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
 				}else{
-				$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
+				$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัด</button> ";
 				$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
 				//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
 				}

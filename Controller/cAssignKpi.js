@@ -469,7 +469,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 				
 				 //PRESS approvedKpi  START
 				 $(".approvedKpi").click(function(){
-					 alert("Approve KPIsแล้ว ไม่สามารถประเมินได้");
+					 alert("อนุมัติผลการประเมินแล้ว ไม่สามารถประเมินได้");
 				 });
 				 //PRESS approvedKpi  END
 				 //actionBackToAssign start
@@ -483,24 +483,27 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 					var empId=idAssignKPI[5];
 
 
-					$.ajax({
-						url:"../Model/mAssignKpi.php",
-						type:"post",
-						dataType:"json",
-						headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-						data:{"action":"backToAssignKPI","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
-							"position_id":position_id,"employee_id":empId},
-						success:function(data){
-							//alert(data);
-							
-							if("success"==data[0]){
-								alert("มอบหมายตัวชี้วัดใหม่");
-								showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
-							}else{
-								alert("ไม่สามารถลบข้อมูลได้");
+					if(confirm("ยืนยันการมอบหมายตัวชี้วัดใหม่")){
+
+						$.ajax({
+							url:"../Model/mAssignKpi.php",
+							type:"post",
+							dataType:"json",
+							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+							data:{"action":"backToAssignKPI","year":year,"appraisal_period_id":appraisal_period_id ,"department_id":department_id ,
+								"position_id":position_id,"employee_id":empId},
+							success:function(data){
+								//alert(data);
+								
+								if("success"==data[0]){
+									//alert("มอบหมายตัวชี้วัดใหม่");
+									showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+								}else{
+									alert("ไม่สามารถลบข้อมูลได้");
+								}
 							}
-						}
-				 });
+						});
+					}
 
 
 

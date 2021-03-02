@@ -379,6 +379,12 @@ if($_SESSION['language']=="th"){
 										<textarea id="empAddress" name="empAddress" class="form-control "></textarea>
 									</td>
 								</tr>
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_province'] ?></b></td>
+									<td><input type="text" name="empProvince" id="empProvince" class="form-control "> </td>
+								</tr>
+								
 								<tr>
 									<td class='text-right'><b><?= $_SESSION['employee_l_form_distict'] ?></b></td>
 									<td><input type="text" name="empDistict" id="empDistict" class="form-control "></td>
@@ -388,10 +394,7 @@ if($_SESSION['language']=="th"){
 									<td><input type="text" name="empSubDistict" id="empSubDistict" class="form-control "></td>
 								</tr>
 
-								<tr>
-									<td class='text-right'><b><?= $_SESSION['employee_l_form_province'] ?></b></td>
-									<td><input type="text" name="empProvince" id="empProvince" class="form-control "> </td>
-								</tr>
+								
 								<tr>
 									<td class='text-right'><b><?= $_SESSION['employee_l_form_postcode'] ?></b></td>
 									<td><input type="text" name="empPostcode" id="empPostcode" class="form-control "></td>

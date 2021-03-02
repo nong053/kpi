@@ -380,12 +380,13 @@ if($_SESSION['login_status']!="1"){
 
    <style type="text/css">
    	.btn{
-   		 /* padding: 3px 12px; */
+   		 padding: 4px 12px;
+			
 
    	}
    	.glyphicon{
    		left: 0px;
-	    top: 3px;
+	    top: 4px;
    	}
    	td, th {
 	    padding: 2px;
@@ -764,15 +765,18 @@ if($_SESSION['login_status']!="1"){
 		
 		<!--  form search,button fullscreen start -->
 		<div class="boxTopRight" style="float:right; margin-right:10px;">
-				<!--
-				<div class="withdraw-Enlarge" style="display:inline; float:right ; position:relative; magin-right:200px;margin-left: 2px;">
-					<button id="withdrawEnlarge" class="glyphicon glyphicon-align-justify  btn btn-default" style="width:auto;height:30px; font-weight:normal;"></button>
-				</div>
+			
+			<div class="withdraw-Enlarge" style="display:inline; float:right ; position:relative; magin-right:200px;margin-left: 2px;">
+				<button id="withdrawEnlarge" class="glyphicon glyphicon-align-justify  btn btn-default" style="width:auto;height:30px; font-weight:normal;"></button>
+			</div>
+			
+			
+			<!-- 
+			<div class="boxTitleR" style=" float:right; margin-right:2px">
+				<div class="formSearch" ></div>
+			</div> 
+			-->
 				
-				<div class="boxTitleR" style=" float:right; margin-right:2px">
-					<div class="formSearch" ></div>
-				</div>
-				-->
 			<!--  form search,button fullscreen end -->
 			
 			<!-- button full screen start -->

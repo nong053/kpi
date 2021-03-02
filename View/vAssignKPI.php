@@ -554,7 +554,7 @@ if($_SESSION['language']=="th"){
 	</div>
 
 	<div id='paramEmbedAssignKPI'></div>
-	<script src="../Controller/cAssignKPI.js"></script>
+	<script src="../Controller/cAssignKpi.js"></script>
 	
 
 

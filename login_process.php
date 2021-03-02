@@ -70,7 +70,8 @@ if($num=mysql_num_rows($result)){
 		$_SESSION['admin_status']=0;
 		$_SESSION['emp_role_leve']=$rsEmp['role_name'];
 		$_SESSION['emp_role_level_id']=$rsEmp['role_id'];
-		$_SESSION['admin_company']=$rs['admin_company'];
+		$_SESSION['admin_company']=$rsEmp['admin_company'];
+		$_SESSION['admin_id']=$rsEmp['admin_id'];
 		$_SESSION['ERORRLOGIN']="";
 		$_SESSION['login_status']=1;
 

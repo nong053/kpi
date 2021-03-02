@@ -100,7 +100,7 @@
 										
 										
 									}else if(data=="user-not-empty"){
-										alert("User name นี้มีการใช้งานแล้วครับ");
+										alert("ชื่อผู้ใช้นี้มีการใช้งานแล้ว");
 										//location.reload(); 
 									}else if(data.status=="200"){
 										alert("สร้างบัญชีของท่านเรียบร้อย");
@@ -149,7 +149,7 @@
                 <div class="span12 header">
                     <h4>สร้างบัญชีเพื่อใช้งานระบบประเมินบุคคล</h4>
                     <p>   
-					URL สำหรับเข้าใช้งาน :: http://kpi.dashboardweb.com
+					URL สำหรับเข้าใช้งาน :: http://test.dashboardweb.com ติดปัญหาการใช้งาน โทร.0809926565
 					</p>
 						 
                    
@@ -175,18 +175,19 @@ Website
 
                 <div class="span12 footer">
                     <form id="frmRegis" >
-						<input type="text" name="admin_company" id="admin_company" placeholder="ชื่อบริษัทหรือชื่อระบบ">
+						
                         <input type="text" name="admin_username" id="admin_username" placeholder="* ชื่อผู้ใช้(ภาษาอังกฤษเท่านั้น)">
-                        <input type="password" name="admin_password" id="admin_password" placeholder="รหัสผ่าน">
-                        <input type="password" name="admin_confirm" id="admin_confirm" placeholder="ยืนยันรหัสผ่าน">
-                        <input type="text" name="admin_name" id="admin_name" placeholder="ชื่อ">
-                        <input type="text" name="admin_surname" id="admin_surname" placeholder="นามสกุล">
-                        <input type="text" name="admin_email" id="admin_email" placeholder="อีเมลล์">
-                        <input type="text" name="admin_tel" id="admin_tel" placeholder="เบอร์โทร.">
+                        <input type="password" name="admin_password" id="admin_password" placeholder="* รหัสผ่าน">
+                        <input type="password" name="admin_confirm" id="admin_confirm" placeholder="* ยืนยันรหัสผ่าน">
+						<input type="text" name="admin_company" id="admin_company" placeholder="ชื่อบริษัท">
+                        <input type="text" name="admin_name" id="admin_name" placeholder="* ชื่อ">
+                        <input type="text" name="admin_surname" id="admin_surname" placeholder="* นามสกุล">
+                        <input type="text" name="admin_email" id="admin_email" placeholder="* อีเมลล์">
+                        <input type="text" name="admin_tel" id="admin_tel" placeholder="* เบอร์โทร.">
                         <!-- <input type="text" name="admin_age" id="admin_age" placeholder="อายุ"> -->
                        	<img src="captcha.php">
-                        <input type="text" style="width:80px;" name="vercode1" id="vercode1" placeholder="กรอกรหัส"> 
-                        <input type="submit"  value="บันทึก">
+                        <input type="text" style="width:80px;" name="vercode1" id="vercode1" placeholder="* กรอกรหัส"> 
+                        <input type="submit"  value="สร้างบัญชี">
                     </form>
                 </div>
 
@@ -210,7 +211,7 @@ Website
 				<h4 style="color:white; margin-top:15px;">ราคาแพคเกจ</h4>
 					<div class="row" style="color:white;">
 						<div class='col-md-12' >
-						<table class="table">
+						<table class="table" style="font-size: 16px;">
 							<thead>
 							<tr>
 								<th>แพคเกจ</th>
@@ -223,8 +224,8 @@ Website
 							<tr>
 								<td>แพ็กเกจ E</td>
 								<td>5 คน</td>
-								<td>200/เดือน</td>
-								<td>2,000/ปี</td>
+								<td><font color="red">ฟรี</font>/เดือน</td>
+								<td><font color="red">ฟรี</font>/ปี</td>
 							</tr>
 							<tr>
 								<td>แพ็กเกจ D</td>
@@ -236,20 +237,20 @@ Website
 							<tr>
 								<td>แพ็กเกจ C</td>
 								<td>15 คน</td>
-								<td>300/เดือน</td>
+								<td>350/เดือน</td>
 								<td>3,500/ปี</td>
 							</tr>
 							<tr>
 								<td>แพ็กเกจ B</td>
 								<td>25 คน</td>
-								<td>400/เดือน</td>
-								<td>4,000/ปี</td>
+								<td>450/เดือน</td>
+								<td>4,500/ปี</td>
 							</tr>
 							<tr>
 								<td>แพ็กเกจ A</td>
 								<td>50 คน</td>
-								<td>800/เดือน</td>
-								<td>8,000/ปี</td>
+								<td>850/เดือน</td>
+								<td>8,500/ปี</td>
 							</tr>
 							</tbody>
 						</table>

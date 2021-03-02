@@ -87,7 +87,7 @@
 					var emp_id=data_id[5];
 
 
-					if(confirm("Do you want to new evaluate.")){
+					if(confirm("ยืนยันการส่งพนักงานไปประเมินใหม่")){
 						$.ajax({
 							   url:"../Model/mApproveKpi.php",
 							   type:"post",

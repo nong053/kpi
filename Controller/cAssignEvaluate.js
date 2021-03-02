@@ -418,7 +418,7 @@ var sendKPIAsignToEvaluate = function(action,year,appraisal_period_id,department
 			async:false,
 		success:function(data){
 			if(data[0]=="success"){
-				alert("confirm assign success.");
+				alert("ส่งประเมินเรียบร้อย");
 			}	
 		}	
 	});
@@ -516,7 +516,7 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 					showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 				
 				}else{
-					alert("can't send to approval beacause kpi weight is't equals 100%");
+					alert("ไม่สามารถส่งไปประเมินได้เนื่องจากน้ำหนักตัวชี้วัดไม่เท่ากับ 100%");
 				}
 
 

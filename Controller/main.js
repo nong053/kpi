@@ -1176,34 +1176,34 @@ $(document).ready(function(){
    	 
    	  /*withdraw Enlarge start */
    	  
-   	  var EnlargeFn=function(thisParam){
-   		    $("#slideLeft").css({"width":"200px","opacity":1});
-			$(".sidebar-background").css({"width":"200px"});
-			$("#mainContent").css({"margin-left":"201px"});
-			//$("#mainContent").css({"margin-left":"50px"});
-			//$(thisParam).addClass("active");
-			$(".menu-text").show();
-			$(".boxTitle").css({"width":"200px"});
-			$(".boxLeftTopSmall").hide();
-			$(".boxLeftTopLarge").show();
-			$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
-			$("#slideLeft").show();
+   	//   var EnlargeFn=function(thisParam){
+   	// 	    $("#slideLeft").css({"width":"200px","opacity":1});
+	// 		$(".sidebar-background").css({"width":"200px"});
+	// 		$("#mainContent").css({"margin-left":"201px"});
+	// 		//$("#mainContent").css({"margin-left":"50px"});
+	// 		//$(thisParam).addClass("active");
+	// 		$(".menu-text").show();
+	// 		$(".boxTitle").css({"width":"200px"});
+	// 		$(".boxLeftTopSmall").hide();
+	// 		$(".boxLeftTopLarge").show();
+	// 		$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
+	// 		$("#slideLeft").show();
 			
-		 };
-		var withdrawFn=function(thisParam){
+	// 	 };
+	// 	var withdrawFn=function(thisParam){
 
-			$("#slideLeft").css({"width":"50px","opacity":1});
-			$(".sidebar-background").css({"width":"50px"});
-			$("#mainContent").css({"margin-left":"50px"});
-			//$(thisParam).removeClass("active");
-			$(".menu-text").hide();
-			$(".boxTitle").css({"width":"50px"});
-			$(".boxLeftTopSmall").show();
-			$(".boxLeftTopLarge").hide();
-			$(".subMenu").addClass("submenuHover").css({"padding-left":"0px"});
-			$("#slideLeft").show();
+	// 		$("#slideLeft").css({"width":"50px","opacity":1});
+	// 		$(".sidebar-background").css({"width":"50px"});
+	// 		$("#mainContent").css({"margin-left":"50px"});
+	// 		//$(thisParam).removeClass("active");
+	// 		$(".menu-text").hide();
+	// 		$(".boxTitle").css({"width":"50px"});
+	// 		$(".boxLeftTopSmall").show();
+	// 		$(".boxLeftTopLarge").hide();
+	// 		$(".subMenu").addClass("submenuHover").css({"padding-left":"0px"});
+	// 		$("#slideLeft").show();
 		
-		};
+	// 	};
 		/*
    	  $("#withdrawEnlarge").click(function(){
 
@@ -1308,25 +1308,25 @@ $(document).ready(function(){
      connect-mission
      */
      $(".connect-database").click(function(){
-    	alert("สำหรับผู้ดูแลระบบสูงสุด");   
+    	alert("สำหรับผู้ดูแลระบบ(Super Admin)");   
      });
      $(".connect-admin").click(function(){
-		alert("สำหรับผู้ดูแลระบบสูงสุด");  
+		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
       });
      $(".connect-message").click(function(){
-		alert("สำหรับผู้ดูแลระบบสูงสุด");  
+		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
       });
      $(".connect-mission").click(function(){
-		alert("สำหรับผู้ดูแลระบบสูงสุด");   
+		alert("สำหรับผู้ดูแลระบบ(Super Admin)");   
       });
 	  $(".notClick").click(function(){
-		alert("สำหรับผู้ดูแลระบบสูงสุด");  
+		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
 	 });
      /*button left top in main menu action start*/
      
      /*option start action start*/
      $(".themeAction").click(function(){
-		alert("สำหรับผู้ดูแลระบบสูงสุด");  
+		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
       });
      /*option start action start*/
      

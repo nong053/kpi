@@ -30,7 +30,8 @@ if($_POST['unset_session']=="loguout"){
 	//echo $admin_username;
 	//header( "location: ../kpi/".$admin_username );
 
-	echo"<script>setTimeout(function(){window.location='../kpi/".$admin_username."'},1000);</script>";
+	// echo"<script>setTimeout(function(){window.location='../kpi/".$admin_username."'},1000);</script>";
+	echo"<script>setTimeout(function(){window.location='../'},1000);</script>";
 	//echo"<script>setTimeout(function(){window.location='../kpi/'},3000);</script>";
 
 

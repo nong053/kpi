@@ -66,13 +66,13 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 
 					//ส่งmailสมาชิก
 					$strTo = $admin_email;
-					$strSubject = "สร้างบัญชีเพื่อเข้าใช้งานระบบประเมินผลการปฎิบัติงาน";
-					$strHeader ="สวัสดีครับคุณ". $rs['admin_name']." ".$rs['admin_surname'];
-					$strMessage = "ได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งานหน้าเว็บ  URL= kpi.dashboardweb.com  \nUser name:".$admin_username." Password:".$admin_password."  \n<b>ช่องทางการติดต่อ</b>โทร: 02-001-8629 มือถือ: 080-992-6565 อีเมลล์1: nn.it@hotmail.com";
+					$strSubject = "สร้างบัญชีระบบประเมินผลการปฎิบัติงาน";
+					$strHeader ="สวัสดีครับคุณ ". $rs['admin_name']." ".$rs['admin_surname'];
+					$strMessage = "ท่านได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งาน  URL= test.dashboardweb.com  \nUsername:".$admin_username." \nPassword:".$admin_password."  \nช่องทางการติดต่อโทร: 02-001-8629 มือถือ: 080-992-6565 อีเมลล์: nn.it@hotmail.com";
 					$strTo2 = "kosit.arom@gmail.com";
-					$strSubject2 = "แจ้งการสร้างบัญชีเพื่อใช้งานระบบประเมินผลการปฎิบัติงาน";
-					$strHeader2 ="คุณ". $rs['admin_name']." ".$rs['admin_surname'];
-					$strMessage2 = "ได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งานหน้าเว็บ  URL= kpi.dashboardweb.com  \nUser name:".$admin_username." Password:".$admin_password."  \n<b>ช่องทางการติดต่อ</b>โทร: 02-001-8629 มือถือ: 080-992-6565 อีเมลล์1: nn.it@hotmail.com";
+					$strSubject2 = "รายงานการสร้างบัญชีสำหรับระบบประเมินผลการปฎิบัติงาน";
+					$strHeader2 ="คุณ ". $rs['admin_name']." ".$rs['admin_surname'];
+					$strMessage2 = "ได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งาน  URL= test.dashboardweb.com  \nUsername:".$admin_username." \nPassword:".$admin_password."  \nช่องทางการติดต่อโทร: 02-001-8629 มือถือ: 080-992-6565 อีเมลล์: nn.it@hotmail.com";
 					$flgSend1 = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
 					$flgSend2 = @mail($strTo2,$strSubject2,$strMessage2,$strHeader2);  // @ = No Show Error //
 

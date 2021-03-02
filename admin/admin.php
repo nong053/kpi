@@ -8,20 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link rel="stylesheet" href="../jquery-ui/css/cupertino/jquery-ui-1.10.3.custom.min.css" type="text/css" media="all" />
-<!-- <script src="../jquery-ui/js/jquery-1.9.1.js" type="text/javascript"></script>
-<script src="../jquery-ui/js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script> -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-jQuery.noConflict();
-jQuery( function() {
-    jQuery( "#datepicker" ).datepicker();
-  } );
-</script>
+<script src="../jquery-ui/js/jquery-1.9.1.js" type="text/javascript"></script>
+<script src="../jquery-ui/js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 </head>
 <body>
  
-<p>Date: <input type="text" id="datepicker"></p>
+
 
 
 <style type="text/css">

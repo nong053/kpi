@@ -220,7 +220,7 @@ if($_POST['empAction']=="add"){
 	##########################################
 	
 	//continue only if $_POST is set and it is a Ajax request
-	if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+	//if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
 	
 		// check $_FILES['ImageFile'] not empty
 		if(!isset($_FILES['image_file']) || !is_uploaded_file($_FILES['image_file']['tmp_name'])){
@@ -293,7 +293,7 @@ if($_POST['empAction']=="add"){
 	
 			imagedestroy($image_res); //freeup memory
 		}
-	}
+	//}
 	
 	
 	
@@ -317,7 +317,7 @@ if($_POST['empAction']=="add"){
 		$rs=mysql_query($strSQL);
 		if($rs){
 			//echo'success';
-			echo"<script>alert(บันทึกข้อมูลเรียบร้อย);</script>";
+			//echo"<script>alert(บันทึกข้อมูลเรียบร้อย);</script>";
 			echo"<script>window.location.href = \"../View/index.php#/pages/vEmployee\";</script>";
 		}else{
 			echo mysql_error();
@@ -549,7 +549,8 @@ if($_POST['empAction']=="editAction"){
 	
 	
 	/*Edit Immage Start Here*/
-	if($_FILES['image_file']!=""){
+	//echo($_FILES['image_file']['size']);
+	if($_FILES['image_file']['size']!=0){
 		
 	
 	$varible="";
@@ -563,7 +564,7 @@ if($_POST['empAction']=="editAction"){
 	##########################################
 	
 	//continue only if $_POST is set and it is a Ajax request
-	if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
+	//if(isset($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
 	
 		// check $_FILES['ImageFile'] not empty
 		if(!isset($_FILES['image_file']) || !is_uploaded_file($_FILES['image_file']['tmp_name'])){
@@ -636,7 +637,7 @@ if($_POST['empAction']=="editAction"){
 	
 			imagedestroy($image_res); //freeup memory
 		}
-	}
+	//}
 	/*Edit Immage End Here*/
 	
 		$strSQLDelPic="SELECT * FROM employee WHERE emp_id=$empId";
@@ -705,7 +706,10 @@ if($_POST['empAction']=="editAction"){
 	
 	$result=mysql_query($strSQL);
 	if($result){
-		echo'editSuccess';
+		//echo'editSuccess';
+		//echo"<script>alert('แก้ไขข้อมูลเรียบร้อย');</script>";
+		echo"<script>window.location.href = \"../View/index.php#/pages/vEmployee\";</script>";
+
 	}else{
 		echo'["error"]'.mysql_error();
 	}
