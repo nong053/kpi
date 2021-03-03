@@ -18,7 +18,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['perspective_l_tbl_perspective_manage']="จัดการ";
 
 	$_SESSION['perspective_l_form_required']="จำเป็นต้องกรอก";
-	$_SESSION['perspective_l_form_name']="ฟร์อมมุมมองทางธุรกิจ";
+	$_SESSION['perspective_l_form_name']="มุมมองทางธุรกิจ";
 
 	$_SESSION['perspective_btn_add']="เพิ่ม";
 	$_SESSION['perspective_btn_reset']="เคลียร์";

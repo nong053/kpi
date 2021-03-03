@@ -1116,6 +1116,8 @@ $("#empDisplayImage").attr("src",$("#emp_image").val());
 $("#empDisplayFullName").html($("#emp_first_name").val()+" "+$("#emp_last_name").val());
 $("#empDisplayPosition").html($("#emp_position").val());
 $("#empDisplayDepartment").html($("#emp_department").val());
+$("#empDisplayWorkAge").html(" "+$("#emp_work_age").val()+"ปี");
+
 $("#empDisplayRole").html($("#embed_emp_role_leve").val());
 
 

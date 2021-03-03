@@ -385,11 +385,13 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
             }
             $tableHTML .= " 
 					<div class='caption'>";
-
+                 
             $tableHTML .= "<p class='emp-text-left'>";
+            $tableHTML .= "<b>รหัส " . $rs['emp_code'] ."</b><br>";
             $tableHTML .= "<b>" . $rs['emp_first_name'] . " " . $rs['emp_last_name'] . "</b>";
             $tableHTML .= "<br>" . $rs['department_name'];
             $tableHTML .= "<br> ตำแหน่ง" . $rs['position_name'];
+            $tableHTML .= "<br> อายุงาน " . dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี";
             $tableHTML .= "</p>";
             $tableHTML .= " 
 					</div>

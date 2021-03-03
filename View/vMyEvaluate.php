@@ -264,6 +264,7 @@ if($_SESSION['language']=="th"){
 							ตำแหน่ง:<span id="empDisplayPosition"></span><br>
 							แผนก:<span id="empDisplayDepartment"></span><br>
 							สิทธิ์:<span id="empDisplayRole"></span><br>
+							อายุงาน:<span id="empDisplayWorkAge"></span><br>
 						</div>
 					</div>
 				</div>

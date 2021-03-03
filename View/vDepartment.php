@@ -18,7 +18,7 @@ if($_SESSION['language']=="th"){
 
 	//form
 	$_SESSION['department_l_form_required']="จำเป็นต้องกรอก";
-	$_SESSION['department_l_form_name']="ฟอร์มแผนก";
+	$_SESSION['department_l_form_name']="แผนก";
 	$_SESSION['department_l_form_department_code']="รหัสแผนก";
 	$_SESSION['department_l_form_department_name']="ชื่อแผนก";
 	$_SESSION['department_l_form_department_detail']="รายละเอียดเพิ่มเติม";

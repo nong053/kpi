@@ -29,7 +29,7 @@ if($_SESSION['language']=="th"){
 
 	//form
 	
-	$_SESSION['kpi_l_form_name']="ฟอร์มตัวชี้วัด";
+	$_SESSION['kpi_l_form_name']="ตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_code']="รหัสตัวชี้วัด";
 	$_SESSION['kpi_l_form_department']="แผนก";
 	$_SESSION['kpi_l_form_kpi_name']="ชื่อตัวชี้วัด";

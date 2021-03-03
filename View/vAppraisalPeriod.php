@@ -21,7 +21,7 @@ if($_SESSION['language']=="th"){
 
 	//form
 	$_SESSION['appraisalPeriod_l_form_required']="จำเป็นต้องกรอก";
-	$_SESSION['appraisalPeriod_l_form_name']="ฟร์อมช่วงประเมิน";
+	$_SESSION['appraisalPeriod_l_form_name']="ช่วงประเมิน";
 	$_SESSION['appraisalPeriod_l_form_des']="ชื่อช่วงประเมิน";
 	$_SESSION['appraisalPeriod_l_form_start']="เริ่ม";
 	$_SESSION['appraisalPeriod_l_form_end']="ถึง";

@@ -232,6 +232,7 @@ if($_SESSION['login_status']!="1"){
 					<input type="hidden" name="emp_position" id="emp_position"  value="<?=$rsEmp['position_name']?>">
 					<input type="hidden" name="emp_position_id" id="emp_position_id"  value="<?=$rsEmp['position_id']?>">
 					<input type="hidden" name="emp_image" id="emp_image"  value="<?=$rsEmp['emp_picture_thum']?>">
+					<input type="hidden" name="emp_work_age" id="emp_work_age"  value="<?=dateDifference($rsEmp['emp_age_working'],date("Y-m-d"))?>">
 					
 						
 					<?php

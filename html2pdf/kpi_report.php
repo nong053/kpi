@@ -79,7 +79,7 @@ while($rs=mysql_fetch_array($result)){
 	$htmlcontent.="  
 
 				
-			<h1>".$rs['emp_first_name']." ".$rs['emp_last_name']." ปีประเมิน".$kpi_year.", ".$appraisal_period_desc." ผลประเมิน <span style=\"color:#0D3DFF;\">".$rs['score_final_percentage']."%</span></h1>
+			<h1>ประเมินปี".$kpi_year.", ".$appraisal_period_desc.", ".$rs['emp_first_name']." ".$rs['emp_last_name'].", ผลประเมิน <span style=\"color:#0D3DFF;\">".$rs['score_final_percentage']."%</span></h1>
 			<hr>
 			<h3><u>ข้อมูลส่วนตัว</u></h3>
 			<div style=\"\">
@@ -95,7 +95,7 @@ while($rs=mysql_fetch_array($result)){
   			<tr>
   				<td ><b>ตำแหน่ง</b> ".$rs['position_name']."</td>
   				
-  				<td ><b>อายุการทำงาน</b> ".$rs['emp_age_working']." ปี</td>
+  				<td ><b>อายุการทำงาน</b> ".dateDifference($rs['emp_age_working'],date("Y-m-d"))." ปี</td>
   				
   			</tr>
   			

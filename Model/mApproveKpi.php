@@ -114,17 +114,17 @@ if($_POST['action']=="showEmpData"){
 		$tableHTML.="	<td style='text-align:center;'>";
 		
 		if (empty($rs['emp_picture_thum'])) {
-			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" >";
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" >".$rs['emp_code']."";
 		} else {
-			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" >";
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" >".$rs['emp_code']."";
 		}
 		// <img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=80 height=80></td>";
 		$tableHTML.="	<td>
+		
 		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>"
 		.$rs['department_name']."<br>
 		ตำแหน่ง".$rs['position_name']."<br>
-
-		
+		อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
 		</td>";
 		//$tableHTML.="	<td>".$rs['department_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span></td>";
 		// $tableHTML.="	<td>".$rs['position_name']."<span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";

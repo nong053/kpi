@@ -397,7 +397,7 @@ where (e.department_id='All' or 'All' ='All')
 	
 	}
 	$tableHTML.=" 	</div></td>";
-	$tableHTML.="	<td>".$rs['emp_first_name']." ".$rs['emp_last_name']."<br>";
+	$tableHTML.="	<td>รหัส ".$rs['emp_code']."<br>".$rs['emp_first_name']." ".$rs['emp_last_name']."<br>";
 	
 	if($rs['role_id']==1){
 		$tableHTML.="<div style='color:red;'>(สิทธิ์".$rs['role_name'].")</div>";

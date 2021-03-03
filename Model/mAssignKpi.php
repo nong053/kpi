@@ -189,17 +189,17 @@ select e.*,pe.position_name,r.role_name,d.department_name
 		// <img class=\"img-circle\"  src=".$rs['emp_picture_thum']." width=50>
 		if(empty($rs['emp_picture_thum'])){
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'>";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'> รหัส ".$rs['emp_code']."";
 
 		}else{
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>".$rs['emp_code']."";
 		
 		}
 		$tableHTML.="</td>";
 		$tableHTML.="	<td>
 		<span  id='fullName-".$rs['emp_id']."'>
-		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br>
+		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br> อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
 		</span>
 		<span style='display:none;' id='depId-".$rs['emp_id']."'>
 		".$rs['department_id'].
@@ -325,15 +325,24 @@ distinct complete_kpi_score_flag
 
 			$tableHTML.="</div>
 			</td>";
-			}else{
+			}else if($rsKpiResult[confirm_flag]=="Y"){
 			$tableHTML.="<td>
 				<div style='text-align:right;'>
 				
 				 <button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
-				 <button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-info '>พร้อมรับประเมิน</button>
+				 <button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-info '>หัวหน้าประเมินแล้ว</button>
 				
 				</div>
 			</td>";
+			}else if($rsKpiResult[emp_confirm_flag]=="Y"){
+				$tableHTML.="<td>
+					<div style='text-align:right;'>
+					
+					<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
+					<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-info '>พนักงานประเมินแล้ว</button>
+					
+					</div>
+				</td>";
 			}
 			
 		}else if($rsKpiCountAssignMaster['count_assign_evaluate_kpi']>0 ){

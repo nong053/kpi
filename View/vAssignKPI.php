@@ -198,7 +198,7 @@ if($_SESSION['language']=="th"){
 	}
 	.empName1{
 		/* font-weight: bold; */
-		font-size: 20px;
+		/* font-size: 20px; */
 	}
 	
  </style>

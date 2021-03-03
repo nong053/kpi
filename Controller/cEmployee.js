@@ -476,6 +476,7 @@ $(document).ready(function(){
 				 $(".actionDel").click(function(){
 					 var idDel=this.id.split("-");
 					 var id=idDel[1];
+					 
 					 //Check kpi_assign and kpi_result it using employee.? Start
 					 $.ajax({
 							url:"../Model/mEmployee.php",
