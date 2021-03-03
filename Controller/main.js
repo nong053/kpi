@@ -15,6 +15,57 @@ $( document ).ajaxStop(function() {
 });
 
 // reuse function start
+/*withdraw Enlarge start */
+   	  
+var EnlargeFn=function(){
+ $("#slideLeft").css({"width":"200px","opacity":1});
+ $(".sidebar-background").css({"width":"200px"});
+ $("#mainContent").css({"margin-left":"201px"});
+ //$("#mainContent").css({"margin-left":"50px"});
+ //$(thisParam).addClass("active");
+ $(".menu-text").show();
+ $(".boxTitle").css({"width":"200px"});
+ $(".boxLeftTopSmall").hide();
+ $(".boxLeftTopLarge").show();
+ $(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
+ $("#slideLeft").show();
+ 
+ 
+ 
+};
+var withdrawFn=function(){
+
+	$("#slideLeft").css({"width":"50px","opacity":1});
+	$(".sidebar-background").css({"width":"50px"});
+	$("#mainContent").css({"margin-left":"50px"});
+	//$(thisParam).removeClass("active");
+	$(".menu-text").hide();
+	$(".boxTitle").css({"width":"50px"});
+	$(".boxLeftTopSmall").show();
+	$(".boxLeftTopLarge").hide();
+	$(".subMenu").addClass("submenuHover").css({"padding-left":"0px"});
+	$("#slideLeft").show();
+ 
+
+};
+
+
+var checkWithDrawEnlarge = function(){
+	if($("#withdrawEnlarge").hasClass("active")){
+		withdrawFn();
+ 	}else{
+ 		EnlargeFn();
+ 	}
+}
+
+//CHECK BROWSER FN
+var checkBrowserFn=function(){
+	
+	if($(window).width()<980){
+		$("#withdrawEnlarge").addClass('active');
+		withdrawFn();
+	}
+};
 
 var currentDate = function(){
 	var d = new Date();
@@ -559,6 +610,7 @@ $(document).ready(function(){
 	
 
 	checkTokenFn();
+	checkBrowserFn();
 
 	//Logout Start
 	$("#logout").click(function(){
@@ -1174,49 +1226,27 @@ $(document).ready(function(){
    		 return false;
    	  });
    	 
-   	  /*withdraw Enlarge start */
    	  
-   	//   var EnlargeFn=function(thisParam){
-   	// 	    $("#slideLeft").css({"width":"200px","opacity":1});
-	// 		$(".sidebar-background").css({"width":"200px"});
-	// 		$("#mainContent").css({"margin-left":"201px"});
-	// 		//$("#mainContent").css({"margin-left":"50px"});
-	// 		//$(thisParam).addClass("active");
-	// 		$(".menu-text").show();
-	// 		$(".boxTitle").css({"width":"200px"});
-	// 		$(".boxLeftTopSmall").hide();
-	// 		$(".boxLeftTopLarge").show();
-	// 		$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
-	// 		$("#slideLeft").show();
-			
-	// 	 };
-	// 	var withdrawFn=function(thisParam){
-
-	// 		$("#slideLeft").css({"width":"50px","opacity":1});
-	// 		$(".sidebar-background").css({"width":"50px"});
-	// 		$("#mainContent").css({"margin-left":"50px"});
-	// 		//$(thisParam).removeClass("active");
-	// 		$(".menu-text").hide();
-	// 		$(".boxTitle").css({"width":"50px"});
-	// 		$(".boxLeftTopSmall").show();
-	// 		$(".boxLeftTopLarge").hide();
-	// 		$(".subMenu").addClass("submenuHover").css({"padding-left":"0px"});
-	// 		$("#slideLeft").show();
-		
-	// 	};
-		/*
    	  $("#withdrawEnlarge").click(function(){
-
+		
+		//checkWithDrawEnlarge();
    		 if($(this).hasClass("active")){
-   			 
-			withdrawFn(this);
+			
+			EnlargeFn();
+			$("#withdrawEnlarge").removeClass('active');
+			
    			 
    		 }else{
-   			
-			EnlargeFn(this);
+		
+			withdrawFn();
+			$("#withdrawEnlarge").addClass('active');
+			
+			
+			
    		 }
 	  });
-	  */
+	  
+	  
 		 
 	 /*
 	  $( "#slideLeft" )
@@ -1235,7 +1265,7 @@ $(document).ready(function(){
      $(".fullscreen-not-supported").toggle($(document).fullScreen() == null);
      
      $(document).bind("fullscreenchange", function(e) {
-        console.log("Full screen changed.");
+        
         $("#status").text($(document).fullScreen() ? 
             "Full screen enabled" : "Full screen disabled");
      });
@@ -1407,21 +1437,24 @@ app.config(function($routeProvider) {
 
 app.controller("pageController",function($scope, $route, $routeParams){
 
+
+	
+
 	$route.current.templateUrl = $routeParams.url + ".php";
 	  $.get($route.current.templateUrl, function (data){
 	       $("#mainContent").html(data);
 
 		   //alert($routeParams.url);
+		   checkWithDrawEnlarge();
 		   
 		   var subjectPage="";
 	          $(".mainMenu").removeClass("active");
 			  if($routeParams.url=="vKpiOwner"){
-
+				
 				
 				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#kpiDashboardMenu >.menu-text").text()+"</b>";
 				$("#kpiDashboardMenu").parent().addClass("active");
 			 	$("#kpiDashboardEmpMenu").parent().addClass("active");
-
 				$("#subjectPage").html(subjectPage);
 				
 			  }else if($routeParams.url=="vKpiDashboard"){

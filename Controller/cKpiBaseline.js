@@ -154,17 +154,8 @@ $(document).ready(function(){
 	
 	//back to kpi start
  	$("#kpiButton").click(function(){
- 		$(".paramKPI").remove();
- 		$.ajax({
-			url:"../View/vKpi.php",
-			type:"get",
-			dataType:"html",
-			success:function(data){
-				$("#mainContent").html(data);
-				callProgramControl("cKPI.js");
-				
-			}
-		});
+		location.reload();
+		
  		
  	});
  	//back to kpi end

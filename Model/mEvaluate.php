@@ -868,7 +868,7 @@ if($_POST['action']=="editAction"){
 
 
 		$strSQL2="
-		UPDATE kpi_result SET confirm_flag='N'
+		UPDATE kpi_result SET emp_confirm_flag='N'
 		WHERE kpi_year='$year'
 		and appraisal_period_id='$appraisal_period_id'
 		and department_id='$department_id'

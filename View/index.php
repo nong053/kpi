@@ -137,250 +137,11 @@ if($_SESSION['login_status']!="1"){
     <!--  css customize -->
 	<link href="../favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-	<script>
-
-		var withdrawEnlargeCom=function(thisParam){
-			
-			$("#slideLeft").css({"width":"200px"});
-			$(".sidebar-background").css({"width":"200px"});
-			$("#mainContent").css({"margin-left":"201px"});
-
-			$(thisParam).addClass("active");
-			$(".menu-text").show();
-			$(".boxTitle").css({"width":"200px"});
-			$(".boxLeftTopSmall").hide();
-			$(".boxLeftTopLarge").show();
-			$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
-			$("#slideLeft").show();
-		};
-
-		var withdrawEnlargeMobile=function(thisParam){
-				$("#slideLeft").css({"width":"50px"});
-				$(".sidebar-background").css({"width":"50px"});
-				$("#mainContent").css({"margin-left":"51px"});
-				$(thisParam).addClass("active");
-				$(".menu-text").hide();
-				$(".boxTitle").css({"width":"50px"});
-				$(".boxLeftTopSmall").show();
-				$(".boxLeftTopLarge").hide();
-				$(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
-				$("#slideLeft").show();
-		};
-			
-		
-		var moblieFn = function(){
-			$(".topParameter .box1").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-			$(".topParameter .box2").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-			$(".topParameter .box3").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-			$(".topParameter .box4").css({
-					"width":"100%",
-					"margin-top":"2px"
-			});
-
-			$(".topParameter .box5").css({
-					
-					"margin-top":"5px"
-					
-			});
-
-			$(".topParameter .box7").css({
-					"width":"100%",
-					"float": "left",
-					"margin-top":"2px",
-					"margin-left":"0px"
-			});
-
-			$(".topParameter .box8").css({
-					"width":"100%",
-					"float": "left",
-					"margin-top":"2px",
-					"margin-left":"0px",
-			});
-
-			$("select#appraisal_year").css({
-					"width":"100%",
-			});
-
-			$("select#department_id").css({
-					"width":"100%",
-			});
-
-			$("select#appraisal_period_id").css({
-					"width":"100%",
-			});
-
-			$("#appraisalPeriodSubmit").css({
-
-					"margin-bottom": "5px",
-					"margin-top": "10px",
-					"width": "100%"
-			}).removeClass("btn-sm");
-			withdrawEnlargeMobile();
-			$("#withdrawEnlarge").removeClass("active");
-			$(".topParameter").show();
-
-				$("#appraisalPeriodSubmit").attr("href","#appraisalPeriodSubmit");
-			$('#appraisalPeriodSubmit').click(function(){
-					$('html, body').animate({
-						scrollTop: $( $(this).attr('href') ).offset().top
-					}, 500);
-					return false;
-				});
-				
-			// $("#slideLeft").show();
-				//$("#withdrawEnlarge").click();
-		}
-		var computerFn = function(){
-				//alert("computerFn");
-				$(".topParameter .box1").css({
-					// "width":"120px",
-					"margin-top":"10px",
-					// "padding-left":"10px;",
-					"float":"left"
-			});
-			$(".topParameter .box2").css({
-					"width":"160px",
-					"margin-top":"2px",
-					"float":"left"
-			});
-			$(".topParameter .box3").css({
-					"width":"140px",
-					"margin-top":"10px",
-					"float":"left"
-			});
-			$(".topParameter .box4").css({
-					"width":"90px",
-					"margin-top":"2px",
-					"float":"left"
-			});
-
-			$(".topParameter .box5").css({
-
-					"margin-top":"1px",
-					"width":"90px",
-					"float": "left"
-					
-			});
-
-			$(".topParameter .box7").css({
-					// "width":"100px",
-					"float": "left",
-					"margin-top":"10px",
-					"margin-left":"0px"
-			});
-
-			$(".topParameter .box8").css({
-					"width":"150px",
-					"float": "left",
-					"margin-top":"2px",
-					"margin-left":"0px"
-			});
-
-			$("select#appraisal_period_id").css({
-					"width":"80px",
-			});
-
-			$("#appraisalPeriodSubmit").css({
-					"width":"auto",
-					"margin-bottom": "0px",
-					"margin-top": "2px",
-					
-			}).addClass("btn-sm");
-			/*
-			withdrawEnlargeCom(this);
-			$(".topParameter").show();
-			$("#withdrawEnlarge").addClass("active");
-			$("#appraisalPeriodSubmit").attr("href","");
-			*/
-			//  $("#slideLeft").show();
-		}
-		var widthWindow=$(window).width();
-		//alert(widthWindow);
-		$(window).resize(function(){
-			
-			var widthWindowPercentage= (parseFloat($(window).width())/parseFloat(widthWindow))*100;
-			
-			/*console.log(widthWindowPercentage+"%");*/
-			/*widthWindowPercentage=(widthWindowPercentage);*/
-			//console.log(widthWindowPercentage+"%");
-			//$(".KpiPerspective").css({"min-width":(widthWindowPercentage+60)+"px"});
-			if($(window).width() < 980){
-				
-				//$(".KpiPerspective").css({"min-width":"100px"});
-			}
-			if($(window).width() > 980){
-				//$(".KpiPerspective").css({"min-width":"160px"});
-			}
-		});
-
-		//CHECK BROWSER FN
-		var checkBrowserFn=function(){
-				
-				if($(window).width()<980){
-					//alert($(window).width());
-					//console.log($(window).width()); 
-					/*
-					$("#slideLeft").hide();
-					$(".boxTitle").hide();
-					$(".sidebar-background").hide();
-					$("#mainContent").css({"margin-left":"0px"});
-					*/
-					/*
-
-					$("#slideLeft").show();
-					$("#mainContent").css({"margin-left":"50px"});
-					$(".boxTitle").show();
-					$(".sidebar-background").show();
-					*/
-					
-					moblieFn();
-
-				}else{
-					/*
-					$("#slideLeft").show();
-					$("#mainContent").css({"margin-left":"201px"});
-					$(".boxTitle").show();
-					$(".sidebar-background").show();
-					*/
-					computerFn();
-				}
-			};
-
-			
-			$(document).ready(function(){
-
-			$(".topParameter").hide();
-			checkBrowserFn();
-			setTimeout(function(){
-				$("#kpiDashboard").click();
-				$("#appraisalPeriodSubmit").click();
-			});
-			
-			$(window).resize(function(){
-				//checkBrowserFn();
-				//$("#appraisalPeriodSubmit").click();
-			
-			});
-
-			$("#kpiDashboard").click(function(){
-				checkBrowserFn();
-			});
-			
-		});//document ready
-   </script>
+	
 
    <style type="text/css">
    	.btn{
-   		 padding: 4px 12px;
+   		 /* padding: 4px 12px; */
 			
 
    	}
@@ -766,23 +527,26 @@ if($_SESSION['login_status']!="1"){
 		<!--  form search,button fullscreen start -->
 		<div class="boxTopRight" style="float:right; margin-right:10px;">
 			
-			<div class="withdraw-Enlarge" style="display:inline; float:right ; position:relative; magin-right:200px;margin-left: 2px;">
-				<button id="withdrawEnlarge" class="glyphicon glyphicon-align-justify  btn btn-default" style="width:auto;height:30px; font-weight:normal;"></button>
-			</div>
+			<button class="boxC btn btn-default " id="withdrawEnlarge">
+				<i class="glyphicon glyphicon-align-justify"></i>
+			</button>
+
+			<button class="boxC btn btn-default " id="btnFullScreen">
+				<i class="glyphicon glyphicon-fullscreen"></i>
+			</button>
+
+
+			<!-- <div class="withdraw-Enlarge" style="display:inline; float:right ; position:relative; magin-right:200px;margin-left: 2px;">
+				<button id="withdrawEnlarge" class="glyphicon glyphicon-align-justify  btn btn-primary" style="width:auto;height:30px; font-weight:normal;"></button>
+			</div> -->
 			
-			
-			<!-- 
-			<div class="boxTitleR" style=" float:right; margin-right:2px">
-				<div class="formSearch" ></div>
-			</div> 
-			-->
-				
-			<!--  form search,button fullscreen end -->
+		
 			
 			<!-- button full screen start -->
-			<div class="fullScreen" style="display:inline; float:right ; position:relative; magin-right:5px">
-				<button class=" glyphicon glyphicon-fullscreen btn btn-default" id="btnFullScreen" style="width:auto;height:30px;"></button>
-			</div>
+			<!-- <div class="fullScreen" style="display:inline; float:right ; position:relative; magin-right:5px">
+				<button class=" glyphicon glyphicon-fullscreen btn btn-primary" id="btnFullScreen" style="width:auto;height:30px;"></button>
+			</div> -->
+
 			<!-- button full screen end -->
 			
 		</div>

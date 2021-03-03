@@ -379,7 +379,7 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
             $tableHTML .= "<div class='thumbnail' style='width:200px; margin-top:10px;'>";
             if (empty($rs['emp_picture_thum'])) {
-                $tableHTML .= "	<img style='opacity:0.1;' src=\"../view/uploads/avatar.jpg\" >";
+                $tableHTML .= "	<img style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" >";
             } else {
                 $tableHTML .= "	<img  src=\"" . $rs['emp_picture_thum'] . "\" >";
             }
@@ -808,8 +808,15 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
     if ($_POST['action'] == "confrimKpi") {
 
-
-        
+        /*
+        year: 2021
+        appraisal_period_id: 842
+        department_id: 9
+        position_id: 8
+        employee_id: 2
+        score_sum_percentage: 70%
+        action: confrimKpi
+        */
 
         $strSQLUpdate = "
 		UPDATE assign_evaluate_kpi SET confirm_flag='Y', updated_dt='" . date("Y-m-d H:i:s") . "'

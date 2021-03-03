@@ -1167,7 +1167,7 @@ $(".glyphicon-remove-bottom").click(function(){
 
 $(document).ready(function(){
 	
-
+	
 	paramYear(sessionStorage.getItem("param_year"));
 	$( "body" ).off( "change", "#appraisal_year");
 	$( "body" ).on( "change", "#appraisal_year", function() {

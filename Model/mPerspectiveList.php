@@ -6,10 +6,13 @@ include './../config.inc.php';
 // Convert JSON string to Array
 $json = $JWT->decode($token_data, $key);
 $jsonArray = json_decode($json, true);
+
+$admin_id=$_SESSION['admin_id'];
+
 if($jsonArray["login_status"]==1){
 	
 
-$strSQL="SELECT * FROM perspective";
+$strSQL="SELECT * FROM perspective where admin_id='$admin_id'";
 $result=mysql_query($strSQL);
 $i=0;
 $dataObject="";

@@ -114,7 +114,7 @@ if($_POST['action']=="showEmpData"){
 		$tableHTML.="	<td style='text-align:center;'>";
 		
 		if (empty($rs['emp_picture_thum'])) {
-			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../view/uploads/avatar.jpg\" >";
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" >";
 		} else {
 			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" >";
 		}

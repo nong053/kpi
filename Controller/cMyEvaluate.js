@@ -364,7 +364,7 @@ $("form#AssignKpiForm").submit(function(){
 
 
 	 	if($("#kpi_actual_manual").val()==""){
-	 		alert('Please fill KPI Result');
+	 		alert('กรอกผลการประเมินด้วยครับ');
 	 	}
 	 	
 	 	if($(".complete_kpi_score").get().length<1){X
@@ -372,33 +372,6 @@ $("form#AssignKpiForm").submit(function(){
 	 		return false;
 	 	}
 		
-		 /*
-		 console.log("################################");
-		 console.log("1="+$("#myEvaluateYear").val());
-		 console.log("2="+$("#my_evaluate_period").val());
-
-		 console.log("3="+$("#positionIdEmp").val());
-		 console.log("4="+$("#departmentIdEmp").val());
-		 console.log("5="+$("#emp_id").val());
-
-		 console.log("6="+$("#kpi_id").val());
-		 console.log("7="+$("#kpi_weight").val());
-		 console.log("8="+$("#kpi_target_data").val());
-		 console.log("9="+$(".kpi_type_actual:checked").val());
-		 console.log("10="+$("#kpi_actual_manual").val());
-		 console.log("11="+$("#kpi_actual_query").val());
-		 console.log("12="+$("#target_score").val());
-		 console.log("13="+$("#total_kpi_actual_score").val());
-		 console.log("14="+$("#kpi_actual_score").val());
-		 console.log("15="+$("#performance").val());
-		 console.log("16="+$("#assign_kpi_action").val());
-		 console.log("17="+$("#assign_kpi_id").val());
-		*/
-
-
-		
-
-		 
 		$.ajax({
 			url:"../Model/mEvaluate.php",
 			type:"post",

@@ -189,7 +189,7 @@ select e.*,pe.position_name,r.role_name,d.department_name
 		// <img class=\"img-circle\"  src=".$rs['emp_picture_thum']." width=50>
 		if(empty($rs['emp_picture_thum'])){
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../view/uploads/avatar.jpg\" width=\"80\" height='80'>";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'>";
 
 		}else{
 
@@ -233,7 +233,7 @@ year	2012
 distinct complete_kpi_score_flag
 */
 		$strSQLKpiResult="
-				SELECT  e.emp_id,kr.approve_flag,kr.confirm_flag,kr.emp_score_sum_percentage,kr.score_sum_percentage,kr.adjust_percentage,kr.score_final_percentage
+				SELECT  e.emp_id,kr.approve_flag,kr.confirm_flag,kr.emp_confirm_flag,kr.emp_score_sum_percentage,kr.score_sum_percentage,kr.adjust_percentage,kr.score_final_percentage
 				
  
 				FROM employee e
@@ -312,31 +312,29 @@ distinct complete_kpi_score_flag
 				</div>
 				</td>";
 
-			}else{
-			//  if($rsKpiResult[confirm_flag]=="Y"){
+			}else if($rsKpiResult[confirm_flag]=="Y" and $rsKpiResult[emp_confirm_flag]=="Y"){
 			$tableHTML.="	<td>
 			<div style='text-align:right;'>";
 				if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==1 ){
 					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
 				}else{
-				$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัด</button> ";
-				$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
-				//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
+					$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
+					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
+					//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
 				}
 
 			$tableHTML.="</div>
 			</td>";
+			}else{
+			$tableHTML.="<td>
+				<div style='text-align:right;'>
+				
+				 <button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
+				 <button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-info '>พร้อมรับประเมิน</button>
+				
+				</div>
+			</td>";
 			}
-			// else{
-			// $tableHTML.="<td>
-			// 	<div style='text-align:right;'>
-				
-			// 	<!-- <button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> -->
-			// 	<!-- <button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-warning '>พร้อมรับประเมิน</button> -->
-				
-			// 	</div>
-			// </td>";
-			// }
 			
 		}else if($rsKpiCountAssignMaster['count_assign_evaluate_kpi']>0 ){
 			 if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==1 ){

@@ -584,7 +584,9 @@ $(document).ready(function(){
 	 	
 	 	return validate;
 	}
+	$(document).off("submit","form#kpiForm");
 	$("form#kpiForm").submit(function(){
+		
 		//alert($(".kpiTypeTarget:checked").val());
 		//alert($("select#perspective option:selected").val());
 		/*
