@@ -156,11 +156,28 @@ if($_SESSION['login_status']!="1"){
 		margin-bottom: 5px;
 	}
 	.dropdown-menu > li > a{
-		border-bottom: 0.5px solid #cccc;
+		/* border-bottom: 0.5px solid #cccc; */
 	}
 	.img-circle {
     border:oldlace 2px solid;
 	}
+
+	.navbar-nav > li > .dropdown-menu{
+		background: #428BCA;
+		color:while;
+		margin-top: 12px;
+		border-top: #428BCA;
+	}
+
+	.dropdown-menu > li > a {
+		display: block;
+		padding: 3px 20px;
+		clear: both;
+		font-weight: normal;
+		line-height: 1.42857143;
+		color: white;
+		white-space: nowrap;
+}
 
 
    </style>
@@ -200,7 +217,7 @@ if($_SESSION['login_status']!="1"){
            
            
             <li class="dropdown" style="cursor: pointer;">
-			<a class="dropdown-toggle" href="#" id='logout' data-toggle="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" style="background-color: #428BCA;">
 					
 					<?php 
 					// GET EMPLOYEE FOR DISPLAY HERE..
@@ -255,27 +272,27 @@ if($_SESSION['login_status']!="1"){
 					}
 					?>
 					
-			<span class="glyphicon glyphicon-off" style="color:red;"></span>
+			
 			<form method="post" action="../logout.php" style='display: none;' id='formLogout'>
 				<input type='hidden' id='admin_username' name='admin_username' value='<?php echo $_SESSION[admin_username]?>'>
 				<input type='hidden' id='unset_session' name='unset_session' value='loguout'>
 				<input type='submit' id='btnLogoutSumit' name='btnLogoutSumit'>
 			</form>
-			<!-- <span class="caret"></span> -->
-
+			<span class="caret"></span>
 			</a>
-<!-- 			
+			<!-- <span class="glyphicon glyphicon-off" style="color:red;"></span> -->
+			
 				<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 					<li>
 					<?php
 					
 					if($_SESSION['admin_status']==1 or $_SESSION['admin_status']==3){
 						?>
-							<a href='../admin' id='profile' class=''><i class='glyphicon glyphicon-cog'></i> Control Panel</a>
+							<a href='../admin' id='profile' class=''><i style="color:orange;" class='glyphicon glyphicon-cog'></i> Control Panel</a>
 						<?
 					}
 					?>
-						<a href='?language=EN' id='EnLanguage' class=''>
+						<!-- <a href='?language=EN' id='EnLanguage' class=''>
 							<?php
 							if($_SESSION['language']=='en'){
 								?>
@@ -299,7 +316,7 @@ if($_SESSION['login_status']!="1"){
 								<i class='glyphicon glyphicon-globe'></i> ไทย</a>
 								<?
 							}
-							?>
+							?> -->
 
 							
 						<a href='#' id='logout' class=''><i style="color: red;" class="glyphicon glyphicon-off"></i> Logout</a>
@@ -311,7 +328,7 @@ if($_SESSION['login_status']!="1"){
 						</form>
 						
 					</li>
-				</ul> -->
+				</ul> 
 
 
 
@@ -494,9 +511,11 @@ if($_SESSION['login_status']!="1"){
 					<button class="boxC btn btn-success notClick">
 						<i class=" glyphicon glyphicon-tasks"></i>
 					</button>
-					<a href="../admin/index.php?page=admin"  class="boxC btn btn-info ">
+					<button class="boxC btn btn-info notClick">
+					<!-- <a href="../admin/index.php?page=admin"  class="boxC btn btn-info "> -->
 						<i class="glyphicon  glyphicon-user"></i>
-					</a>
+					<!-- </a> -->
+					</button>
 					<button class="boxC btn btn-warning notClick">
 						<i class="glyphicon glyphicon-pencil"></i>
 					</button>

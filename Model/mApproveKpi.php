@@ -12,7 +12,7 @@ if($jsonArray["login_status"]==1){
 $year =$_POST['year'];
 $appraisal_period_id = $_POST['appraisal_period_id'];
 $department_id=$_POST['department_id'];
-//$division_id=$_POST['division_id'];
+$role_id=$_POST['role_id'];
 $position_id =$_POST['position_id'];
 $employee_id = $_POST['employee_id'];
 $adjust_percentage= $_POST['adjust_percentage'];
@@ -37,6 +37,7 @@ if($_POST['action']=="showEmpData"){
 	and (kr.position_id='$position_id' or '$position_id' ='All')
 	AND kr.kpi_year='$year'
 	AND (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	AND (e.role_id='$role_id' or '$role_id'='All')
 	and kr.confirm_flag='Y'
 	and kr.admin_id='$admin_id'
 	";
@@ -119,13 +120,40 @@ if($_POST['action']=="showEmpData"){
 			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" >".$rs['emp_code']."";
 		}
 		// <img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=80 height=80></td>";
-		$tableHTML.="	<td>
 		
-		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>"
-		.$rs['department_name']."<br>
-		ตำแหน่ง".$rs['position_name']."<br>
-		อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
-		</td>";
+		if($rs['role_id']==3){
+
+			$tableHTML.="	<td>
+			<span  class=\" starGreen glyphicon glyphicon-star\" ></span><br>
+			<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>"
+			.$rs['department_name']."<br>
+			ตำแหน่ง".$rs['position_name']."<br>
+			อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
+			</td>";
+
+		}else if($rs['role_id']==2){
+			$tableHTML.="	<td>
+			<span  class=\" starYellow glyphicon glyphicon-star\" ></span><span class=\"starYellow glyphicon glyphicon-star\" ></span><br>
+			<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>"
+			.$rs['department_name']."<br>
+			ตำแหน่ง".$rs['position_name']."<br>
+			อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
+			</td>";
+
+		}else if($rs['role_id']==1){
+
+			$tableHTML.="	<td>
+			<span   class=\" starRed glyphicon glyphicon-star\" ></span><span class=\"starRed glyphicon glyphicon-star\" ></span><span class=\"starRed glyphicon glyphicon-star\" ></span><br>
+			<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>"
+			.$rs['department_name']."<br>
+			ตำแหน่ง".$rs['position_name']."<br>
+			อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
+			</td>";
+
+		}
+		
+
+
 		//$tableHTML.="	<td>".$rs['department_name']."<span style='display:none;' id='depId-".$rs['emp_id']."'>".$rs['department_id']."</span></td>";
 		// $tableHTML.="	<td>".$rs['position_name']."<span  style='display:none;' id='positionId-".$rs['emp_id']."'>".$rs['position_id']."</span></td>";
 		//$tableHTML.="	<td>".$rs['role_name']."</td>";
@@ -165,17 +193,17 @@ year	2012
 		if($rsKpiResult[approve_flag]=="Y"){
 		$tableHTML.="	<td>
 			<div style='text-align:right'>
-			<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
-				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary'>ปรับคะแนน</button>
-				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveKPI btn btn-success '>อนุมัติแล้ว </button>
+			<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
+				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveEditKPI btn btn-primary'>ปรับคะแนน</button>
+				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveKPI btn btn-success '>อนุมัติแล้ว </button>
 			</div>
 			</td>";
 		}else{
 			$tableHTML.="<td>
 			<div style='text-align:right'>
-				<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
-				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveEditKPI btn btn-primary '>ปรับคะแนน</button>
-				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionApproveKPI btn btn-warning '>กดอนุมัติ </button>
+				<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
+				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveEditKPI btn btn-primary '>ปรับคะแนน</button>
+				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveKPI btn btn-warning '>กดอนุมัติ </button>
 				
 			</div>
 					</td>";

@@ -712,7 +712,12 @@ function detailInit(e) {
 							}
 							
 								textJson+="\"fieldId\":\""+EntryIndex[5]+"\",";
-								textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80' class='img-circle'  src='"+EntryIndex[0]+"'></div>\",";
+								
+								if(EntryIndex[0]==""){
+									textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center; opacity:0.1'><img width='80' class='img-circle'  src='../View/uploads/avatar.jpg'></div>\",";
+								}else{
+									textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80' class='img-circle'  src='"+EntryIndex[0]+"'></div>\",";
+								}
 								textJson+="\"field1\":\"<div class='kpi'>";
 								textJson+="<b>"+EntryIndex[1]+"</b><br>";
 								textJson+=""+EntryIndex[6]+"<br>";

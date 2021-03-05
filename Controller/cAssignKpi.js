@@ -80,6 +80,7 @@ var getBaseLineAction=function(action){
 			}
 		});
 	}	
+
 //dropdown List Department start
 var fnDropdownListAppraisalDep=function(department_id,paramSelectAll){
 
@@ -93,7 +94,7 @@ var fnDropdownListAppraisalDep=function(department_id,paramSelectAll){
 		success:function(data){
 			console.log(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_department_id\" name=\"appraisal_department_id\" class=\"\" >";
+			htmlDropDrowList+="<select id=\"appraisal_department_id\" name=\"appraisal_department_id\" class=\"\" style='width:150px;' >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					if(department_id==indexEntry[0]){
@@ -125,6 +126,52 @@ var fnDropdownListAppraisalDep=function(department_id,paramSelectAll){
 	});
 }	
 
+//dropdown List role start
+var fnDropdownListAppraisalRole=function(role_id){
+
+	$.ajax({
+		url:"../Model/mRoleList.php",
+		type:"post",
+		dataType:"json",
+		async:false,
+		data:{"paramSelectAll":"selectAll"},
+		headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+		success:function(data){
+			console.log(data);
+			var htmlDropDrowList="";
+			htmlDropDrowList+="<select id=\"appraisal_role_id\" name=\"appraisal_role_id\" class=\"\" style='width:120px;' >";
+			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+				$.each(data,function(index,indexEntry){
+					if(role_id==indexEntry[0]){
+						
+						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+						
+					}else{
+						
+						htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+						
+					}
+					
+				});
+			htmlDropDrowList+="</select>";
+			
+			$("#roleDropDrowListArea").html(htmlDropDrowList);
+
+			if($("#embed_emp_role_level_id").val()==2){
+				$("#appraisal_role_id").prop("disabled",true);
+			}else{
+				$("#appraisal_role_id").prop("disabled",false);
+			}
+
+			$("#appraisal_role_id").kendoDropDownList({
+					theme: "silver"
+				});
+			//persDropDrowList
+		}
+	});
+}	
+
+
 //dropdown List Department start
 var fnDropdownListAppraisalPosition=function(position_id,paramSelectAll){
 	
@@ -139,7 +186,7 @@ var fnDropdownListAppraisalPosition=function(position_id,paramSelectAll){
 			console.log(data);
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_position_id\" name=\"appraisal_position_id\" class=\"\" >";
+			htmlDropDrowList+="<select id=\"appraisal_position_id\" name=\"appraisal_position_id\" class=\"\" style='width:130px;' >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -208,7 +255,7 @@ var kpi_process_fn = function(){
 						  if(data[0]=="success"){
 							  //alert("ประเมินเรียบร้อย");
 							  showDataAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),$("#dep_assign_id_emb").val(),$("#position_assign_id_emb").val(),$("#emp_assign_id_emb").val());
-							  showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),depId,positionId,$("#emp_assign_id_emb").val());
+							  showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),depId,positionId,sessionStorage.getItem("param_role"));
 						  	  $("#formKPI").hide();
 						  	  $('#assignResultKPIModal').modal('hide');
 						  }
@@ -441,7 +488,7 @@ var manageFn = function(this_id,actionType){
 	 
 	};
 
-var showDataEmployee=function(year,appraisal_period_id,department_id,position_id){
+var showDataEmployee=function(year,appraisal_period_id,department_id,position_id,role_id){
 	
 		$.ajax({
 			url:"../Model/mAssignKpi.php",
@@ -451,7 +498,9 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			data:{"action":"showEmpData",
 			"year":year,"appraisal_period_id":appraisal_period_id
-			,"department_id":department_id,"position_id":position_id},
+			,"department_id":department_id,"position_id":position_id,
+			"role_id":role_id
+		},
 			success:function(data){
 				$("#employeeShowData").html(data);
 			
@@ -519,6 +568,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 						 var department_id=idAssignKPI[3];
 						 var position_id=idAssignKPI[4];
 						 var empId=idAssignKPI[5];
+						 var roleId=idAssignKPI[6];
 						
 						/*
 						 var depId=$("#depId-"+empId).text();
@@ -548,6 +598,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 						 $("#assign_kpi_department").val(department_id);
 						 $("#assign_kpi_position").val(position_id);
 						 $("#assign_kpi_emp").val(empId);
+						 $("#assign_kpi_role_id").val(roleId);
 
 							
 							// Copy KPI Assign Master to KPI Assign Auto Matic START
@@ -594,7 +645,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 
 							var empAreaData="";
 							empAreaData+="<div class=''>";
-								empAreaData+="<div class='impageEmpClass'>";
+								empAreaData+="<div class='impageEmpClass' >";
 									empAreaData+=imageEmp;
 								empAreaData+="</div>";
 								empAreaData+="<div class='infoEmpClass'>";
@@ -781,7 +832,7 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
 										//showDataAssignKpi();
 										showDataAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),$("#emp_assign_id_emb").val());
 										//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#position_id").val(),$("#employee_id").val());
-										showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+										showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
 									}
 								}
 						 });
@@ -842,14 +893,15 @@ var assign_kpi_search_fn = function(){
 		sessionStorage.setItem("param_appraisal_period", $("#appraisal_period_assign_evaluate_kpi").val());
 		sessionStorage.setItem("param_department", $("#appraisal_department_id").val());
 		sessionStorage.setItem("param_position", $("#appraisal_position_id").val());
-
+		sessionStorage.setItem("param_role", $("#appraisal_role_id").val());
+		
 		// $("body").append("<input type='hidden' name='year_emb' class='emb_param' id='year_emb' value='"+$("#year").val()+"'>");
 		// $("body").append("<input type='hidden' name='appraisal_period_id_emb' class='emb_param' id='appraisal_period_id_emb' value='"+$("#appraisal_period_assign_kpi").val()+"'>");
 		// $("body").append("<input type='hidden' name='department_id_emb' class='emb_param' id='department_id_emb' value='"+$("#department_id").val()+"'>");
 		// $("body").append("<input type='hidden' name='position_id_emb' class='emb_param' id='position_id_emb' value='"+$("#position_id").val()+"'>");
 		
 		
-		showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+		showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
 		//showDataAssignKpi();
 		$("#empNameArea").empty();
 		$(".employeeData").show();
@@ -925,7 +977,10 @@ $(document).ready(function(){
 	/*change dropdown to label 16/092017 */
 	//fnDropdownListKPI();
 
-	fnDropdownListEmployee();
+	//fnDropdownListEmployee();
+	
+
+	fnDropdownListAppraisalRole();
 	
 	
 	
@@ -1044,7 +1099,7 @@ $(document).ready(function(){
 			"kpi_actual_score":$("#kpi_actual_score").val(),
 			"performance":$("#performance").val(),
 			"action":$("#assign_kpi_action").val(),
-			// "assign_kpi_id":$("#assign_kpi_id").val(),
+			 "role_id":$("#assign_kpi_role_id").val(),
 			"complete_kpi_score_flag":"Y"
 			},
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
@@ -1260,7 +1315,7 @@ $(document).ready(function(){
 			//alert($("#kpi_weight_total").text());
 
 			if($(".contentassignKpi tr").get().length!=$(".complete_kpi_score_flag").get().length){
-	 		alert("Please fill score completed, "+$(".contentassignKpi tr").get().length+" KPI.");
+	 		alert("กรอกผลประเมินให้ครบ เหลือ "+$(".contentassignKpi tr").get().length+"ตัวชี้วัด");
 	 		return false;
 	 		}else{
 	 		//alert("OK fill score completed, "+$(".contentassignKpi tr").get().length+" KPI.");
@@ -1280,6 +1335,7 @@ $(document).ready(function(){
 						"position_id":$("#assign_kpi_position").val(),
 						"employee_id":$("#assign_kpi_emp").val(),
 						"score_sum_percentage":$("#score_sum_percentage").text(),
+						"role_id":$("#assign_kpi_role_id").val(),
 						"action":"confrimKpi"
 					},
 					headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
@@ -1289,7 +1345,7 @@ $(document).ready(function(){
 						  if(data[0]=="success"){
 							  //alert("ประเมินเรียบร้อย");
 							  showDataAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),$("#dep_assign_id_emb").val(),$("#position_assign_id_emb").val(),$("#emp_assign_id_emb").val());
-							  showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+							  showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
 						  	  $("#formKPI").hide();
 						  	  $('#assignResultKPIModal').modal('hide');
 						  }
@@ -1411,6 +1467,12 @@ $(document).ready(function(){
 			assign_kpi_search_fn();
 		});
 
+		$("#appraisal_role_id").change(function(){
+			assign_kpi_search_fn();
+		});
+
+		
+
 
 
 		//change parameter action end
@@ -1435,7 +1497,7 @@ $(document).ready(function(){
 
 		$("body").off("click","#assignResultKPIModal  .close");
 		$("body").on("click","#assignResultKPIModal  .close",function(){
-			showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"));
+			showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
 			//showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
 		});
 

@@ -578,31 +578,15 @@ var callProgramControl=function(programControl){
 $(document).ready(function(){
 	
 	//Start Program ....
-	/*
-	$(".mainMenu").css({"opacity":"0.3","cursor":"default"});
-	$(".nav-list > li > a").css({"cursor":"default"});
+	
+	//Default Parameter		
+	//sessionStorage.setItem("param_year", "All");
+	sessionStorage.setItem("param_appraisal_period", "All");
+	sessionStorage.setItem("param_department", "All");
+	sessionStorage.setItem("param_position", "All");
+	sessionStorage.setItem("param_emp", "All");
+	sessionStorage.setItem("param_role", "All");
 
-
-
-	if($("#embed_emp_role_leve").val()=="Level1"){
-
-		$("li.menuLevel1").css({"opacity":"1","cursor":"pointer"});
-		$(".nav-list > li.menuLevel1 > a").css({"cursor":"pointer"});
-
-	}else if($("#embed_emp_role_leve").val()=="Level2"){
-
-		$("li.menuLevel2").css({"opacity":"1","cursor":"pointer"});
-		$(".nav-list > li.menuLevel2 > a").css({"cursor":"pointer"});
-
-
-	}else{
-
-		$("li.menuLevel3").css({"opacity":"1","cursor":"pointer"});
-		$(".nav-list > li.menuLevel3 > a").css({"cursor":"pointer"});
-
-
-	}
-*/
 	$(".mainMenu").click(function(){
 		$(".mainMenu").removeClass("active");
 		$(this).addClass("active");

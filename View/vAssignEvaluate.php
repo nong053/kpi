@@ -146,6 +146,15 @@ if($_SESSION['language']=="th"){
 		text-align: left;
 		padding: 5px;
 	}
+	.starRed{
+	color:red;
+	}
+	.starYellow{
+	color:yellow;
+	}
+	.starGreen{
+	color:green;
+	}
 </style>
 
 

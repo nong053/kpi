@@ -154,25 +154,28 @@ var Level3FunctionFn = function(){
 				//alert(data[0]['confirm_flag']);
 				
 				var confirm_kpi="";
+				
 				if((data[0]['emp_confirm_flag']=="N" || data[0]['emp_confirm_flag']=="") ){
 					
-					/*
-					if(data[0]['aek_confirm_flag']=='N'){
+					if(data[0]['approve_flag']=="Y"){
+						
+						confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินแล้วไม่สามารถประเมินตัวเองได้) </strong>';
 						$("#kpi_process").hide();
+						$("#score_sum_percentage").css({"color":"gray"});
+						$(".actionAddScore").attr("disabled","disabled");
+						
 					}else{
+
+						//$("#kpi_process").hide();
+						//$("#score_sum_percentage").css({"color":"green"});
+						//$(".actionAddScore").attr("disabled","disabled");
+						
 						confirm_kpi='<strong style=\"color:red\"> (!!ยังไม่ยืนยันการประเมิน)</strong>';
 						$("#kpi_process").show();
+						$("#score_sum_percentage").css({"color":"red"});
+						$(".actionAddScore").removeAttr("disabled");
 					}
-					*/
-
-					//$("#kpi_process").hide();
-					confirm_kpi='<strong style=\"color:red\"> (!!ยังไม่ยืนยันการประเมิน)</strong>';
-					$("#kpi_process").show();
-
-
-					$("#score_sum_percentage").css({"color":"red"});
-					$(".actionAddScore").removeAttr("disabled");
-					//$("#score_sum_percentage").css({"color":"red"});
+			
 					
 				}else if(data[0]['emp_confirm_flag']=="Y"){
 					if(data[0]['approve_flag']=="Y"){

@@ -200,7 +200,16 @@ if($_SESSION['language']=="th"){
 		/* font-weight: bold; */
 		/* font-size: 20px; */
 	}
-	
+	.starRed{
+
+		color:red;
+	}
+	.starYellow{
+		color:yellow;
+	}
+	.starGreen{
+		color:green;
+	}
  </style>
 
 
@@ -388,6 +397,7 @@ if($_SESSION['language']=="th"){
 					<input type="hidden" name="assign_kpi_department" id ="assign_kpi_department"  value="">
 					<input type="hidden" name="assign_kpi_position" id ="assign_kpi_position"  value="">
 					<input type="hidden" name="assign_kpi_emp" id ="assign_kpi_emp"  value="">
+					<input type="hidden" name="assign_kpi_role_id" id ="assign_kpi_role_id"  value="">
 
 
 					<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
@@ -511,19 +521,20 @@ if($_SESSION['language']=="th"){
 			</div>
 			
 		</td>
-		<!-- 
-		<td>
-		Division
-		</td>
-		<td>
-			<div id="divDropDrowListArea" style="float:left;">
-			
-			</div>
-			
-		</td>
-	 	-->
+		
+		
+	 	
 		<td><b class='pre-search-label'><?=$_SESSION['kpi_result_l_search_position']?></b></td>
 		<td id="positionAppaisalArea">
+			
+		</td>
+		<td>
+		<b class='pre-search-label'>สิทธิ์</b>
+		</td>
+		<td>
+			<div id="roleDropDrowListArea" style="float:left;">
+			
+			</div>
 			
 		</td>
 	

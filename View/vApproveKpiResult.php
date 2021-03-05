@@ -110,6 +110,15 @@ if($_SESSION['language']=="th"){
  	.displayHideShow{
  		display: none;
  	}
+	 .starRed{
+	color:red;
+	}
+	.starYellow{
+	color:yellow;
+	}
+	.starGreen{
+	color:green;
+	}
  </style>
 
 
@@ -159,6 +168,7 @@ if($_SESSION['language']=="th"){
 					<input type="hidden" value="" name="dep_approve_id_emb" id="dep_approve_id_emb">
 					<input type="hidden" value="" name="position_approve_id_emb" id="position_approve_id_emb">
 					<input type="hidden" value="" name="employee_id_emb" id="employee_id_emb">
+					<input type="hidden" value="" name="role_id_emb" id="role_id_emb">
 
 					<input type="button" id="btnSubmit" name="btnSubmit" value="<?=$_SESSION['approve_l_form_btn_save']?>"  class="btn btn-primary">
 					<input type="reset" id="btnReset" name="btnReset" value="<?=$_SESSION['approve_l_form_btn_reset']?>"  class="btn btn-default">
@@ -231,12 +241,10 @@ if($_SESSION['language']=="th"){
 		<td id="approvePositionArea">
 			
 		</td>
-	<!-- 
-		<td>Employee</td>
-		<td id="employeeArea">
-			
+		<td><b class='pre-search-label'>สิทธิ์</b></td>
+		<td >
+			<div id="roleDropDrowListArea" style="float:left;"></div>
 		</td>
-	-->
 		<td>&nbsp;</td>
 		<td style="display: none;">
 			<input type="button" value="<?=$_SESSION['approve_l_search_btn_search']?>" id="approve_kpi_search"  class="btn btn-primary btn-sm">

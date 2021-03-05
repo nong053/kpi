@@ -13,6 +13,10 @@ $appraisal_period_id = $_POST['appraisal_period_id'];
 $department_id=$_POST['department_id'];
 $position_id =$_POST['position_id'];
 $employee_id = $_POST['employee_id'];
+$chief_id = $_POST['chief_id'];
+$role_id = $_POST['role_id'];
+
+
 $assign_kpi_id = $_POST['assign_kpi_id'];
 $kpi_id=$_POST['kpi_id'];
 $admin_id=$_SESSION['admin_id'];
@@ -129,23 +133,40 @@ if($_POST['action']=="showEmpData"){
 	and kr.kpi_year='$year'
 	and kr.appraisal_period_id='$appraisal_period_id'
 	*/
-	$strSQL="
 	
-	
+	if($_SESSION['emp_role_level_id']==2){
+		$strSQL="
+		select e.*,pe.position_name,r.role_name,d.department_name
 
-select e.*,pe.position_name,r.role_name,d.department_name
+			from employee e
+			INNER JOIN position_emp pe on e.position_id=pe.position_id
+			INNER JOIN role r on e.role_id=r.role_id
+			INNER JOIN department d on e.department_id=d.department_id
+			where (e.department_id='$department_id' or '$department_id' ='All')
+			and (e.position_id='$position_id' or '$position_id' ='All')
+			and e.emp_status_work_id='1'
+			and e.emp_id!='".$_SESSION['emp_ses_id']."'
+			and e.admin_id='$admin_id'
+			order by e.emp_id
 
-	from employee e
-	INNER JOIN position_emp pe on e.position_id=pe.position_id
-	INNER JOIN role r on e.role_id=r.role_id
-	INNER JOIN department d on e.department_id=d.department_id
-	where (e.department_id='$department_id' or '$department_id' ='All')
-	and (e.position_id='$position_id' or '$position_id' ='All')
-	and e.emp_status_work_id='1'
-	and e.admin_id='$admin_id'
-	order by e.emp_id
+			";
+	}else{
+		$strSQL="
+		select e.*,pe.position_name,r.role_name,d.department_name
 
-	";
+			from employee e
+			INNER JOIN position_emp pe on e.position_id=pe.position_id
+			INNER JOIN role r on e.role_id=r.role_id
+			INNER JOIN department d on e.department_id=d.department_id
+			where (e.department_id='$department_id' or '$department_id' ='All')
+			and (e.position_id='$position_id' or '$position_id' ='All')
+			and e.emp_status_work_id='1'
+			and (e.role_id='$role_id' or '$role_id' ='All')
+			and e.admin_id='$admin_id'
+			order by e.emp_id
+
+			";
+	}
 	
 	$result=mysql_query($strSQL);
 	$$tableHTML="";
@@ -189,18 +210,25 @@ select e.*,pe.position_name,r.role_name,d.department_name
 		// <img class=\"img-circle\"  src=".$rs['emp_picture_thum']." width=50>
 		if(empty($rs['emp_picture_thum'])){
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'> รหัส ".$rs['emp_code']."";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'>".$rs['emp_code']."";
 
 		}else{
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>".$rs['emp_code']."";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>1".$rs['emp_code']."";
 		
 		}
 		$tableHTML.="</td>";
+
 		$tableHTML.="	<td>
-		<span  id='fullName-".$rs['emp_id']."'>
-		<b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br> อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี
-		</span>
+		<span  id='fullName-".$rs['emp_id']."'>";
+		if($rs['role_id']==3){
+			$tableHTML.="<span  class=\" starGreen glyphicon glyphicon-star\" ></span><br><b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br> อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี";
+		}else if($rs['role_id']==2){
+			$tableHTML.="<span  class=\" starYellow glyphicon glyphicon-star\" ></span><span class=\"starYellow glyphicon glyphicon-star\" ></span><br><b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br> อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี";
+		}else if($rs['role_id']==1){
+			$tableHTML.="<span   class=\" starRed glyphicon glyphicon-star\" ></span><span class=\"starRed glyphicon glyphicon-star\" ></span><span class=\"starRed glyphicon glyphicon-star\" ></span><br><b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b><br>".$rs['department_name']."<br>ตำแหน่ง".$rs['position_name']."<br> อายุงาน ".dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี";
+		}
+		$tableHTML.="</span>
 		<span style='display:none;' id='depId-".$rs['emp_id']."'>
 		".$rs['department_id'].
 		"</span>
@@ -306,7 +334,7 @@ distinct complete_kpi_score_flag
 				// </td>";
 				$tableHTML.="	<td>
 				<div style='text-align:right;'>
-				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-success '>อนุมัติแล้ว</button>";
+				<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI btn btn-success '>อนุมัติแล้ว</button>";
 				//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>
 				$tableHTML.="
 				</div>
@@ -316,10 +344,10 @@ distinct complete_kpi_score_flag
 			$tableHTML.="	<td>
 			<div style='text-align:right;'>";
 				if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==1 ){
-					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
+					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
 				}else{
-					$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
-					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
+					$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
+					$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI btn btn-info '>รออนุมัติ</button> ";
 					//$tableHTML.="<button type='button' id='idAssignKPI-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionRemoveAssign btn btn-danger '>เคลียร์</button>";
 				}
 
@@ -329,8 +357,8 @@ distinct complete_kpi_score_flag
 			$tableHTML.="<td>
 				<div style='text-align:right;'>
 				
-				 <button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
-				 <button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-info '>หัวหน้าประเมินแล้ว</button>
+				 <button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
+				 <button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI  evaluated btn btn-info '>หัวหน้าประเมินแล้ว</button>
 				
 				</div>
 			</td>";
@@ -338,8 +366,8 @@ distinct complete_kpi_score_flag
 				$tableHTML.="<td>
 					<div style='text-align:right;'>
 					
-					<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
-					<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI  evaluated btn btn-info '>พนักงานประเมินแล้ว</button>
+					<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionBackToAssign evaluated btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button>
+					<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI  evaluated btn btn-info '>พนักงานประเมินแล้ว</button>
 					
 					</div>
 				</td>";
@@ -350,15 +378,15 @@ distinct complete_kpi_score_flag
 				$tableHTML.="<td>
 				<div style='text-align:right;'>";
 				//$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
-				$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>พร้อมรับประเมิน</button> ";
+				$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI btn btn-warning '>พร้อมรับประเมิน</button> ";
 				
 				$tableHTML.="</div>
 				</td>";
 			 }else{
 				$tableHTML.="<td>
 				<div style='text-align:right;'>";
-				$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
-				$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionAssignKPI btn btn-warning '>พร้อมรับประเมิน</button> ";
+				$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
+				$tableHTML.="<button type='button' id='readyForEvaluate-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionAssignKPI btn btn-warning '>พร้อมรับประเมิน</button> ";
 				
 				$tableHTML.="</div> </td>";
 			 }
@@ -875,119 +903,112 @@ $kpi_id=$_POST['kpi_id'];
 	mysql_close($conn);
 }
 if($_POST['action']=="editAction"){
-	/*
 	
-	year
-	appraisal_period_id
-	position1
-	employee
-	perspective
-	
-	
-	assign_kpi_id
-	assign_kpi_year
-	appraisal_period_id
-	emp_id
-	position_id
-	
-	kpi_id
-	kpi_weight
-	target_data
-	kpi_type_actual
-	kpi_actual_manual
-	kpi_actual_query
-	target_score
-	*/
-
-	$strSQL="UPDATE assign_evaluate_kpi 
-	SET 
-	-- assign_kpi_year='$year',
-	-- appraisal_period_id='$appraisal_period_id' ,
-	-- position_id='$position_id' ,
-	-- emp_id='$employee_id' ,
-	-- department_id='$department_id',
-	-- kpi_id='$kpi_id',
-
-	kpi_weight='$kpi_weight',
-	target_data='$target_data',
-	kpi_type_actual='$kpi_type_actual',
-	kpi_actual_manual='$kpi_actual_manual',
-	kpi_actual_query='$kpi_actual_query',
-	target_score='$target_score',
-	kpi_actual_score='$kpi_actual_score',
-	total_kpi_actual_score='$total_kpi_actual_score',
-	performance='$performance',
-	complete_kpi_score_flag='$complete_kpi_score_flag'
-
-	WHERE 
-
-	assign_kpi_year=$year 
-	and appraisal_period_id=$appraisal_period_id 
-	and department_id=$department_id 
-	and position_id=$position_id 
-	and emp_id=$employee_id 
-	and kpi_id=$kpi_id 
-	and admin_id='$admin_id'
-	";
-	$result=mysql_query($strSQL);
-	if($result){
-
-
-
-
-
-		$strSQL2="
-		UPDATE kpi_result SET confirm_flag='N'
-		WHERE kpi_year='$year'
-		and appraisal_period_id='$appraisal_period_id'
-		and department_id='$department_id'
-		and position_id='$position_id'
-		and emp_id='$employee_id'
-	";
-	$result2=mysql_query($strSQL2);
-
-	if($result2){
-
-		echo'["editSuccess"]';
-	}
+	if($role_id==1){
+		$strSQL="UPDATE assign_evaluate_kpi 
+		SET 
 		
-		// Update kpi_result when change kpi_reult and wait for confirm change.
-	/*
-		$strSQLCount="select count(*) AS countRow from kpi_result where
-		(kpi_year='$year' or '$year'='All') and
-		(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
-		(department_id='$department_id' or '$department_id'='All') and
-		(position_id='$position_id' or '$position_id'='All') and
-		(emp_id='$employee_id' or '$employee_id'='All')
+		kpi_weight='$kpi_weight',
+		target_data='$target_data',
+		kpi_type_actual='$kpi_type_actual',
+		kpi_actual_manual='$kpi_actual_manual',
+		kpi_actual_query='$kpi_actual_query',
+		target_score='$target_score',
+
+		total_kpi_actual_score='$total_kpi_actual_score',
+		kpi_actual_manual='$kpi_actual_manual',
+		kpi_actual_score='$kpi_actual_score',
+		performance='$performance',
+		complete_kpi_score_flag='$complete_kpi_score_flag',
+
+		emp_total_kpi_actual_score='$total_kpi_actual_score',
+		emp_kpi_actual_manual='$kpi_actual_manual',
+		emp_kpi_actual_score='$kpi_actual_score',
+		emp_performance='$performance',
+		emp_complete_kpi_score_flag='$complete_kpi_score_flag'
+
+
+		WHERE 
+
+		assign_kpi_year=$year 
+		and appraisal_period_id=$appraisal_period_id 
+		and department_id=$department_id 
+		and position_id=$position_id 
+		and emp_id=$employee_id 
+		and kpi_id=$kpi_id 
 		and admin_id='$admin_id'
 		";
+		$result=mysql_query($strSQL);
+		if($result){
+
+			$strSQL2="
+			UPDATE kpi_result SET confirm_flag='N',emp_confirm_flag='N'
+			WHERE kpi_year='$year'
+			and appraisal_period_id='$appraisal_period_id'
+			and department_id='$department_id'
+			and position_id='$position_id'
+			and emp_id='$employee_id'
+		";
+		$result2=mysql_query($strSQL2);
+
+		if($result2){
+
+			echo'["editSuccess"]';
+		}
 			
-		$rsResultCount=mysql_query($strSQLCount);
-		$resultResultCount=mysql_fetch_array($rsResultCount);
-			
-		if($resultResultCount['countRow']!=0){
-			// Update kpi_result when change kpi_reult and wait for confirm change.
-			
-			$strSQLUpdate="
-			 UPDATE kpi_result
-			 SET confirm_flag='N'
-			 where (kpi_year='$year' or '$year'='All') and
-			 (appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
-			 (department_id='$department_id' or '$department_id'='All') and
-			 (position_id='$position_id' or '$position_id'='All') and
-			 (emp_id='$employee_id' or '$employee_id'='All')
-			 and admin_id='$admin_id'
-			";
-		
-			 $rsResultUpdate=mysql_query($strSQLUpdate);
-			 
-			 //echo" update kpi_result".$resultResultCount['countRow'];
-		
+		}else{
+			echo'["error"]'.mysql_error();
 		}
 
-		*/
 	}else{
-		echo'["error"]'.mysql_error();
+		$strSQL="UPDATE assign_evaluate_kpi 
+		SET 
+		
+		kpi_weight='$kpi_weight',
+		target_data='$target_data',
+		kpi_type_actual='$kpi_type_actual',
+		kpi_actual_manual='$kpi_actual_manual',
+		kpi_actual_query='$kpi_actual_query',
+		target_score='$target_score',
+
+		total_kpi_actual_score='$total_kpi_actual_score',
+		kpi_actual_manual='$kpi_actual_manual',
+		kpi_actual_score='$kpi_actual_score',
+		performance='$performance',
+		complete_kpi_score_flag='$complete_kpi_score_flag'
+
+		WHERE 
+
+		assign_kpi_year=$year 
+		and appraisal_period_id=$appraisal_period_id 
+		and department_id=$department_id 
+		and position_id=$position_id 
+		and emp_id=$employee_id 
+		and kpi_id=$kpi_id 
+		and admin_id='$admin_id'
+		";
+		$result=mysql_query($strSQL);
+		if($result){
+
+			$strSQL2="
+			UPDATE kpi_result SET confirm_flag='N'
+			WHERE kpi_year='$year'
+			and appraisal_period_id='$appraisal_period_id'
+			and department_id='$department_id'
+			and position_id='$position_id'
+			and emp_id='$employee_id'
+		";
+		$result2=mysql_query($strSQL2);
+
+		if($result2){
+
+			echo'["editSuccess"]';
+		}
+			
+		}else{
+			echo'["error"]'.mysql_error();
+		}
+
 	}
 
 	mysql_close($conn);
@@ -1155,73 +1176,143 @@ if($_POST['action']=="getKPIPercentage"){
 
 if($_POST['action']=="confrimKpi"){
 
-	/*
-	 kpi_year
-	appraisal_period_id
-	department_id
+	if($role_id==1){
 
-	position_id
-	emp_id
-	score_percentage
-	adjust_percentage
-	adjust_reason
-	approve_flag
-	*/
-	$strSQLCount="select count(*) AS countRow from kpi_result where
-	(kpi_year='$year' or '$year'='All') and
-	(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
-	(department_id='$department_id' or '$department_id'='All') and
-	(position_id='$position_id' or '$position_id'='All') and
-	(emp_id='$employee_id' or '$employee_id'='All')
-	and admin_id='$admin_id'
-	";
-		
-	$rsResultCount=mysql_query($strSQLCount);
-	$resultResultCount=mysql_fetch_array($rsResultCount);
-		
-	if($resultResultCount['countRow']==0){
-		//echo"database is empty";
-			//echo" insert kpi_result=".$resultResultCount['countRow'];
-				$strSQLKpiResult="INSERT INTO kpi_result(kpi_year,appraisal_period_id,department_id,position_id,emp_id,
-		score_sum_percentage,adjust_percentage,adjust_reason,approve_flag,confirm_flag,admin_id)
-		VALUES('$year','$appraisal_period_id','$department_id','$position_id','$employee_id','$score_sum_percentage','','','0','Y','$admin_id')";
-		$rsResult=mysql_query($strSQLKpiResult);
-			
-			if(!$rsResult){
-			echo mysql_error();
-			}else{
-				echo'["success"]';
-			}
-				
-		}
-		else{
-		//echo"database is fully";
-		$strSQLUpdate="
-		UPDATE kpi_result
-			SET score_sum_percentage='$score_sum_percentage',score_final_percentage='$score_sum_percentage',
-			confirm_flag='Y',
-			approve_flag='N',
-			adjust_percentage='',
-			adjust_reason=''
-			where (kpi_year='$year' or '$year'='All') and
-			(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
-			(department_id='$department_id' or '$department_id'='All') and
-			(position_id='$position_id' or '$position_id'='All') and
-			(emp_id='$employee_id' or '$employee_id'='All')
-			and admin_id='$admin_id'
+		$strSQLCount="select count(*) AS countRow from kpi_result where
+		(kpi_year='$year' or '$year'='All') and
+		(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
+		(department_id='$department_id' or '$department_id'='All') and
+		(position_id='$position_id' or '$position_id'='All') and
+		(emp_id='$employee_id' or '$employee_id'='All')
+		and admin_id='$admin_id'
 		";
-		
-	
-											$rsResultUpdate=mysql_query($strSQLUpdate);
-											if(!$rsResultUpdate){
-												echo mysql_error();
-											}else{
-												echo'["success"]';
-											}
-	
-											//echo" update kpi_result".$resultResultCount['countRow'];
+			
+		$rsResultCount=mysql_query($strSQLCount);
+		$resultResultCount=mysql_fetch_array($rsResultCount);
+			
+		if($resultResultCount['countRow']==0){
+			
+			$strSQLKpiResult="INSERT INTO kpi_result(kpi_year,appraisal_period_id,department_id,position_id,emp_id,
+			
+			score_sum_percentage,
+			emp_score_sum_percentage,
+			approve_flag,
+			confirm_flag,
+			emp_confirm_flag,
+
+			admin_id
+			)
+			VALUES('$year','$appraisal_period_id','$department_id','$position_id','$employee_id',
+			'$score_sum_percentage',
+			'$score_sum_percentage',
+			'N',
+			'Y',
+			'Y',
+			'$admin_id')";
+			$rsResult=mysql_query($strSQLKpiResult);
 				
-		}
+				if(!$rsResult){
+				echo mysql_error();
+				}else{
+					echo'["success"]';
+				}
+					
+			}
+			else{
+			
+			$strSQLUpdate="
+			UPDATE kpi_result
+				SET 
+				
+				score_sum_percentage='$score_sum_percentage',
+				emp_score_sum_percentage='$score_sum_percentage',
+				score_final_percentage='$score_sum_percentage',
+				confirm_flag='Y',
+				emp_confirm_flag='Y',
+				approve_flag='N'
+				
+				where (kpi_year='$year' or '$year'='All') and
+				(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
+				(department_id='$department_id' or '$department_id'='All') and
+				(position_id='$position_id' or '$position_id'='All') and
+				(emp_id='$employee_id' or '$employee_id'='All')
+				and admin_id='$admin_id'
+			";
+			
+		
+												$rsResultUpdate=mysql_query($strSQLUpdate);
+												if(!$rsResultUpdate){
+													echo mysql_error();
+												}else{
+													echo'["success"]';
+												}
+		
+												//echo" update kpi_result".$resultResultCount['countRow'];
+					
+			}
+
+	}else{
+
+	
+		$strSQLCount="select count(*) AS countRow from kpi_result where
+		(kpi_year='$year' or '$year'='All') and
+		(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
+		(department_id='$department_id' or '$department_id'='All') and
+		(position_id='$position_id' or '$position_id'='All') and
+		(emp_id='$employee_id' or '$employee_id'='All')
+		and admin_id='$admin_id'
+		";
+			
+		$rsResultCount=mysql_query($strSQLCount);
+		$resultResultCount=mysql_fetch_array($rsResultCount);
+			
+		if($resultResultCount['countRow']==0){
+			
+			$strSQLKpiResult="INSERT INTO kpi_result(kpi_year,appraisal_period_id,department_id,position_id,emp_id,
+			score_sum_percentage,adjust_percentage,adjust_reason,approve_flag,confirm_flag,admin_id)
+			VALUES('$year','$appraisal_period_id','$department_id','$position_id','$employee_id',
+			'$score_sum_percentage','','','0','Y','$admin_id')";
+			$rsResult=mysql_query($strSQLKpiResult);
+				
+				if(!$rsResult){
+				echo mysql_error();
+				}else{
+					echo'["success"]';
+				}
+					
+			}
+			else{
+			
+			$strSQLUpdate="
+			UPDATE kpi_result
+				SET 
+				
+				score_sum_percentage='$score_sum_percentage',
+				score_final_percentage='$score_sum_percentage',
+				confirm_flag='Y',
+				approve_flag='N',
+				adjust_percentage='',
+				adjust_reason=''
+				where (kpi_year='$year' or '$year'='All') and
+				(appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All') and
+				(department_id='$department_id' or '$department_id'='All') and
+				(position_id='$position_id' or '$position_id'='All') and
+				(emp_id='$employee_id' or '$employee_id'='All')
+				and admin_id='$admin_id'
+			";
+			
+		
+												$rsResultUpdate=mysql_query($strSQLUpdate);
+												if(!$rsResultUpdate){
+													echo mysql_error();
+												}else{
+													echo'["success"]';
+												}
+		
+												//echo" update kpi_result".$resultResultCount['countRow'];
+					
+			}
+	}
 	
 }
 

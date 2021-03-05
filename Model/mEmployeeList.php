@@ -1,4 +1,4 @@
-
+<? session_start(); ob_start();?>
 <?php
 
 include './../config.inc.php';
@@ -12,6 +12,7 @@ if ($jsonArray["login_status"] == 1) {
 	$position_id = $_POST['position_id'];
 	$department_id = $_POST['department_id'];
 	$paramSelectAll = $_POST['paramSelectAll'];
+	$admin_id=$_SESSION['admin_id'];
 
 	if ($paramSelectAll == "selectAll") {
 
@@ -21,6 +22,7 @@ if ($jsonArray["login_status"] == 1) {
 			SELECT  emp_id, concat(emp_first_name,' ',emp_last_name) as fullname,1 as seq from employee 
 			where (position_id='$position_id'  or 'All'='$position_id' )
 			and (department_id='$department_id' or 'All'='$department_id' )
+			and  admin_id='$admin_id'
 	)queryA
 			ORDER BY seq,emp_id";
 
@@ -28,6 +30,7 @@ if ($jsonArray["login_status"] == 1) {
 		$strSQL = "select emp_id,concat(emp_first_name,' ',emp_last_name) as fullname from employee  
 		where (position_id='$position_id'  or 'All'='$position_id' )
 			  and (department_id='$department_id' or 'All'='$department_id' )
+			  and  admin_id='$admin_id'
 		order by emp_id";
 	}
 

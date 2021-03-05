@@ -72,6 +72,8 @@ $(document).ready(function(){
 		$("#kpiName").val("");
 		$("#kpiBetterFlagY").prop("checked",true);
 		$("#kpiTypeScore2").prop("checked",true);
+		$("#kpi_better_flag_area").hide();
+		$("#kpiDataTargetArea").hide();
 		//$("#kpiDataTargetArea").show();
 		
 		$("#kpiTarget").val("");
@@ -96,9 +98,7 @@ $(document).ready(function(){
 			$("#kpiSubmit").val("Add");
 		}
 
-		//$("#kpiSubmit").val("Add");
-		//fnDropdownListDev();
-		//fnRadioKpiTypeTargetArea(0);
+		
 	}
 	var showDatakpi=function(departmentId){
 

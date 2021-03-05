@@ -387,6 +387,16 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 					<div class='caption'>";
                  
             $tableHTML .= "<p class='emp-text-left'>";
+
+            if($rs['role_id']==3){
+                $tableHTML .= "<span  class=\" starGreen glyphicon glyphicon-star\" ></span><br>";
+            }else if($rs['role_id']==2){
+                $tableHTML .= "<span  class=\" starYellow glyphicon glyphicon-star\" ></span><span class=\"starYellow glyphicon glyphicon-star\" ></span><br>";
+            }else if($rs['role_id']==1){
+                $tableHTML .= "<span   class=\" starRed glyphicon glyphicon-star\" ></span><span class=\"starRed glyphicon glyphicon-star\" ></span><span class=\"starRed glyphicon glyphicon-star\" ></span><br>";
+            }
+
+
             $tableHTML .= "<b>รหัส " . $rs['emp_code'] ."</b><br>";
             $tableHTML .= "<b>" . $rs['emp_first_name'] . " " . $rs['emp_last_name'] . "</b>";
             $tableHTML .= "<br>" . $rs['department_name'];

@@ -309,9 +309,20 @@
 <br style="clear:both"  />
 </div>
 
-<div id="admin-line-frm">
+<div id="admin-line-frm" class="check_box_change_pass_area">
+	<div id="frm-admin">เปลี่ยนรหัสผ่าน</div>
+	<div id="frm-admin2"><input id="admin_change_pass" name="admin_change_pass" type="checkbox" class="" value=""></div>
+	<br style="clear:both"  />
+</div>
+
+<div id="admin-line-frm" class="change_pass_area" style="display: none;">
 	<div id="frm-admin">รหัสผ่าน</div>
-	<div id="frm-admin2"><input name="admin_password" type="password" class="frm-text" value=""></div>
+	<div id="frm-admin2"><input id="admin_password" name="admin_password" type="password" class="frm-text" value=""></div>
+	<br style="clear:both"  />
+</div>
+<div id="admin-line-frm" class="change_pass_area" style="display: none;">
+	<div id="frm-admin">ยืนยันรหัสผ่าน</div>
+	<div id="frm-admin2"><input id="admin_re_password" name="admin_re_password" type="password" class="frm-text" value=""></div>
 	<br style="clear:both"  />
 </div>
 <input name="admin_status" id="admin_status" type="hidden" value="<?=$vAdmin_status1?>">
@@ -402,24 +413,11 @@ if($_SESSION['admin_status']=="3"){
 <?=$submit?>
 <input name="action" id="action" type="hidden" value="<?=$action2?>">
 <input name="admin_id" id="admin_id" type="hidden" value="<?=$vAdmin_id?>">
+<input name="admin_change_pass_flag" id="admin_change_pass_flag" type="hidden" value="Y">
+
 </div>
 <br style="clear:both"  />
 </div>
 </form>
 
-<script>
-	jQuery(document).ready(function(){
-		
-		
-		var action="<?=$_GET['action']?>";
-		if(action=="edit"){
-
-			jQuery("#expired_date").datepicker();
-			jQuery("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
-			jQuery("#expired_date").datepicker('setDate', '<?=$vExpired_date?>');
-		}else{
-			jQuery("#expired_date").datepicker();
-			jQuery("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
-		}
-	});
-</script>
+<script src="Controller/cAdmin.js"></script>
