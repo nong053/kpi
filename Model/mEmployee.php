@@ -40,6 +40,7 @@ $position_id=$_POST['position_id'];
 $empDepartment=$_POST['empDepartment'];
 $empPosition=$_POST['empPosition'];
 $empPosition2=$_POST['empPosition2'];
+$role_id=$_POST['role_id'];
 /*
 $department_search_id=$_POST['department_search_id'];
 $empDepartment=$_POST['empDepartment'];
@@ -337,6 +338,7 @@ LEFT JOIN department d on e.department_id=d.department_id
 LEFT JOIN  emp_status es on e.emp_status_work_id=es.id
 where (e.department_id='$department_id' or '$department_id' ='All')
  and (e.position_id='$position_id' or '$position_id' ='All')
+ and (e.role_id='$role_id' or '$role_id' ='All')
  and e.admin_id='$admin_id'
  and (e.emp_status_work_id='$status_work_search_id'  or '$status_work_search_id' ='All')
 			";
@@ -355,12 +357,12 @@ where (e.department_id='All' or 'All' ='All')
 		$tableHTML.="<colgroup>";
 			//$tableHTML.="<col style='width:5%' />";
 			$tableHTML.="<col  style='width:8%'/>";
-			$tableHTML.="<col style='width:20%'/>";
 			$tableHTML.="<col style='width:15%'/>";
+			$tableHTML.="<col style='width:12%'/>";
 			//$tableHTML.="<col style='width:12%'/>";
+			$tableHTML.="<col style='width:10%'/>";
+			$tableHTML.="<col style='width:10%'/>";
 			$tableHTML.="<col style='width:13%'/>";
-			$tableHTML.="<col style='width:10%'/>";
-			$tableHTML.="<col style='width:10%'/>";
 		
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
@@ -420,6 +422,7 @@ where (e.department_id='All' or 'All' ='All')
 
 	$tableHTML.="	<td>
 	<div style='text-align: right;'>
+			<button type='button' id='idView-".$rs['emp_id']."' class='actionView btn btn-primary '><i class='glyphicon  glyphicon-eye-open'></i></button>
 			<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 	</div>
@@ -476,26 +479,21 @@ if($_POST['action']=="edit"){
 	
 	
 
-	$strSQL="SELECT * FROM employee WHERE emp_id=$id";
+	$strSQL="
+	SELECT e.* ,p.position_name,r.role_name,d.department_name,es.emp_status_work
+FROM employee e
+inner join position_emp p on e.position_id=p.position_id
+inner join role r on e.role_id=r.role_id
+inner join department d on e.department_id=d.department_id
+inner join  emp_status es on e.emp_status_work_id= es.id
+
+	
+	WHERE emp_id=$id";
 	
 	$result=mysql_query($strSQL);
 	if($result){
 		$rs=mysql_fetch_array($result);
 		
-		//echo "[{\"abc\":$rs[emp_id],\"def\":\"22\"}]";
-		/*
-		emp_id
-		emp_user
-		emp_pass
-		emp_picture
-		emp_tel
-		emp_age
-		emp_name
-		emp_email
-		position_id
-		emp_other
-		emp_code
-		*/
 		 echo "[{\"emp_id\":\"$rs[emp_id]\",\"emp_user\":\"$rs[emp_user]\",
 		 		\"emp_pass\":\"$rs[emp_pass]\",\"emp_picture\":\"$rs[emp_picture]\",
 	\"emp_tel\":\"$rs[emp_tel]\",\"emp_age\":\"$rs[emp_age]\",\"emp_name\":\"$rs[emp_name]\",
@@ -508,7 +506,13 @@ if($_POST['action']=="edit"){
 	\"emp_adress\":\"$rs[emp_adress]\",\"emp_district\":\"$rs[emp_district]\",
 	\"emp_sub_district\":\"$rs[emp_sub_district]\",\"emp_province\":\"$rs[emp_province]\",
 	\"emp_postcode\":\"$rs[emp_postcode]\",\"emp_status_work_id\":\"$rs[emp_status_work_id]\",
-	\"emp_code\":\"$rs[emp_code]\",\"position2\":\"$rs[position2]\"
+	\"emp_code\":\"$rs[emp_code]\",\"position2\":\"$rs[position2]\",
+
+	\"position_name\":\"$rs[position_name]\",
+	\"role_name\":\"$rs[role_name]\",
+	\"department_name\":\"$rs[department_name]\",
+	\"emp_status_work\":\"$rs[emp_status_work]\"
+	
 	
 	}]";
 		

@@ -2,6 +2,12 @@
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 
+if($_SESSION['session']==""){
+	header( "location: ../".$_SESSION['admin_username']);
+	exit(0);	
+	
+}
+
 if($_GET['language']=='TH'){
 	$_SESSION['language']="th";
 }else if($_GET['language']=='EN'){
@@ -165,8 +171,8 @@ if($_SESSION['login_status']!="1"){
 	.navbar-nav > li > .dropdown-menu{
 		background: #428BCA;
 		color:while;
-		margin-top: 12px;
-		border-top: #428BCA;
+		/* margin-top: 12px; */
+		border-top: none;
 	}
 
 	.dropdown-menu > li > a {
@@ -177,8 +183,12 @@ if($_SESSION['login_status']!="1"){
 		line-height: 1.42857143;
 		color: white;
 		white-space: nowrap;
-}
-
+	}
+	.dropdown-menu > li > a:hover{
+		color:#ccc;
+		font-weight: bold;
+		background-color: #428BCA;
+	}
 
    </style>
   
@@ -283,12 +293,14 @@ if($_SESSION['login_status']!="1"){
 			<!-- <span class="glyphicon glyphicon-off" style="color:red;"></span> -->
 			
 				<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-					<li>
+					
 					<?php
 					
 					if($_SESSION['admin_status']==1 or $_SESSION['admin_status']==3){
 						?>
-							<a href='../admin' id='profile' class=''><i style="color:orange;" class='glyphicon glyphicon-cog'></i> Control Panel</a>
+						<li>
+							<a href='../admin' id='profile' class=''><i  class='glyphicon glyphicon-cog'></i> ผู้ดูแลละบบ</a>
+						</li>
 						<?
 					}
 					?>
@@ -318,8 +330,8 @@ if($_SESSION['login_status']!="1"){
 							}
 							?> -->
 
-							
-						<a href='#' id='logout' class=''><i style="color: red;" class="glyphicon glyphicon-off"></i> Logout</a>
+					<li>		
+						<a href='#' id='logout' class=''><i  class="glyphicon glyphicon-off"></i> ออกจากระบบ</a>
 
 						<form method="post" action="../logout.php" style='display: none;' id='formLogout'>
 							<input type='hidden' id='admin_username' name='admin_username' value='<?php echo $_SESSION[admin_username]?>'>

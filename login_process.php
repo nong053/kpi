@@ -50,6 +50,9 @@ if($num=mysql_num_rows($result)){
 	$_SESSION['ERORRLOGIN']="";
 	$_SESSION['emp_ses_id']="";
 	$_SESSION['emp_name']="";
+	$_SESSION['session']="1";
+
+	
 
 	if($rs['admin_status']==3){
 		echo"<script>window.location='admin/index.php?page=admin'</script>";
@@ -77,6 +80,7 @@ if($num=mysql_num_rows($result)){
 
 		$_SESSION['expired_date']=$rs['expired_date'];
 		$_SESSION['activated']=$rs['activated'];
+		$_SESSION['session']="1";
 		
 
 		if($rsEmp['role_id']=="2"){

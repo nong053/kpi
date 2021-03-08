@@ -397,7 +397,7 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
             }
 
 
-            $tableHTML .= "<b>รหัส " . $rs['emp_code'] ."</b><br>";
+            $tableHTML .= "<b>รหัส <a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a></b><br>";
             $tableHTML .= "<b>" . $rs['emp_first_name'] . " " . $rs['emp_last_name'] . "</b>";
             $tableHTML .= "<br>" . $rs['department_name'];
             $tableHTML .= "<br> ตำแหน่ง" . $rs['position_name'];

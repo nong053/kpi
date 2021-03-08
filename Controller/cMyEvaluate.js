@@ -58,18 +58,13 @@ var Level3FunctionFn = function(){
 		
 		success:function(data){
 			
-			//console.log(data['status']);
+			
 		
 
 			if(data[0][0]=="emp"){
 				$(".pageEmb").remove();
 				$(".RoleEmb").remove();
-				/*
-				setTimeout(function(){
-					//### withdrow panel left ###
-					//$("#withdrawEnlarge").click();
-				});
-				*/
+				
 				
 				
 				$("body").append("<input type=\"hidden\" name=\"pageDepartment\" id=\"pageDepartment\" class=\"pageEmb\" value=\"pageDepartment\">");
@@ -450,8 +445,7 @@ var calculate_kpi_score_by_manual_fn = function(kpi_actual_manual){
 				  $("#check_complete_kpi_score-"+$("#kpi_id").val()).parent().addClass('complete_kpi_score');
 				  $("#check_complete_kpi_score-"+$("#kpi_id").val()).parent().parent().css({"background":"green","color":"white"});
 				  
-				  // console.log( $("#check_complete_kpi_score-"+$("#kpi_id").val()).parent().get());	
-				  // console.log($("#kpi_id").val());
+				
 				  
 				
 			}
@@ -643,13 +637,7 @@ var manageFn = function(this_id,actionType){
 	var emp_id=this_id[5];
 	var kpi_id=this_id[6];
 
-	//  console.log("year="+year+
-	//  "appraisal_period_id="+appraisal_period_id+
-	//  "department_id="+department_id+
-	//  "position_id="+position_id+
-	//  "emp_id="+emp_id+
-	//  "kpi_id="+kpi_id
-	//  );
+	
 
 	
 	
@@ -714,7 +702,7 @@ var paramMyEvaluateAppraisal = function(year){
 			data:{"year":year},
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			success:function(data){
-				//console.log(data);
+				
 				var htmlDropDrowList="";
 				htmlDropDrowList+="<select id=\"my_evaluate_period\" name=\"my_evaluate_period\" class=\"\" style=\"width:auto;\">";
 					$.each(data,function(index,indexEntry){
@@ -987,27 +975,7 @@ $(document).ready(function(){
 
 
 
- // console.log("################################");
-
-	// 	 console.log("1="+$("#myEvaluateYear").val());
-	// 	 console.log("2="+$("#my_evaluate_period").val());
-
-	// 	 console.log("3="+$("#positionIdEmp").val());
-	// 	 console.log("4="+$("#departmentIdEmp").val());
-	// 	 console.log("5="+$("#emp_id").val());
-
-	// 	 console.log("6="+$("#kpi_id").val());
-	// 	 console.log("7="+$("#kpi_weight").val());
-	// 	 console.log("8="+$("#kpi_target_data").val());
-	// 	 console.log("9="+$(".kpi_type_actual:checked").val());
-	// 	 console.log("10="+$("#kpi_actual_manual").val());
-	// 	 console.log("11="+$("#kpi_actual_query").val());
-	// 	 console.log("12="+$("#target_score").val());
-	// 	 console.log("13="+$("#total_kpi_actual_score").val());
-	// 	 console.log("14="+$("#kpi_actual_score").val());
-	// 	 console.log("15="+$("#performance").val());
-	// 	 console.log("16="+$("#assign_kpi_action").val());
-	// 	 console.log("17="+$("#assign_kpi_id").val());
+ 
 		
 
 

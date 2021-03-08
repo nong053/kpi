@@ -83,8 +83,8 @@ if($_POST['action']=="showData"){
 	$tableHTML.="	<td>
 
 				<div style='text-align: right;'>
-					<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
-					<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
+					<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+					<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 				</div>
 			</td>";
 	$tableHTML.="</tr>";

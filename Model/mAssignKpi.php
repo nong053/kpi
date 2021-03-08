@@ -210,11 +210,11 @@ if($_POST['action']=="showEmpData"){
 		// <img class=\"img-circle\"  src=".$rs['emp_picture_thum']." width=50>
 		if(empty($rs['emp_picture_thum'])){
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'>".$rs['emp_code']."";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' style='opacity:0.1;' class=\"img-circle shadow\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height='80'><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a>";
 
 		}else{
 
-			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'>1".$rs['emp_code']."";
+			$tableHTML.="	<img id='image_emp_data-".$rs['emp_id']."' class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\"  height='80'><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a>";
 		
 		}
 		$tableHTML.="</td>";

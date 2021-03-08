@@ -62,7 +62,7 @@ $(document).ready(function(){
 		});
 	}	
 	
-	//fnDropdownListSearchDep($("#department_id_emb").val());
+	//fnDropdownListSearchDep(sessionStorage.getItem("param_department"));
 	//alert($("#depDisable").val());
 	if($("#depDisable").val()!=undefined){
 		fnDropdownListSearchDep($("#departmentIdEmp").val());
@@ -70,9 +70,9 @@ $(document).ready(function(){
 		//alert("hello1");
 		$("#department_search_id").prop('disabled', 'disabled');
 	}else{
-		fnDropdownListSearchDep($("#department_id_emb").val(),"selectAll");
+		fnDropdownListSearchDep(sessionStorage.getItem("param_department"),"selectAll");
 	}
-	//alert($("#department_id_emb").val());
+	//alert(sessionStorage.getItem("param_department"));
 	
 	//dropdown List Department start
 	
@@ -87,7 +87,7 @@ $(document).ready(function(){
 			async:false,
 			data:{"paramSelectAll":"selectAll"},
 			success:function(data){
-				console.log(data);
+				
 				var htmlDropDrowList="";
 				htmlDropDrowList+="<select id=\"status_work_search_id\" name=\"status_work_search_id\" class=\"\"  >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
@@ -109,7 +109,7 @@ $(document).ready(function(){
 			}
 		});
 	}	
-	fnDropdownListSearchStatusWork();
+	fnDropdownListSearchStatusWork(sessionStorage.getItem("status_work"));
 	//dropdown List Status Working End
 	
 	//dropdown List Division start
@@ -173,7 +173,7 @@ $(document).ready(function(){
 			async:false,
 			data:{"paramSelectAll":"selectAll"},
 			success:function(data){
-				console.log(data);
+				
 				var htmlDropDrowList="";
 				htmlDropDrowList+="<select  id=\"position_search_id\" name=\"position_search_id\" class=\"\" >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
@@ -202,11 +202,55 @@ $(document).ready(function(){
 			}
 		});
 	}	
-	fnDropdownListEmpSeashPostion($("#position_id_emb").val());
+	fnDropdownListEmpSeashPostion(sessionStorage.getItem("param_position"));
 	
 	//dropdown List EmpPostion end
-	
-	
+	//dropdown List role start
+	var fnDropdownListSearchEmpRole=function(role_id){
+
+		$.ajax({
+			url:"../Model/mRoleList.php",
+			type:"post",
+			dataType:"json",
+			async:false,
+			data:{"paramSelectAll":"selectAll"},
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			success:function(data){
+				
+				var htmlDropDrowList="";
+				htmlDropDrowList+="<select id=\"emp_role_id\" name=\"emp_role_id\" class=\"\" style='width:120px;' >";
+				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
+					$.each(data,function(index,indexEntry){
+						if(role_id==indexEntry[0]){
+							
+							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
+							
+						}else{
+							
+							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[1]+"</option>";
+							
+						}
+						
+					});
+				htmlDropDrowList+="</select>";
+				
+				$("#roleSearchDropDrowListArea").html(htmlDropDrowList);
+
+				// if($("#embed_emp_role_level_id").val()==2){
+				// 	$("#emp_role_id").prop("disabled",true);
+				// }else{
+				// 	$("#emp_role_id").prop("disabled",false);
+				// }
+
+				$("#emp_role_id").kendoDropDownList({
+						theme: "silver"
+					});
+				//persDropDrowList
+			}
+		});
+	}
+//dropdown List role start
+fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 	
 	
 	//dropdown List EmpPostion start
@@ -223,7 +267,7 @@ $(document).ready(function(){
 			dataType:"json",
 			async:false,
 			success:function(data){
-				console.log(data);
+				
 				var htmlDropDrowList="";
 				htmlDropDrowList+="<select id=\"empPosition\" name=\"empPosition\" class=\"\" >";
 					$.each(data,function(index,indexEntry){
@@ -268,7 +312,7 @@ $(document).ready(function(){
 			dataType:"json",
 			async:false,
 			success:function(data){
-				console.log(data);
+				
 				var htmlDropDrowList="";
 				htmlDropDrowList+="<select id=\"empStatusWork\" name=\"empStatusWork\" class=\"\" >";
 					$.each(data,function(index,indexEntry){
@@ -324,9 +368,8 @@ $(document).ready(function(){
 		$("#empMobile").val("");
 		$("#empTel").val("");
 		$("#empEmail").val("");
-		$("#empBrithDay").val("");
-
-		$("#empAgeWorking").val("");
+		$("#empBrithDay").val(currentDate());
+		$("#empAgeWorking").val(currentDate());
 		$("input[name=empStatus][value='single']").prop("checked",true);
 		$("#empAddress").val("");
 		$("#empDistict").val("");
@@ -348,7 +391,7 @@ $(document).ready(function(){
 		}
 
 	}
-	var showDataEmployee=function(department_id,position_id,status_work_search_id){
+	var showDataEmployee=function(department_id,position_id,status_work_search_id,role_id){
 		/*
 		alert("department_id="+department_id);
 		alert("division_id="+division_id);
@@ -359,7 +402,7 @@ $(document).ready(function(){
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			type:"post",
 			dataType:"html",
-			data:{"action":"showData","department_id":department_id,"position_id":position_id,"status_work_search_id":status_work_search_id},
+			data:{"action":"showData","department_id":department_id,"position_id":position_id,"status_work_search_id":status_work_search_id,"role_id":role_id},
 			success:function(data){
 				
 				$("#employeeShowData").html(data);
@@ -378,6 +421,86 @@ $(document).ready(function(){
 				//alert(data);
 				 
 				 //action del,edit start
+				 $(".actionView").click(function(){
+					var idView=this.id.split("-");
+					var id=idView[1];
+				   
+					$.ajax({
+						   url:"../Model/mEmployee.php",
+						   headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+						   type:"post",
+						   dataType:"json",
+						   data:{"id":id,"action":"edit"},
+						   async:false,
+						   success:function(data){
+							   
+							try {
+
+								if(data[0]["emp_picture"]==""){
+									$("#image_file_display").html("<img style=\"opacity:0.1\" class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"150\">");
+								}else{
+									$("#image_file_display").html("<img class=\"img-circle\" src=\""+data[0]["emp_picture"]+"\" width=\"150\">");
+								}
+									//$("#image_file_display").html("<img class='img-circle' src="+data[0]["emp_picture"]+" width=\"150\">");
+									$("#empCode_display").html(data[0]["emp_code"]);
+									$("#empUser_display").html(data[0]["emp_user"]);
+									$("#empFirstName_display").html(data[0]["emp_first_name"]);
+									$("#empLastName_display").html(data[0]["emp_last_name"]);
+
+									$("#empDepartment_display").html(data[0]["department_name"]);
+									$("#empPosition_display").html(data[0]["position_name"]);
+									$("#empRole_display").html(data[0]["role_name"]);
+									$("#empStatusWork_display").html(data[0]["emp_status_work"]);
+									
+									
+
+									
+
+
+									$("#empAge_display").html(data[0]["emp_age"]);
+									$("#empTel_display").html(data[0]["emp_tel"]);
+									$("#empEmail_display").html(data[0]["emp_email"]);
+									$("#empOther_display").html(data[0]["emp_other"]);
+									
+									
+
+									
+									
+									
+									
+									$("#empBrithDay_display").html(data[0]["emp_date_of_birth"]);
+									$("#empAgeWorking_display").html(data[0]["emp_age_working"]);
+									
+									if(data[0]["emp_status"]=="single"){
+										
+										$("#empStatus_display").html("โสด");
+										
+									}else{
+
+										$("#empStatus_display").html("สมรส");
+									}
+									//$("#empStatus").val(data[0]["emp_status"]);
+									$("#empMobile_display").html(data[0]["emp_mobile"]);
+									$("#empAddress_display").html(data[0]["emp_adress"]);
+									$("#empDistict_display").html(data[0]["emp_district"]);
+									$("#empSubDistict_display").html(data[0]["emp_sub_district"]);
+									$("#empProvince_display").html(data[0]["emp_province"]);
+									$("#empPostcode_display").html(data[0]["emp_postcode"]);
+
+									
+									
+
+									$("#employeeViewModal").modal("show");
+
+								}catch(err) {
+								console.log(err.message);
+							}
+
+						   }
+					});
+					
+				});
+
 				 $(".actionEdit").click(function(){
 					 var idEdit=this.id.split("-");
 					 var id=idEdit[1];
@@ -435,15 +558,15 @@ $(document).ready(function(){
 								var statusEmp="";
 								if(data[0]["emp_status"]=="single"){
 									//alert("Single");
-									statusEmp+="Single <input type=\"radio\" class=\"empStatus\" name=\"empStatus\" value=\"single\" checked>";
-									statusEmp+="Married <input type=\"radio\" class=\"empStatus\" name=\"empStatus\"  value=\"married\">";
+									statusEmp+="โสด <input type=\"radio\" class=\"empStatus\" name=\"empStatus\" value=\"single\" checked>";
+									statusEmp+="สมรส <input type=\"radio\" class=\"empStatus\" name=\"empStatus\"  value=\"married\">";
 									
 									$("#empStatusArea").html(statusEmp);
 									
 								}else{
 									//alert("Maried");
-									statusEmp+="Single <input type=\"radio\" class=\"empStatus\" name=\"empStatus\" value=\"single\" >";
-									statusEmp+="Married <input type=\"radio\" class=\"empStatus\" name=\"empStatus\"  value=\"married\" checked>";
+									statusEmp+="โสด <input type=\"radio\" class=\"empStatus\" name=\"empStatus\" value=\"single\" >";
+									statusEmp+="สมรส <input type=\"radio\" class=\"empStatus\" name=\"empStatus\"  value=\"married\" checked>";
 									
 									$("#empStatusArea").html(statusEmp);
 								}
@@ -497,7 +620,7 @@ $(document).ready(function(){
 												success:function(data){
 													if(data[0]=="success"){
 														//alert("ลบข้อมูลเรียบร้อย");	
-														showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
+														showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
 														
 													}
 												}
@@ -516,7 +639,7 @@ $(document).ready(function(){
 												success:function(data){
 													if(data[0]=="success"){
 														//alert("ลบข้อมูลเรียบร้อย");	
-														showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
+														showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
 														
 													}
 												}
@@ -544,7 +667,7 @@ $(document).ready(function(){
 		});
 	}
 	
-	showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
+	
 	
 	
 	/*
@@ -588,7 +711,62 @@ $(document).ready(function(){
 			success: afterSuccess,  // post-submit callback 
 			resetForm: true        // reset the form after successful submit 
 		}; 
+
+		function check_character(ch){
+			var len, digit;
+			if(ch == " "){
+				len=0;
+			}else{
+				len = ch.length;
+			}
+			for(var i=0 ; i<len ; i++)
+			{
+				digit = ch.charAt(i)
+				if( (digit >= "a" && digit <= "z") || (digit >="0" && digit <="9") || (digit >="A" && digit <="Z") || (digit =="_")){
+				;
+				}else{
+					return false;
+				}
+			}
+			return true;
+		}
+	function isEmail(email) {
+		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		return regex.test(email);
+	}
+	function validatePhone(phone) {
+		
+		var regex = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+		return regex.test(phone);
+	}	
+	
+	function checkPasswordStrength() {
+		
+		var number = /([0-9])/;
+		var alphabets = /([a-zA-Z])/;
+		var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+		if ($('#empPass').val().length < 6) {
+			$('#password-strength-status').removeClass();
+			$('#password-strength-status').addClass('weak-password');
+			$('#password-strength-status').html("ต้องมากกว่า 6 ตัวอักษร)");
+			return false;
+		} else {
+			if ($('#empPass').val().match(number) && $('#empPass').val().match(alphabets) && $('#empPass').val().match(special_characters)) {
+				$('#password-strength-status').removeClass();
+				$('#password-strength-status').addClass('strong-password');
+				$('#password-strength-status').html("ความปลอดภัยสูง");
+				return true;
+			} else {
+				$('#password-strength-status').removeClass();
+				$('#password-strength-status').addClass('medium-password');
+				$('#password-strength-status').html("มีความปลอดภัยระดับกลาง");
+				return true;
+			}
+		}
+	}
 	var validateFn=function(){
+
+		
 		//Validate Start
 		 var validate="";
 		 var checkUserDuplicate="";
@@ -689,11 +867,26 @@ $(document).ready(function(){
 
 			 	if($("#empCode").val()==""){
 			 		validate+=checkEmpCode;
-			 	}if($("#empUser").val()==""){
+			 	}else if(check_character($("#empCode").val())==false){
+					
+					validate+="รหัสพนักงานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น\n";
+				}
+
+
+				if($("#empUser").val()==""){
 			 		validate+=checkUsername;
-			 	} if($("#empPass").val()==""){
+			 	}else if(check_character($("#empUser").val())==false){
+					
+					validate+="ชื่อผู้ใช้งานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น\n";
+				}
+				
+				if($("#empPass").val()==""){
 			 		validate+=checkPassword;
-			 	} if($("#empConfirmPass").val()==""){
+			 	}else if(checkPasswordStrength()==false){
+					validate+="รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร\n";
+				 }
+				  
+				if($("#empConfirmPass").val()==""){
 			 		validate+=checkConfirmPass;
 			 	}
 			 	
@@ -709,17 +902,16 @@ $(document).ready(function(){
 			 	if($("#empLastName").val()==""){
 			 		validate+=checkLastName;
 			 	} 
-			 	//  if($("#empBrithDay").val()==""){
-			 	// 	validate+=checkBirthday;
-			 	// } if($("#empAgeWorking").val()==""){
-			 	// 	validate+=checkWorkingAge;
-			 	// } 
+				 //alert($("#empDepartment").val());
+				if($("#empDepartment").val()=="" || $("#empDepartment").val()==null){
+					validate+="เลือกแผนกด้วยครับ\n";
+				} 
+				if($("#empPosition").val()=="" || $("#empPosition").val()==null){
+					validate+="เลือกตำแหน่งด้วยครับ";
+				}
 
-			 	// if($("#empTel").val()==""){
-			 	// 	validate+=checkTel;
-			 	// } if($("#empEmail").val()==""){
-			 	// 	validate+=checkEmail;
-			 	// }
+				 
+				 
 
 
 			}else{
@@ -733,7 +925,10 @@ $(document).ready(function(){
 			 		validate+=checkEmpCode;
 			 	}if($("#empUser").val()==""){
 			 		validate+=checkUsername;
-			 	}
+			 	}else if(check_character($("#empUser").val())==false){
+					
+					validate+="ชื่อผู้ใช้งานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น\n";
+				}
 
 			 	if ($('#changePass').is(":checked"))
 				{
@@ -855,18 +1050,20 @@ function afterSuccess(data)
 	$('#loading-img').hide(); //hide submit button
 	
 	/*
-	alert($("#department_id_emb").val());
-	alert($("#position_id_emb").val());*/
-	fnDropdownListEmpSeashPostion($("#position_id_emb").val());
-	fnDropdownListSearchDep($("#department_id_emb").val());
-	fnDropdownListSearchStatusWork($("#status_work_search_id_emb").val());
-	//fnDropdownListSearchDiv($("#division_id_emb").val());
-	showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
-	/*
-	showDataEmployee($("#department_id_emb").val(),$("#division_id_emb").val(),$("#position_id_emb").val());
+	alert(sessionStorage.getItem("param_department"));
+	alert(sessionStorage.getItem("param_position"));*/
+	fnDropdownListEmpSeashPostion(sessionStorage.getItem("param_position"));
+	fnDropdownListSearchDep(sessionStorage.getItem("param_department"));
+	fnDropdownListSearchStatusWork(sessionStorage.getItem("status_work"));
+	fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 
-	fnDropdownListEmpSeashPostion($("#position_id_emb").val());
-	fnDropdownListSearchDep($("#department_id_emb").val());
+	//fnDropdownListSearchDiv($("#division_id_emb").val());
+	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
+	/*
+	showDataEmployee(sessionStorage.getItem("param_department"),$("#division_id_emb").val(),sessionStorage.getItem("param_position"));
+
+	fnDropdownListEmpSeashPostion(sessionStorage.getItem("param_position"));
+	fnDropdownListSearchDep(sessionStorage.getItem("param_department"));
 	fnDropdownListSearchDiv($("#division_id_emb").val());
 	*/
 }
@@ -927,92 +1124,71 @@ function bytesToSize(bytes) {
 /*Search Button Start*/
 
 
-$("#customerSearch").click(function(){
-	/*
-	alert($("#department_id").val());
-	alert($("#division_id").val());
-	alert($("#position_id").val());
-	*/
-	$(".emb_param").remove();
-	$("body").append("<input type='hidden' name='department_id_emb' class='emb_param' id='department_id_emb' value='"+$("#department_search_id").val()+"'>");
-	//$("body").append("<input type='hidden' name='division_id_emb' class='emb_param' id='division_id_emb' value='"+$("#division_id").val()+"'>");
-	$("body").append("<input type='hidden' name='position_id_emb' class='emb_param' id='position_id_emb' value='"+$("#position_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='status_work_search_id_emb' class='emb_param' id='status_work_search_id_emb' value='"+$("#status_work_search_id").val()+"'>");
-	
-	$(".employeeData").show();
-	//search customer start
-	showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
- /*
-	$.ajax({
-			url:"../Model/mEmployee.php",
-			type:"post",
-			dataType:"json",
-			data:{"action":"showData","department_id":$("#department_id_emb").val(),"division_id":$("#division_id_emb").val(),
-				"position_id":$("#position_id_emb").val()},
-			success:function(data){
-				//alert(data);
-				showDataEmployee($("#department_id_emb").val(),$("#division_id_emb").val(),$("#position_id_emb").val());
-			}
-	 });
-	*/
-	//search customer end
-	
-	
-});
-/*Search Button end*/
 
 /*change param action start*/
-//Default param start
-$(".emb_param").remove();
-$("body").append("<input type='hidden' name='department_id_emb' class='emb_param' id='department_id_emb' value='"+$("#department_search_id").val()+"'>");
-$("body").append("<input type='hidden' name='position_id_emb' class='emb_param' id='position_id_emb' value='"+$("#position_search_id").val()+"'>");
-$("body").append("<input type='hidden' name='status_work_search_id_emb' class='emb_param' id='status_work_search_id_emb' value='"+$("#status_work_search_id").val()+"'>");
-$(".employeeData").show();
-showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
-//Default param end
+sessionStorage.setItem("param_department", $("#department_search_id").val());
+sessionStorage.setItem("param_position", $("#position_search_id").val());
+sessionStorage.setItem("status_work", $("#status_work_search_id").val());
+sessionStorage.setItem("param_role", $("#emp_role_id").val());
+	
+ setTimeout(function(){
+	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
+	$(".employeeData").show();
+ });
+
+
 $("#department_search_id").change(function(){
 	
-	$(".emb_param").remove();
-	$("body").append("<input type='hidden' name='department_id_emb' class='emb_param' id='department_id_emb' value='"+$("#department_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='position_id_emb' class='emb_param' id='position_id_emb' value='"+$("#position_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='status_work_search_id_emb' class='emb_param' id='status_work_search_id_emb' value='"+$("#status_work_search_id").val()+"'>");
+	sessionStorage.setItem("param_department", $("#department_search_id").val());
+	sessionStorage.setItem("param_position", $("#position_search_id").val());
+	sessionStorage.setItem("status_work", $("#status_work_search_id").val());
+	sessionStorage.setItem("param_role", $("#emp_role_id").val());
 	$(".employeeData").show();
-	showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
+	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
 })
 $("#position_search_id").change(function(){
-	$(".emb_param").remove();
-	$("body").append("<input type='hidden' name='department_id_emb' class='emb_param' id='department_id_emb' value='"+$("#department_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='position_id_emb' class='emb_param' id='position_id_emb' value='"+$("#position_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='status_work_search_id_emb' class='emb_param' id='status_work_search_id_emb' value='"+$("#status_work_search_id").val()+"'>");
+	sessionStorage.setItem("param_department", $("#department_search_id").val());
+	sessionStorage.setItem("param_position", $("#position_search_id").val());
+	sessionStorage.setItem("status_work", $("#status_work_search_id").val());
+	sessionStorage.setItem("param_role", $("#emp_role_id").val());
 	$(".employeeData").show();
-	showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
+	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
 })
 $("#status_work_search_id").change(function(){
-	$(".emb_param").remove();
-	$("body").append("<input type='hidden' name='department_id_emb' class='emb_param' id='department_id_emb' value='"+$("#department_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='position_id_emb' class='emb_param' id='position_id_emb' value='"+$("#position_search_id").val()+"'>");
-	$("body").append("<input type='hidden' name='status_work_search_id_emb' class='emb_param' id='status_work_search_id_emb' value='"+$("#status_work_search_id").val()+"'>");
+	sessionStorage.setItem("param_department", $("#department_search_id").val());
+	sessionStorage.setItem("param_position", $("#position_search_id").val());
+	sessionStorage.setItem("status_work", $("#status_work_search_id").val());
+	sessionStorage.setItem("param_role", $("#emp_role_id").val());
 	$(".employeeData").show();
-	showDataEmployee($("#department_id_emb").val(),$("#position_id_emb").val(),$("#status_work_search_id_emb").val());
+	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
 })
-/*change param action end*/
+$("#emp_role_id").change(function(){
+	sessionStorage.setItem("param_department", $("#department_search_id").val());
+	sessionStorage.setItem("param_position", $("#position_search_id").val());
+	sessionStorage.setItem("status_work", $("#status_work_search_id").val());
+	sessionStorage.setItem("param_role", $("#emp_role_id").val());
+	$(".employeeData").show();
+	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
+})
 
+/*change param action end*/
+	
 	$("#empBrithDay").datepicker();
 	$( "#empBrithDay" ).datepicker( "option", "dateFormat", "yy-mm-dd");
 	$("#empAgeWorking").datepicker();
 	$( "#empAgeWorking" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 	
 
-	$("#customerSearch").click();
+	
 	//Add employee start
 	$("#btnAddEmployee").click(function(){
 
 		if(checkPackageFn()<$("#embed_user_amount").val()){
 
 			resetDataEmployee();
-			fnDropdownListEmpPostion($("#position_id_emb").val());
-			fnDropdownListDep($("#department_id_emb").val());
-			fnDropdownListEmpStatus($("#status_work_search_id_emb").val());		
+			fnDropdownListEmpPostion(sessionStorage.getItem("param_position"));
+			fnDropdownListDep(sessionStorage.getItem("param_department"));
+			fnDropdownListEmpStatus(sessionStorage.getItem("status_work"));		
 			$("#employeeModal").modal('show');
 
 		}else{

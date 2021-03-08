@@ -18,7 +18,7 @@ if($_SESSION['language']=="th"){
 	//column
 	$_SESSION['employee_l_tbl_id']="#";
 	$_SESSION['employee_l_tbl_picture']="รูป";
-	$_SESSION['employee_l_tbl_name']="ชื่อ-นามสกุล";
+	$_SESSION['employee_l_tbl_name']="ข้อมูลพนักงาน";
 	$_SESSION['employee_l_tbl_department']="แผนก";
 	$_SESSION['employee_l_tbl_position']="ตำแหน่ง";
 	$_SESSION['employee_l_tbl_age_working']="อายุงาน";
@@ -32,7 +32,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['employee_l_form_emp_code']="รหัสพนักงาน";
 	$_SESSION['employee_l_form_user']="ชื่อผู้ใช้งาน";
 	$_SESSION['employee_l_form_password']="รหัสผ่าน";
-	$_SESSION['employee_l_form_change_password']="เปลี่ยนรหัส";
+	$_SESSION['employee_l_form_change_password']="เปลี่ยนรหัสผ่าน";
 	
 	$_SESSION['employee_l_form_confrim_password']="ยืนยันรหัสผ่าน";
 	$_SESSION['employee_l_form_first_name']="ชื่อ";
@@ -247,7 +247,7 @@ if($_SESSION['language']=="th"){
 
 
 								<tr>
-									<td class='text-right'><b><?= $_SESSION['employee_l_form_department'] ?></b></td>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_department'] ?><font color="red">*</font></b></td>
 									<td id="depDropDrowListArea">
 
 										<select name="empDepartment" id="empDepartment" class="form-control ">
@@ -277,7 +277,7 @@ if($_SESSION['language']=="th"){
 							 -->
 
 								<tr>
-									<td class='text-right'><b><?= $_SESSION['employee_l_form_position'] ?></b></td>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_position'] ?><font color="red">*</font></b></td>
 									<td id="empPositionArea">
 
 										<select name="empPosition" id="empPosition" class="form-control ">
@@ -366,8 +366,8 @@ if($_SESSION['language']=="th"){
 									<td class='text-right'><b><?= $_SESSION['employee_l_form_status_marital'] ?></b></td>
 									<td id="empStatusArea">
 
-										<?= $_SESSION['employee_l_form_status_single'] ?> <input type="radio" class="empStatus " name="empStatus" value="single" checked>
-										<?= $_SESSION['employee_l_form_status_married'] ?> <input type="radio" class="empStatus " name="empStatus" value="married">
+										โสด <input type="radio" class="empStatus " name="empStatus" value="single" checked>
+										สมรส <input type="radio" class="empStatus " name="empStatus" value="married">
 									</td>
 								</tr>
 
@@ -434,14 +434,15 @@ if($_SESSION['language']=="th"){
 				</div>
 
 				<div class="modal-footer">
-					<!--
-	   		<button data-dismiss="modal" class="btn btn-default" type="button">Close</button> 
-	   		<button class="btn btn-primary" type="button">Save changes</button> 
-	   		-->
+					
+	   			
+	   		<!-- <button class="btn btn-primary" type="button">Save changes</button>  -->
+	   		
 					<input type="hidden" name="empAction" id="empAction" class="empAction" value="add">
 					<input type="hidden" name="empId" id="empId" class="empId" value="">
 					<input type="submit" id="empSubmit" name="empSubmit" class="btn btn-primary " value="<?= $_SESSION['employee_l_form_btn_add'] ?>">
 					<input type="reset" value="<?= $_SESSION['employee_l_form_btn_reset'] ?>" id="empReset" class="btn default  ">
+					<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 
 				</div>
 
@@ -452,6 +453,246 @@ if($_SESSION['language']=="th"){
 	</div>
 </div>
 <!-- Large modal end-->
+
+<!-- Large view modal start-->
+<div id='employeeViewModal' class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+
+		<div class="modal-content">
+			<div class="modal-header alert-info">
+				<button aria-label="Close" data-dismiss="modal" class="close" type="button">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 id="myLargeModalLabel" class="modal-title"> ข้อมูลพนักงาน </h4>
+			</div>
+			
+				<div class="modal-body">
+
+					<!-- content start-->
+
+
+					<row>
+						<table>
+							<tr>
+								<td class='text-right'><b><?= $_SESSION['employee_l_form_picture'] ?></b></td>
+								<td>
+									<div id="image_file_display"></div>
+								</td>
+							</tr>
+						</table>
+						<div class="col-md-6">
+						
+							<table class="employeeData" style="display:none;">
+								
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_emp_code'] ?></b></td>
+									<td>
+										<div id="empCode_display"></div>
+										
+									</td>
+								</tr>
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_user'] ?></b></td>
+									<td>
+										<div id="empUser_display"></div>
+									</td>
+								</tr>
+								
+
+								<tr>
+									<td class='text-right'><b><b><?= $_SESSION['employee_l_form_first_name'] ?></b></td>
+									<td>
+										<div id="empFirstName_display"></div>
+										
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><b><?= $_SESSION['employee_l_form_last_name'] ?></b></td>
+									<td>
+										<div id="empLastName_display"></div>
+										
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_department'] ?></b></td>
+									<td >
+										
+										<div id="empDepartment_display"></div>
+									</td>
+								</tr>
+
+							
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_position'] ?></b></td>
+									<td >
+
+										
+										<div id="empPosition_display"></div>
+
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_role'] ?></b></td>
+									<td>
+										<div id="empRole_display"></div>
+									</td>
+								</tr>
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_status'] ?></b></td>
+									<td>
+										<div id="empStatusWork_display"></div>
+									</td>
+								</tr>
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_moblie'] ?>
+											<!-- <font color="red">*</font> -->
+										</b></td>
+									<td>
+										
+										<div id="empMobile_display"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_tel'] ?>
+											<!-- <font color="red">*</font> -->
+										</b></td>
+									<td>
+										
+										<div id="empTel_display"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_email'] ?>
+											<!-- <font color="red">*</font> -->
+										</b></td>
+									<td>
+										
+										<div id="empEmail_display"></div>
+									</td>
+								</tr>
+
+
+
+							</table>
+						</div>
+						<div class="col-md-6">
+
+							<table class="employeeData" style="display:none;">
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_brithday'] ?>
+											<!-- <font color="red">*</font> -->
+										</b></td>
+									<td>
+										<div id="empBrithDay_display"></div>
+										
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_age_working'] ?>
+											<!-- <font color="red">*</font></b> -->
+									</td>
+									<td>
+										
+										<div id="empAgeWorking_display"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_status_marital'] ?></b></td>
+									<td id="empStatusArea">
+
+										<div id="empStatus_display"></div>
+
+										
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_address_no'] ?></b></td>
+									<td>
+										
+										<div id="empAddress_display"></div>
+									</td>
+								</tr>
+
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_province'] ?></b></td>
+									<td>
+										
+										<div id="empProvince_display"></div>
+									 </td>
+								</tr>
+								
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_distict'] ?></b></td>
+									<td>
+										
+										<div id="empDistict_display"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_sub_distict'] ?></b></td>
+									<td>
+										<div id="empSubDistict_display"></div>
+										
+										
+									</td>
+								</tr>
+
+								
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_postcode'] ?></b></td>
+									<td>
+										
+										<div id="empPostcode_display"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class='text-right'><b><?= $_SESSION['employee_l_form_other'] ?></b></td>
+									<td>
+										
+										<div id="empOther_display"></div>
+										
+									</td>
+								</tr>
+								
+							
+							</table>
+
+							<br style="clear: both;">
+						</div>
+						<br style="clear: both;">
+					</row>
+					<br style="clear: both;">
+
+
+					<!-- content end-->
+
+				</div>
+
+				<div class="modal-footer">
+					
+	   				<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
+	   		
+				</div>
+
+			
+
+		</div>
+
+	</div>
+</div>
+<!-- Large view modal end-->
+
 
 
 
@@ -500,10 +741,14 @@ if($_SESSION['language']=="th"){
 			</select>
 			-->
 			</td>
-			<!-- 
-		<td>
-			<button type="button" id="customerSearch"  class="btn btn-primary btn-sm"> <?= $_SESSION['employee_l_search_btn_search'] ?> </button>
-		</td> -->
+			
+			<td>
+				<b class='pre-search-label'>สิทธิ์</b>
+			</td>
+			<td>
+				<div id="roleSearchDropDrowListArea" style="float:left;"></div>
+			</td>
+
 		</tr>
 	</table>
 

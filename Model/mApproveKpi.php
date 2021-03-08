@@ -115,9 +115,9 @@ if($_POST['action']=="showEmpData"){
 		$tableHTML.="	<td style='text-align:center;'>";
 		
 		if (empty($rs['emp_picture_thum'])) {
-			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" >".$rs['emp_code']."";
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a>";
 		} else {
-			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" >".$rs['emp_code']."";
+			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a>";
 		}
 		// <img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=80 height=80></td>";
 		

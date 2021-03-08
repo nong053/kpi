@@ -82,6 +82,68 @@
 						  
 					});
 				//EDIT For Approve kpi END
+
+				$(".actionViewEmployee").click(function(){
+					var idView=this.id.split("-");
+					var id=idView[1];
+					$.ajax({
+						   url:"../Model/mEmployee.php",
+						   headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+						   type:"post",
+						   dataType:"json",
+						   data:{"id":id,"action":"edit"},
+						   async:false,
+						   success:function(data){
+							   
+							try {
+
+
+									if(data[0]["emp_picture"]==""){
+										$("#image_file_display").html("<img style=\"opacity:0.1\" class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"150\">");
+									}else{
+										$("#image_file_display").html("<img class=\"img-circle\" src=\""+data[0]["emp_picture"]+"\" width=\"150\">");
+									}
+									$("#empCode_display").html(data[0]["emp_code"]);
+									$("#empUser_display").html(data[0]["emp_user"]);
+									$("#empFirstName_display").html(data[0]["emp_first_name"]);
+									$("#empLastName_display").html(data[0]["emp_last_name"]);
+
+									$("#empDepartment_display").html(data[0]["department_name"]);
+									$("#empPosition_display").html(data[0]["position_name"]);
+									$("#empRole_display").html(data[0]["role_name"]);
+									$("#empStatusWork_display").html(data[0]["emp_status_work"]);
+									$("#empTel_display").html(data[0]["emp_tel"]);
+									$("#empEmail_display").html(data[0]["emp_email"]);
+									$("#empOther_display").html(data[0]["emp_other"]);
+									$("#empBrithDay_display").html(data[0]["emp_date_of_birth"]);
+									$("#empAgeWorking_display").html(data[0]["emp_age_working"]);
+									
+									if(data[0]["emp_status"]=="single"){
+										
+										$("#empStatus_display").html("โสด");
+										
+									}else{
+
+										$("#empStatus_display").html("สมรส");
+									}
+									$("#empMobile_display").html(data[0]["emp_mobile"]);
+									$("#empAddress_display").html(data[0]["emp_adress"]);
+									$("#empDistict_display").html(data[0]["emp_district"]);
+									$("#empSubDistict_display").html(data[0]["emp_sub_district"]);
+									$("#empProvince_display").html(data[0]["emp_province"]);
+									$("#empPostcode_display").html(data[0]["emp_postcode"]);
+									
+									$("#employeeViewDetailModal").modal("show");
+
+								}catch(err) {
+								console.log(err.message);
+							}
+
+						   }
+					});
+					
+				});
+
 				//actionNewEvaluate start
 				$(".actionNewEvaluate").click(function(){
 					var  data_id=this.id.split("-");

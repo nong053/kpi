@@ -94,7 +94,7 @@ error_reporting (E_ALL ^ E_NOTICE);
     <div id="sign_up2">
         <div class="container">
         
-            <div class="row login" style='margin-top: 20px;'>
+            <div class="row login" style='margin-top: 10%'>
                 <div class="span6 left_box">
                     <h4>เข้าสู่ระบบประเมินบุคคล<br>
                    

@@ -832,7 +832,7 @@ if($_POST['action']=="editAction"){
 	-- kpi_id='$kpi_id',
 
 	-- kpi_weight='$kpi_weight',
-	-- target_data='$target_data',
+	target_data='$target_data',
 	-- kpi_type_actual='$kpi_type_actual',
 	emp_kpi_actual_manual='$kpi_actual_manual',
 	-- kpi_actual_query='$kpi_actual_query',
