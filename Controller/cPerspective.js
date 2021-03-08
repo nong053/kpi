@@ -1,4 +1,22 @@
 $(document).ready(function(){
+
+
+
+	$("#exPerspectiveDataAction").click(function(){
+
+		$.ajax({
+			url:"../examples/ex-perspective.php",
+			type:"post",
+			dataType:"html",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			sync:false,
+			success:function(data){
+				$("#exContentDataArea").html(data);
+				$(".ex-data-modal").modal();
+			}
+		});
+	});
+
 	
 	var resetDataPerspective=function(){
 		$("input#perspectiveName").val("");

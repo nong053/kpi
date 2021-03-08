@@ -5,6 +5,20 @@ $(document).ready(function(){
 	
 	//binding date start
 	
+	$("#exAppraisalPeriodDataAction").click(function(){
+
+		$.ajax({
+			url:"../examples/ex-appraisal-period.php",
+			type:"post",
+			dataType:"html",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			sync:false,
+			success:function(data){
+				$("#exContentDataArea").html(data);
+				$(".ex-data-modal").modal();
+			}
+		});
+	});
 
 	$("#appraisalPeriodStart").datepicker({
 		

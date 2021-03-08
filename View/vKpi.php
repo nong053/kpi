@@ -212,9 +212,36 @@ if($_SESSION['language']=="th"){
 <!-- Large modal end-->
 
 
+<!-- Large example modal start-->
+<div class="modal fade ex-data-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+   
+   <div class="modal-content"> 
+	   <div class="modal-header alert-info"> 
+		   <button aria-label="Close" data-dismiss="modal" class="close" type="button">
+		   		<span aria-hidden="true">×</span>
+		   </button> 
+		   	<h4 id="myLargeModalLabel" class="modal-title"> ตัวอย่างตัวชี้วัด (ผ่ายขายและการตลาด)</h4> 
+	   </div> 
+	   <div class="modal-body"> 
+
+	   		<!-- content start-->
+	 			<div id="exContentDataArea"></div>
+				
+	   		<!-- content end-->
+
+	   </div> 
+   </div>
+
+  </div>
+</div>
+<!-- Large example data modal end-->
+
+
+
 <div role="alert" class="alert alert-info">
      <h2> <strong><?=$_SESSION['kpi_l_des_title']?> </strong></h2>
-   		<?=$_SESSION['kpi_l_des_detail']?>
+   		<?=$_SESSION['kpi_l_des_detail']?> <font color="red">***</font> <a style="text-decoration:underline; cursor:pointer;" id="exKpiDataAction">ตัวอย่างตัวชี้วัด</a>
     </div>
     
     <div style="margin-top: 5px;" class="panel panel-default panel-bottom">

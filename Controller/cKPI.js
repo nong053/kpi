@@ -17,6 +17,24 @@ var setBaseLineAutoFn =function(paramkpiTypeScore,paramKpiId){
 }
 
 $(document).ready(function(){
+
+
+
+	$("#exKpiDataAction").click(function(){
+
+		$.ajax({
+			url:"../examples/ex-kpi.php",
+			type:"post",
+			dataType:"html",
+			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+			sync:false,
+			success:function(data){
+				$("#exContentDataArea").html(data);
+				$(".ex-data-modal").modal();
+			}
+		});
+	});
+
 	var htmlActual="";
 
 	$(".kpiTypeScore").click(function(){
