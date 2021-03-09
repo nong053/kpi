@@ -156,7 +156,7 @@ if($_SESSION['language']=="th"){
 						<input type="radio" checked="checked" id="kpiTypeScore2" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="2"> 1-5 คะแนน
 						&nbsp;
 						
-						<input type="radio" id="kpiTypeScore3" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="3"> ถูก/ผิด
+						<input type="radio" id="kpiTypeScore3" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="3"> ผ่าน/ไม่ผ่าน
 						&nbsp;
 						<input type="radio"   id="kpiTypeScore1" class="kpiTypeScore" name="kpiTypeScore"   class="form-control " value="1"> กำหนดเอง
 						
@@ -221,7 +221,7 @@ if($_SESSION['language']=="th"){
 		   <button aria-label="Close" data-dismiss="modal" class="close" type="button">
 		   		<span aria-hidden="true">×</span>
 		   </button> 
-		   	<h4 id="myLargeModalLabel" class="modal-title"> ตัวอย่างตัวชี้วัด (ผ่ายขายและการตลาด)</h4> 
+		   	<h4 id="myLargeModalLabel" class="modal-title"> ตัวอย่างตัวชี้วัด</h4> 
 	   </div> 
 	   <div class="modal-body"> 
 

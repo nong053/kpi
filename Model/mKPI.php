@@ -320,9 +320,9 @@ if($_POST['action']=="showData"){
 	
 	$tableHTML.="	<td>".$rs['perspective_name']."</td>";
 	if($rs['kpi_better_flag']=='Y'){
-		$tableHTML.="	<td>ยิ่งมากยิ่งดี</td>";
+		$tableHTML.="	<td>ยิ่งมากยิ่งดี <i style='color:green;' class='glyphicon glyphicon-arrow-up'></i></td>";
 	}else if($rs['kpi_better_flag']=='N'){
-		$tableHTML.="	<td>ยิ่งน้อยยิ่งดี</td>";
+		$tableHTML.="	<td>ยิ่งน้อยยิ่งดี <i style='color:red;' class='glyphicon glyphicon-arrow-down'></i></td>";
 	}else{
 		$tableHTML.="	<td>-</td>";
 	}
@@ -337,7 +337,7 @@ if($_POST['action']=="showData"){
 		$tableHTML.="1-5 คะแนน";
 	}else if($rs['kpi_type_score']==3){
 
-		$tableHTML.="ถูก/ผิด";
+		$tableHTML.="ผ่าน/ไม่ผ่าน";
 	}else{
 		$tableHTML.="กำหนดเอง";
 	}
