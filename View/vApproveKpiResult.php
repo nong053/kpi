@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['approve_l_des_title']="ปรับคะแนนผลการปฏิบัติการ";
-	$_SESSION['approve_l_des_detail']="เพื่อให้ผู้บริหารหรือผู้จัดการสามารถปรับคะแนนผลการปฏิบัติการในแต่ละงวดให้พนักงานได้  ";
+	$_SESSION['approve_l_des_detail']="เพื่อให้ผู้ประเมินสู่งสุดสามารถปรับคะแนนผลประเมินและอนุมััติผลประเมินพนักงาน";
 	
 
 	//Search
@@ -31,7 +31,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['approve_emp_l_tbl_manage']="จัดการ";
 
 	//form
-	$_SESSION['approve_l_form_name']="ฟอร์มปรับผลการประเมิน";
+	$_SESSION['approve_l_form_name']="ปรับผลการประเมิน";
 	$_SESSION['approve_l_form_kpi_peromance']="ผลการประเมิน ";
 	$_SESSION['approve_l_form_kpi_reason']="เหตุผล";
 	$_SESSION['approve_l_form_btn_save']="บันทึก";
@@ -209,6 +209,7 @@ if($_SESSION['language']=="th"){
 
 					<input type="button" id="btnSubmit" name="btnSubmit" value="<?=$_SESSION['approve_l_form_btn_save']?>"  class="btn btn-primary">
 					<input type="reset" id="btnReset" name="btnReset" value="<?=$_SESSION['approve_l_form_btn_reset']?>"  class="btn btn-default">
+					<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 					</td>
 				</tr>
 			</table>

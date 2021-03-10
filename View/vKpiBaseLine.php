@@ -5,7 +5,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['baseline_l_des_title']="แปลงผลการปฏิบัติงานเป็นคะแนน";
-	$_SESSION['baseline_l_des_detail']="เนื่องจากข้อมูลผลการปฏิบัติงานที่วัดมีหลายรูปแบบ เช่น เปอร์เซ็นต์, จำนวนครั้ง, จำนวนคน เป็นต้น จึงจำเป็นต้องมีการแปลงข้อมูลดังกล่าวให้อยู่ในรูปแบบเดียวกันโดยให้เป็นคะแนน ";
+	$_SESSION['baseline_l_des_detail']="เนื่องจากข้อมูลผลการปฏิบัติงานที่วัดมีหลายรูปแบบ เช่น เปอร์เซ็นต์, จำนวนครั้ง, จำนวนคน เป็นต้น จึงจำเป็นต้องมีการแปลงข้อมูลดังกล่าวให้อยู่ในรูปแบบเดียวคิดเป็นคะแนน 1-5 คะแนน ";
 	$_SESSION['baseline_l_des_btn_add']="ช่วงคะแนน";
 	$_SESSION['baseline_l_des_btn_back']="ย้อนกลับ";
 	$_SESSION['baseline_l_des_btn_kpi']="ตัวชี้วัด";
@@ -21,7 +21,7 @@ if($_SESSION['language']=="th"){
 
 	//form
 	
-	$_SESSION['baseline_l_form_name']="ฟอร์มแปลงคะแนน";
+	$_SESSION['baseline_l_form_name']="แปลงคะแนน";
 	$_SESSION['baseline_l_form_begin']="เริ่ม";
 	$_SESSION['baseline_l_form_end']="ถึง";
 	$_SESSION['baseline_l_form_score']="คะแนน";
@@ -140,6 +140,7 @@ $kpiName=$_GET['kpiName'];
 						<input type="hidden" name="baselineId" id ="baselineId"  class="baselineId" value="">
 						<input type="submit" id="baselineSubmit" name="baselineSubmit" class="btn btn-primary " value="<?=$_SESSION['baseline_l_form_btn_add']?>">
 						<input type="reset" value="<?=$_SESSION['baseline_l_form_btn_reset']?>" id="baselineReset" class="btn default  ">
+						<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 						<!---
 						<input type="button" id="kpiButton" name="kpiButton" class="btn default  btn-sm" value="back">
 						-->

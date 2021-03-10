@@ -115,6 +115,7 @@ if($_SESSION['language']=="th"){
 							<input type="hidden" name="positionId" id ="positionId"  class="positionId" value="">
 							<input type="submit" id="positionSubmit" name="positionSubmit" class="btn btn-primary " value="<?=$_SESSION['position_l_form_btn_add']?>">
 							<input type="reset" value="<?=$_SESSION['position_l_form_btn_reset']?>" id="positionReset" class="btn default  ">
+							<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 						</td>
 					</tr>
 				</table>

@@ -8,7 +8,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['assign_l_des_title']="มอบหมายตัวชี้วัด";
-	$_SESSION['assign_l_des_detail']="เพื่อทำการมอบหมายตัวชี้วัดที่ต้องวัดผลการปฏิบัติงานให้กับพนักงาน ตรงนี้จะเป็นการ มอบหมายตัวชี้วัดค่าเริ่มต้นโดยมอบหมายในระดับตำแหน่งซึ่งก็คือพนักงานที่อยู่ภายใต้ตำแหน่งนั้นๆ";
+	$_SESSION['assign_l_des_detail']="เพื่อทำการมอบหมายตัวชี้วัดที่ต้องการวัดผลการปฏิบัติงานให้กับพนักงานโดยสามารถมอบหมายได้พร้อมกันทั้งหมด หรือ มอบหมายตามตัวชี้วัดตามรายบุคคล";
 	$_SESSION['assign_l_des_btn_add']="มอบหมายตัวชี้วัดทั้งหมด";
 	$_SESSION['assign_l_des_btn_confirm']="ส่งประเมินทั้งหมด";
 	$_SESSION['assign_l_des_btn_del_all']="ยกเลิกมอบหมายทั้งหมด";
@@ -348,7 +348,7 @@ if($_SESSION['language']=="th"){
 
 											<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="<?= $_SESSION['assign_l_form_btn_add'] ?>" class="btn btn-primary ">
 											<input type="button" value="<?= $_SESSION['assign_l_form_btn_reset'] ?>" id="assign_kpi_reset" class="btn btn-default ">
-
+											<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 											<!--<input type="button" id="send_to_approve" name="send_to_approve" value="Send to Approve">
 									 <input type="button" value="Search" id="assign_kpi_search"> -->
 										</div>

@@ -6,14 +6,14 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['department_l_des_title']="แผนก";
-	$_SESSION['department_l_des_detail']="เพื่อกำหนดตำแผนกที่ต้องการวัดผลการปฏิบัติงาน ";
+	$_SESSION['department_l_des_detail']="เพื่อกำหนดแผนกที่ต้องการวัดผลการปฏิบัติงาน ";
 	$_SESSION['department_l_des_btn_add']="แผนก";
 
 	//column
 	$_SESSION['department_l_tbl_id']="#";
 	$_SESSION['department_l_tbl_department_code']="รหัสแผนก";
 	$_SESSION['department_l_tbl_department_name']="ชื่อแผนก";
-	$_SESSION['department_l_tbl_department_detail']="รายละเอียดเพิ่มเติม";
+	$_SESSION['department_l_tbl_department_detail']="รายละเอียด";
 	$_SESSION['department_l_tbl_manage']="จัดการ";
 
 	//form
@@ -137,6 +137,7 @@ if($_SESSION['language']=="th"){
 							<input type="hidden" name="departmentId" id ="departmentId"  class="departmentId" value="">
 							<input type="submit" id="departmentSubmit" name="departmentSubmit"  class="btn btn-primary " value="<?=$_SESSION['department_l_form_btn_add']?>">
 							<input type="reset" value="<?=$_SESSION['department_l_form_btn_reset']?>" class="btn default  " id="departmentReset">
+							<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 						</td>
 					</tr>
 				</table>

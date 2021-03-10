@@ -198,6 +198,7 @@ if($_SESSION['language']=="th"){
 							<input type="hidden" name="kpiId" id ="kpiId"  class="kpiId" value="">
 							<input type="submit" id="kpiSubmit" name="kpiSubmit" value="<?=$_SESSION['kpi_l_form_btn_add']?>" class="btn btn-primary">
 							<input type="reset" value="<?=$_SESSION['kpi_l_form_btn_reset']?>" class="btn default" id="kpiReset">
+							<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 						</td>
 					</tr>
 				</table>

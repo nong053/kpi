@@ -457,7 +457,7 @@ if($_SESSION['language']=="th"){
 					<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
 					<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="Add" class="btn btn-primary btn-sm">
 					<input type="button" value="Reset" id="assign_kpi_reset" class="btn btn-default btn-sm">
-					
+					<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 					<!--
 					<input type="button" id="kpi_process" name="kpi_process" value="Finish" class="btn btn-primary btn-sm">
 				-->

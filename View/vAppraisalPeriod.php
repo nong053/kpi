@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['appraisalPeriod_l_des_title']="ช่วงประเมิน";
-	$_SESSION['appraisalPeriod_l_des_detail']="เพื่อกำหนดงวดการประเมินผลการปฏิบัติงานว่าใน 1 ปีจะประเมินผลกี่ครั้ง และแต่ละครั้งจะเริ่มและสิ้นสุดที่วันใด";
+	$_SESSION['appraisalPeriod_l_des_detail']="เพื่อกำหนดงวดการประเมินผลการปฏิบัติงานว่าใน 1ปี จะประเมินผลกี่ครั้งและแต่ละครั้งจะเริ่มและสิ้นสุดที่วันใด";
 	$_SESSION['appraisalPeriod_l_des_btn_add']="ช่วงประเมิน";
 
 	//column
@@ -143,6 +143,7 @@ if($_SESSION['language']=="th"){
 							<input type="hidden" name="appraisalPeriodId" id ="appraisalPeriodId"  class="appraisalPeriodId" value="">
 							<input type="submit" id="appraisalPeriodSubmit" name="appraisalPeriodSubmit" class="btn btn-primary " value="<?=$_SESSION['appraisalPeriod_l_form_btn_add']?>">
 							<input type="reset" value="<?=$_SESSION['appraisalPeriod_l_form_btn_reset']?>" class="btn default  " id="appraisalPeriodReset">
+							<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 						</td>
 					</tr>
 				</table>

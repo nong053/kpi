@@ -113,6 +113,7 @@ if($_SESSION['language']=="th"){
 							<input type="hidden" name="perspectiveId" id ="perspectiveId"  class="perspectiveId" value="">
 							<input type="submit" id="submitPerspective" name="submitPerspective " class="btn btn-primary " value="<?=$_SESSION['perspective_btn_add']?>">
 							<input type="reset" value="<?=$_SESSION['perspective_btn_reset']?>" class="btn default  " id="perspectiveReset">
+							<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 						</td>
 					</tr>
 				</table>

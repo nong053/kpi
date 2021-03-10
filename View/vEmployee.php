@@ -6,7 +6,10 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['employee_l_des_title']="พนักงาน";
-	$_SESSION['employee_l_des_detail']="เพิ่ม,ลบ,แก้ไขข้อมูลพนักงาน  ";
+	$_SESSION['employee_l_des_detail']="เพิ่ม,ลบ,แก้ไขข้อมูลพนักงานและตรงส่วนนี้จะเป็นกำหนดสิทธิ์การประเมินโดยแบ่งเป็น 3 ระดับดังนี้ 
+	ผู้รับประเมิน,
+	ผู้ประเมิน, 
+	ผู้ประเมินสูงสุด  ";
 	$_SESSION['employee_l_des_btn_add']="พนักงาน";
 
 	//Search

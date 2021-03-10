@@ -391,7 +391,7 @@ where (e.department_id='All' or 'All' ='All')
 	$tableHTML.="	<td > <div style='text-align:center;'>";
 	if(empty($rs['emp_picture_thum'])){
 
-		$tableHTML.="	<img style='opacity:0.1;' class=\"img-circle\" src=\"../view/uploads/avatar.jpg\" width=\"80\" height=\"80\">";
+		$tableHTML.="	<img style='opacity:0.1;' class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height=\"80\">";
 
 	}else{
 

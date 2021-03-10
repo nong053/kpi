@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['kpi_result_l_des_title']="ประเมิน";
-	$_SESSION['kpi_result_l_des_detail']="เพื่อทำการกรอกผลการปฏิบัติงานราย KPI ให้กับพนักงาน ";
+	$_SESSION['kpi_result_l_des_detail']="เพื่อทำการกรอกผลการปฏิบัติงานให้กับพนักงาน โดยมีการประเมิน 3 ระดับคือ พนักงานประเมินตัวเอง, หัวหน้าประเมินพนักงาน, ผู้บริหารประเมินหัวหน้า ";
 	
 
 	//Search
