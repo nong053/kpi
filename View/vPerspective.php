@@ -100,7 +100,7 @@ if($_SESSION['language']=="th"){
                     
                     <tr>
 						<td style='width:200px' class='text-right'><strong >น้ำหนัก <font color="red">*</font></strong></td>
-						<td><input type="text" class="form-control " name="perspectiveWeight" id="perspectiveWeight"></td>
+						<td><input type="text" style='width:100px' class="form-control " name="perspectiveWeight" id="perspectiveWeight"></td>
 					</tr>
 					
 					

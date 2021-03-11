@@ -151,7 +151,7 @@ $emp_id=$_GET['emp_id'];
 							</colgroup>
 							<thead>
 								<tr>
-									<th style='text-align:right;' data-field="Field1" ><b><?=$_SESSION['emp_dashboard2_l_tbl_id']?></b></th>
+									<th style='text-align:center;' data-field="Field1" ><b><?=$_SESSION['emp_dashboard2_l_tbl_id']?></b></th>
 									<th data-field="Field2"><b><?=$_SESSION['emp_dashboard2_l_tbl_kpi_name']?></b></th>
 									<th style='text-align:right;' data-field="Field3"><b><?=$_SESSION['emp_dashboard2_l_tbl_target']?></b></th>
 									<th style='text-align:right;' data-field="Field4"><b>ประเมินตนเอง</b></th>

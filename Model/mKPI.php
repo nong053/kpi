@@ -284,7 +284,7 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th style='text-align:right;' data-field=\"kpi_l_tbl_id\"><b>".$_SESSION['kpi_l_tbl_id']." </b></th>";
+			$tableHTML.="<th style='text-align:center;' data-field=\"kpi_l_tbl_id\"><b>".$_SESSION['kpi_l_tbl_id']." </b></th>";
 			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_name\"><b>".$_SESSION['kpi_l_tbl_kpi_name']."</b></th>";
 			//$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_detail\"><b>".$_SESSION['kpi_l_tbl_kpi_detail']." </b></th>";
 			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_perspective\"><b>".$_SESSION['kpi_l_tbl_kpi_perspective']." </b></th>";
@@ -314,7 +314,7 @@ if($_POST['action']=="showData"){
 	
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div style='text-align:right;'>".$i."</div></td>";
+	$tableHTML.="	<td><div style='text-align:center;'>".$i."</div></td>";
 	
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
 	

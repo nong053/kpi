@@ -21,7 +21,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['department_l_form_name']="แผนก";
 	$_SESSION['department_l_form_department_code']="รหัสแผนก";
 	$_SESSION['department_l_form_department_name']="ชื่อแผนก";
-	$_SESSION['department_l_form_department_detail']="รายละเอียดเพิ่มเติม";
+	$_SESSION['department_l_form_department_detail']="รายละเอียด";
 	$_SESSION['department_l_form_btn_add']="เพิ่ม";
 	$_SESSION['department_l_form_btn_reset']="เคลียร์";
 
@@ -113,7 +113,7 @@ if($_SESSION['language']=="th"){
 
 	   		<!-- content start-->
 	   		<form id="departmentForm">
-				<table style="widows: 100%;">
+				<table style="width: 100%;">
 					<!--
 					<tr>
 						<td style="width: 200px;" class="text-right"><b><?=$_SESSION['department_l_form_department_code']?>  <font color="red">*</font></b></td>

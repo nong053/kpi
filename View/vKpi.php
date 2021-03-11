@@ -17,7 +17,7 @@ if($_SESSION['language']=="th"){
 	
 	$_SESSION['kpi_l_form_kpi_better_flag']="ชื่อตัวชี้วัด";
 	
-	$_SESSION['kpi_l_tbl_kpi_detail']="รายละเอียดตัวชี้วัด";
+	$_SESSION['kpi_l_tbl_kpi_detail']="รายละเอียด";
 	$_SESSION['kpi_l_tbl_kpi_perspective']="มุมมองธุรกิจ";
 	$_SESSION['kpi_l_tbl_kpi_type_score']="การคิดคะแนน";
 

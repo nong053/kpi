@@ -3,6 +3,7 @@ error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 
 if($_SESSION['session']==""){
+
 	header( "location: ../".$_SESSION['admin_username']);
 	exit(0);	
 	
@@ -277,7 +278,7 @@ if($_SESSION['login_status']!="1"){
 							<i class="glyphicon  glyphicon-user"></i>
 						</button>
 						Admin
-						(<?=$rsEmp['admin_id']?>) || </strong> <?=$rsEmp['admin_name']?> &nbsp;&nbsp; <?=$rsEmp['admin_surname']?>
+						(<?=$rsEmp['admin_id']?>) <i class="fa fa-angle-double-right"></i> </strong> <?=$rsEmp['admin_name']?> &nbsp;&nbsp; <?=$rsEmp['admin_surname']?>
 					<?php
 					}
 					?>
@@ -331,7 +332,7 @@ if($_SESSION['login_status']!="1"){
 							?> -->
 
 					<li>		
-						<a href='#' id='logout' class=''><i  class="glyphicon glyphicon-off"></i> ออกจากระบบ</a>
+						<a href='#' id='logout' class=''><i style="color:orange" class="glyphicon glyphicon-off"></i> ออกจากระบบ</a>
 
 						<form method="post" action="../logout.php" style='display: none;' id='formLogout'>
 							<input type='hidden' id='admin_username' name='admin_username' value='<?php echo $_SESSION[admin_username]?>'>

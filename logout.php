@@ -7,7 +7,7 @@ error_reporting(E_ERROR | E_PARSE);
 
 if($_POST['unset_session']=="loguout"){
 
-	//session_destroy();
+		session_destroy();
 		//Emp Session
 		$_SESSION['emp_ses_id']="";
 		$_SESSION['emp_name']="";
@@ -23,10 +23,11 @@ if($_POST['unset_session']=="loguout"){
 		$_SESSION['admin_surname']="";
 		$_SESSION['admin_status']="";
 		$_SESSION['login_status']=0;
+		$_SESSION['session']="";
 
 
 	//echo "session_destroy";
-	$admin_username=$_POST['admin_username'];
+	//$admin_username=$_POST['admin_username'];
 	//echo $admin_username;
 	//header( "location: ../kpi/".$admin_username );
 

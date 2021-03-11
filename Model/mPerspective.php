@@ -46,7 +46,7 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 	$tableHTML.="<tr>";
-	$tableHTML.="<th style='text-align:right;' data-field=\"perspective_l_tbl_id\"><b>".$_SESSION['perspective_l_tbl_id']."</b></th>";
+	$tableHTML.="<th style='text-align:center;' data-field=\"perspective_l_tbl_id\"><b>".$_SESSION['perspective_l_tbl_id']."</b></th>";
     $tableHTML.="<th data-field=\"perspective_l_tbl_perspective_name\"><b>".$_SESSION['perspective_l_tbl_perspective_name']."</b></th>";
     $tableHTML.="<th style='text-align:right;' data-field=\"perspective_l_tbl_perspective_weight\"><b>".$_SESSION['perspective_l_tbl_perspective_weight']."</b></th>";
 
@@ -60,7 +60,7 @@ if($_POST['action']=="showData"){
 	
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div style='text-align: right;'>".$i."</div></td>";
+	$tableHTML.="	<td><div style='text-align: center;'>".$i."</div></td>";
     $tableHTML.="	<td>".$rs['perspective_name']."</td>";
     $tableHTML.="	<td><div style='text-align: right;'>".$rs['perspective_weight']."%</div></td>";
     		

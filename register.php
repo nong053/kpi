@@ -227,7 +227,7 @@
 								success:function(data){
 									//alert(data);
 									if(data=="vercode-wrong"){
-										alert("รหัส verify code ไม่ถูกต้องครับ ");
+										alert("รหัส CAPTCHA ไม่ถูกต้องครับ ");
 										
 										
 									}else if(data=="user-not-empty"){
@@ -359,7 +359,7 @@ Website
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label">&nbsp;</div>
+				<div class="tex-label"><font color="red">*</font> CAPTCHA</div>
 				<div>
 					<div class="row">
 						<div class="span1">
@@ -368,7 +368,7 @@ Website
 						</div>
 						<div class="span3">
 							
-							<input type="text"  name="vercode1" id="vercode1" placeholder="* กรอกรหัส"> 
+							<input type="text"  name="vercode1" id="vercode1" placeholder="* CAPTCHA"> 
 						</div>
 					</div>
 				</div>
@@ -414,7 +414,7 @@ Website
 				<br style="clear:both">
 
 				<div class="container" style="margin-top:25px;">
-				<h4 style="color:white; margin-top:15px;">ราคาแพคเกจ</h4>
+				<h4 style="color:white; margin-top:15px;">&nbsp;</h4>
 					<div class="row" style="color:white;">
 						<div class='col-md-12' >
 						<table class="table" style="font-size: 16px;">

@@ -104,8 +104,12 @@ error_reporting (E_ALL ^ E_NOTICE);
                      
                         <div class="perk">
                             
-                            <p><strong><a style="color:white;" href="http://responsivewebthai.com/index-th.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
-                                อีเมลล์:nn.it@hotmail.com ,Line:nongnuyit
+                            <p><strong><a style="color:white;" href="https://dashboardweb.com/index.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
+                                อีเมลล์:nn.it@hotmail.com ,Line:nongnuyit<br>
+                               
+                            </p>
+                            <p>
+                                <a href="https://dashboardweb.com/pdf/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%20KPI-BSC.pdf">ดาวน์โหลดคู่มือการใช้งาน <i style="color:white;" class="fa fa-cloud-download" aria-hidden="true"></i></a>
                             </p>
                         </div>
                     </div>
@@ -120,7 +124,7 @@ error_reporting (E_ALL ^ E_NOTICE);
                                
                                <i class="fa fa-lock" style="font-size: 120px; color:#333867;"></i>
                                 <h3 style="color:#333867">
-                                ลงชื่อเข้าใช้งานระบบประเมินด้วย KPI<i class='fa fa-angle-double-right'></i>BSC
+                                ลงชื่อเข้าใช้งานระบบประเมิน<br>KPI<i class='fa fa-angle-double-right'></i>BSC
                                 </h3>
                                 <font  style='color:red;' >
                                 <?=$_SESSION['activated_message'];?>

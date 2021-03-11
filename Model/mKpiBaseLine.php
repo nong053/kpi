@@ -75,7 +75,7 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th  style='text-align:right;' data-field=\"column1\"><b> ".$_SESSION['baseline_l_tbl_id']."</b></th>";
+			$tableHTML.="<th  style='text-align:center;' data-field=\"column1\"><b> ".$_SESSION['baseline_l_tbl_id']."</b></th>";
 			$tableHTML.="<th  style='text-align:right;' data-field=\"column2\"><b> ".$_SESSION['baseline_l_tbl_kpi_begin']."</b></th>";
 			$tableHTML.="<th  style='text-align:right;' data-field=\"column3\"><b> ".$_SESSION['baseline_l_tbl_kpi_end']."</b></th>";
 			$tableHTML.="<th  style='text-align:right;' data-field=\"column4\"><b> ".$_SESSION['baseline_l_tbl_kpi_score']."</b></th>";
@@ -96,7 +96,7 @@ if($_POST['action']=="showData"){
 
 	$tableHTML.="<tbody class=\"contentkpi\">";
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div  style='text-align:right;'>".$i."</div></td>";
+	$tableHTML.="	<td><div  style='text-align:center;'>".$i."</div></td>";
 	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_begin']."</div></td>";
 	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_end']."</div></td>";
 	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_score']."</div></td>";

@@ -52,7 +52,7 @@ if($_SESSION['language']=="th"){
 
 	$_SESSION['employee_l_form_brithday']="วันเดือนปีเกิด";
 	$_SESSION['employee_l_form_age_working']="เข้าทำงานเมื่อ";
-	$_SESSION['employee_l_form_status_marital']="สถานะสมรส";
+	$_SESSION['employee_l_form_status_marital']="สถานะภาพ";
 	$_SESSION['employee_l_form_status_single']="โสด";
 	$_SESSION['employee_l_form_status_married']="แต่งงาน";
 
