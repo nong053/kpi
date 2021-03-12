@@ -1,3 +1,4 @@
+
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -40,29 +41,41 @@ var validateFn = function(){
 
     
 }
-jQuery(document).ready(function(){
-    
 
+$(document).ready(function(){
+    var action = getUrlParameter('action');
+    
     $("#admin_password").val("");
     $("#admin_re_password").val("");
     
-    /*
-    
-    if(action=="edit"){
-
-        jQuery("#expired_date").datepicker();
-        jQuery("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
-        jQuery("#expired_date").datepicker('setDate', '<?=$vExpired_date?>');
+  
+    if($("#activated").val()==0){
+        $(".expired_date_area").hide();
     }else{
-        jQuery("#expired_date").datepicker();
-        jQuery("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
+        $(".expired_date_area").show();
     }
-    */
-var action = getUrlParameter('action');
+
+    $("#activated").change(function(){
+        
+        if($(this).val()==0){
+            $(".expired_date_area").hide();
+           
+        }else{
+            $(".expired_date_area").show();
+            
+        }
+
+    });
+
+
 
 if(action=="edit"){	
     
-    
+    $("#expired_date").datepicker();
+    $("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
+    $("#expired_date").datepicker('setDate', '<?=$vExpired_date?>');
+
+
     $(".check_box_change_pass_area").show();
     $(".change_pass_area").hide();
     $("#admin_change_pass_flag").val("N");
@@ -82,6 +95,9 @@ if(action=="edit"){
     });
 
 }else{
+
+    $("#expired_date").datepicker();
+    $("#expired_date").datepicker( "option", "dateFormat", "yy-mm-dd");
    
     $(".change_pass_area").show();
     $(".check_box_change_pass_area").hide();

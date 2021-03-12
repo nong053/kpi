@@ -41,6 +41,11 @@ $admin_id=trim($_SESSION['admin_id']);
 <!--
 <link href="../admin/css.css" type="text/css" rel="stylesheet"/>
 -->
+<!--<script src="../kendoCommercial/js/jquery.min.js"></script>-->
+<script src="../jquery-ui/js/jquery-1.9.1.js" type="text/javascript"></script>
+<script src="../jquery-ui/js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  -->
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 <!--
@@ -310,7 +315,7 @@ p{
 </body>
 </html>
 
-<script src="../kendoCommercial/js/jquery.min.js"></script>
+
 <script>
 //########################## Reset Data Start ##########################
      var resetDataFn=function(vCoppyForm,vCoppyTo,vTable){

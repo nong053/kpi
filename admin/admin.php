@@ -1,17 +1,17 @@
 <? session_start();
  $_SESSION['admin_surname'];
  $vExpired_date="";
-
-
  ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link rel="stylesheet" href="../jquery-ui/css/cupertino/jquery-ui-1.10.3.custom.min.css" type="text/css" media="all" />
-<script src="../jquery-ui/js/jquery-1.9.1.js" type="text/javascript"></script>
-<script src="../jquery-ui/js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+
+<script src="Controller/cAdmin.js" type="text/javascript"></script>
+
+
+
 </head>
 <body>
  
@@ -19,7 +19,7 @@
 
 
 <style type="text/css">
-<!--
+
 #admin-line {
 	width:100%;
 	padding:5px 0px 5px 0px;
@@ -88,7 +88,7 @@
 	color:#333;
 	text-decoration:underline;
 }
--->
+
 </style>
 <div id="admin">
 	<div id="detail">
@@ -106,7 +106,7 @@
 			<br style="clear:both"  />
 		</div>
 		<?
-		if($_SESSION[admin_id]==1){
+		if($_SESSION["admin_id"]==1){
 			$sql="select * from admin  order by admin_id asc";
 		}else{
 			$sql="select * from admin where admin_id='$_SESSION[admin_id]' order by admin_id asc";
@@ -345,7 +345,7 @@ if($_SESSION['admin_status']=="3"){
 </div>
 
 
-<div id="admin-line-frm">
+<div id="admin-line-frm" class="expired_date_area" style="display: none;">
 	<div id="frm-admin">หมดอายุ</div>
 	<div id="frm-admin2"><input name="expired_date" id='expired_date' type="text" class="frm-text" value="<?=$vExpired_date?>"></div>
 	<br style="clear:both"  />
@@ -403,7 +403,7 @@ if($_SESSION['admin_status']=="3"){
 	</div>
 <br style="clear:both"  />
 </div>
-<?
+<?php
 }
 ?>
 
@@ -419,5 +419,3 @@ if($_SESSION['admin_status']=="3"){
 <br style="clear:both"  />
 </div>
 </form>
-
-<script src="Controller/cAdmin.js"></script>
