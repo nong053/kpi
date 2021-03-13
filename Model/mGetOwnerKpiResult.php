@@ -52,38 +52,19 @@ if($_GET['action']=="appraialBarChartOwner"){
 	select kpi_year,round(sum(kr.score_final_percentage)/count(kr.emp_id),2) as actual_score,
 	ap.appraisal_period_desc as appraisal,  ap.appraisal_period_id
 	from kpi_result kr
-	INNER JOIN appraisal_period ap 
-	on kr.appraisal_period_id=ap.appraisal_period_id
+	INNER JOIN appraisal_period ap on kr.appraisal_period_id=ap.appraisal_period_id
+	INNER JOIN employee e on e.emp_id=kr.emp_id
+	
 	where kpi_year BETWEEN '$kpi_year_minus' and '$kpi_year'
-	-- and (kr.department_id='$department_id' or '$department_id'='All')
 	and kr.admin_id='$admin_id'
 	and kr.approve_flag='Y'
+	and e.emp_status_work_id='1'
 	GROUP BY kr.appraisal_period_id
 	)queryA
 	GROUP BY kpi_year	
 	
 
-/*
-	UNION
-		select kpi_year,group_concat(target),appraisal from (
-select 'Target' as kpi_year, 
--- (select max(threshold_begin) from threshold where admin_id='$admin_id') 
-100 as 'target' ,'' as appraisal
-from appraisal_period 
-where admin_id ='$admin_id'
-and appraisal_period_year='$kpi_year'
 
-
-)query_a
-*/
-
-/*
-union
-select 'Target YTD', group_concat(appraisal_period_target_percentage ORDER BY appraisal_period_id ASC) ,''
-from appraisal_period
-where admin_id ='$admin_id'
-and appraisal_period_year='$kpi_year'
-*/
 	
 	
 	";
@@ -100,10 +81,11 @@ if($_GET['action']=="scoreDepartmentOwner"){
      (select
 	 sum(kr.score_final_percentage)/count(kr.emp_id) 
      from kpi_result kr
+	 inner join employee e on e.emp_id=kr.emp_id
      where kpi_year='$kpi_year'
 	and kr.admin_id='$admin_id'
 	and kr.approve_flag='Y'
-	-- and (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	and e.emp_status_work_id='1'
     and kr.department_id=d.department_id
 	),0) as total_score
      
@@ -254,8 +236,12 @@ select pp.perspective_id,pp.perspective_name,
 	select  sum(aek.performance*p.perspective_weight)/sum(p.perspective_weight) as pers_result  from assign_evaluate_kpi aek
 	inner join kpi k on k.kpi_id=aek.kpi_id
 	inner join perspective p on k.perspective_id=p.perspective_id
+	inner join kpi_result kr on aek.emp_id=kr.emp_id
+	inner join employee e on e.emp_id=kr.emp_id
 	where aek.assign_kpi_year='$kpi_year'
 	and aek.admin_id='$admin_id'
+	and kr.approve_flag='Y'
+	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
 	group by p.perspective_id
 
@@ -267,8 +253,12 @@ select pp.perspective_id,pp.perspective_name,
 	select  sum(aek.emp_performance*p.perspective_weight)/sum(p.perspective_weight) as pers_result  from assign_evaluate_kpi aek
 	inner join kpi k on k.kpi_id=aek.kpi_id
 	inner join perspective p on k.perspective_id=p.perspective_id
+	inner join kpi_result kr on aek.emp_id=kr.emp_id
+	inner join employee e on e.emp_id=kr.emp_id
 	where aek.assign_kpi_year='$kpi_year'
 	and aek.admin_id='$admin_id'
+	and kr.approve_flag='Y'
+	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
 	group by p.perspective_id
 
@@ -283,8 +273,12 @@ pp.perspective_weight *(
 	select  (sum((aek.performance*60/100)*p.perspective_weight)/sum(p.perspective_weight)) as pers_result  from assign_evaluate_kpi aek
 	inner join kpi k on k.kpi_id=aek.kpi_id
 	inner join perspective p on k.perspective_id=p.perspective_id
+	inner join kpi_result kr on aek.emp_id=kr.emp_id
+	inner join employee e on e.emp_id=kr.emp_id
 	where aek.assign_kpi_year='$kpi_year'
 	and aek.admin_id='$admin_id'
+	and kr.approve_flag='Y'
+	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
 	group by p.perspective_id
 
@@ -295,8 +289,12 @@ pp.perspective_weight *(
 	select  (sum((aek.emp_performance*40/100)*p.perspective_weight)/sum(p.perspective_weight)) as pers_result  from assign_evaluate_kpi aek
 	inner join kpi k on k.kpi_id=aek.kpi_id
 	inner join perspective p on k.perspective_id=p.perspective_id
+	inner join kpi_result kr on aek.emp_id=kr.emp_id
+	inner join employee e on e.emp_id=kr.emp_id
 	where aek.assign_kpi_year='$kpi_year'
 	and aek.admin_id='$admin_id'
+	and kr.approve_flag='Y'
+	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
 	group by p.perspective_id
 

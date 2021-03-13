@@ -141,7 +141,7 @@ $kpiName=$_GET['kpiName'];
 						<input type="submit" id="baselineSubmit" name="baselineSubmit" class="btn btn-primary " value="<?=$_SESSION['baseline_l_form_btn_add']?>">
 						<input type="reset" value="<?=$_SESSION['baseline_l_form_btn_reset']?>" id="baselineReset" class="btn default  ">
 						<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
-						<!---
+						<!--
 						<input type="button" id="kpiButton" name="kpiButton" class="btn default  btn-sm" value="back">
 						-->
 					</td>
@@ -149,6 +149,7 @@ $kpiName=$_GET['kpiName'];
 			</table>
 			</form>
 	   		<!-- content end-->
+			<div id="warningInModalArea"></div>  
 
 	   </div> 
    </div>

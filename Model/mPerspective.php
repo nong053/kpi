@@ -11,6 +11,8 @@ if($jsonArray["login_status"]==1){
 	
 $perspectiveName =$_POST['perspectiveName'];
 $perspectiveWeight =$_POST['perspectiveWeight'];
+$perspective_id =$_POST['perspective_id'];
+
 
 $admin_id=$_SESSION['admin_id'];
 
@@ -129,6 +131,24 @@ if($_POST['action']=="editAction"){
 
 	mysql_close($conn);
 }
+
+
+//CheckUsing in employee Start
+if($_POST['action']=="checkUsedData"){
+
+	$sqlSQL="
+		select count(*) as countPers
+		from kpi 
+		where perspective_id='$perspective_id'
+	";
+
+	$result=mysql_query($sqlSQL);
+	$rs=mysql_fetch_array($result);
+	echo "[\"$rs[countPers]\"]";
+	mysql_close($conn);
+}
+//CheckUsing in employee End
+
 
 
 }else{

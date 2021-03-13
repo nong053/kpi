@@ -16,12 +16,12 @@ $role_id = $_POST['role_id'];
 $admin_id=$_SESSION['admin_id'];
 //echo $admin_id;
 
-//CheckUsingKpiAssignAndKpiResult Start
-if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
+//checkUsedData Start
+if($_POST['action']=="checkUsedData"){
 
 	$sqlSQL="
 		select count(*) as countPosition
-		from assign_kpi 
+		from employee 
 		where position_id='$positionId'
 	";
 
@@ -32,7 +32,7 @@ if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 	
 	mysql_close($conn);
 }
-//CheckUsingKpiAssignAndKpiResult End
+//checkUsedData End
 
 
 if($_POST['action']=="add"){

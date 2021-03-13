@@ -15,7 +15,7 @@ $(document).ready(function(){
 			sync:false,
 			success:function(data){
 				$("#exContentDataArea").html(data);
-				$(".ex-data-modal").modal();
+				$(".ex-data-modal").modal({backdrop: 'static', keyboard: false});
 			}
 		});
 	});
@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 	var resetDataAppraisalPeriod=function(){
 		//$("#appraisalPeriodYear").val("");
-
+		$("#warningInModal").hide();
 		$("#appraisalPeriodDesc").val("");
 
 		$("#appraisalPeriodStart").val(currentDate());
@@ -101,7 +101,8 @@ $(document).ready(function(){
 							data:{"id":id,"action":"edit"},
 							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 							success:function(data){
-								//alert(data[0]["appraisalPeriod_id"]);
+								
+								resetDataAppraisalPeriod();
 								
 								$("input#appraisalPeriodYear").val(data[0]["appraisal_period_year"]);
 								$("#appraisalPeriodDesc").val(data[0]["appraisal_period_desc"]);
@@ -117,7 +118,7 @@ $(document).ready(function(){
 									$("#appraisalPeriodSubmit").val("Edit");
 								}
 
-								$(".appraisalPeriodSetup").modal();
+								$(".appraisalPeriodSetup").modal({backdrop: 'static', keyboard: false});
 								
 								
 								
@@ -139,33 +140,57 @@ $(document).ready(function(){
 							url:"../Model/mAppralisalPeriod.php",
 							type:"post",
 							dataType:"json",
-							data:{"appraisalPeriodId":id,"action":"checkUsingKpiAssignAndKpiResult",},
+							data:{"appraisalPeriodId":id,"action":"checkUsedData",},
 							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 							success:function(data){
 									
 									if(data[0]==0){
 										
 										//Delete Data  Start
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){
-										 $.ajax({
-												url:"../Model/mAppralisalPeriod.php",
-												type:"post",
-												dataType:"json",
-												data:{"id":id,"action":"del"},
-												headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-												success:function(data){
-													if(data[0]=="success"){
-														//alert("ลบข้อมูลเรียบร้อย");	
-														showDataAppraisalPeriod(paramYear);
-														
-													}
+										
+
+											$.confirm({
+												theme: 'bootstrap', // 'material', 'bootstrap'
+												title: 'ยืนยัน!',
+												content: 'ต้องการลบช่วงประเมินนี้หรือไม่?',
+												buttons: {
+												
+												'ยืนยัน': {
+												btnClass: 'btn-blue',
+												action: function(){
+													$.ajax({
+														url:"../Model/mAppralisalPeriod.php",
+														type:"post",
+														dataType:"json",
+														data:{"id":id,"action":"del"},
+														headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+														success:function(data){
+															if(data[0]=="success"){
+																
+																showDataAppraisalPeriod(paramYear);
+																
+															}
+														}
+													});
+
 												}
-										 });
-										}
-										//Delete Data  End
+												},
+												'ยกเลิก': function () {}
+												}
+												});
+											
+										
 										 
 									}else{
-										alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
+										//confirmMainModalFn("ไม่สามารถลบช่วงประเมินนี้ได้! เนื่องจากมีการมอบหมายตัวชี้วัดช่วงประเมินนี้แล้ว","แจ้งเตือน","warning");
+										//alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
+										$.alert({
+											buttons: {
+											'ปิด': function () {}
+											},
+											title: 'แจ้งเตือน!',
+											content: 'ไม่สามารถลบช่วงประเมินนี้ได้! เนื่องจากมีการมอบหมายตัวชี้วัดในช่วงประเมินนี้แล้ว',
+											});
 									}
 							}
 					 });
@@ -210,11 +235,11 @@ $(document).ready(function(){
 
 		var validate="";
 		if($("#appraisalPeriodDesc").val()==""){
-	 		validate+=AppraisalPeriodDesction+"\n";
+	 		validate+=AppraisalPeriodDesction+"<br>";
 	 	}if($("#appraisalPeriodStart").val()==""){
-	 		validate+=AppraisalPeriodStart+"\n";
+	 		validate+=AppraisalPeriodStart+"<br>";
 	 	}if($("#appraisalPeriodEnd").val()==""){
-	 		validate+=AppraisalPeriodEnd+"\n";
+	 		validate+=AppraisalPeriodEnd+"<br>";
 	 	}
 
 	 	// if($("#appraisal_period_target_percentage").val()==""){
@@ -225,15 +250,12 @@ $(document).ready(function(){
 	}
 	
 	$("form#appraisalPeriodForm").submit(function(){
-		/*
-		alert($("#appraisalPeriodName").val());
-		alert($("#appraisalPeriodBegin").val());
-		alert($("#appraisalPeriodEnd").val());
-		alert($("#appraisalPeriodColor").val());
-		*/
+		
 		
 		if(validateAppraisalPeriodFn()!=""){
-			alert(validateAppraisalPeriodFn());
+			
+			warningInModalFn("#warningInModalArea",validateAppraisalPeriodFn());
+
 		}else{
 			
 			$.ajax({

@@ -122,6 +122,7 @@ if($_SESSION['language']=="th"){
 			</form>
 				
 	   		<!-- content end-->
+			<div id="warningInModalArea"></div>   
 
 	   </div> 
    </div>

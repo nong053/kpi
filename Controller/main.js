@@ -15,6 +15,68 @@ $( document ).ajaxStop(function() {
 });
 
 // reuse function start
+
+
+//warning in modal start
+var warningInModalFn = function(id,data){
+var html="";
+	
+	html+="<br style=\"clear: both;\">";
+	html+="<div id=\"warningInModal\"  class=\"alert alert-warning alert-dismissible fade in \" role=\"alert\"> ";
+	html+="<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+	html+="<span aria-hidden=\"true\">×</span></button> ";
+	html+="<span id=\"warningInModalDetail\">"+data+"</span> ";
+	html+="</div>";
+
+	$(id).html(html);
+	
+}
+//warning in modal end
+//confirm in modal start
+var confirmMainModalFn = function(detail="ยืนยัน",title="ยืนยัน",type="confirm",idConfirmOK="confirmOK"){
+	
+	var html="";
+	html+="<div  id=\"confirmMainModal\" class=\"modal fade bs-example-modal-sm \" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\">";
+		html+="<div class=\"modal-dialog modal-md\" role=\"document\">";
+			html+="<div class=\"modal-content \">";
+			html+="<div class=\"modal-header alert-info\">";
+			html+="<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+			html+="<h4 class=\"modal-title\"  id=\"confirmTitle\">"+title+"</h4>";
+		html+="</div>";
+		html+="<div class=\"modal-body\">";
+			html+="<p id=\"confirmDetail\">"+detail+"</p>";
+		html+="</div>";
+		html+="<div class=\"modal-footer\">";
+			html+="<button type=\"button\" id="+idConfirmOK+" class=\"btn btn-primary confirmOK\">ตกลง</button>";
+			html+="<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">ปิด</button>";
+						
+		html+="</div>";
+		html+="</div>";
+		html+="</div>";
+	html+="</div>";
+	
+
+	$("#modalMainConfirmArea").html(html);
+
+
+
+	if(type=="confirm"){
+		$(".confirmOK").show();
+	}else if(type=="warning"){
+		$(".confirmOK").hide();
+		
+	}
+	$("#confirmMainModal").modal();
+
+}
+var confirmMainModalHideFn = function(){
+	$("#confirmMainModal").modal("hide");
+	$("#confirmTitle").html("");
+	$("#confirmDetail").html("");	
+	$("#modalMainConfirmArea").html("");
+}
+//confirm in modal end
+
 /*withdraw Enlarge start */
    	  
 var EnlargeFn=function(){

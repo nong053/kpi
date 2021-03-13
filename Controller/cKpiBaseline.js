@@ -16,6 +16,7 @@ $(document).ready(function(){
 	*/
 	
 	var resetDatabaseline=function(){
+		$("#warningInModal").hide();
 		$("#baselineBegin").val("");
 		$("#baselineEnd").val("");
 		$("#baselinetargetScore").val("");
@@ -79,7 +80,7 @@ $(document).ready(function(){
 							data:{"id":id,"action":"edit"},
 							success:function(data){
 								//alert(data[0]["baseline_id"]);
-								
+								resetDatabaseline();
 								$("input#baselineBegin").val(data[0]["baseline_begin"]);
 								$("#baselineEnd").val(data[0]["baseline_end"]);
 								$("#baselinetargetScore").val(data[0]["baseline_score"]);
@@ -95,7 +96,7 @@ $(document).ready(function(){
 
 								//$("#baselineSubmit").val("Edit");
 								
-								$("#kpiBaseLineModal").modal('show');
+								$("#kpiBaseLineModal").modal({backdrop: 'static', keyboard: false});
 								
 								
 								
@@ -169,7 +170,7 @@ $(document).ready(function(){
 
 		if($("#embed_language").val()=="th"){
 
-			baselineBegin="กรอค่าเริ่มต้นด้วยครับ";
+			baselineBegin="กรอกค่าเริ่มต้นด้วยครับ";
 			baselineEnd="กรอกค่าสิ้นสุดด้วยครับ ";
 			checkTargetScore="กรอกคะแนนด้วยครับ ";
 		}else{
@@ -179,20 +180,31 @@ $(document).ready(function(){
 			 checkTargetScore="Please fill the Score.";
 		}
 
-		if($("#baselineBegin").val()==""){
-	 		validate+=baselineBegin+"\n";
-	 	}if($("#baselineEnd").val()==""){
-	 		validate+=baselineEnd+"\n";
-	 	} 
+		// if($("#baselineBegin").val()==""){
+	 	// 	validate+=baselineBegin+"<br>";
+			 
+	 	// }if($("#baselineEnd").val()==""){
+	 	// 	validate+=baselineEnd+"<br>";
+	 	// } 
+
+		if(!$.isNumeric($("#baselineBegin").val())){
+			validate+="ค่าเริ่มต้นต้องกรอกเป็นตัวเลข <br>";
+		}
+
+		if(!$.isNumeric($("#baselineEnd").val())){
+			validate+="ค่าสิ้นสุดต้องกรอกเป็นตัวเลข <br>";
+		}
+
+
 	 	if($("#baselinetargetScore").val()==""){
-	 		validate+=checkTargetScore+"\n";
+	 		validate+=checkTargetScore+"<br>";
 	 	} 
 	 	
 	 	return validate;
 	}
  	//validate form end
  	
- 	
+ 	$("form#baselineForm").off();
 	$("form#baselineForm").submit(function(){
 		
 		/*
@@ -211,7 +223,8 @@ $(document).ready(function(){
 		*/
 		//alert($("#paramKpiId").val());
 		if(validateBaselineFn()!=""){
-			alert(validateBaselineFn());
+			//alert(validateBaselineFn());
+			warningInModalFn("#warningInModalArea",validateBaselineFn());
 			return false;
 		}else{
 			
@@ -259,7 +272,7 @@ $(document).ready(function(){
 	//add baseline
 	$("#addBaseLine").click(function(){
 		resetDatabaseline();
-		$("#kpiBaseLineModal").modal('show');
+		$("#kpiBaseLineModal").modal({backdrop: 'static', keyboard: false});
 	});
 
 

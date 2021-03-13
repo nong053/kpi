@@ -16,12 +16,12 @@ $admin_id=$_SESSION['admin_id'];
 
 
 
-//CheckUsingKpiAssignAndKpiResult Start
-if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
+//CheckUsing in employee Start
+if($_POST['action']=="checkUsedData"){
 
 	$sqlSQL="
 		select count(*) as countDep
-		from assign_kpi 
+		from employee 
 		where department_id='$departmentId'
 	";
 
@@ -30,7 +30,7 @@ if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 	echo "[\"$rs[countDep]\"]";
 	mysql_close($conn);
 }
-//CheckUsingKpiAssignAndKpiResult End
+//CheckUsing in employee End
 
 if($_POST['action']=="add"){
 	$strSQL="INSERT INTO department(department_code,department_name,department_detail,admin_id)

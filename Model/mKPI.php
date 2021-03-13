@@ -30,10 +30,10 @@ $divisionId=$_POST['divisionId'];
 $admin_id=$_SESSION['admin_id'];
 
 //CheckUsingKpiAssignAndKpiResult Start
-if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
+if($_POST['action']=="checkUsedData"){
 
 	$sqlSQL="select count(*) as countKPIs
-	from assign_kpi 
+	from assign_evaluate_kpi 
 	where kpi_id='$kpiId'
 	";
 

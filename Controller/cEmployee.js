@@ -19,7 +19,6 @@ var checkPackageFn = function(){
 $(document).ready(function(){
 	
 	
-	//alert(checkPackageFn());
 	
 	//dropdown List Department start
 	var fnDropdownListSearchDep=function(department_id){
@@ -350,6 +349,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 	
 	var resetDataEmployee=function(){
 
+		$("#warningInModal").hide();
 		$("#passArea").show();
 		$("#confirmPassArea").show();
 
@@ -490,7 +490,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 									
 									
 
-									$("#employeeViewModal").modal("show");
+									$("#employeeViewModal").modal({backdrop: 'static', keyboard: false});
 
 								}catch(err) {
 								console.log(err.message);
@@ -524,7 +524,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 								//alert(data[0]["employee_id"]);
 								///console.log(data);
 								
-								
+								resetDataEmployee();
 								$("input#empUser").val(data[0]["emp_user"]);
 								//$("#empPass").val(data[0]["emp_pass"]);
 								//$("#empConfirmPass").val(data[0]["emp_pass"]);
@@ -588,7 +588,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 
 								$("#empAction").val("editAction");
 
-								$("#employeeModal").modal("show");
+								$("#employeeModal").modal({backdrop: 'static', keyboard: false});
 
 							}
 					 });
@@ -610,26 +610,58 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 							success:function(data){
 									
 									if(data[0]==0){
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
-										 $.ajax({
-												url:"../Model/mEmployee.php",
-												headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-												type:"post",
-												dataType:"json",
-												data:{"id":id,"action":"del"},
-												success:function(data){
-													if(data[0]=="success"){
-														//alert("ลบข้อมูลเรียบร้อย");	
-														showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
-														
-													}
+
+										//if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
+											$.confirm({
+												theme: 'bootstrap', // 'material', 'bootstrap'
+												title: 'ยืนยัน!',
+												content: 'ต้องการลบข้อมูลพนักงานคนนี้หรือไม่?',
+												buttons: {
+												
+												'ยืนยัน': {
+												btnClass: 'btn-blue',
+												action: function(){
+													$.ajax({
+															url:"../Model/mEmployee.php",
+															headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+															type:"post",
+															dataType:"json",
+															data:{"id":id,"action":"del"},
+															success:function(data){
+																if(data[0]=="success"){
+																	//alert("ลบข้อมูลเรียบร้อย");	
+																	
+																	showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
+																	
+																}
+															}
+													});
+													
+
 												}
-										 });
-										}
+												},
+												'ยกเลิก': function () {}
+												}
+												});
+										 
+										//}
 										
 									}else{
+
+
+										$.alert({
+											buttons: {
+											'ปิด': function () {}
+											},
+											title: 'แจ้งเตือน!',
+											content: 'ไม่สามารถลยข้อมูลได้เนื่องจากพนักงานรายนี้ถูกมอบหมายตัวชี้วัดแล้ว',
+											});
+									
+
 										//alert("ไม่สามารถลยข้อมูลได้เนื่องจาก รหัสพนักงานนี้มีการใช้งานอยู่");
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่? เนื่องจากรหัสพนักงานนี้มีการใช้งานอยู่")){	
+										/*
+										if(confirm("ต้องการลบข้อมูลนี้หรือไม่? เนื่องจากรหัสพนักงานนี้มีการใช้งานอยู่")){
+									
 										 $.ajax({
 												url:"../Model/mEmployee.php",
 												headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
@@ -639,12 +671,15 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 												success:function(data){
 													if(data[0]=="success"){
 														//alert("ลบข้อมูลเรียบร้อย");	
+														confirmMainModalHideFn();
 														showDataEmployee(sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("status_work"),sessionStorage.getItem("param_role"));
 														
 													}
 												}
 										 });
+									
 										}
+										*/
 
 
 									}
@@ -785,34 +820,34 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 		 if($("#embed_language").val()=="th"){
 
 			 
-			 checkUserDuplicate+="ชื่อผู้ใช้งานนี้มีการใช้งานแล้ว\n";
-			 checkEmpCode+="กรอกรหัสพนักงานด้วยครับ\n";
-			 checkUsername+="กรอกชื่อผู้ใช้งานด้วยครับ \n";
-			 checkPassword+="กรอกรหัสผ่านด้วยครับ\n";
-			 checkConfirmPass+="กรอกยืนยันรหัสผ่านด้วยครับ \n";
-			 checkConfirmPassResult+="กรอกยืนยันรหัสผ่านไม่ตรงกัน \n";
-			 checkFirstName+="กรอกชื่อด้วยครับ\n";
-			 checkLastName+="กรอกนามสกุลด้วยครับ\n";
-			 checkTel+="กรอกเบอร์โทรด้วยครับ \n";
-			 checkEmail+="กรอกอีเมลล์ด้วยครับ \n";
-			 checkBirthday+="กรอกวันเกิดด้วยครับ \n";
-			 checkWorkingAge+="กรอกวันที่เริ่มงานด้วยครับ \n";
+			 checkUserDuplicate+="ชื่อผู้ใช้งานนี้มีการใช้งานแล้ว<br>";
+			 checkEmpCode+="กรอกรหัสพนักงานด้วยครับ<br>";
+			 checkUsername+="กรอกชื่อผู้ใช้งานด้วยครับ <br>";
+			 checkPassword+="กรอกรหัสผ่านด้วยครับ<br>";
+			 checkConfirmPass+="กรอกยืนยันรหัสผ่านด้วยครับ <br>";
+			 checkConfirmPassResult+="กรอกยืนยันรหัสผ่านไม่ตรงกัน <br>";
+			 checkFirstName+="กรอกชื่อด้วยครับ<br>";
+			 checkLastName+="กรอกนามสกุลด้วยครับ<br>";
+			 checkTel+="กรอกเบอร์โทรด้วยครับ <br>";
+			 checkEmail+="กรอกอีเมลล์ด้วยครับ <br>";
+			 checkBirthday+="กรอกวันเกิดด้วยครับ <br>";
+			 checkWorkingAge+="กรอกวันที่เริ่มงานด้วยครับ <br>";
 
 		}else{
 
 			 
-			 checkUserDuplicate+="This username is already active.\n";
-			 checkEmpCode+="Please Fill your Employee ID.\n";
-			 checkUsername+="Please Fill username.\n";
-			 checkPassword+="Please Fill Password.\n";
-			 checkConfirmPass+="Please Fill Confirm Password.\n";
-			 checkConfirmPassResult+="Password and Confirm password is Incorrect.\n";
-			 checkFirstName+="Please Fill first name.\n";
-			 checkLastName+="Please Fill last name.\n";
-			 checkTel+="Please Fill your Tel.\n";
-			 checkEmail+="Please Fill your Email.\n";
-			 checkBirthday+="Please Fill your birth.\n";
-			 checkWorkingAge+="Please Fill your work experience.\n";
+			 checkUserDuplicate+="This username is already active.<br>";
+			 checkEmpCode+="Please Fill your Employee ID.<br>";
+			 checkUsername+="Please Fill username.<br>";
+			 checkPassword+="Please Fill Password.<br>";
+			 checkConfirmPass+="Please Fill Confirm Password.<br>";
+			 checkConfirmPassResult+="Password and Confirm password is Incorrect.<br>";
+			 checkFirstName+="Please Fill first name.<br>";
+			 checkLastName+="Please Fill last name.<br>";
+			 checkTel+="Please Fill your Tel.<br>";
+			 checkEmail+="Please Fill your Email.<br>";
+			 checkBirthday+="Please Fill your birth.<br>";
+			 checkWorkingAge+="Please Fill your work experience.<br>";
 		
 		}
 		 
@@ -869,7 +904,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 			 		validate+=checkEmpCode;
 			 	}else if(check_character($("#empCode").val())==false){
 					
-					validate+="รหัสพนักงานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น\n";
+					validate+="รหัสพนักงานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น<br>";
 				}
 
 
@@ -877,13 +912,13 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 			 		validate+=checkUsername;
 			 	}else if(check_character($("#empUser").val())==false){
 					
-					validate+="ชื่อผู้ใช้งานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น\n";
+					validate+="ชื่อผู้ใช้งานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น<br>";
 				}
 				
 				if($("#empPass").val()==""){
 			 		validate+=checkPassword;
 			 	}else if(checkPasswordStrength()==false){
-					validate+="รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร\n";
+					validate+="รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร<br>";
 				 }
 				  
 				if($("#empConfirmPass").val()==""){
@@ -904,10 +939,10 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 			 	} 
 				 //alert($("#empDepartment").val());
 				if($("#empDepartment").val()=="" || $("#empDepartment").val()==null){
-					validate+="เลือกแผนกด้วยครับ\n";
+					validate+="เลือกแผนกด้วยครับ<br>";
 				} 
 				if($("#empPosition").val()=="" || $("#empPosition").val()==null){
-					validate+="เลือกตำแหน่งด้วยครับ";
+					validate+="เลือกตำแหน่งด้วยครับ<br>";
 				}
 
 				 
@@ -927,7 +962,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 			 		validate+=checkUsername;
 			 	}else if(check_character($("#empUser").val())==false){
 					
-					validate+="ชื่อผู้ใช้งานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น\n";
+					validate+="ชื่อผู้ใช้งานต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น<br>";
 				}
 
 			 	if ($('#changePass').is(":checked"))
@@ -968,7 +1003,9 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 
 		 
 		 if(validateFn()!=""){	
-	 		alert(validateFn());
+	 		//alert(validateFn());
+			warningInModalFn("#warningInModalArea",validateFn());
+
 	 	 }else if(validateFn()==""){	
 	 		$("#MyUploadForm").ajaxSubmit(options);
 	 		return false;
@@ -1182,17 +1219,27 @@ $("#emp_role_id").change(function(){
 	
 	//Add employee start
 	$("#btnAddEmployee").click(function(){
-
-		if(checkPackageFn()<$("#embed_user_amount").val()){
+		
+		
+		if(parseInt(checkPackageFn()) < parseInt($("#embed_user_amount").val())){
 
 			resetDataEmployee();
 			fnDropdownListEmpPostion(sessionStorage.getItem("param_position"));
 			fnDropdownListDep(sessionStorage.getItem("param_department"));
 			fnDropdownListEmpStatus(sessionStorage.getItem("status_work"));		
-			$("#employeeModal").modal('show');
+			$("#employeeModal").modal({backdrop: 'static', keyboard: false});
 
 		}else{
-			alert("ไม่สามารถเพิ่มพนักงานได้ \nติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจ โทร.0809926565");
+			$.alert({
+				buttons: {
+				'ปิด': function () {}
+				},
+				title: 'แจ้งเตือน!',
+				content: 'ไม่สามารถเพิ่มพนักงานอีกได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจโทร.0809926565',
+				});
+
+			//confirmMainModalFn("ไม่สามารถเพิ่มพนักงานอีกได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจโทร.0809926565","แจ้งเตือน","warning");
+			//alert("ไม่สามารถเพิ่มพนักงานได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจ โทร.0809926565");
 		}
 	});
 

@@ -2,7 +2,7 @@
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 
-//echo "444545336346374567456745675465746457546";
+
 
 if($_SESSION['language']=="th"){
 	
@@ -354,9 +354,6 @@ if($_SESSION['language']=="th"){
 										</div>
 									</td>
 								</tr>
-
-
-
 							</table>
 						</div>
 						
@@ -366,8 +363,10 @@ if($_SESSION['language']=="th"){
 				</form>
 
 				<!-- content end-->
+				
 
 				<br style="clear: both">
+				<div id="warningInModalArea"></div> 
 			</div>
 		</div>
 

@@ -12,7 +12,7 @@ if($_SESSION['language']=="th"){
 	//column
 	$_SESSION['department_l_tbl_id']="#";
 	$_SESSION['department_l_tbl_department_code']="รหัสแผนก";
-	$_SESSION['department_l_tbl_department_name']="ชื่อแผนก";
+	$_SESSION['department_l_tbl_department_name']="แผนก";
 	$_SESSION['department_l_tbl_department_detail']="รายละเอียด";
 	$_SESSION['department_l_tbl_manage']="จัดการ";
 
@@ -20,7 +20,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['department_l_form_required']="จำเป็นต้องกรอก";
 	$_SESSION['department_l_form_name']="แผนก";
 	$_SESSION['department_l_form_department_code']="รหัสแผนก";
-	$_SESSION['department_l_form_department_name']="ชื่อแผนก";
+	$_SESSION['department_l_form_department_name']="แผนก";
 	$_SESSION['department_l_form_department_detail']="รายละเอียด";
 	$_SESSION['department_l_form_btn_add']="เพิ่ม";
 	$_SESSION['department_l_form_btn_reset']="เคลียร์";
@@ -143,6 +143,7 @@ if($_SESSION['language']=="th"){
 				</table>
 			</form>
 	   		<!-- content end-->
+			<div id="warningInModalArea"></div>   
 
 	   </div> 
    </div>

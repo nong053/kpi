@@ -98,7 +98,7 @@ empOther
 //CheckUsingKpiAssignAndKpiResult Start
 if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 	
-	$sqlSQL="select count(*) as countEmp from assign_kpi where emp_id='$emp_id'";
+	$sqlSQL="select count(*) as countEmp from assign_evaluate_kpi where emp_id='$emp_id'";
 	$result=mysql_query($sqlSQL);
 	$rs=mysql_fetch_array($result);
 	
@@ -109,7 +109,7 @@ if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 //check employee for package Start
 if($_POST['action']=="checkUserForPackage"){
 	
-	$sqlSQL="SELECT count(*) as user_amount FROM person_kpi.employee where admin_id='$admin_id'";
+	$sqlSQL="SELECT count(*) as user_amount FROM employee where admin_id='$admin_id'";
 	$result=mysql_query($sqlSQL);
 	$rs=mysql_fetch_array($result);
 	

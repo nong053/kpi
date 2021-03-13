@@ -30,7 +30,7 @@ $(document).ready(function(){
 			sync:false,
 			success:function(data){
 				$("#exContentDataArea").html(data);
-				$(".ex-data-modal").modal();
+				$(".ex-data-modal").modal({backdrop: 'static', keyboard: false});
 			}
 		});
 	});
@@ -86,6 +86,8 @@ $(document).ready(function(){
 //$( "#x" ).prop( "checked", true );
 	
 	var resetDatakpi=function(){
+
+		$("#warningInModal").hide();
 		$("#kpiCode").val("");
 		$("#kpiName").val("");
 		$("#kpiBetterFlagY").prop("checked",true);
@@ -119,7 +121,7 @@ $(document).ready(function(){
 		
 	}
 	var showDatakpi=function(departmentId){
-
+		
 		$.ajax({
 			url:"../Model/mKPI.php",
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
@@ -158,9 +160,8 @@ $(document).ready(function(){
 							dataType:"json",
 							data:{"id":id,"action":"edit"},
 							success:function(data){
-								//alert("["+data[0]["department_id"]+"]");
-								//alert(data[0]["kpi_name"]);
-
+								
+								resetDatakpi();
 								$("#kpi_better_flag_area").hide();
 								$("#kpi_type_score_area").hide();
 								$("#kpiDataTargetArea").hide();
@@ -222,7 +223,7 @@ $(document).ready(function(){
 								formFnDropdownListPerspective(data[0]["perspective_id"]);
 
 
-								$("#kpiModal").modal('show');
+								$("#kpiModal").modal({backdrop: 'static', keyboard: false});
 								
 								
 								
@@ -248,30 +249,56 @@ $(document).ready(function(){
 							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 							type:"post",
 							dataType:"json",
-							data:{"kpiId":id,"action":"checkUsingKpiAssignAndKpiResult",},
+							data:{"kpiId":id,"action":"checkUsedData",},
 							success:function(data){
 									
 									if(data[0]==0){
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
-											
-											$.ajax({
-												url:"../Model/mKPI.php",
-												type:"post",
-												dataType:"json",
-												data:{"id":id,"action":"del"},
-												headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-												success:function(data){
-													if(data[0]=="success"){
-														//alert("ลบข้อมูลเรียบร้อย");	
-														showDatakpi($("#kpiEmpbedDepartmentIDParam").val());
-														
-													}
-												}
-										 });
 
-										}										
+
+										//if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
+											$.confirm({
+												theme: 'bootstrap', // 'material', 'bootstrap'
+												title: 'ยืนยัน!',
+												content: 'ต้องการลบตัวชี้วัดนี้หรือไม่?',
+												buttons: {
+												
+												'ยืนยัน': {
+												btnClass: 'btn-blue',
+												action: function(){
+													$.ajax({
+														url:"../Model/mKPI.php",
+														type:"post",
+														dataType:"json",
+														data:{"id":id,"action":"del"},
+														headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+														success:function(data){
+															if(data[0]=="success"){
+															
+																showDatakpi($("#kpiEmpbedDepartmentIDParam").val());
+																
+															}
+														}
+												 });
+												}
+												},
+												'ยกเลิก': function () {}
+												}
+												});
+												
+											
+										
+										//}										
 									}else{
-										alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
+
+										$.alert({
+											buttons: {
+											'ปิด': function () {}
+											},
+											title: 'แจ้งเตือน!',
+											content: 'ไม่สามารถลบตัวชี้วัดนี้ได้! เนื่องจากมีการมอบหมายตัวชี้วัดนี้ให้พนักงานแล้ว',
+											});
+										//confirmMainModalFn("ไม่สามารถลบตัวชี้วัดนี้ได้! เนื่องจากมีการมอบหมายตัวชี้วัดนี้ให้พนักงานแล้ว","แจ้งเตือน","warning");
+										//alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
 									}
 							}
 					 });
@@ -581,15 +608,20 @@ $(document).ready(function(){
 		}
 		 */
 		 if($("#kpiName").val()==""){
-	 		validate+=checkKPIName+"\n";
+	 		validate+=checkKPIName+"<br>";
 	 	} 
+		 
 
 	 	
 	 	if($("#kpiDataTargetArea").is(":visible")){
 
-	 		if($("#kpiDataTarget").val()==""){
-		 		validate+=checkkpiDataTarget+"\n";
-		 	} 
+	 		// if($("#kpiDataTarget").val()==""){
+		 	// 	validate+=checkkpiDataTarget+"<br>";
+		 	// } 
+
+			if(!$.isNumeric($("#kpiDataTarget").val())){
+				validate+="เป้าข้อมูลดิบต้องเป็นตัวเลข <br>";
+			}
 
 	 	}
 	 	
@@ -605,21 +637,6 @@ $(document).ready(function(){
 	$(document).off("submit","form#kpiForm");
 	$("form#kpiForm").submit(function(){
 		
-		//alert($(".kpiTypeTarget:checked").val());
-		//alert($("select#perspective option:selected").val());
-		/*
-		alert($("#kpiName").val());
-		alert($("#kpiBegin").val());
-		alert($("#kpiEnd").val());
-		alert($("#kpiColor").val());
-
-		*/
-
-		//alert($(".kpiTypeScore:checked").val());
-
-		// alert($(".kpiBetterFlag:checked").val());
-		// $("#kpiBetterFlagN").prop("checked",true);
-
 
 		
 		var department_id="";
@@ -632,7 +649,10 @@ $(document).ready(function(){
 
 		var validateKPIs=validateKPIsFn();
 		if(validateKPIs!=""){
-			alert(validateKPIs);
+
+			//alert(validateKPIs);
+			warningInModalFn("#warningInModalArea",validateKPIs);
+
 		}else{
 			$.ajax({
 				url:"../Model/mKPI.php",
@@ -680,7 +700,7 @@ $(document).ready(function(){
 	$("#addKPI").click(function(){
 		resetDatakpi();
 		//formFnDropdownListDep($("#kpiEmpbedDepartmentIDParam").val());
-		$("#kpiModal").modal('show');
+		$("#kpiModal").modal({backdrop: 'static', keyboard: false});
 		formFnDropdownListPerspective();
 
 	});

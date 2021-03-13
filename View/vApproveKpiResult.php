@@ -180,7 +180,7 @@ if($_SESSION['language']=="th"){
 				<table class="formAdjust" style="display:none; width: 100%;"  >
 				<tr>
 					<td class='text-right' style="width: 200px;">
-						<b><?=$_SESSION['approve_l_form_kpi_peromance']?>%</b>
+						<b><?=$_SESSION['approve_l_form_kpi_peromance']?>%</b><font color="red">*</font>
 					</td>
 					<td>
 						<input type="text" id="adjust_percentage" name="adjust_percentage"   class="form-control " >
@@ -215,6 +215,8 @@ if($_SESSION['language']=="th"){
 			</table>
 		</form>
 	   		<!-- content end-->
+		<div id="warningInModalArea"></div>
+
 
 	   </div> 
    </div>

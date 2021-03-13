@@ -28,7 +28,7 @@
 				//Edit For Approve kpi START
 					$(".actionApproveEditKPI").click(function(){
 						
-
+						$("#warningInModal").hide();
 						var  data_id=this.id.split("-");
 						var kpi_year=data_id[1];
 						var appraisal_period_id=data_id[2];
@@ -73,7 +73,7 @@
 										role_id
 										);
 
-									$("#approveModal").modal('show');
+									$("#approveModal").modal({backdrop: 'static', keyboard: false});
 
 								}
 								
@@ -133,7 +133,7 @@
 									$("#empProvince_display").html(data[0]["emp_province"]);
 									$("#empPostcode_display").html(data[0]["emp_postcode"]);
 									
-									$("#employeeViewDetailModal").modal("show");
+									$("#employeeViewDetailModal").modal({backdrop: 'static', keyboard: false});
 
 								}catch(err) {
 								console.log(err.message);
@@ -154,32 +154,47 @@
 					var emp_id=data_id[5];
 
 
-					if(confirm("ยืนยันการส่งพนักงานไปประเมินใหม่")){
-						$.ajax({
-							   url:"../Model/mApproveKpi.php",
-							   type:"post",
-							   dataType:"json",
-							   headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-							   data:{
-								   "year":kpi_year,
-								   "appraisal_period_id":appraisal_period_id,
-								   "department_id":department_id,
-								   "position_id":position_id,
-								   "employee_id":emp_id,
-								   "action":"newEvaluateAction"
-									},
-							   success:function(data){
-								   
-								   
-								   if(data[0]=="success"){
-									   
-									   showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
-								   }
-								   
-							   }
-							   
-						   });
-					}
+					//if(confirm("ยืนยันการส่งพนักงานไปประเมินใหม่")){
+						$.confirm({
+							theme: 'bootstrap', // 'material', 'bootstrap'
+							title: 'ยืนยัน!',
+							content: 'ยืนยันการส่งพนักงานไปประเมินใหม่?',
+							buttons: {
+							
+							'ยืนยัน': {
+							btnClass: 'btn-blue',
+							action: function(){
+								$.ajax({
+									url:"../Model/mApproveKpi.php",
+									type:"post",
+									dataType:"json",
+									headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+									data:{
+										"year":kpi_year,
+										"appraisal_period_id":appraisal_period_id,
+										"department_id":department_id,
+										"position_id":position_id,
+										"employee_id":emp_id,
+										"action":"newEvaluateAction"
+										 },
+									success:function(data){
+										
+										
+										if(data[0]=="success"){
+											
+											showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
+										}
+										
+									}
+									
+								});
+							}
+							},
+							'ยกเลิก': function () {}
+							}
+							});
+						
+					//}
 						
 				   
 			   });
@@ -190,6 +205,7 @@
 				//actionApproveKPI Action start
 
 				$(".actionApproveKPI").click(function(){
+					$("#warningInModal").hide();
 					 var  data_id=this.id.split("-");
 					 var kpi_year=data_id[1];
 					 var appraisal_period_id=data_id[2];
@@ -204,34 +220,53 @@
 					 alert(empDepId);
 					 alert(empPositionId);
 					 */
-					 if(confirm("ยืนยันการอนุมัติผลประเมิน?")){
-					     $.ajax({
-								url:"../Model/mApproveKpi.php",
-								type:"post",
-								dataType:"json",
-								headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-								data:{
-									"year":kpi_year,
-									"appraisal_period_id":appraisal_period_id,
-									"department_id":department_id,
-									"position_id":position_id,
-									"employee_id":emp_id,
-									"total_score_percentage":$("#total_score_percentage-"+emp_id).text(),	
-									"action":"approveKpiAction"
-									 },
-								success:function(data){
-									//alert(data);
-									
-									if(data[0]=="approveSuccess"){
-										//alert("Approve KPI Successfully");
-										//showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
-										showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
+					 //if(confirm("ยืนยันการอนุมัติผลประเมิน?")){
+						$.confirm({
+							theme: 'bootstrap', // 'material', 'bootstrap'
+							title: 'ยืนยัน!',
+							content: 'ยืนยันการอนุมัติผลประเมิน?',
+							buttons: {
+							
+							'ยืนยัน': {
+							btnClass: 'btn-blue',
+							action: function(){
+							
+								$.ajax({
+									url:"../Model/mApproveKpi.php",
+									type:"post",
+									dataType:"json",
+									headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+									data:{
+										"year":kpi_year,
+										"appraisal_period_id":appraisal_period_id,
+										"department_id":department_id,
+										"position_id":position_id,
+										"employee_id":emp_id,
+										"total_score_percentage":$("#total_score_percentage-"+emp_id).text(),	
+										"action":"approveKpiAction"
+										 },
+									success:function(data){
+										//alert(data);
+										
+										if(data[0]=="approveSuccess"){
+											//alert("Approve KPI Successfully");
+											//showDataEmployee($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val());
+											showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
+										}
+										
 									}
 									
-								}
-								
+								});
+
+
+							}
+							},
+							'ยกเลิก': function () {}
+							}
 							});
-					 }
+
+					     
+					 //}
 					     
 					//alert(emp_id);
 				});
@@ -537,7 +572,7 @@ $(document).ready(function(){
 	var resetDataApproveKpi=function(){
 		
 
-		
+		$("#warningInModal").hide();
 		$("#adjust_percentage").val("");
 		$("#adjust_reason").val("");
 		
@@ -599,20 +634,32 @@ $(document).ready(function(){
 	search_approve_kpi_Fn();
 	/*Search data for approve data end*/
 	
+	//validate form start
+	var validateApprovedFn=function(){
+		
+		var validate="";
+		
 
+
+		if(!$.isNumeric($("#adjust_percentage").val())){
+			validate+="ปรับคะแนนต้องเป็นตัวเลขเท่านั้น <br>";
+		}
+
+
+	 	
+	 	
+	 	return validate;
+	}
+ 	//validate form end
 	
 	//Form Approve Edit Start
 	$("#btnSubmit").click(function(){
-		/*
-		alert("score="+$("#score").val());
-		alert("reason="+$("#reason").val());
-		alert("year_emb="+$("#year_emb").val());
-		alert("appraisal_period_id_emb="+$("#appraisal_period_id_emb").val());
-		alert("department_id_emb="+$("#department_id_emb").val());
-		alert("division_id_emb="+$("#division_id_emb").val());
-		alert("position_id_emb="+$("#position_id_emb").val());
-		alert("employee_id_emb="+$("#employee_id_emb").val());
-		*/
+		
+		if(validateApprovedFn()!=""){
+			
+			warningInModalFn("#warningInModalArea",validateApprovedFn());
+			return false;
+		}else{
 		
 		$.ajax({
 			url:"../Model/mApproveKpi.php",
@@ -627,14 +674,14 @@ $(document).ready(function(){
 			"action":"editAction"
 				},
 			success:function(data){
-				//alert(data);
+				
 				if(data[0]=="updateSuccess"){
 					
 
 					if($("#embed_language").val()=="th"){
-						alert("ปรับคะแนนเรียบร้อย");
+						//alert("ปรับคะแนนเรียบร้อย");
 					}else{
-						alert("Adjust performance Success.");
+						//alert("Adjust performance Success.");
 					}
 
 
@@ -642,12 +689,20 @@ $(document).ready(function(){
 					showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
 					$("#approveModal").modal('hide');
 				}else{
-					alert("เกิดข้อผิดผลาด");
+					//alert("เกิดข้อผิดพลาด");
+					$.alert({
+						buttons: {
+						'ปิด': function () {}
+						},
+						title: 'แจ้งเตือน!',
+						content: 'เกิดข้อผิดพลาด',
+						});
 				}
 				
 			}
 			
 		});
+	}
 		return false;
 	});
 	//Form Approve Edit End

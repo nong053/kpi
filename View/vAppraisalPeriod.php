@@ -22,7 +22,7 @@ if($_SESSION['language']=="th"){
 	//form
 	$_SESSION['appraisalPeriod_l_form_required']="จำเป็นต้องกรอก";
 	$_SESSION['appraisalPeriod_l_form_name']="ช่วงประเมิน";
-	$_SESSION['appraisalPeriod_l_form_des']="ชื่อช่วงประเมิน";
+	$_SESSION['appraisalPeriod_l_form_des']="ช่วงประเมิน";
 	$_SESSION['appraisalPeriod_l_form_start']="เริ่ม";
 	$_SESSION['appraisalPeriod_l_form_end']="ถึง";
 	$_SESSION['appraisalPeriod_l_form_target']="เป้าหมายYTD%";
@@ -116,7 +116,7 @@ if($_SESSION['language']=="th"){
 					-->
 					<tr>
 						<td style="width:200px;" class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_des']?> <font color="red">*</font></b></td>
-						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " style="width:250px;"></td>
+						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " ></td>
 					</tr>
 					
 					<tr>
@@ -149,7 +149,8 @@ if($_SESSION['language']=="th"){
 				</table>
 				</form>
 	   		<!-- content end-->
-
+			   
+	 		   <div id="warningInModalArea"></div>
 	   </div> 
    </div>
 
@@ -191,7 +192,7 @@ if($_SESSION['language']=="th"){
 					<span style="float:left;" class='appraisalYearArea'></span>
 
 					<span style="float:left;" class="pre-search-label">
-						<button data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary " id="btnAppraisalPeriod" type="button"><i class="glyphicon  glyphicon-plus"></i>
+						<button data-toggle="modal" data-target=".appraisalPeriodSetup" data-backdrop="static" data-keyboard="false" class="btn btn-primary " id="btnAppraisalPeriod" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['appraisalPeriod_l_des_btn_add']?>
 						</button>
 					</span>

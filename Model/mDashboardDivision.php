@@ -59,6 +59,7 @@ kr.department_id,kr.position_id
 		and (kr.emp_id='$_GET[emp_id]' or 'All'='$_GET[emp_id]')
 		and kr.admin_id='$admin_id'
 		and kr.approve_flag='Y'
+		and e.emp_status_work_id='1'
 		GROUP BY e.emp_id
 		";
 	/*

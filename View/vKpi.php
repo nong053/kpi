@@ -12,10 +12,10 @@ if($_SESSION['language']=="th"){
 
 	//column
 	$_SESSION['kpi_l_tbl_id']="#";
-	$_SESSION['kpi_l_tbl_kpi_name']="ชื่อตัวชี้วัด";
+	$_SESSION['kpi_l_tbl_kpi_name']="ตัวชี้วัด";
 	$_SESSION['kpi_l_tbl_kpi_better_flag']="ประเภทตัวชี้วัด";
 	
-	$_SESSION['kpi_l_form_kpi_better_flag']="ชื่อตัวชี้วัด";
+	$_SESSION['kpi_l_form_kpi_better_flag']="ตัวชี้วัด";
 	
 	$_SESSION['kpi_l_tbl_kpi_detail']="รายละเอียด";
 	$_SESSION['kpi_l_tbl_kpi_perspective']="มุมมองธุรกิจ";
@@ -32,7 +32,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_l_form_name']="ตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_code']="รหัสตัวชี้วัด";
 	$_SESSION['kpi_l_form_department']="แผนก";
-	$_SESSION['kpi_l_form_kpi_name']="ชื่อตัวชี้วัด";
+	$_SESSION['kpi_l_form_kpi_name']="ตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_better_flag']="ประเภทตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_type_score']="การคิดคะแนน";
 	$_SESSION['kpi_l_form_kpi_data_target']="เป้าข้อมูลดิบ";
@@ -204,6 +204,7 @@ if($_SESSION['language']=="th"){
 				</table>
 			</form>
 	   		<!-- content end-->
+			<div id="warningInModalArea"></div>   
 
 	   </div> 
    </div>

@@ -118,7 +118,11 @@ if($_SESSION['login_status']!="1"){
      <!-- easy pie chart start -->
  	<script src="../easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
 	 <!-- easy pie chart end -->
-	 
+
+	 <!-- jquery confirm start -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	 <!-- jquery confirm end -->
 	 
 	 <!-- load angular fame work start-->
 	<script src="../js/angular.min.js"></script>
@@ -189,6 +193,10 @@ if($_SESSION['login_status']!="1"){
 		color:#ccc;
 		font-weight: bold;
 		background-color: #428BCA;
+	}
+	.bg-blue{
+		background:#428BCA;
+		color:white;
 	}
 
    </style>
@@ -608,7 +616,40 @@ if($_SESSION['login_status']!="1"){
 	<input type='hidden' id='embed_language' name='embed_language' value='<?=$_SESSION['language']?>'>
 	<input type='hidden' id='embed_role_underling_position_id' name='embed_role_underling_position_id' value='<?=$_SESSION['role_underling_position_id']?>'>
 	<input type='hidden' id='embed_role_executive_position_id' name='embed_role_executive_position_id' value='<?=$_SESSION['role_executive_position_id']?>'>
+
+
+
+
+
+	
+
+	<!-- <div  id="confirmMainModal" class="modal fade bs-example-modal-sm " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content ">
+			<div class="modal-header alert-info">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"  id="confirmTitle"></h4>
+			</div>
+			<div class="modal-body">
+				<p id="confirmDetail"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="confirmOK" class="btn btn-primary">ตกลง</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+				
+			</div>
+		</div>
+	</div>
+	</div> -->
+	<div id="modalMainConfirmArea"></div>
+
+
+
   </body>
 </html>
+
+
+
+
 
 

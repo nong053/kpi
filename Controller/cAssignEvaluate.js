@@ -4,6 +4,8 @@ var resetDataAssignKpi=function(activeKPIs){
         fnDropdownAssignListKPI();
     }
    
+	$("#warningInModal").hide();
+
     $("#assign_kpi_action").val("add");
     $("#kpi_weight").val("25.00");
    
@@ -36,6 +38,9 @@ var fnDropdownListAsignEmployee=function(department_id,position_id,paramSelectAl
 		success:function(data){
 			
 			
+
+			
+
 			var htmlDropDrowList="";
 			htmlDropDrowList+="<select style='width:160px;' id=\"assign_employee_id\" name=\"assign_employee_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
@@ -336,7 +341,8 @@ var delAllKpiEmpAssign = function(year,appraisal_period_id,department_id,positio
 		
 			
 			if(data[0]=="success"){
-				alert("Deleted success.");
+				//alert("Deleted success.");
+				//confirmMainModalFn("ลบการมอบหมายตัวชี้วัดทั้งหมดเรียบร้อย","แจ้งเตือน","warning");
 				showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 			}
 			
@@ -367,8 +373,17 @@ var delByKpiEmpAssign = function(year,appraisal_period_id,department_id,position
 		
 			
 			if(data[0]=="success"){
-				alert("Deleted success.");
 				showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+			}else{
+				$.alert({
+					buttons: {
+					'ปิด': function () {
+						
+					}
+					},
+					title: 'แจ้งเตือน!',
+					content: 'เกิดข้อผิดพลาด ไม่สามารถลบข้อมูลได้',
+				});
 			}
 			
 		}
@@ -418,7 +433,9 @@ var sendKPIAsignToEvaluate = function(action,year,appraisal_period_id,department
 			async:false,
 		success:function(data){
 			if(data[0]=="success"){
-				alert("ส่งประเมินเรียบร้อย");
+				//alert("ส่งประเมินเรียบร้อย");
+			}else{
+
 			}	
 		}	
 	});
@@ -540,7 +557,7 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 								$("#empProvince_display").html(data[0]["emp_province"]);
 								$("#empPostcode_display").html(data[0]["emp_postcode"]);
 								
-								$("#employeeViewDetailModal").modal("show");
+								$("#employeeViewDetailModal").modal({backdrop: 'static', keyboard: false});
 
 							}catch(err) {
 							console.log(err.message);
@@ -573,11 +590,37 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 				
 				if($("#check_status-"+appraisalYear+"-"+appraisalPeriodID+"-"+departmentID+"-"+positionID+"-"+empID).hasClass('status_complete')){
 				
-					sendKPIAsignToEvaluate("confrimKpi",appraisalYear,appraisalPeriodID,departmentID,positionID,empID);
-					showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+					$.confirm({
+						theme: 'bootstrap', // 'material', 'bootstrap'
+						title: 'ยืนยัน!',
+						content: 'ยืนยันการมอบหมายตัวชี้วัด?',
+						buttons: {
+						
+						'ยืนยัน': {
+						btnClass: 'btn-blue',
+						action: function(){
+
+							sendKPIAsignToEvaluate("confrimKpi",appraisalYear,appraisalPeriodID,departmentID,positionID,empID);
+							showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+						
+						}
+						},
+						'ยกเลิก': function () {}
+						}
+						});
+
+					
 				
 				}else{
-					alert("ไม่สามารถส่งไปประเมินได้เนื่องจากน้ำหนักตัวชี้วัดไม่เท่ากับ 100%");
+					//alert("ไม่สามารถส่งไปประเมินได้เนื่องจากน้ำหนักตัวชี้วัดไม่เท่ากับ 100%");
+					$.alert({
+						buttons: {
+						'ปิด': function () {}
+						},
+						title: 'แจ้งเตือน!',
+						content: 'ไม่สามารถส่งไปประเมินได้เนื่องจากน้ำหนักตัวชี้วัดรวมไม่เท่ากับ <br>100%</b>',
+						});
+
 				}
 
 
@@ -616,7 +659,7 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 				
 				
 				fnDropdownAssignListKPI();
-				$("#assignMasterKPIModal").modal("show");
+				$("#assignMasterKPIModal").modal({backdrop: 'static', keyboard: false});
 				
 				//sendKPIAsignToEvaluate("confrimKpi",appraisalYear,appraisalPeriodID,departmentID,positionID,empID);
 				
@@ -643,8 +686,22 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 				kpiID=idArray[6];
 				
 				
-
-				delByKpiEmpAssign(appraisalYear,appraisalPeriodID,departmentID,positionID,empID,kpiID);
+				$.confirm({
+					theme: 'bootstrap', // 'material', 'bootstrap'
+					title: 'ยืนยัน!',
+					content: 'ยืนยันลบการมอบหมายตัวชี้วัดนี้?',
+					buttons: {
+					
+					'ยืนยัน': {
+					btnClass: 'btn-blue',
+					action: function(){
+						delByKpiEmpAssign(appraisalYear,appraisalPeriodID,departmentID,positionID,empID,kpiID);
+					}
+					},
+					'ยกเลิก': function () {}
+					}
+					});
+				
 
 			});
 
@@ -689,7 +746,7 @@ var showDataEmpAssignKpi = function(year,appraisal_period_id,department_id,posit
 				$("#assign_kpi_by_emp").val("Y");
 				$("#assign_kpi_submit").val("แก้ไข")
 				$("#kpi_weight").val($("#kpi_weight_assign_to_emp_id-"+empID+"-"+kpiID).text().trim());
-				$("#assignMasterKPIModal").modal("show");
+				$("#assignMasterKPIModal").modal({backdrop: 'static', keyboard: false});
 
 
 				
@@ -714,6 +771,15 @@ var searchAssignMasterKPIFn = function(){
 
 		showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 		
+		if($(".contentemployee").html()=="" || $("#assignKpiToEmpShowData").html()==""){
+			$("#delAllKpiEmpAssign").prop("disabled",true);
+			$("#sendAllKpiEmpAssign").prop("disabled",true);
+			$("#addAssignKPI").prop("disabled",true);
+		}else{
+			$("#delAllKpiEmpAssign").prop("disabled",false);
+			$("#sendAllKpiEmpAssign").prop("disabled",false);
+			$("#addAssignKPI").prop("disabled",false);
+		}
 	
 }
 
@@ -737,13 +803,34 @@ $(document).ready(function(){
 	$(document).on("click","#assign_kpi_search",function(){
 		
 		if($("#appraisal_period_assign_kpi").val()==null){
-			alert("กรุณากำหนดช่วงการประเมิน");
+			//alert("กรุณากำหนดช่วงการประเมิน");
+			$.alert({
+				buttons: {
+				'ปิด': function () {}
+				},
+				title: 'แจ้งเตือน!',
+				content: 'กรุณากำหนดช่วงการประเมิน',
+				});
 		}
 		if($("#assign_department_id").val()==null){
-			alert("กรุณากำหนดแผนก");
+			//alert("กรุณากำหนดแผนก");
+			$.alert({
+				buttons: {
+				'ปิด': function () {}
+				},
+				title: 'แจ้งเตือน!',
+				content: 'กรุณากำหนดแผนก',
+				});
 		}
 		if($("#assign_position_id").val()==null){
-			alert("กรุณากำหนดตำแน่ง");
+			//alert("กรุณากำหนดตำแน่ง");
+			$.alert({
+				buttons: {
+				'ปิด': function () {}
+				},
+				title: 'แจ้งเตือน!',
+				content: 'กรุณากำหนดตำแน่ง',
+				});
 		}
 		
 		
@@ -771,106 +858,138 @@ $(document).ready(function(){
 		$(document).off("click");
 	});
 	/*Search data for assign data end*/
+
+	//validate form start
+	var validateAssignEvaluateFn=function(){
+		
+		var validate="";
+		
+		
+		if($("#kpi_id").val()=="" || $("#kpi_id").val()==null){
+	 		validate+="เลือกตัวชี้วัดด้วยครับ<br>";
+	 	} 
+
+		if(!$.isNumeric($("#kpi_weight").val())){
+			validate+="น้ำหนักตัวชี้วัดต้องเป็นตัวเลข <br>";
+		}
+
+
+	 	
+	 	
+	 	return validate;
+	}
+ 	//validate form end
 	
 	$("form#AssignKpiForm").submit(function(){
 
-		
-		var year;
-		var appraisal_period_id;
-		var department_id;
-		var position_id;
-		var emp_id;
-		var kpi_id;
-
-		
-		if($("#assign_kpi_by_emp").val()=="N"){
-			
-			year=sessionStorage.getItem("param_year");
-			appraisal_period_id=sessionStorage.getItem("param_appraisal_period");
-			department_id=sessionStorage.getItem("param_department");
-			position_id=sessionStorage.getItem("param_position");
-			emp_id=sessionStorage.getItem("param_emp")
-			
-			
+		if(validateAssignEvaluateFn()!=""){
+			//alert(validateBaselineFn());
+			warningInModalFn("#warningInModalArea",validateAssignEvaluateFn());
+			return false;
 		}else{
+
+			var year;
+			var appraisal_period_id;
+			var department_id;
+			var position_id;
+			var emp_id;
+			var kpi_id;
+
+
 			
-			year=$("#form_year").val();
-			appraisal_period_id=$("#form_appraisal_period_id").val();
-			department_id=$("#form_department_id").val();
-			position_id=$("#form_position_id").val();
-			emp_id=$("#form_emp_id").val();
-			
-		}
-
-		if($("#assign_kpi_action").val()=="add"){
-			kpi_id=$("#kpi_id").val();
-		}else{
-			kpi_id=$("#form_kpi_id").val();
-		}
-
-		 
-		$.ajax({
-			url:"../Model/mAssignEvaluate.php",
-			type:"post",
-			dataType:"json",
-			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-			data:{
-
-			"year":year,
-			"appraisal_period_id":appraisal_period_id,
-			"department_id":department_id,
-			"position_id":position_id,
-            "emp_id":emp_id,
-			"kpi_id":kpi_id,
-			"kpi_weight":$("#kpi_weight").val(),"kpi_target_data":$("#kpi_target_data").val(),"kpi_type_actual":$(".kpi_type_actual:checked").val(),
-            "action":$("#assign_kpi_action").val(),
-				},
-			success:function(data){
-				if(data[0]=="success"){
-					
-					showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
-					resetDataAssignKpi(false);	
-					$("#assignMasterKPIModal").modal("hide");
-
-				}else if(data[0]=="key-duplicate"){
-					
-
-					if($("#embed_language").val()=="th"){
-						alert("ชื่อตัวชี้วัดซ้ำ");
-					}else{
-						alert("KPI Name is Duplicated.");
-					}
-				}
-				if(data[0]=="editSuccess"){
-					
-					showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
-					resetDataAssignKpi(false);	
-					$("#assignMasterKPIModal").modal("hide");
-				}
+			if($("#assign_kpi_by_emp").val()=="N"){
 				
+				year=sessionStorage.getItem("param_year");
+				appraisal_period_id=sessionStorage.getItem("param_appraisal_period");
+				department_id=sessionStorage.getItem("param_department");
+				position_id=sessionStorage.getItem("param_position");
+				emp_id=sessionStorage.getItem("param_emp")
+				
+				
+			}else{
+				
+				year=$("#form_year").val();
+				appraisal_period_id=$("#form_appraisal_period_id").val();
+				department_id=$("#form_department_id").val();
+				position_id=$("#form_position_id").val();
+				emp_id=$("#form_emp_id").val();
 				
 			}
-			
-		});
 
-		return false;
+			if($("#assign_kpi_action").val()=="add"){
+				kpi_id=$("#kpi_id").val();
+			}else{
+				kpi_id=$("#form_kpi_id").val();
+			}
+
+			
+			$.ajax({
+				url:"../Model/mAssignEvaluate.php",
+				type:"post",
+				dataType:"json",
+				headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+				data:{
+
+				"year":year,
+				"appraisal_period_id":appraisal_period_id,
+				"department_id":department_id,
+				"position_id":position_id,
+				"emp_id":emp_id,
+				"kpi_id":kpi_id,
+				"kpi_weight":$("#kpi_weight").val(),"kpi_target_data":$("#kpi_target_data").val(),"kpi_type_actual":$(".kpi_type_actual:checked").val(),
+				"action":$("#assign_kpi_action").val(),
+					},
+				success:function(data){
+					if(data[0]=="success"){
+						
+						showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+						resetDataAssignKpi(false);	
+						$("#assignMasterKPIModal").modal("hide");
+
+					}else if(data[0]=="key-duplicate"){
+						
+
+						if($("#embed_language").val()=="th"){
+							
+							warningInModalFn("#warningInModalArea","ห้ามมอบหมายตัวชี้วัดซ้ำกัน");
+							
+							
+						}else{
+							
+							warningInModalFn("#warningInModalArea","KPI Name is Duplicated.");
+							
+						}
+					}
+					if(data[0]=="editSuccess"){
+						
+						showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+						resetDataAssignKpi(false);	
+						$("#assignMasterKPIModal").modal("hide");
+					}
+					
+					
+				}
+				
+			});
+			return false;
+		}
 	});
 	//Start Main button manange assign kpi 
 
 	$("#addAssignKPI").click(function(){
 
-		if($("#appraisal_period_assign_kpi").val()==null){
-			alert("กรุณากำหนดช่วงการประเมิน");
-			return false;
-		}
-		if($("#assign_department_id").val()==null){
-			alert("กรุณากำหนดแผนก");
-			return false;
-		}
-		if($("#assign_position_id").val()==null){
-			alert("กรุณากำหนดตำแน่ง");
-			return false;
-		}
+		// if($("#appraisal_period_assign_kpi").val()==null){
+		// 	alert("กรุณากำหนดช่วงการประเมิน");
+		// 	return false;
+		// }
+		// if($("#assign_department_id").val()==null){
+		// 	alert("กรุณากำหนดแผนก");
+		// 	return false;
+		// }
+		// if($("#assign_position_id").val()==null){
+		// 	alert("กรุณากำหนดตำแน่ง");
+		// 	return false;
+		// }
 		$("#assign_kpi_by_emp").val("N");
 
 		//param by emp
@@ -883,32 +1002,72 @@ $(document).ready(function(){
 
 		resetDataAssignKpi();
 		fnDropdownAssignListKPI();
-		$("#assignMasterKPIModal").modal("show");
+		$("#assignMasterKPIModal").modal({backdrop: 'static', keyboard: false});
 		
 	});
 	
 	$("#delAllKpiEmpAssign").click(function(){
-		if(confirm("ยืนยันลบการมอบหมายตัวชี้วัดทั้งหมด?")){
+
 		
-			delAllKpiEmpAssign(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
-		
-		}
+
+
+		$.confirm({
+			theme: 'bootstrap', // 'material', 'bootstrap'
+			title: 'ยืนยัน!',
+			content: 'ยืนยันยกเลิกการมอบหมายตัวชี้วัดทั้งหมด?<br>ยกเลิกการมอบหมายตัวชี้วัดได้กรณียังไม่ส่งประเมิน ถ้าส่งประเมินแล้วให้กดมอบหมายใหม่ที่หน้าประเมิน',
+			buttons: {
+
+				'ยืนยัน': {
+					btnClass: 'btn-blue',
+					action: function(){
+						delAllKpiEmpAssign(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+					}
+				},
+				'ยกเลิก': function () {}
+			}
+		});
+			
 
 	});
 	$("#sendAllKpiEmpAssign").click(function(){
-		if(confirm("ยืนยันเพื่อส่งพนักงานไปประเมินทั้งหมด?")){
-			var status_not_complete=0;
-			$(".status_not_complete").each(function(index,indexEntry){
-				status_not_complete+=1;
-			});
-			//alert(status_not_complete);
-			if(status_not_complete==0){
-				sendKPIAsignToEvaluate("confrimKpi",sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
-				showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
-			}else{
-				alert("ไม่สามารถส่งไปประเมินได้เพราะว่านำ้หนักตัวชี้วัดที่มอบหมายให้แต่ละคนไม่เท่ากับ 100%");
+		
+
+		$.confirm({
+			theme: 'bootstrap', // 'material', 'bootstrap'
+			title: 'ยืนยัน!',
+			content: 'ยืนยันเพื่อส่งพนักงานไปประเมินทั้งหมด?<br>กรณีส่งพนักงานไปประเมินทั้งหมดพนักงานทุกคนต้องมีน้ำหนักตัวชี้วัดรวมเท่ากับ 100%',
+			buttons: {
+
+				'ยืนยัน': {
+					btnClass: 'btn-blue',
+					action: function(){
+						var status_not_complete=0;
+						$(".status_not_complete").each(function(index,indexEntry){
+							status_not_complete+=1;
+						});
+						if(status_not_complete==0){
+						
+							sendKPIAsignToEvaluate("confrimKpi",sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+							showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
+						}else{
+
+							$.alert({
+								buttons: {
+									'ปิด': function () {}
+									
+								},
+								title: 'แจ้งเตือน!',
+								content: 'ไม่สามารถส่งไปประเมินได้ เพราะนำ้หนักตัวชี้วัดที่มอบหมายให้แต่ละคนไม่เท่ากับ <b>100%</b>',
+							});
+
+							
+						}
+					}
+				},
+				'ยกเลิก': function () {}
 			}
-		}
+		});
+			
 	});
 
 

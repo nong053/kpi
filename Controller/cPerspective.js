@@ -12,14 +12,18 @@ $(document).ready(function(){
 			sync:false,
 			success:function(data){
 				$("#exContentDataArea").html(data);
-				$(".ex-data-modal").modal();
+				$(".ex-data-modal").modal({backdrop: 'static', keyboard: false});
 			}
 		});
 	});
 
 	
 	var resetDataPerspective=function(){
+
+		$("#warningInModal").hide();
+
 		$("input#perspectiveName").val("");
+		$("#perspectiveWeight").val("");
 		
 		$("#perspectiveAction").val("add");
 		$("#perspectiveId").val("");
@@ -57,7 +61,7 @@ $(document).ready(function(){
 							dataType:"json",
 							data:{"id":id,"action":"edit"},
 							success:function(data){
-
+								resetDataPerspective();
                                 $("input#perspectiveName").val(data[0]["perspective_name"]);
                                 $("input#perspectiveWeight").val(data[0]["perspective_weight"]);
 								$("#perspectiveAction").val("editAction");
@@ -69,7 +73,7 @@ $(document).ready(function(){
 									$("#submitPerspective").val("Edit");
 								}
 								
-								$("#perspectiveModal").modal('show');
+								$("#perspectiveModal").modal({backdrop: 'static', keyboard: false});
 								
 							}
 					 });
@@ -78,29 +82,79 @@ $(document).ready(function(){
 				 
 				 $(".actionDel").click(function(){
 				
-					if(confirm("ยืนยันการลบข้อมูล")){
+					//if(confirm("ยืนยันการลบข้อมูล")){
+						
 					 var idDel=this.id.split("-");
 					 var id=idDel[1];
-					 $.ajax({
-							url:"../Model/mPerspective.php",
-							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-							type:"post",
-							dataType:"json",
-							data:{"id":id,"action":"del"},
-							success:function(data){
-								if(data[0]=="success"){
-									
-									showDataPerspective();
+					 
 
-								}
+					
+
+				$.ajax({
+					url:"../Model/mPerspective.php",
+					type:"post",
+					dataType:"json",
+					data:{"perspective_id":id,"action":"checkUsedData",},
+					headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+					success:function(data){
+
+					if(data[0]==0){
+
+					
+						$.confirm({
+							theme: 'bootstrap', // 'material', 'bootstrap'
+							title: 'ยืนยัน!',
+							content: 'ต้องการลบมุมมองธุรกิจนี้หรือไม่?',
+							buttons: {
+							
+							'ยืนยัน': {
+							btnClass: 'btn-blue',
+							action: function(){
+								
+								$.ajax({
+									url:"../Model/mPerspective.php",
+									headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+									type:"post",
+									dataType:"json",
+									data:{"id":id,"action":"del"},
+									success:function(data){
+										if(data[0]=="success"){
+											
+											showDataPerspective();
+											
+	
+										}
+									}
+							});
+
 							}
-					 });
+							},
+							'ยกเลิก': function () {}
+							}
+							});
 
-					} else{
-						$("#perspectiveModal").modal('hide');
+
+						
+					
+
+					}else{
+						$.alert({
+							buttons: {
+							'ปิด': function () {}
+							},
+							title: 'แจ้งเตือน!',
+							content: 'ไม่สามารถลบมุมมองธุรกิจนี้ได้! เนื่องจากมีตัวชี้วัดอื่นใช้งานอยู่',
+							});
+						//confirmMainModalFn("ไม่สามารถลบข้อมูลได้! เนื่องจากมีตัวชี้วัดอื่นใช้งานอยู่","แจ้งเตือน","warning");
 					}
+
+					}
+				});
+
+				});
+					
 										 
-				 });
+				 
 				 //action del,edit end
 				 
 				 //PRESS RESET SRART
@@ -118,13 +172,15 @@ $(document).ready(function(){
 	var validatePerspectiveFn=function(){
 		var validate="";
 		if($("#perspectiveName").val()==""){
-	 		validate+="กรอกชื่อมุมมองธุรกิจด้วยครับ \n";
+	 		validate+="กรอกชื่อมุมมองธุรกิจด้วยครับ <br>";
 	 	}  
-
 		if($("#perspectiveWeight").val()==""){
-			validate+="กรอกนำ้หนักมุมมองธุรกิจด้วยครับ \n";
-		}  
-	 	
+			validate+="กรอกนำ้หนักมุมมองธุรกิจด้วยครับ <br>";
+			
+		}
+		if(!$.isNumeric($("#perspectiveWeight").val())){
+			validate+="นำ้หนักมุมมองธุรกิจต้องเป็นตัวเลข <br>";
+		}
 	 	return validate;
 	}
 	
@@ -132,7 +188,10 @@ $(document).ready(function(){
 		
 	
 		if(validatePerspectiveFn()!=""){
-			alert(validatePerspectiveFn());
+
+			//alert(validatePerspectiveFn());
+			warningInModalFn("#warningInModalArea",validatePerspectiveFn());
+
 		}else{
 			
             $.ajax({
@@ -170,7 +229,7 @@ $(document).ready(function(){
 	//parameter start
 	$("#btnAddPerspective").click(function(){
 		resetDataPerspective();
-		$("#perspectiveModal").modal('show');	
+		$("#perspectiveModal").modal({backdrop: 'static', keyboard: false});	
 	});
 	//parameter end
 });

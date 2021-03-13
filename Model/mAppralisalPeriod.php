@@ -17,10 +17,10 @@ $appraisal_period_target_percentage=$_POST['appraisal_period_target_percentage']
 $admin_id=$_SESSION['admin_id'];
 
 //CheckUsingKpiAssignAndKpiResult Start
-if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
+if($_POST['action']=="checkUsedData"){
 
 	$sqlSQL="select count(*) as countAppraisal
-			from assign_kpi 
+			from assign_evaluate_kpi
 			where appraisal_period_id='$appraisalPeriodId'
 		";
 	

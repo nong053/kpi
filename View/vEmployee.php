@@ -434,10 +434,11 @@ if($_SESSION['language']=="th"){
 
 					<!-- content end-->
 
-				</div>
 
+				</div>
+				<div id="warningInModalArea"></div>   
 				<div class="modal-footer">
-					
+				
 	   			
 	   		<!-- <button class="btn btn-primary" type="button">Save changes</button>  -->
 	   		
@@ -450,6 +451,7 @@ if($_SESSION['language']=="th"){
 				</div>
 
 			</form>
+			
 
 		</div>
 

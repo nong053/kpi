@@ -2,6 +2,7 @@ $(document).ready(function(){
 	
 	var resetDataDepartment=function(){
 
+		$("#warningInModal").hide();
 		$("#departmentCode").val("");
 		$("#departmentName").val("");
 		$("#departmentDetail").val("");
@@ -57,6 +58,7 @@ $(document).ready(function(){
 							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 							success:function(data){
 								//alert(data[0]["department_id"]);
+								resetDataDepartment();
 								$("input#departmentCode").val(data[0]["department_code"]);
 								$("input#departmentName").val(data[0]["department_name"]);
 								$("#departmentDetail").val(data[0]["department_detail"]);
@@ -69,7 +71,7 @@ $(document).ready(function(){
 									$("#departmentSubmit").val("Edit");
 								}
 								
-								$("#departmentModal").modal("show");
+								$("#departmentModal").modal({backdrop: 'static', keyboard: false});
 								
 								
 								
@@ -90,13 +92,22 @@ $(document).ready(function(){
 							url:"../Model/mDepartment.php",
 							type:"post",
 							dataType:"json",
-							data:{"departmentId":id,"action":"checkUsingKpiAssignAndKpiResult",},
+							data:{"departmentId":id,"action":"checkUsedData",},
 							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 							success:function(data){
 									
 									if(data[0]==0){
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
-											 $.ajax({
+
+										$.confirm({
+											theme: 'bootstrap', // 'material', 'bootstrap'
+											title: 'ยืนยัน!',
+											content: 'ต้องการลบแผนกนี้หรือไม่?',
+											buttons: {
+											
+											'ยืนยัน': {
+											btnClass: 'btn-blue',
+											action: function(){
+												$.ajax({
 													url:"../Model/mDepartment.php",
 													type:"post",
 													dataType:"json",
@@ -107,12 +118,30 @@ $(document).ready(function(){
 															//alert("ลบข้อมูลเรียบร้อย");	
 															showDataDepartment();
 															
+															
 														}
 													}
 											 });
-										}
+											}
+											},
+											'ยกเลิก': function () {}
+											}
+											});
+
+											
+											
+										//}
+										//});
 									}else{
-										alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
+										//confirmMainModalFn("ไม่สามารถลบข้อมูลได้! เนื่องจากพนักงานมีการใช้งานอยู่","แจ้งเตือน","warning");
+										$.alert({
+											buttons: {
+											'ปิด': function () {}
+											},
+											title: 'แจ้งเตือน!',
+											content: 'ไม่สามารถลบข้อมูลได้! เนื่องจากมีพนักงานใช้งานอยู่!',
+											});
+
 									}
 							}
 					 });
@@ -160,7 +189,7 @@ $(document).ready(function(){
 		 }
 		 */
 		if($("#departmentName").val()==""){
-	 		validate+=departmentName+"\n";
+	 		validate+=departmentName+"<br>";
 	 	}
 	 	
 	 	
@@ -169,14 +198,10 @@ $(document).ready(function(){
 	
 	
 	$("form#departmentForm").submit(function(){
-		/*
-		alert($("#departmentName").val());
-		alert($("#departmentBegin").val());
-		alert($("#departmentEnd").val());
-		alert($("#departmentColor").val());
-		*/
+		
 		if(validateDepartmentFn()!=""){
-			alert(validateDepartmentFn());
+			//alert(validateDepartmentFn());
+			warningInModalFn("#warningInModalArea",validateDepartmentFn());
 		}else{
 
 			$.ajax({
@@ -215,7 +240,7 @@ $(document).ready(function(){
 
 	$("#btnAddDepartment").click(function(){
 		resetDataDepartment();
-		$("#departmentModal").modal("show");
+		$("#departmentModal").modal({backdrop: 'static', keyboard: false});
 	});
 
 	//Add Department End

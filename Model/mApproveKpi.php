@@ -39,6 +39,7 @@ if($_POST['action']=="showEmpData"){
 	AND (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 	AND (e.role_id='$role_id' or '$role_id'='All')
 	and kr.confirm_flag='Y'
+	and e.emp_status_work_id='1'
 	and kr.admin_id='$admin_id'
 	";
 	/*
@@ -232,25 +233,7 @@ and emp_id='$employee_id'
 	$result=mysql_query($strSQL);
 	if($result){
 		$rs=mysql_fetch_array($result);
-		
-		$strSQLEditApprove="
-		  	UPDATE kpi_result
-			 SET approve_flag='N'
-			 where kpi_year='$year' 
-			 and appraisal_period_id='$appraisal_period_id' 
-			 and emp_id='$employee_id' 
-			 and confirm_flag='Y'
-			";
-		$resultEditApprove=mysql_query($strSQLEditApprove);
-		if($resultEditApprove){
-			echo "[{\"adjust_percentage\":\"$rs[adjust_percentage]\",\"adjust_reason\":\"$rs[adjust_reason]\"}]";
-		}else{
-			echo'["error update approve N"]';
-		}
-		 
-		 
-		 
-		
+		echo "[{\"adjust_percentage\":\"$rs[adjust_percentage]\",\"adjust_reason\":\"$rs[adjust_reason]\"}]";
 	}else{
 		echo'["error"]';
 	}
@@ -277,7 +260,7 @@ if($_POST['action']=="editAction"){
 			//echo "score_sum_percentage2=".$score_sum_percentage ;
 			$strSQLUpdate="
 			 UPDATE kpi_result
-			 SET adjust_percentage='$adjust_percentage',adjust_reason='$adjust_reason',score_final_percentage='$score_sum_percentage'
+			 SET  approve_flag='N', adjust_percentage='$adjust_percentage',adjust_reason='$adjust_reason',score_final_percentage='$score_sum_percentage'
 			 where kpi_year='$year' 
 			 and appraisal_period_id='$appraisal_period_id' 
 			 and emp_id='$employee_id' 

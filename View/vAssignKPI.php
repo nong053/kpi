@@ -450,6 +450,7 @@ if($_SESSION['language']=="th"){
 		</form>
 		
 		
+		
 	</table>
 
 	
@@ -503,6 +504,7 @@ if($_SESSION['language']=="th"){
 			<input type="button" id="kpi_process" name="kpi_process" value="ยืนยันผลการประเมิน" class="btn btn-warning ">
 		</div>
 		<br style='clear: both'>
+		<div id="warningInModalArea"></div>
 
 	   		<!-- content end-->
 

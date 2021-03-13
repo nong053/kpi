@@ -4,8 +4,10 @@ $(document).ready(function(){
 	//dropdown List Role Start
 		//fnDropdownListRole();
 	//dropdown List Role END
-	fnDropdownListDiv();
+	//fnDropdownListDiv();
 	var resetDataPosition=function(){
+
+		$("#warningInModal").hide();
 		$("#positionName").val("");
 		$("#positionAction").val("add");
 		$("#positionId").val("");
@@ -58,8 +60,8 @@ $(document).ready(function(){
 							dataType:"json",
 							data:{"id":id,"action":"edit"},
 							success:function(data){
-								//alert(data[0]["position_id"]);
-								
+							
+								resetDataPosition();
 								$("input#positionName").val(data[0]["position_name"]);
 								$("#positionAction").val("editAction");
 								$("#positionId").val(data[0]["position_id"]);
@@ -73,7 +75,7 @@ $(document).ready(function(){
 
 								//(data[0]["role_id"]);
 								
-								$("#positionModal").modal('show');
+								$("#positionModal").modal({backdrop: 'static', keyboard: false});
 
 							}
 					 });
@@ -93,30 +95,55 @@ $(document).ready(function(){
 							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 							type:"post",
 							dataType:"json",
-							data:{"positionId":id,"action":"checkUsingKpiAssignAndKpiResult",},
+							data:{"positionId":id,"action":"checkUsedData",},
 							success:function(data){
 									
 									if(data[0]==0){
-										if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
-											
-											 $.ajax({
-													url:"../Model/mPosition.php",
-													headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-													type:"post",
-													dataType:"json",
-													data:{"id":id,"action":"del"},
-													success:function(data){
-														if(data[0]=="success"){
-															//alert("ลบข้อมูลเรียบร้อย");	
-															showDataPosition();
-															
-														}
-													}
-											 });
 
-										}										
+										//if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){	
+											$.confirm({
+												theme: 'bootstrap', // 'material', 'bootstrap'
+												title: 'ยืนยัน!',
+												content: 'ต้องการลบตำแหน่งนี้หรือไม่?',
+												buttons: {
+												
+												'ยืนยัน': {
+												btnClass: 'btn-blue',
+												action: function(){
+													$.ajax({
+														url:"../Model/mPosition.php",
+														headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+														type:"post",
+														dataType:"json",
+														data:{"id":id,"action":"del"},
+														success:function(data){
+															if(data[0]=="success"){
+																//alert("ลบข้อมูลเรียบร้อย");
+																	
+																showDataPosition();
+																
+																
+															}
+														}
+												 });
+												}
+												},
+												'ยกเลิก': function () {}
+												}
+												});
+												
+											 
+																			
 									}else{
-										alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
+										//confirmMainModalFn("ไม่สามารถลบตำแหน่งนี้ได้! เนื่องจากพนักงานมีการใช้งานอยู่","แจ้งเตือน","warning");
+										//alert("ไม่สามารถลยข้อมูลได้! เนื่องจากมีการใช้งานอยู่");
+										$.alert({
+											buttons: {
+											'ปิด': function () {}
+											},
+											title: 'แจ้งเตือน!',
+											content: 'ไม่สามารถลบตำแหน่งนี้ได้! เนื่องจากมีพนักงานใช้งานอยู่',
+											});
 									}
 							}
 					 });
@@ -155,20 +182,16 @@ $(document).ready(function(){
 		}
 
 		if($("#positionName").val()==""){
-	 		validate+=positionName+"\n";
+	 		validate+=positionName+"<br>";
 	 	}
 	 	
 	 	return validate;
 	}
 	$("form#positionForm").submit(function(){
-		/*
-		alert($("#positionName").val());
-		alert($("#positionBegin").val());
-		alert($("#positionEnd").val());
-		alert($("#positionColor").val());
-		*/
+		
 		if(validatePositionFn()!=""){
-			alert(validatePositionFn());
+			//alert(validatePositionFn());
+			warningInModalFn("#warningInModalArea",validatePositionFn());
 		}else{
 			$.ajax({
 				url:"../Model/mPosition.php",
@@ -206,7 +229,7 @@ $(document).ready(function(){
 
 	$("#btnAddPosition").click(function(){
 		resetDataPosition();
-		$("#positionModal").modal("show");
+		$("#positionModal").modal({backdrop: 'static', keyboard: false});
 	});
 	//add position end
 	
