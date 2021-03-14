@@ -46,7 +46,7 @@ var getBaseLineAction=function(action){
 /*KPI lIST END*/
 }
 var Level3FunctionFn = function(){
-	alert("Level3FunctionFn");
+	//alert("Level3FunctionFn");
 	// Defualt Click this Element on Start Up Start.
 	$.ajax({
 		url:"../Model/mCheckRole.php",
@@ -306,7 +306,14 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
 								"position_id":position_id,"employee_id":employee_id},
 							success:function(data){
 								if(data[0]=="success"){
-									alert("ลบข้อมูลเรียบร้อย");	
+									//alert("ลบข้อมูลเรียบร้อย");
+									$.alert({
+										buttons: {
+										'ปิด': function () {}
+										},
+										title: 'แจ้งเตือน!',
+										content: 'ลบข้อมูลเรียบร้อย',
+										});	
 									//showDataAssignKpi();
 									showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val(),$("#emp_assign_id_emb").val());
 									//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#position_id").val(),$("#employee_id").val());
@@ -367,11 +374,25 @@ $("form#AssignKpiForm").submit(function(){
 
 
 	 	if($("#kpi_actual_manual").val()==""){
-	 		alert('กรอกผลการประเมินด้วยครับ');
+	 	//alert('กรอกผลการประเมินด้วยครับ');
+			 $.alert({
+				buttons: {
+				'ปิด': function () {}
+				},
+				title: 'แจ้งเตือน!',
+				content: 'กรอกผลการประเมินด้วยครับ',
+				});
 	 	}
 	 	
 	 	if($(".complete_kpi_score").get().length<1){X
-	 		alert("ยังไม่กรอกคะแนนตัวชี้วัด.");
+	 		//alert("ยังไม่กรอกคะแนนตัวชี้วัด.");
+			 $.alert({
+				buttons: {
+				'ปิด': function () {}
+				},
+				title: 'แจ้งเตือน!',
+				content: 'ยังไม่กรอกคะแนนตัวชี้วัด',
+				});
 	 		return false;
 	 	}
 		
@@ -408,7 +429,14 @@ $("form#AssignKpiForm").submit(function(){
 					showDataAssignKpi($("#myEvaluateYear").val(),$("#my_evaluate_period").val(),$("#emp_department_id").val(),$("#emp_position_id").val(),$("#emp_id").val());
 					resetDataAssignKpi(false);	
 				}else if(data[0]=="key-duplicate"){
-					alert("ข้อมูลซ้ำ");
+					//alert("ข้อมูลซ้ำ");
+					$.alert({
+						buttons: {
+						'ปิด': function () {}
+						},
+						title: 'แจ้งเตือน!',
+						content: 'ข้อมูลซ้ำ',
+						});
 				}
 				if(data[0]=="editSuccess"){
 					showDataAssignKpi($("#myEvaluateYear").val(),$("#my_evaluate_period").val(),$("#emp_department_id").val(),$("#emp_position_id").val(),$("#emp_id").val());
@@ -805,7 +833,7 @@ var showDataMyEvaluateKpiList=function(year,appraisal_period_id,department_id,po
 		alert("employee_id="+employee_id);
 		*/
 		
-	
+		$("#formKPI").hide();
 		/*calculte weight kpi start*/
 		$.ajax({
 			url:"../Model/mEvaluate.php",
@@ -870,7 +898,7 @@ var showDataMyEvaluateKpiList=function(year,appraisal_period_id,department_id,po
 				 //alert(data);
 				 //action del,edit start
 				 $(".actionEdit").click(function(){
-					alert(this.id);
+					//alert(this.id);
 					manageFn(this.id,actionType='edit');
 
 				 });
@@ -899,7 +927,14 @@ var showDataMyEvaluateKpiList=function(year,appraisal_period_id,department_id,po
 								async:false,
 								success:function(data){
 									if(data[0]=="success"){
-										alert("ลบข้อมูลเรียบร้อย");	
+										//alert("ลบข้อมูลเรียบร้อย");	
+										$.alert({
+											buttons: {
+											'ปิด': function () {}
+											},
+											title: 'แจ้งเตือน!',
+											content: 'ลบข้อมูลเรียบร้อย',
+											});
 										//showDataAssignKpi();
 										showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id_emb").val(),$("#department_id_emb").val(),$("#position_id_emb").val(),$("#emp_assign_id_emb").val());
 										//showDataAssignKpi($("#year_emb").val(),$("#appraisal_period_id").val(),$("#department_id").val(),$("#position_id").val(),$("#employee_id").val());
@@ -978,6 +1013,7 @@ $(document).ready(function(){
 		//my_evaluate_search_fn();
 		showDataMyEvaluateKpiList(year=$("#myEvaluateYear").val(),appraisal_period_id=$(this).val(),department_id=$("#emp_department_id").val(),position_id=$("#emp_position_id").val(),employee_id=$("#emp_id").val());
 		sessionStorage.setItem("param_appraisal_period",$(this).val());
+
 	});
 
 	showDataMyEvaluateKpiList(year=$("#myEvaluateYear").val(),appraisal_period_id=$("#my_evaluate_period").val(),department_id=$("#emp_department_id").val(),position_id=$("#emp_position_id").val(),employee_id=$("#emp_id").val());
@@ -1053,11 +1089,25 @@ $(document).ready(function(){
 
 			if( $(".contentassignKpi tr").get().length!=$(".complete_kpi_score_flag").get().length){
 
-	 			alert("ยังไม่กรอกคะแนน, "+$(".contentassignKpi tr").get().length+" ตัวชี้วัด.");
+	 			//alert("ยังไม่กรอกคะแนน, "+$(".contentassignKpi tr").get().length+" ตัวชี้วัด.");
+				 $.alert({
+					buttons: {
+					'ปิด': function () {}
+					},
+					title: 'แจ้งเตือน!',
+					content: 'กรอกคะแนนไม่ครบ',
+					});
 				return false;
 				 
 	 		}else if($(".contentassignKpi tr").get().length==0){
-				alert("ยังไม่มอบหมายตัวชี้วัด");
+				//alert("ยังไม่มอบหมายตัวชี้วัด");
+				$.alert({
+					buttons: {
+					'ปิด': function () {}
+					},
+					title: 'แจ้งเตือน!',
+					content: 'ยังไม่มอบหมายตัวชี้วัด',
+					});
 				return false;
 	 		//alert("OK fill score completed, "+$(".contentassignKpi tr").get().length+" KPI.");
 	 		}
@@ -1087,7 +1137,14 @@ $(document).ready(function(){
 					success:function(data){
 						
 						  if(data[0]=="success"){
-							  alert("ประเมินเรียบร้อย");
+							  //alert("ประเมินเรียบร้อย");
+							  $.alert({
+								buttons: {
+								'ปิด': function () {}
+								},
+								title: 'แจ้งเตือน!',
+								content: 'ประเมินเรียบร้อย',
+								});
 							  showDataAssignKpi($("#myEvaluateYear").val(),$("#my_evaluate_period").val(),$("#emp_department_id").val(),$("#emp_position_id").val(),$("#emp_id").val());
 						  	  $("#formKPI").hide();
 						  	  $('#assignResultKPIModal').modal('hide');
@@ -1102,7 +1159,14 @@ $(document).ready(function(){
 				
 			}else{
 				
-				alert("Weight KPI ไม่เท่ากับ 100");
+				//alert("Weight KPI ไม่เท่ากับ 100");
+				$.alert({
+					buttons: {
+					'ปิด': function () {}
+					},
+					title: 'แจ้งเตือน!',
+					content: 'น้ำหนักตัวชี้วัดไม่เท่ากับ 100%',
+					});
 				
 			}
 			

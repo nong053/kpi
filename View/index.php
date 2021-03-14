@@ -254,8 +254,18 @@ if($_SESSION['login_status']!="1"){
 					$rsEmp=mysql_fetch_array($resultEmp);
 						//echo $rsEmp['emp_picture_thum'];
 					$role="emp";
+					if($rsEmp['emp_picture_thum']==""){
+						?>
+						<img src="../View/uploads/avatar.jpg" width="45" class="img-circle">
+						<?
+					}else{
+						?>
+						<img src="<?=$rsEmp['emp_picture_thum']?>" width="45" class="img-circle">
+						<?
+					}
 					?>
-					<img src="<?=$rsEmp['emp_picture_thum']?>" width="45" class="img-circle">
+
+					
 
 					<strong>
 						<?=$rsEmp['emp_first_name']?> <?=$rsEmp['emp_last_name']?>, <?=$rsEmp['department_name']?> (<span style="color:orange"><?=$rsEmp['role_name']?></span>)

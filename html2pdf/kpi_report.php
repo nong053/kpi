@@ -218,9 +218,13 @@ GROUP BY kpi.kpi_id
   		<table>
   			<tbody>
   				
-  				<tr>
-  					<td><strong>ปรับคะแนน</strong></td>
-  					<td><div style=\"text-align:right;\">".$rs['adjust_percentage']."%</div></td>
+  				<tr>";
+				if($rs['adjust_reason']==""){  
+					$htmlcontent.="<td><strong>ปรับคะแนน</strong></td>";
+				}else{
+					$htmlcontent.="<td><strong>ปรับคะแนน</strong>(".$rs['adjust_reason'].")</td>";
+				}
+  				$htmlcontent.="<td><div style=\"text-align:right;\">".$rs['adjust_percentage']."%</div></td>
   					
   				</tr>
   				<tr>

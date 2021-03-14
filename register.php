@@ -420,7 +420,7 @@ Website
 						<table class="table" style="font-size: 16px;">
 							<thead>
 							<tr>
-								<th>แพคเกจ</th>
+								<th>แพ็กเกจ</th>
 								<th>พนักงาน</th>
 								<th>ราคา/เดือน</th>
 								<th>ราคา/ปี</th>

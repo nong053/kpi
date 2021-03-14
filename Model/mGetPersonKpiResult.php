@@ -33,7 +33,7 @@ if($_GET['action']=='list_kpi'){
 	and ak.emp_id=kr.emp_id
 
 	where ak.assign_kpi_year='$kpi_year'
-	-- and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 	and ak.emp_id='$emp_id'
 	and ak.admin_id='$admin_id'
 	and kr.approve_flag='Y'
