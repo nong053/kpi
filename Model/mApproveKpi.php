@@ -38,7 +38,8 @@ if($_POST['action']=="showEmpData"){
 	AND kr.kpi_year='$year'
 	AND (kr.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 	AND (e.role_id='$role_id' or '$role_id'='All')
-	and kr.confirm_flag='Y'
+	and kr.confirm_flag='Y' 
+	and kr.emp_confirm_flag='Y' 
 	and e.emp_status_work_id='1'
 	and kr.admin_id='$admin_id'
 	";

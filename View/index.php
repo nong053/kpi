@@ -256,7 +256,7 @@ if($_SESSION['login_status']!="1"){
 					$role="emp";
 					if($rsEmp['emp_picture_thum']==""){
 						?>
-						<img src="../View/uploads/avatar.jpg" width="45" class="img-circle">
+						<img src="../View/uploads/avatar.jpg" width="45" class="img-circle" style="opacity: 0.1;">
 						<?
 					}else{
 						?>

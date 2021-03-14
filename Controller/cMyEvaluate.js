@@ -159,7 +159,7 @@ var Level3FunctionFn = function(){
 					
 					if(data[0]['approve_flag']=="Y"){
 						
-						confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินแล้วไม่สามารถประเมินตัวเองได้) </strong>';
+						confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินแล้วไม่สามารถประเมินได้) </strong>';
 						$("#kpi_process").hide();
 						$("#score_sum_percentage").css({"color":"gray"});
 						$(".actionAddScore").attr("disabled","disabled");
@@ -1178,8 +1178,13 @@ $(document).ready(function(){
 	
 
 
+if($("#emp_image").val()==""){
+$("#empDisplayImage").attr("src","../View/uploads/avatar.jpg").css("opacity","0.1");
+}else{
+	$("#empDisplayImage").attr("src",$("#emp_image").val());
+}
 
-$("#empDisplayImage").attr("src",$("#emp_image").val());
+
 $("#empDisplayFullName").html($("#emp_first_name").val()+" "+$("#emp_last_name").val());
 $("#empDisplayPosition").html($("#emp_position").val());
 $("#empDisplayDepartment").html($("#emp_department").val());
