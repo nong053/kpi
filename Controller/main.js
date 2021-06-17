@@ -1384,25 +1384,76 @@ $(document).ready(function(){
      connect-mission
      */
      $(".connect-database").click(function(){
-    	alert("สำหรับผู้ดูแลระบบ(Super Admin)");   
+		$.alert({
+			theme: 'supervan',
+			buttons: {
+			'ปิด': function () {}
+			},
+			title: 'แจ้งเตือน!',
+			content: 'สำหรับผู้ดูแลระบบ (Super Admin)',
+			});
+
+    	//alert("สำหรับผู้ดูแลระบบ(Super Admin)");   
      });
      $(".connect-admin").click(function(){
-		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
+		$.alert({
+			theme: 'supervan',
+			buttons: {
+			'ปิด': function () {}
+			},
+			title: 'แจ้งเตือน!',
+			content: 'สำหรับผู้ดูแลระบบ (Super Admin)',
+			});
+		//alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
       });
      $(".connect-message").click(function(){
-		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
+		$.alert({
+			theme: 'supervan',
+			buttons: {
+			'ปิด': function () {}
+			},
+			title: 'แจ้งเตือน!',
+			content: 'สำหรับผู้ดูแลระบบ (Super Admin)',
+			});
+		//alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
       });
      $(".connect-mission").click(function(){
-		alert("สำหรับผู้ดูแลระบบ(Super Admin)");   
+		$.alert({
+			theme: 'supervan',
+			buttons: {
+			'ปิด': function () {}
+			},
+			title: 'แจ้งเตือน!',
+			content: 'สำหรับผู้ดูแลระบบ (Super Admin)',
+			});
+		//alert("สำหรับผู้ดูแลระบบ(Super Admin)");   
       });
 	  $(".notClick").click(function(){
-		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
+		$.alert({
+			theme: 'supervan',
+			buttons: {
+			'ปิด': function () {}
+			},
+			title: 'แจ้งเตือน!',
+			content: 'สำหรับผู้ดูแลระบบ (Super Admin)',
+			});
+		//alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
 	 });
      /*button left top in main menu action start*/
      
      /*option start action start*/
      $(".themeAction").click(function(){
-		alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
+
+		$.alert({
+			theme: 'supervan',
+			buttons: {
+			'ปิด': function () {}
+			},
+			title: 'แจ้งเตือน!',
+			content: 'สำหรับผู้ดูแลระบบ (Super Admin)',
+			});
+
+		//alert("สำหรับผู้ดูแลระบบ(Super Admin)");  
       });
      /*option start action start*/
      
@@ -1498,13 +1549,13 @@ app.controller("pageController",function($scope, $route, $routeParams){
 			  if($routeParams.url=="vKpiOwner"){
 				
 				
-				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> "+$("#kpiDashboardMenu >.menu-text").text()+"</b>";
+				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-dashboard\"></i> แดชบอร์ด BSC</b>";
 				$("#kpiDashboardMenu").parent().addClass("active");
 			 	$("#kpiDashboardEmpMenu").parent().addClass("active");
 				$("#subjectPage").html(subjectPage);
 				
 			  }else if($routeParams.url=="vKpiDashboard"){
-
+				
 				subjectPage="&nbsp;&nbsp;<b><i class=\"glyphicon glyphicon-record\"></i> "+$("#appraisalResultMenu >.menu-text").text()+"</b>";
 				$("#appraisalResultMenu").parent().addClass("active");
 				$("#subjectPage").html(subjectPage);

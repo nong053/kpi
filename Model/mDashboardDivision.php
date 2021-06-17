@@ -42,6 +42,7 @@ ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) as score_f
 ifnull(kr.adjust_percentage,0.00) as adjust_percentage,
 ifnull(kr.score_sum_percentage,0.00) as score_sum_percentage,
 ifnull(kr.emp_score_sum_percentage,0.00)as emp_score_sum_percentage,
+kr.adjust_reason,
 
 e.emp_id,
 kr.kpi_year,kr.appraisal_period_id,
@@ -87,7 +88,7 @@ ROUND(sum(kr.score_final_percentage)/count(kr.appraisal_period_id),2) as score_f
 	
 
 
-	$columnName="emp_picture_thum,emp_name,position_name,score_final_percentage,scoreTarget,emp_id,department_name,adjust_percentage,emp_score_sum_percentage,score_sum_percentage,kpi_year,appraisal_period_id,department_id,position_id";
+	$columnName="emp_picture_thum,emp_name,position_name,score_final_percentage,scoreTarget,emp_id,department_name,adjust_percentage,emp_score_sum_percentage,score_sum_percentage,kpi_year,appraisal_period_id,department_id,position_id,adjust_reason";
 	genarateJson($strSQL,$columnName,$conn);
 }
 

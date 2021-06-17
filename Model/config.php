@@ -1,16 +1,17 @@
 <?php 
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
-$host="127.0.0.1";
+$host="localhost";
 /*
-$user="root";
-$pass="010535546";
-$db="person_kpi";
-*/
-
 $user="root";
 $pass="";
 $db="person_kpi";
+*/
+
+
+$user="dashboa2_kpitestuser";
+$pass="010535546";
+$db="dashboa2_kpitestdb";
 
 
 $conn=mysql_connect($host,$user,$pass);

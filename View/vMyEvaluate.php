@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['emp_evaluate_l_des_title']="ประเมินตนเอง";
-	$_SESSION['emp_evaluate_l_des_detail']="เพื่อประเมินตัวเอง ";
+	$_SESSION['emp_evaluate_l_des_detail']="พื่อนำมาพัฒนาประสิทธิภาพและประสิทธิผลให้ได้มาตรฐานตามตัวชี้วัด ";
 	
 
 	//Search
@@ -25,7 +25,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['emp_evaluate_emp_l_tbl_department']="แผนก";
 	$_SESSION['emp_evaluate_emp_l_tbl_position']="ตำแหน่ง";
 	$_SESSION['emp_evaluate_emp_l_tbl_age']="อายุ";
-	$_SESSION['emp_evaluate_emp_l_tbl_result']="ผลการประเมิน";
+	$_SESSION['emp_evaluate_emp_l_tbl_result']="ผลการประเมินตนเอง";
 	$_SESSION['emp_evaluate_emp_l_tbl_manage']="จัดการ";
 
 
@@ -35,8 +35,10 @@ if($_SESSION['language']=="th"){
 	$_SESSION['emp_evaluate_l_tbl_kpi_name']="ตัวชี้วัด";
 	$_SESSION['emp_evaluate_l_tbl_weight']="น้ำหนัก";
 	$_SESSION['emp_evaluate_l_tbl_target']="เป้า";
-	$_SESSION['emp_evaluate_l_tbl_target_score']="ผลการประเมิน";
+	$_SESSION['emp_evaluate_l_tbl_target_score']="ผลประเมินตนเอง";
 	$_SESSION['emp_evaluate_l_tbl_manage']="ประเมิน";
+
+	
 
 	
 
@@ -47,7 +49,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['emp_evaluate_l_form_name']="ประเมินตามตัวชี้วัด";
 	$_SESSION['emp_evaluate_l_form_name2']="รายการประเมิน";
 	$_SESSION['emp_evaluate_l_form_kpi_weight']="น้ำหนัก ";
-	$_SESSION['emp_evaluate_l_form_kpi_percentage']="ผลการประเมิน";
+	$_SESSION['emp_evaluate_l_form_kpi_percentage']="ผลการประเมินตนเอง";
 
 	$_SESSION['emp_evaluate_l_form_kpi_name']="ตัวชี้วัด";
 	$_SESSION['emp_evaluate_l_form_baseline']="ตารางคะแนน ";
@@ -55,7 +57,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['emp_evaluate_l_form_begin']="เริ่ม";
 	$_SESSION['emp_evaluate_l_form_end']="ถึง";
 	$_SESSION['emp_evaluate_l_form_score']="คะแนน";
-	$_SESSION['emp_evaluate_l_form_acutal_data']="ผลการประเมิน";
+	$_SESSION['emp_evaluate_l_form_acutal_data']="ผลการประเมินตนเอง";
 
 	
 
@@ -169,7 +171,7 @@ if($_SESSION['language']=="th"){
 	        background: #ddd ;
 	}
 	
-	#score_sum_percentage{
+	.fontPercentage{
 		font-size: 50px;
 		font-weight: bold;
 	}
@@ -272,17 +274,40 @@ if($_SESSION['language']=="th"){
 			</div>
 			<div class="col-md-6 " style="text-align: right; font-weight: bold;font-size: 24px;">
 			
-				<div class="summary_kpi">
+				<div class="summary_kpi col-md-4">
 					<div style="display: none;;">
 					 	น้ำหนัก 					</div>
 					<div style="display: none;;">
 						<div id="kpi_weight_total"><strong style="color:green"><strong></strong></strong></div> 
 					</div>
 					<div>
-					 	 ผลการประเมิน 
+					 	 ประเมินตนเอง 
 					</div>
 					<div>
-						<div id="score_sum_percentage" style="color: rgb(255, 0, 0);">0%</div>
+						<div id="score_sum_percentage" class="fontPercentage" style="color: rgb(255, 0, 0);">0%</div>
+					</div>
+				
+				</div>
+				<div class="summary_kpi col-md-4">
+					
+					<div>
+					 	 หัวหน้าประเมิน
+					</div>
+					<div>
+						<div id="chief_score_sum_percentage" class="fontPercentage"  style="color: rgb(255, 0, 0);">0%</div>
+					</div>
+				
+				</div>
+				<div class="summary_kpi col-md-4">
+					
+					<div>
+					 	 ผลประเมินรวม
+					</div>
+					<div>
+						
+						<div id="total_score_sum_percentage" class="fontPercentage"  style="color: rgb(255, 0, 0);">0%</div>
+						<div id="adjust_area" style="font-size:14px; display:none;">ปรับ(<span id="adjust_percentage_area"></span>คะแนน<span id="adjust_reason_area"></span>)</div>
+						
 					</div>
 				
 				</div>
@@ -352,9 +377,9 @@ if($_SESSION['language']=="th"){
 		<table style="width: 100%;">
 		
 		<tr>
-			<!-- <td style="width:150px;" class='text-right'><b><?=$_SESSION['kpi_result_l_form_kpi_name']?></b></td> -->
+			<!-- <td style="width:150px;" class='text-right'><b><?=$_SESSION['emp_evaluate_l_form_kpi_name']?></b></td> -->
 			<td colspan='2'>
-			<span style="font-weight: bold;"><?=$_SESSION['kpi_result_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
+			<span style="font-weight: bold;"><?=$_SESSION['emp_evaluate_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
 			</td>
 		</tr>
 		
@@ -384,7 +409,7 @@ if($_SESSION['language']=="th"){
 		
 		</tr>
 		<tr>
-			<!-- <td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['kpi_result_l_form_baseline']?></b></td> -->
+			<!-- <td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['emp_evaluate_l_form_baseline']?></b></td> -->
 			<td colspan='2'>
 				<div style="margin-top: 0px;margin-bottom:0px;" class="panel panel-default panel-bottom">
 				  <!--
@@ -402,7 +427,7 @@ if($_SESSION['language']=="th"){
 		</tr>
 		 
 		<tr  style="display: none;">
-			<td class='text-right'><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></td>
+			<td class='text-right'><b> <?=$_SESSION['emp_evaluate_l_form_acutal_data']?></b></td>
 			<td id="areaKPIActual">
 			 
 				<input id="kpi_actual_manual" name="kpi_actual_manual" value=""  class="form-control " style="width:100px;">

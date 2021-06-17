@@ -243,6 +243,8 @@ select pp.perspective_id,pp.perspective_name,
 	and kr.approve_flag='Y'
 	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
+	and aek.complete_kpi_score_flag='Y'
+    and aek.emp_complete_kpi_score_flag='Y'
 	group by p.perspective_id
 
 ),0)*60/100 )
@@ -260,6 +262,8 @@ select pp.perspective_id,pp.perspective_name,
 	and kr.approve_flag='Y'
 	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
+	and aek.complete_kpi_score_flag='Y'
+    and aek.emp_complete_kpi_score_flag='Y'
 	group by p.perspective_id
 
 ),0)*40/100)
@@ -280,6 +284,8 @@ pp.perspective_weight *(
 	and kr.approve_flag='Y'
 	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
+	and aek.complete_kpi_score_flag='Y'
+    and aek.emp_complete_kpi_score_flag='Y'
 	group by p.perspective_id
 
 ),0) +
@@ -296,6 +302,8 @@ pp.perspective_weight *(
 	and kr.approve_flag='Y'
 	and e.emp_status_work_id='1'
 	and p.perspective_id=pp.perspective_id
+	and aek.complete_kpi_score_flag='Y'
+    and aek.emp_complete_kpi_score_flag='Y'
 	group by p.perspective_id
 
 ),0) as pers_result,

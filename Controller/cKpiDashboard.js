@@ -383,7 +383,9 @@ function detailInit(e) {
 
 												performance_total =parseFloat(performance_total).toFixed(2);
 												
-												textJson+="\"Field7\":\"<div class='textR'>"+getColorBall(performance_total)+"<div>\"";
+												textJson+="\"Field7\":\"<div class='textR'>";
+												textJson+=""+getColorBall(performance_total)+"";
+												textJson+="<div>\"";
 											textJson+="}";
 									
 							});
@@ -732,7 +734,7 @@ function detailInit(e) {
 								if(EntryIndex[7]==0){
 									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div>\",";
 								}else{
-									textJson+="\"field8\":\"<div class='textR'>ปรับ("+EntryIndex[7]+")"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div>\",";
+									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div style='font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div><div>\",";
 								}
 								//textJson+="\"field9\":\"<div class='textR'><center><a href='#' class='downloadPDFbyPerson' id='id-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></center><div>\"";
 								

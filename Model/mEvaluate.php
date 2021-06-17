@@ -563,13 +563,13 @@ $division_id=$_POST['division_id'];
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th style='text-align:right;' data-field=\"column1\"><b>".$_SESSION['kpi_result_l_tbl_id']."</b></th>";
-			$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['kpi_result_l_tbl_kpi_name']." </b></th>";
-			$tableHTML.="<th style='text-align:right;' data-field=\"column3\"><b>".$_SESSION['kpi_result_l_tbl_weight']."</b></th>";
-			$tableHTML.="<th style='text-align:right;' data-field=\"column4\"><b>".$_SESSION['kpi_result_l_tbl_target']." </b></th>";
-			$tableHTML.="<th style='text-align:right;' data-field=\"column5\"><b>".$_SESSION['kpi_result_l_tbl_target_score']."</b></th>";
+			$tableHTML.="<th style='text-align:center;' data-field=\"column1\"><b>".$_SESSION['emp_evaluate_l_tbl_id']."</b></th>";
+			$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['emp_evaluate_l_tbl_kpi_name']." </b></th>";
+			$tableHTML.="<th style='text-align:right;' data-field=\"column3\"><b>".$_SESSION['emp_evaluate_l_tbl_weight']."</b></th>";
+			$tableHTML.="<th style='text-align:right;' data-field=\"column4\"><b>".$_SESSION['emp_evaluate_l_tbl_target']." </b></th>";
+			$tableHTML.="<th style='text-align:right;' data-field=\"column5\"><b>".$_SESSION['emp_evaluate_l_tbl_target_score']."</b></th>";
 			//$tableHTML.="<th><b>Target Score</b></th>";
-			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['emp_evaluate_l_tbl_manage']."</b></th>";
 	
 			
 		$tableHTML.="</tr>";
@@ -592,7 +592,7 @@ $division_id=$_POST['division_id'];
 
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td style='background:yellow;'><div style='text-align:right;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
+	$tableHTML.="	<td style='background:yellow;'><div style='text-align:center;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</div></td>";
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
@@ -1029,11 +1029,17 @@ if($_POST['action']=="getKPIPercentage"){
 	$result=mysql_query($strSQL);
 	$rs=mysql_fetch_array($result);
 	$total_kpi_actual_score=($rs[sum_emp_total_kpi_actual_score]/100);
-	
+	if(empty($total_kpi_actual_score)){
+		echo "[{\"data_status\":\"0\"}]";
+	}else{
 	
 	if($rs){
 		$strSQLKpiResult="
-						select emp_confirm_flag,approve_flag from kpi_result
+						select emp_confirm_flag,approve_flag,
+						adjust_percentage,adjust_reason,
+						score_sum_percentage,emp_score_sum_percentage,
+						score_final_percentage
+						from kpi_result
 						where (kpi_year='$year' or '$year'='All') 
 						and (appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
 						and (department_id='$department_id' or '$department_id'='All')
@@ -1049,9 +1055,20 @@ if($_POST['action']=="getKPIPercentage"){
 
 		
 		
-		echo "[{\"total_kpi_actual_score\":\"$total_kpi_actual_score\",\"emp_confirm_flag\":\"$rsKpiResult[emp_confirm_flag]\",\"approve_flag\":\"$rsKpiResult[approve_flag]\"}]";
+		echo "[{\"total_kpi_actual_score\":\"$total_kpi_actual_score\",
+			\"emp_confirm_flag\":\"$rsKpiResult[emp_confirm_flag]\",
+			\"approve_flag\":\"$rsKpiResult[approve_flag]\",
+			\"adjust_percentage\":\"$rsKpiResult[adjust_percentage]\",
+			\"adjust_reason\":\"$rsKpiResult[adjust_reason]\",
+			\"score_sum_percentage\":\"$rsKpiResult[score_sum_percentage]\",
+			\"emp_score_sum_percentage\":\"$rsKpiResult[emp_score_sum_percentage]\",
+			\"score_final_percentage\":\"$rsKpiResult[score_final_percentage]\",
+			\"data_status\":\"1\"
+		}]";
+	
 		
 	}
+}
 
 }
 

@@ -68,11 +68,11 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 					$strTo = $admin_email;
 					$strSubject = "สร้างบัญชีระบบประเมินผลการปฎิบัติงาน";
 					$strHeader ="สวัสดีครับคุณ ". $rs['admin_name']." ".$rs['admin_surname'];
-					$strMessage = "ท่านได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งาน  URL= test.dashboardweb.com  \nUsername:".$admin_username." \nPassword:".$admin_password."  \nช่องทางการติดต่อ มือถือ: 080-992-6565 อีเมลล์: nn.it@hotmail.com";
+					$strMessage = "ท่านได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งาน  URL= kpi.dashboardweb.com  \nUsername:".$admin_username." \nPassword:".$admin_password."  \nช่องทางการติดต่อ มือถือ: 080-992-6565 อีเมลล์: nn.it@hotmail.com";
 					$strTo2 = "kosit.arom@gmail.com";
 					$strSubject2 = "รายงานการสร้างบัญชีสำหรับระบบประเมินผลการปฎิบัติงาน";
 					$strHeader2 ="คุณ ". $rs['admin_name']." ".$rs['admin_surname'];
-					$strMessage2 = "ได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งาน  URL= test.dashboardweb.com  \nUsername:".$admin_username." \nPassword:".$admin_password."  \nช่องทางการติดต่อ มือถือ: 080-992-6565 อีเมลล์: nn.it@hotmail.com";
+					$strMessage2 = "ได้สร้างบัญชีเรียบร้อย \nวิธีเข้าใช้งาน  URL= kpi.dashboardweb.com  \nUsername:".$admin_username." \nPassword:".$admin_password."  \nช่องทางการติดต่อ มือถือ: 080-992-6565 อีเมลล์: nn.it@hotmail.com";
 					$flgSend1 = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
 					$flgSend2 = @mail($strTo2,$strSubject2,$strMessage2,$strHeader2);  // @ = No Show Error //
 

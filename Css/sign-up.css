@@ -399,7 +399,8 @@
 		height: auto;
 	}
 	#sign_up1 .header h4{
-		color: #333;
+		/* color: #333; */
+		color:white;
 		line-height: 35px;
 		text-shadow:none;
 	}
@@ -408,7 +409,8 @@
 	}
 	#sign_up1 .header p,
 	#sign_up1 .division span{
-		color: #333;
+		/* color: #333; */
+		color:white;
 	}
 	#sign_up1 .division .line{
 		border-color: #333;
@@ -431,7 +433,8 @@
 	}
 	#sign_up1 .dosnt span,
 	#sign_up1 .dosnt a{
-		color: #333;
+		/* color: #333; */
+		color:white;
 		border-color: #333;
 		float: left;
 	}
@@ -448,7 +451,7 @@
 	}
 	#sign_up2 .left_box{
 		overflow: hidden;
-		margin-bottom: 70px;
+		/* margin-bottom: 70px; */
 	}
 	#sign_up2 .signin_box{
 		float: none;

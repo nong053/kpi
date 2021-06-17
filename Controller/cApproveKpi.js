@@ -45,7 +45,62 @@
 						$("#position_approve_id_emb").val(position_id);
 						$("#employee_id_emb").val(emp_id);
 						$("#role_id_emb").val(role_id);
-						  
+
+						 
+						$.ajax({
+							url:"../Model/mApproveKpi.php",
+							type:"post",
+							dataType:"json",
+							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+							data:{
+							"year":kpi_year,
+							"appraisal_period_id":appraisal_period_id,
+							"employee_id":emp_id,
+							"action":"list_kpi"
+							},
+							success:function(data){
+								
+								
+					
+								var html="";
+								$.each(data,function(index,indexEntry){
+									html+="<tr>";
+										html+="<td><div style='text-align:center;'>";
+											html+=(index+1);
+										html+="</div></td>";
+
+										html+="<td>";
+											html+=indexEntry[1];
+
+										html+="<td><div style='text-align:right;'>";
+											html+=indexEntry[2];
+										html+="</div</td>";
+
+										html+="<td><div style='text-align:right;'>";
+											html+=indexEntry[6];
+										html+="</div</td>";
+
+										html+="<td><div style='text-align:right;'>";
+											html+=indexEntry[3];
+										html+="</div></td>";
+
+										html+="<td><div style='text-align:right;'>";
+
+											var performance_emp=indexEntry[7]*40/100;
+											var performance_chief=indexEntry[4]*60/100;
+											var performance_total=performance_emp+performance_chief;
+											performance_total =parseFloat(performance_total).toFixed(2);
+											
+											html+=performance_total+"%";
+										html+="</div></td>";
+									html+="</tr>";
+								});
+								
+								$("#kpi_list_result").html(html);
+							}
+							
+						});
+
 						 
 						  
 						 // alert($("#employee_id_emb").val());
@@ -65,16 +120,8 @@
 									$(".formAdjust").show();
 									$("#adjust_reason").val(data[0]['adjust_reason']);
 									$("#adjust_percentage").val(data[0]['adjust_percentage']);
-									showDataEmployee(
-										kpi_year,
-										appraisal_period_id,
-										department_id,
-										position_id,
-										role_id
-										);
-
+									//showDataEmployee(kpi_year,appraisal_period_id,department_id,position_id,role_id='All');
 									$("#approveModal").modal({backdrop: 'static', keyboard: false});
-
 								}
 								
 							});

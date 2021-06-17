@@ -1,7 +1,7 @@
 <? session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
-
+include 'mGenarateJson.php';
 // Convert JSON string to Array
 $json = $JWT->decode($token_data, $key);
 $jsonArray = json_decode($json, true);
@@ -23,7 +23,33 @@ $total_score_percentage= $_POST['total_score_percentage'];
 
 
 
+if($_POST['action']=='list_kpi'){
+	$strSQL="
+		select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
+	ak.target_data as 'kpi_target' ,ak.kpi_actual_manual as 'kpi_actual' ,
+	sum(ak.performance)/count(ak.appraisal_period_id)  as 'kpi_performent',
+	ifnull(ak.emp_kpi_actual_manual,0) as 'emp_kpi_actual' ,
+	ifnull(ak.emp_performance,0) as 'emp_performance' ,
+	100 as 'kpi_target_percentage'
+	from assign_evaluate_kpi ak
+	inner JOIN kpi 
+	ON ak.kpi_id=kpi.kpi_id
+	INNER JOIN kpi_result kr on ak.assign_kpi_year=kr.kpi_year
+	and ak.appraisal_period_id=kr.appraisal_period_id
+	and ak.department_id=kr.department_id
+	and ak.emp_id=kr.emp_id
 
+	where ak.assign_kpi_year='$year'
+	and (ak.appraisal_period_id='$appraisal_period_id' or '$appraisal_period_id'='All')
+	and ak.emp_id='$employee_id'
+	and ak.admin_id='$admin_id'
+	
+	GROUP BY kpi.kpi_id
+
+	";
+	$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,kpi_target_percentage,emp_kpi_actual,emp_performance";
+	genarateJson($strSQL,$columnName,$conn);
+}
 if($_POST['action']=="showEmpData"){
 	//echo "Show Data";
 

@@ -5,7 +5,7 @@ error_reporting(E_ERROR | E_PARSE);
 if($_SESSION['language']=="th"){
 	
 	//description
-	$_SESSION['approve_l_des_title']="ปรับคะแนนผลการปฏิบัติการ";
+	$_SESSION['approve_l_des_title']="ปรับคะแนนผลการปฏิบัติงาน";
 	$_SESSION['approve_l_des_detail']="เพื่อให้ผู้ประเมินสู่งสุดสามารถปรับคะแนนผลประเมินและอนุมััติผลประเมินพนักงาน";
 	
 
@@ -175,6 +175,27 @@ if($_SESSION['language']=="th"){
 	   <div class="modal-body"> 
 
 	   		<!-- content start-->
+			   
+
+			   <table class="table">
+				   <thead>
+					   <tr>
+							<th style="text-align: center;">#</th>
+							<th>ตัวชี้วัด</th>
+							<th style="text-align: right;">เป้าข้อมูลดิบ</th>
+							<th style="text-align: right;">ประเมินตนเอง</th>
+							<th style="text-align: right;">หัวหน้าประเมิน</th>
+							<th style="text-align: right;">ผลประเมิน%</th>
+							
+					   </tr>
+				   </thead>
+				   <tbody id="kpi_list_result">
+
+					   
+				   </tbody>
+			   </table>
+			   
+			   <hr>
 
 			<form id="AssignKpiForm">
 				<table class="formAdjust" style="display:none; width: 100%;"  >

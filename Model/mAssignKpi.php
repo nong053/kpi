@@ -146,6 +146,7 @@ if($_POST['action']=="showEmpData"){
 			and (e.position_id='$position_id' or '$position_id' ='All')
 			and e.emp_status_work_id='1'
 			and e.emp_id!='".$_SESSION['emp_ses_id']."'
+			and e.role_id!=1
 			and e.admin_id='$admin_id'
 			order by e.emp_id
 
@@ -383,7 +384,7 @@ distinct complete_kpi_score_flag
 			}
 			
 		}else if($rsKpiCountAssignMaster['count_assign_evaluate_kpi']>0 ){
-			 if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==1 ){
+			 if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==3 ){
 				$tableHTML.="<td>
 				<div style='text-align:right;'>";
 				//$tableHTML.="<button type='button' id='actionBackToAssign-".$year."-".$appraisal_period_id."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='actionBackToAssign btn btn-danger '>มอบหมายตัวชี้วัดใหม่</button> ";
@@ -622,7 +623,7 @@ $division_id=$_POST['division_id'];
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
-			$tableHTML.="<th data-field=\"column1\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_id']."</b></th>";
+			$tableHTML.="<th data-field=\"column1\" style='text-align:center;'><b>".$_SESSION['kpi_result_l_tbl_id']."</b></th>";
 			$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['kpi_result_l_tbl_kpi_name']." </b></th>";
 			$tableHTML.="<th data-field=\"column3\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_weight']."</b></th>";
 			$tableHTML.="<th data-field=\"column4\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_target']." </b></th>";
@@ -652,7 +653,7 @@ $division_id=$_POST['division_id'];
 
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td style='background:yellow;'><div style='text-align:right;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
+	$tableHTML.="	<td style='background:yellow;'><div style='text-align:center;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</div></td>";
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";

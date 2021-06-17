@@ -20,10 +20,11 @@ and a.admin_password=MD5('$pass')
 //$strSQL="select * from admin where admin_username='$user' and admin_password='$pass' and admin_id='$admin_id'";
 $result=mysql_query($strSQL);
 
-$strSQLEmp="select e.*,r.role_id,r.role_name as role_name,ad.* from employee e
+$strSQLEmp="select e.*,r.role_id,r.role_name as role_name,ad.*,p.* from employee e
 INNER JOIN position_emp pe on e.position_id=pe.position_id
 INNER JOIN role r on e.role_id=r.role_id
 INNER JOIN admin ad  on e.admin_id=ad.admin_id
+left join package p on ad.package = p.id
 where e.emp_user='$user'
 and e.emp_pass=MD5('$pass')
 		";
@@ -81,6 +82,8 @@ if($num=mysql_num_rows($result)){
 		$_SESSION['expired_date']=$rs['expired_date'];
 		$_SESSION['activated']=$rs['activated'];
 		$_SESSION['session']="1";
+		$_SESSION['package']=$rsEmp['package'];
+		$_SESSION['user_amount']=$rsEmp['user_amount'];
 		
 
 		if($rsEmp['role_id']=="2"){

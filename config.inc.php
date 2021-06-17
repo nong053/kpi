@@ -4,18 +4,18 @@ error_reporting(E_ERROR | E_PARSE);
 require_once "JWT.php";
 $key = '46196053844814367107123';
 $token_data="";
-$host="127.0.0.1";
+$host="localhost";
 //SERVER REAL
 
 $user="root";
 $pass="";
 $db="person_kpi";
 
-/*
-$user="dashboa1";
-$pass="010535546";
-$db="dashboa1_kpi";
-*/
+
+// $user="dashboa2_kpitestuser";
+// $pass="010535546";
+// $db="dashboa2_kpitestdb";
+
 
 //set type for encode json web token.
 $header = '{"typ":"JWT","alg":"HS256"}';

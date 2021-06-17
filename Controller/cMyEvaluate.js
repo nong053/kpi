@@ -154,47 +154,63 @@ var Level3FunctionFn = function(){
 				//alert(data[0]['confirm_flag']);
 				
 				var confirm_kpi="";
-				
-				if((data[0]['emp_confirm_flag']=="N" || data[0]['emp_confirm_flag']=="") ){
-					
-					if(data[0]['approve_flag']=="Y"){
+				if(data[0]['data_status']==1){
+					if((data[0]['emp_confirm_flag']=="N" || data[0]['emp_confirm_flag']=="") ){
 						
-						confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินแล้วไม่สามารถประเมินได้) </strong>';
-						$("#kpi_process").hide();
-						$("#score_sum_percentage").css({"color":"gray"});
-						$(".actionAddScore").attr("disabled","disabled");
-						
-					}else{
+						if(data[0]['approve_flag']=="Y"){
+							
+							confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินแล้วไม่สามารถประเมินได้) </strong>';
+							$("#kpi_process").hide();
+							$("#score_sum_percentage").css({"color":"gray"});
+							$(".actionAddScore").attr("disabled","disabled");
+							
+						}else{
 
-						//$("#kpi_process").hide();
-						//$("#score_sum_percentage").css({"color":"green"});
-						//$(".actionAddScore").attr("disabled","disabled");
-						
-						confirm_kpi='<strong style=\"color:red\"> (!!ยังไม่ยืนยันการประเมิน)</strong>';
-						$("#kpi_process").show();
-						$("#score_sum_percentage").css({"color":"red"});
-						$(".actionAddScore").removeAttr("disabled");
-					}
-			
+							//$("#kpi_process").hide();
+							//$("#score_sum_percentage").css({"color":"green"});
+							//$(".actionAddScore").attr("disabled","disabled");
+							
+							confirm_kpi='<strong style=\"color:red\"> (!!ยังไม่ยืนยันการประเมิน)</strong>';
+							$("#kpi_process").show();
+							$("#score_sum_percentage").css({"color":"red"});
+							$(".actionAddScore").removeAttr("disabled");
+						}
+				
 					
-				}else if(data[0]['emp_confirm_flag']=="Y"){
-					if(data[0]['approve_flag']=="Y"){
-						confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินเรียบร้อย) </strong>';
-					}else{
-						confirm_kpi='<strong style=\"color:orange\"> (ประเมินเรียบร้อย.. รออนุมัติ) </strong>';
+					}else if(data[0]['emp_confirm_flag']=="Y"){
+						if(data[0]['approve_flag']=="Y"){
+							confirm_kpi='<strong style=\"color:green\"> (อนุมัติผลประเมินเรียบร้อย) </strong>';
+							$("#score_sum_percentage").html(parseInt(data[0]['emp_score_sum_percentage'])+"%").css({"color":"green"});
+							$("#chief_score_sum_percentage").html(parseInt(data[0]['score_sum_percentage'])+"%").css({"color":"green"});
+							$("#total_score_sum_percentage").html(parseInt(data[0]['score_final_percentage'])+"%").css({"color":"green"});
+							if(data[0]['adjust_percentage']!="0" && data[0]['adjust_percentage']!=""){
+								$("#adjust_percentage_area").html(parseInt(data[0]['adjust_percentage']));
+								$("#adjust_reason_area").html(data[0]['adjust_reason']);
+								$("#adjust_area").show();
+							}
+							
+
+						}else{
+							confirm_kpi='<strong style=\"color:orange\"> (ประเมินตนเองเรียบร้อย.. รออนุมัติ) </strong>';
+
+						}
+						$("#kpi_process").hide();
+						$("#score_sum_percentage").css({"color":"green"});
+						$(".actionAddScore").attr("disabled","disabled");
+					
 					}
-					$("#kpi_process").hide();
-					$("#score_sum_percentage").css({"color":"green"});
-					$(".actionAddScore").attr("disabled","disabled");
-					//$("#score_sum_percentage").css({"color":"green"});
-				}
-				if(confirmKpi=="notConfirmKpi"){
-					$("#confirm_kpi").html(confirm_kpi);
-					$("#score_sum_percentage").html(data[0]['total_kpi_actual_score']+"%");
-				}else{
-					$("#confirm_kpi").html(confirm_kpi);
-					$("#score_sum_percentage").html(data[0]['total_kpi_actual_score']+"%");	
-				}
+				$("#score_sum_percentage").html(data[0]['total_kpi_actual_score']+"%");
+				$("#confirm_kpi").html(confirm_kpi);
+				
+				
+
+			}else{
+
+				$("#chief_score_sum_percentage").html("0%").css({"color":"red"});
+				$("#total_score_sum_percentage").html("0%").css({"color":"red"});
+				$("#adjust_area").hide();
+			}
+				
 		}
 	});
 	};
@@ -229,7 +245,7 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
 			//fnDropdownListKPI();
 			//set empty value
 			$("#confirm_kpi").html("");
-			$("#score_sum_percentage").html("");
+			$("#score_sum_percentage").html("0%").css({"color":"red"});
 			$("#kpi_weight_total").html("");
 			
 			
@@ -848,7 +864,7 @@ var showDataMyEvaluateKpiList=function(year,appraisal_period_id,department_id,po
 				//fnDropdownListKPI();
 				//set empty value
 				$("#confirm_kpi").html("");
-				$("#score_sum_percentage").html("");
+				$("#score_sum_percentage").html("0%").css({"color":"red"});
 				$("#kpi_weight_total").html("");
 				
 				
@@ -1114,45 +1130,54 @@ $(document).ready(function(){
 
 			if(parseInt($("#kpi_weight_total").text())==100){
 
-				// alert("1="+$("#myEvaluateYear").val());
-				// alert("2="+$("#my_evaluate_period").val());
-				// alert("3="+$("#departmentIdEmp").val());
-				// alert("4="+$("#positionIdEmp").val());
-				// alert("5="+$("#emp_id").val());
-				// alert("6="+$("#score_sum_percentage").text());
 				
-				$.ajax({
-					url:"../Model/mEvaluate.php",
-					type:"post",
-					dataType:"json",
-					data:{"year":$("#myEvaluateYear").val(),
-						"appraisal_period_id":$("#my_evaluate_period").val(),
-						"department_id":$("#emp_department_id").val(),
-						"position_id":$("#emp_position_id").val(),
-						"employee_id":$("#emp_id").val(),
-						"score_sum_percentage":$("#score_sum_percentage").text(),
-						"action":"confrimKpi"},
-					headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
-					async:false,
-					success:function(data){
-						
-						  if(data[0]=="success"){
-							  //alert("ประเมินเรียบร้อย");
-							  $.alert({
-								buttons: {
-								'ปิด': function () {}
-								},
-								title: 'แจ้งเตือน!',
-								content: 'ประเมินเรียบร้อย',
-								});
-							  showDataAssignKpi($("#myEvaluateYear").val(),$("#my_evaluate_period").val(),$("#emp_department_id").val(),$("#emp_position_id").val(),$("#emp_id").val());
-						  	  $("#formKPI").hide();
-						  	  $('#assignResultKPIModal').modal('hide');
-						  }
-							
+				$.confirm({
+					theme: 'bootstrap', // 'material', 'bootstrap'
+					title: 'ยืนยัน!',
+					content: 'ยืนยันผลการประเมิน '+$("#score_sum_percentage").text()+'',
+					buttons: {
+					
+					'ยืนยัน': {
+					btnClass: 'btn-blue',
+					action: function(){
+
+
+						$.ajax({
+							url:"../Model/mEvaluate.php",
+							type:"post",
+							dataType:"json",
+							data:{"year":$("#myEvaluateYear").val(),
+								"appraisal_period_id":$("#my_evaluate_period").val(),
+								"department_id":$("#emp_department_id").val(),
+								"position_id":$("#emp_position_id").val(),
+								"employee_id":$("#emp_id").val(),
+								"score_sum_percentage":$("#score_sum_percentage").text(),
+								"action":"confrimKpi"},
+							headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+							async:false,
+							success:function(data){
+								
+								if(data[0]=="success"){
+									//alert("ประเมินเรียบร้อย");
+									
+									showDataAssignKpi($("#myEvaluateYear").val(),$("#my_evaluate_period").val(),$("#emp_department_id").val(),$("#emp_position_id").val(),$("#emp_id").val());
+									$("#formKPI").hide();
+									$('#assignResultKPIModal').modal('hide');
+								}
+									
+								
+							}
+						});
+
 						
 					}
-				});
+					},
+					'ยกเลิก': function () {}
+					}
+					});
+
+					
+				
 				
 				
 				

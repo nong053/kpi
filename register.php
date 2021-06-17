@@ -18,6 +18,17 @@
     <link rel="stylesheet" type="text/css" href="Css/lib/animate.css" media="screen, projection">
     <link rel="stylesheet" href="Css/sign-up.css" type="text/css" media="screen" />
 	<link href="favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<script src="kendoCommercial/js/jquery.min.js"></script>
+	<!-- jquery confirm start -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	 <!-- jquery confirm end -->
+
+	 <!--mloading start-->
+	<link href="Css/jquery.mloading.css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery.mloading.js"></script>
+	<!--mloading end-->
+
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -36,7 +47,7 @@
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-	color: white;
+	/* color: white; */
     }
 	.width100p{
 		width: 100%;
@@ -54,6 +65,7 @@
 		padding:5px;
 		padding-top: 15px;
 		font-size: 15px;
+		color:white;
 	}
 
 	#sign_up1 .dosnt a:hover {
@@ -70,11 +82,14 @@
 	.weak-password{
 		color:red;
 	}
+	.validate_status_reset{
+		color:orange;
+	}
 
 
 	</style>
 	
-	<script src="kendoCommercial/js/jquery.min.js"></script>
+	
 	<script>
 
 
@@ -117,22 +132,33 @@
                 $('#password-strength-status').html("ต้องมากกว่า 6 ตัวอักษร");
 				return false;
             } else {
-                if ($('#admin_password').val().match(number) && $('#admin_password').val().match(alphabets) && $('#admin_password').val().match(special_characters)) {
-                    $('#password-strength-status').removeClass();
-                    $('#password-strength-status').addClass('strong-password');
-                    $('#password-strength-status').html("ความปลอดภัยสูง");
-					return true;
-                } else {
-                    $('#password-strength-status').removeClass();
-                    $('#password-strength-status').addClass('medium-password');
-                    $('#password-strength-status').html("ความปลอดภัยระดับกลาง");
-					return true;
-                }
+
+				$('#password-strength-status').html("");
+				return true;
+
+                // if ($('#admin_password').val().match(number) && $('#admin_password').val().match(alphabets) && $('#admin_password').val().match(special_characters)) {
+                //     $('#password-strength-status').removeClass();
+                //     $('#password-strength-status').addClass('strong-password');
+                //     $('#password-strength-status').html("ความปลอดภัยสูง");
+				// 	return true;
+                // } else {
+                //     $('#password-strength-status').removeClass();
+                //     $('#password-strength-status').addClass('medium-password');
+                //     $('#password-strength-status').html("ความปลอดภัยระดับกลาง");
+				// 	return true;
+                // }
             }
         }
 			
 
 	    	$(document).ready(function(){
+
+				$( document ).ajaxStart(function() {
+					$("body").mLoading();
+				});
+				$( document ).ajaxStop(function() {
+					$("body").mLoading('hide');
+				});
 
 	    		/*validate register*/
 	    		
@@ -154,41 +180,50 @@
 				});
 
 	    		$("form#frmRegis").submit(function(){
-	    			var check="";
+	    			var check=true;
 
-
+					$(".validate_status_reset").html("");
 					
 
 
 					if(check_character($("#admin_username").val())==false){
-						check+="*กรุณากรอกชื่อในการเข้าไช้งานเป็นภาษาอังกฤษหรือตัวเลข\n";
+						check=false;
+						
+						$("#validate_admin_username").html("ภาษาอังกฤษหรือตัวเลข");
 					}
 	    			
 	    			if($("#admin_username").val()==""){
-	    				check+="*กรุณากรอกชื่อในการเข้าไช้งาน\n";
+	    				check=false;
+						$("#validate_admin_username").html("ห้ามเป็นค่าว่าง");
 	    			}
 					// if(checkPasswordStrengthFn($("#admin_password").val())){
 						
 					// }
 	    			if($("#admin_password").val()==""){
-	    				check+="*กรุณากรอกรหัสผ่าน\n";
+	    				check=false;
+						
 	    			}
 					if(checkPasswordStrength()==false){
-						check+="*รหัสผ่านต้องมากกว่า 6 ตัวอักษร\n";
+						check=false;
+						
 					}
 
-	    			if($("#admin_confirm").val()==""){
-	    				check+="*กรุณากรอกยืนยันรหัสผ่าน\n";
-	    			}
+	    			// if($("#admin_confirm").val()==""){
+	    			// 	check=false;
+					// 	$("#validate_admin_confirm").html("ยืนยันไม่ถูกต้อง");
+	    			// }
 					
 					if($("#admin_company").val()==""){
-	    				check+="*กรุณากรอกชื่อบริษัท/หน่วยงาน\n";
+	    				check=false;
+						$("#validate_admin_company").html("ห้ามเป็นค่าว่าง");
 	    			}
 	    			if($("#admin_name").val()==""){
-	    				check+="*กรุณากรอกชื่อ\n";
+	    				check=false;
+						$("#validate_admin_name").html("ห้ามเป็นค่าว่าง");
 	    			}
 	    			if($("#admin_surname").val()==""){
-	    				check+="*กรุณากรอกนามสกุล\n";
+	    				check=false;
+						$("#validate_admin_surname").html("ห้ามเป็นค่าว่าง");
 	    			}
 	    			// if($("#admin_email").val()==""){
 						
@@ -196,23 +231,33 @@
 	    			// 	check+="*กรุณากรอกE-mail\n";
 	    			// }
 					if(isEmail($("#admin_email").val())==false){
-							check+="*กรอกอีเมลล์ไม่ถูกต้อง\n";
+						check=false;
+							$("#validate_admin_email").html("อีเมลล์ไม่ถูกต้อง");
 					}
 
 	    			// if($("#admin_tel").val()==""){
 	    			// 	check+="*กรุณากรอกเบอร์โทรศัพท์\n";
 	    			// }
 					if(validatePhone($("#admin_tel").val())==false){
-							check+="*กรอกเบอร์โทรศัพท์ไม่ถูกต้อง\n";
+						check=false;
+							$("#validate_admin_tel").html("เบอร์โทรศัพท์ไม่ถูกต้อง");
 					}
-
+					
 	    			if($("#admin_password").val()!=$("#admin_confirm").val()){
-	    				check+="*กรอกหัสยืนยันไม่ถูกต้อง\n";
+	    				check=false;
+						$("#validate_admin_confirm").html("รหัสผ่านยืนยันไม่ตรงกัน");
 	    			}
+
+					if($("#vercode1").val()==""){
+	    				check=false;
+						$("#validate_vercode1").html("ห้ามเป็นค่าว่าง");
+	    			}
+					
 	    			
 	    			
-	    			if(check!=""){
-	    				alert(check);
+	    			if(check==false){
+	    			
+						
 	    				return false;
 	    			}else{
 		    			
@@ -227,14 +272,49 @@
 								success:function(data){
 									//alert(data);
 									if(data=="vercode-wrong"){
-										alert("รหัส CAPTCHA ไม่ถูกต้องครับ ");
+										//alert("รหัส CAPTCHA ไม่ถูกต้องครับ ");
+										$.alert({
+										buttons: {
+										'ปิด': function () {}
+										},
+										title: 'แจ้งเตือน!',
+										content: 'รหัส CAPTCHA ไม่ถูกต้อง',
+										});
+
 										
 										
 									}else if(data=="user-not-empty"){
-										alert("ชื่อผู้ใช้นี้มีการใช้งานแล้ว");
+										//alert("ชื่อผู้ใช้นี้มีการใช้งานแล้ว");
+										$.alert({
+										buttons: {
+										'ปิด': function () {}
+										},
+										title: 'แจ้งเตือน!',
+										content: 'ชื่อผู้ใช้นี้มีการใช้งานแล้ว',
+										});
+										
 										//location.reload(); 
 									}else if(data.status=="200"){
-										alert("สร้างบัญชีของท่านเรียบร้อย\nข้อมูลสำหรับการเข้าใช้งาน\nซื่อผู้ใช้งาน: "+$("#admin_username").val()+"\nรหัสผ่าน: "+$("#admin_password").val()+"\nหรือตรวจสอบข้อมูลการใช้งานที่อีเมลล์ทีท่านได้ลงทะเบียนไว้");
+										//alert("สร้างบัญชีของท่านเรียบร้อย\nข้อมูลสำหรับการเข้าใช้งาน\nซื่อผู้ใช้งาน: "+$("#admin_username").val()+"\nรหัสผ่าน: "+$("#admin_password").val()+"\nหรือตรวจสอบข้อมูลการใช้งานที่อีเมลล์ทีท่านได้ลงทะเบียนไว้");
+										
+
+
+										$.confirm({
+										theme: 'bootstrap', // 'material', 'bootstrap'
+										title: 'สร้างบััญชีสำเร็จ!',
+										content: "สร้างบัญชีของท่านเรียบร้อย<br>ข้อมูลสำหรับการเข้าใช้งาน<br>ซื่อผู้ใช้งาน:<b>"+$("#admin_username").val()+"</b><br>รหัสผ่าน:<b>"+$("#admin_password").val()+"</b><br>หรือ ตรวจสอบข้อมูลการใช้งานที่อีเมลล์ทีท่านได้ลงทะเบียนไว้",
+										buttons: {
+
+										'เข้าใช้งาน': {
+										btnClass: 'btn-blue',
+										action: function(){
+												window.location="/";
+										}
+										},
+										'ปิด': function () {}
+										}
+										});
+
 										
 										$("#admin_username").val("");
 						    			$("#admin_password").val("");
@@ -248,7 +328,7 @@
 						    			
 						    			//window.location="admin/index.php";
 						    			
-						    			window.location=""+data.admin_username+"";
+						    			//window.location=""+data.admin_username+"";
 						    			
 						    			
 									}else{
@@ -280,7 +360,7 @@
                 <div class="span12 header">
                     <h4>สร้างบัญชีเพื่อใช้งานระบบประเมินบุคคล</h4>
                     <p>   
-					URL สำหรับเข้าใช้งาน :: http://test.dashboardweb.com ติดปัญหาการใช้งาน โทร.0809926565
+					URL สำหรับเข้าใช้งาน :: http://test.dashboardweb.com ติดปัญหาการใช้งาน โทร. 080-992-6565
 					</p>
 						 
                    
@@ -305,19 +385,19 @@ Website
 	<form id="frmRegis" >           
 		<div class="row">
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> ชื่อผู้ใช้งาน</div>
+				<div class="tex-label"><font color="red">*</font> ชื่อผู้ใช้งาน <span id="validate_admin_username" class="validate_status_reset"></span></div>
 				<div class="width100p">
 					<input type="text"  name="admin_username" id="admin_username" placeholder="* ชื่อผู้ใช้(ภาษาอังกฤษเท่านั้น)">
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> รหัสผ่าน <span id="password-strength-status"></span></div>
+				<div class="tex-label"><font color="red">*</font> รหัสผ่าน <span id="password-strength-status" class="validate_status_reset"></span></div>
 				<div>
 					<input type="password" name="admin_password" id="admin_password" placeholder="* รหัสผ่าน">
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> ยืนยันรหัสผ่าน</div>
+				<div class="tex-label"><font color="red">*</font> ยืนยันรหัสผ่าน <span id="validate_admin_confirm" class="validate_status_reset"></span></div>
 				<div>
 					<input type="password" name="admin_confirm" id="admin_confirm" placeholder="* ยืนยันรหัสผ่าน">
 				</div>
@@ -326,19 +406,19 @@ Website
 
 		<div class="row">
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> ชื่อบริษัท/หน่วยงาน</div>
+				<div class="tex-label"><font color="red">*</font> ชื่อบริษัท/หน่วยงาน <span id="validate_admin_company" class="validate_status_reset"></span></div>
 				<div class="width100p">
 					<input type="text" name="admin_company" id="admin_company" placeholder="ชื่อบริษัท/หน่วยงาน">
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> ชื่อ</div>
+				<div class="tex-label"><font color="red">*</font> ชื่อ <span id="validate_admin_name" class="validate_status_reset"></span></div>
 				<div>
 					<input type="text" name="admin_name" id="admin_name" placeholder="* ชื่อ">
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> นามสกุล</div>
+				<div class="tex-label"><font color="red">*</font> นามสกุล <span id="validate_admin_surname" class="validate_status_reset"></span></div>
 				<div>
 					<input type="text" name="admin_surname" id="admin_surname" placeholder="* นามสกุล">
 				</div>
@@ -347,19 +427,19 @@ Website
 
 		<div class="row">
 			<div class="span4">
-				<div class='tex-label'><font color="red">*</font> อีเมลล์</div>
+				<div class='tex-label'><font color="red">*</font> อีเมลล์ <span id="validate_admin_email" class="validate_status_reset"></span></div>
 				<div class="width100p">
 					<input type="text" name="admin_email" id="admin_email" placeholder="* อีเมลล์">
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> เบอร์โทร</div>
+				<div class="tex-label"><font color="red">*</font> เบอร์โทร <span id="validate_admin_tel" class="validate_status_reset"></span></div>
 				<div>
 				<input type="text" name="admin_tel" id="admin_tel" placeholder="* เบอร์โทร.">
 				</div>
 			</div>
 			<div class="span4">
-				<div class="tex-label"><font color="red">*</font> CAPTCHA</div>
+				<div class="tex-label"><font color="red">*</font> CAPTCHA <span id="validate_vercode1" class="validate_status_reset"></span></div>
 				<div>
 					<div class="row">
 						<div class="span1">
@@ -436,27 +516,27 @@ Website
 							<tr>
 								<td>แพ็กเกจ D</td>
 								<td>10 คน</td>
-								<td>275/เดือน</td>
-								<td>2,750/ปี</td>
+								<td>299/เดือน</td>
+								<td>2,990/ปี</td>
 							</tr>
 							
 							<tr>
 								<td>แพ็กเกจ C</td>
 								<td>15 คน</td>
-								<td>385/เดือน</td>
-								<td>3,850/ปี</td>
+								<td>399/เดือน</td>
+								<td>3,990/ปี</td>
 							</tr>
 							<tr>
 								<td>แพ็กเกจ B</td>
-								<td>25 คน</td>
-								<td>495/เดือน</td>
-								<td>4,950/ปี</td>
+								<td>30 คน</td>
+								<td>699/เดือน</td>
+								<td>6,990/ปี</td>
 							</tr>
 							<tr>
 								<td>แพ็กเกจ A</td>
 								<td>50 คน</td>
-								<td>935/เดือน</td>
-								<td>9,350/ปี</td>
+								<td>999/เดือน</td>
+								<td>9,990/ปี</td>
 							</tr>
 							</tbody>
 						</table>

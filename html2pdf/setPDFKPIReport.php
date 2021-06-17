@@ -9,7 +9,7 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 
 // กำหนดรายละเอียดของเอกสาร pdf แสดงเมื่อคลิกขวาที่ไฟล์ PDF แล้วเลือก Document Property
 $pdf->SetCreator(PDF_CREATOR); // เครื่องมือสร้าง PDF  ค่าเริ่ม PDF_CREATOR = TCPDF
-$pdf->SetAuthor('KPIToBSC'); // ชื่อผู้สร้างไฟล์ PDF
+$pdf->SetAuthor('KPI>>BSC'); // ชื่อผู้สร้างไฟล์ PDF
 $pdf->SetTitle('รายงานผลปฏิบัติงานรายบุคคล');//  กำหนด Title
 $pdf->SetSubject('รายงานผลปฏิบัติงานรายบุคคล'); // กำหนด Subject
 $pdf->SetKeywords('kpi, report, pdf'); // กำหนด Keyword

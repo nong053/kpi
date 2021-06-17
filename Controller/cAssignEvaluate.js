@@ -771,7 +771,12 @@ var searchAssignMasterKPIFn = function(){
 
 		showDataEmpAssignKpi(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_emp"));
 		
-		if($(".contentemployee").html()=="" || $("#assignKpiToEmpShowData").html()==""){
+		var status_not_complete=0;
+		$(".status_not_complete").each(function(index,indexEntry){
+			status_not_complete+=1;
+		});
+		
+		if($(".contentemployee").html()=="" || $("#assignKpiToEmpShowData").html()=="" || status_not_complete==0){
 			$("#delAllKpiEmpAssign").prop("disabled",true);
 			$("#sendAllKpiEmpAssign").prop("disabled",true);
 			$("#addAssignKPI").prop("disabled",true);
