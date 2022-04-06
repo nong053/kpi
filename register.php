@@ -59,7 +59,7 @@
     height: 25px;
     margin: 0 10px 0px 0;
     color: black;
-    width: 100%;
+    width: -webkit-fill-available;
 }
 	.tex-label{
 		padding:5px;
@@ -358,12 +358,10 @@
             <div class="row">
             
                 <div class="span12 header">
-                    <h4>สร้างบัญชีเพื่อใช้งานระบบประเมินบุคคล</h4>
-                    <p>   
-					URL สำหรับเข้าใช้งาน :: http://test.dashboardweb.com ติดปัญหาการใช้งาน โทร. 080-992-6565
-					</p>
-						 
-                   
+                    <h4>สร้างบัญชี</h4>
+                    <!-- <p>   
+					URL สำหรับเข้าใช้งาน :: http://kpi.dashboardweb.com ติดปัญหาการใช้งาน โทร. 080-992-6565
+					</p> -->
                 </div>
 
                 <!--  
@@ -508,35 +506,35 @@ Website
 							</thead>
 							<tbody>
 							<tr>
-								<td>แพ็กเกจ E</td>
-								<td>5 คน</td>
-								<td><font color="red">ฟรี</font>/เดือน</td>
-								<td><font color="red">ฟรี</font>/ปี</td>
+								<td> E</td>
+								<td>5 </td>
+								<td><font color="red">ฟรี</font></td>
+								<td><font color="red">ฟรี</font></td>
 							</tr>
 							<tr>
-								<td>แพ็กเกจ D</td>
-								<td>10 คน</td>
-								<td>299/เดือน</td>
-								<td>2,990/ปี</td>
+								<td> D</td>
+								<td>10 </td>
+								<td>299</td>
+								<td>2,990</td>
 							</tr>
 							
 							<tr>
-								<td>แพ็กเกจ C</td>
-								<td>15 คน</td>
-								<td>399/เดือน</td>
-								<td>3,990/ปี</td>
+								<td> C</td>
+								<td>15</td>
+								<td>399</td>
+								<td>3,990</td>
 							</tr>
 							<tr>
-								<td>แพ็กเกจ B</td>
-								<td>30 คน</td>
-								<td>699/เดือน</td>
-								<td>6,990/ปี</td>
+								<td> B</td>
+								<td>30</td>
+								<td>699</td>
+								<td>6,990</td>
 							</tr>
 							<tr>
-								<td>แพ็กเกจ A</td>
-								<td>50 คน</td>
-								<td>999/เดือน</td>
-								<td>9,990/ปี</td>
+								<td> A</td>
+								<td>50</td>
+								<td>999</td>
+								<td>9,990</td>
 							</tr>
 							</tbody>
 						</table>

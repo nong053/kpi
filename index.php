@@ -95,28 +95,13 @@ error_reporting (E_ALL ^ E_NOTICE);
         <div class="container">
         
             <div class="row login" style='margin-top: 10%'>
-                <div class="span6 left_box">
-                    <h4>ระบบประเมินบุคคล<br>
-                   
-                </h4>
-
-                    <div class="perk_box">
-                     
-                        <div class="perk">
-                            
-                            <p><strong><a style="color:white;" href="https://dashboardweb.com/index.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
-                                อีเมลล์:nn.it@hotmail.com ,Line:nongnuyit<br>
-                                เว็บไซต์: <a href="http://www.dashboardweb.com" target="_blank">www.dashboardweb.com</a><br>
-                                คู่มือ:  <a href="https://dashboardweb.com/pdf/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%20KPI-BSC.pdf" target="_blank">ดาวน์โหลด <i style="color:white;" class="fa fa-cloud-download" aria-hidden="true"></i></a>
-                            </p>
-                           
-                        </div>
-                    </div>
-
-                    
-                </div>
+                
 
                 <div class="span6 signin_box">
+                <h1 style="text-align: center;">ระบบประเมินบุคคล
+                   
+                </h1>
+                <br>
                     <div class="box">
                         <div class="box_cont">
                             <div class="social">
@@ -173,6 +158,27 @@ error_reporting (E_ALL ^ E_NOTICE);
                         </div>
                     </div>
                 </div>
+
+                <br>
+                <div class="span6 left_box">
+                    
+
+                    <div class="perk_box">
+                     
+                        <div class="perk">
+                            
+                            <p><strong><a style="color:white;" href="https://dashboardweb.com/index.php?page=contact">ติดต่อทีมงาน</a></strong> <br>เมื่อพบปัญหาการใช้งานโทร. 080-992-6565 <br>
+                                อีเมลล์:nn.it@hotmail.com ,Line:nongnuyit<br>
+                                เว็บไซต์: <a href="http://www.dashboardweb.com" target="_blank">www.dashboardweb.com</a><br>
+                                คู่มือ:  <a href="https://dashboardweb.com/pdf/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%20KPI-BSC.pdf" target="_blank">ดาวน์โหลด <i style="color:white;" class="fa fa-cloud-download" aria-hidden="true"></i></a>
+                            </p>
+                           
+                        </div>
+                    </div>
+
+                    
+                </div>
+                
             </div>
         </div>
     </div>   
