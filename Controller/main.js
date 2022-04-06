@@ -83,8 +83,8 @@ var EnlargeFn=function(){
 	
  $("#slideLeft").css({"width":"200px","opacity":1});
  $(".sidebar-background").css({"width":"200px"});
- $("#mainContent").css({"margin-left":"201px"});
- //$("#mainContent").css({"margin-left":"50px"});
+//  $("#mainContent").css({"margin-left":"201px"});
+ $("#mainContent").css({"margin-left":"50px"});
  //$(thisParam).addClass("active");
  $(".menu-text").show();
  $(".boxTitle").css({"width":"200px"});
@@ -92,6 +92,7 @@ var EnlargeFn=function(){
  $(".boxLeftTopLarge").show();
  $(".subMenu").removeClass("submenuHover").css({"padding-left":"5px"});
  $("#slideLeft").show();
+ $("#subjectPage").hide();
  
  
  
@@ -108,6 +109,7 @@ var withdrawFn=function(){
 	$(".boxLeftTopLarge").hide();
 	$(".subMenu").addClass("submenuHover").css({"padding-left":"0px"});
 	$("#slideLeft").show();
+	$("#subjectPage").show();
  
 
 };
