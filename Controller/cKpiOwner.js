@@ -500,7 +500,7 @@ var  getColorEasyPieChart=function(score){
 		              }
 		          });
 				
-				 $("#gauge-dep-value").html("แผนก "+parseFloat(data[0][0]).toFixed(2)+"%");
+				 $("#gauge-dep-value").html(" "+parseFloat(data[0][0]).toFixed(2)+"%");
 				
 			}
 		});

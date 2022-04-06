@@ -216,7 +216,9 @@ if($_SESSION['login_status']!="1"){
           </button>
 		  <a style='height: 0px; font-weight:bold;' class="navbar-brand" href="#" > 
 		  <!-- <span class="iconMenu glyphicon glyphicon-dashboard" style="font-size:30px;"></span> -->
-		   <?=$_SESSION['admin_company']?> KPI <i class="fa fa-angle-double-right"></i> BSC</a>
+		   <?=$_SESSION['admin_company']?> 
+		   <!-- KPI <i class="fa fa-angle-double-right"></i> BSC -->
+		</a>
         </div>
         
         <div class="collapse navbar-collapse">

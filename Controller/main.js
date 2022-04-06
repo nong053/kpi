@@ -80,6 +80,7 @@ var confirmMainModalHideFn = function(){
 /*withdraw Enlarge start */
    	  
 var EnlargeFn=function(){
+	
  $("#slideLeft").css({"width":"200px","opacity":1});
  $(".sidebar-background").css({"width":"200px"});
  $("#mainContent").css({"margin-left":"201px"});
@@ -96,7 +97,7 @@ var EnlargeFn=function(){
  
 };
 var withdrawFn=function(){
-
+	
 	$("#slideLeft").css({"width":"50px","opacity":1});
 	$(".sidebar-background").css({"width":"50px"});
 	$("#mainContent").css({"margin-left":"50px"});
@@ -656,7 +657,10 @@ $(document).ready(function(){
 	
 
 	checkTokenFn();
-	checkBrowserFn();
+	setTimeout(function(){
+		checkBrowserFn();
+	},500)
+	
 
 	//Logout Start
 	$("#logout").click(function(){
