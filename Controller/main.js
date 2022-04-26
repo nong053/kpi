@@ -83,8 +83,8 @@ var EnlargeFn=function(){
 	
  $("#slideLeft").css({"width":"200px","opacity":1});
  $(".sidebar-background").css({"width":"200px"});
-//  $("#mainContent").css({"margin-left":"201px"});
- $("#mainContent").css({"margin-left":"50px"});
+  $("#mainContent").css({"margin-left":"201px"});
+ //$("#mainContent").css({"margin-left":"50px"});
  //$(thisParam).addClass("active");
  $(".menu-text").show();
  $(".boxTitle").css({"width":"200px"});
@@ -124,11 +124,16 @@ var checkWithDrawEnlarge = function(){
 }
 
 //CHECK BROWSER FN
+$('.checkMobile').remove();
 var checkBrowserFn=function(){
 	
 	if($(window).width()<980){
 		$("#withdrawEnlarge").addClass('active');
+		
+		$('body').append($("<div id='mobile' class='checkMobile'> </div>"));
 		withdrawFn();
+	}else{
+		$('body').append($("<div id='desktop' class='checkMobile'> </div>"));
 	}
 };
 
@@ -652,14 +657,20 @@ $(document).ready(function(){
 	sessionStorage.setItem("param_emp", "All");
 	sessionStorage.setItem("param_role", "All");
 
+	
 	$(".mainMenu").click(function(){
+
+		
 		$(".mainMenu").removeClass("active");
 		$(this).addClass("active");
+
+
 	});
 	
 
 	checkTokenFn();
 	setTimeout(function(){
+		
 		checkBrowserFn();
 	},500)
 	
@@ -1646,6 +1657,12 @@ app.controller("pageController",function($scope, $route, $routeParams){
 			// 	$("#subjectPage").html(subjectPage);
 			//   }
 
+			  
+			if($(".checkMobile").attr('id')=='mobile'){
+
+				withdrawFn();
+				$("#withdrawEnlarge").addClass('active');
+			}
 
 
 	  });
