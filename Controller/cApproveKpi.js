@@ -755,6 +755,17 @@ $(document).ready(function(){
 	//Form Approve Edit End
 	
 	
+
+	if(sessionStorage.getItem('checkMobile')=='mobile'){
+		
+		
+		$(".pre-search-label").css({"padding-left":"0px"});
+		$(".fontLabelParam").css({"text-align":"left"});
+	}else{
+		
+		$(".pre-search-label").css({"padding-left":"15px"});
+		$(".fontLabelParam").css({"text-align":"right"});
+	}
 	
 	
 

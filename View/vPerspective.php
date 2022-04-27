@@ -94,7 +94,7 @@ if($_SESSION['language']=="th"){
 				<table style="width:100%;">
 					
 					<tr>
-						<td style='width:200px' class='text-right'><strong ><?=$_SESSION['perspective_l_tbl_perspective_name']?> <font color="red">*</font></strong></td>
+						<td style='width:30%' class='text-right'><strong ><?=$_SESSION['perspective_l_tbl_perspective_name']?> <font color="red">*</font></strong></td>
 						<td><input type="text" class="form-control " name="perspectiveName" id="perspectiveName"></td>
                     </tr>
                     

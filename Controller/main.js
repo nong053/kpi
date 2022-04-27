@@ -124,17 +124,18 @@ var checkWithDrawEnlarge = function(){
 }
 
 //CHECK BROWSER FN
-$('.checkMobile').remove();
+
 var checkBrowserFn=function(){
-	
+
 	if($(window).width()<980){
 		$("#withdrawEnlarge").addClass('active');
-		
-		$('body').append($("<div id='mobile' class='checkMobile'> </div>"));
+		sessionStorage.setItem('checkMobile','mobile');
 		withdrawFn();
 	}else{
-		$('body').append($("<div id='desktop' class='checkMobile'> </div>"));
+		sessionStorage.setItem('checkMobile','desktop');
+		
 	}
+	//alert(sessionStorage.getItem('checkMobile'));
 };
 
 var currentDate = function(){
@@ -669,10 +670,10 @@ $(document).ready(function(){
 	
 
 	checkTokenFn();
-	setTimeout(function(){
+	// setTimeout(function(){
 		
-		checkBrowserFn();
-	},500)
+	// 	checkBrowserFn();
+	// },500)
 	
 
 	//Logout Start
@@ -1658,7 +1659,7 @@ app.controller("pageController",function($scope, $route, $routeParams){
 			//   }
 
 			  
-			if($(".checkMobile").attr('id')=='mobile'){
+			if(sessionStorage.getItem('checkMobile')=='mobile'){
 
 				withdrawFn();
 				$("#withdrawEnlarge").addClass('active');
@@ -1667,5 +1668,10 @@ app.controller("pageController",function($scope, $route, $routeParams){
 
 	  });
 
+
+
+
 });
+
+
 /*end route single page*/

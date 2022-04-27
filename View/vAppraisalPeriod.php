@@ -115,7 +115,7 @@ if($_SESSION['language']=="th"){
 					</tr>
 					-->
 					<tr>
-						<td style="width:200px;" class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_des']?> <font color="red">*</font></b></td>
+						<td style="width:30%;" class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_des']?> <font color="red">*</font></b></td>
 						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " ></td>
 					</tr>
 					
@@ -191,7 +191,7 @@ if($_SESSION['language']=="th"){
 
 					<span style="float:left;" class='appraisalYearArea'></span>
 
-					<span style="float:left;" class="pre-search-label">
+					<span style="float:left; padding-left: 5px;" class="pre-search-label1" >
 						<button data-toggle="modal" data-target=".appraisalPeriodSetup" data-backdrop="static" data-keyboard="false" class="btn btn-primary " id="btnAppraisalPeriod" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['appraisalPeriod_l_des_btn_add']?>
 						</button>

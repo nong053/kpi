@@ -167,16 +167,6 @@ if($_SESSION['language']=="th"){
 	.alert>ul {
 		margin-bottom: 5px;
 	}
-
-	 .boxMargin{
-		margin-top:5px;
-		margin-bottom:5px;
-	}
-	
-	.fontLabelParam{
-		text-align:right; 
-		padding-top:5px;
-	} 
 	
 </style>
 
@@ -717,36 +707,55 @@ if($_SESSION['language']=="th"){
 </div>
 
 
-<div class="alert alert-info1 bg-from" role="alert">
+<div class="alert alert-info bg-from" role="alert">
 
-	<div class="container">
-		<div class="col-md-12">
+	<table>
+		<tr>
+			<td><b><?= $_SESSION['employee_l_search_department'] ?></b></td>
+			<td id="depSearchDropDrowListArea">
+				<!--  
+			<select name="empDepartment" id="empDepartment">
+				<option>Position1</option>
+				<option>Position2</option>
+				<option>Position3</option>
+			</select>
+			-->
+			</td>
+			<!-- 
+			<td>Division</td>
+			<td id="divSearchDropDrowListArea">
+			</td>
+			 -->
+			<td><b class='pre-search-label'><?= $_SESSION['employee_l_search_position'] ?></b></td>
+			<td id="empSearchPositionArea">
+				<!--  
+			<select name="empDepartment" id="empDepartment">
+				<option>Position1</option>
+				<option>Position2</option>
+				<option>Position3</option>
+			</select>
+			-->
+			</td>
+			<td><b class='pre-search-label'><?= $_SESSION['employee_l_search_status'] ?></b></td>
+			<td id="empSearchStatusWorkArea">
+				<!--  
+			<select name="empDepartment" id="empDepartment">
+				<option>Position1</option>
+				<option>Position2</option>
+				<option>Position3</option>
+			</select>
+			-->
+			</td>
 			
-			<div class='col-md-2 boxMargin fontLabelParam'>
-				<strong class="pre-search-label boxMargin"><?= $_SESSION['employee_l_search_department'] ?></strong>
-			</div>
-			<div class='col-md-2 boxMargin'  id="depSearchDropDrowListArea"></div>
-		
-			<div class='col-md-2 boxMargin fontLabelParam'>
-				<strong class='pre-search-label boxMargin'><?= $_SESSION['employee_l_search_position'] ?></strong>
-			</div>
-			<div class='col-md-2 boxMargin' id="empSearchPositionArea"></div>
+			<td>
+				<b class='pre-search-label'>สิทธิ์</b>
+			</td>
+			<td>
+				<div id="roleSearchDropDrowListArea" style="float:left;"></div>
+			</td>
 
-
-			<div class='col-md-2 boxMargin fontLabelParam'>
-				<strong class='pre-search-label boxMargin'><?= $_SESSION['employee_l_search_status'] ?></strong>
-			</div>
-			<div class='col-md-2 boxMargin' id="empSearchStatusWorkArea"></div>
-
-			
-			
-			
-			
-			<div class='col-md-2 boxMargin fontLabelParam'><strong class='pre-search-label boxMargin'>สิทธิ์</strong></div>
-			<div class='col-md-2 boxMargin' id="roleSearchDropDrowListArea" ></div>
-
-		</div>
-	</div>
+		</tr>
+	</table>
 
 
 

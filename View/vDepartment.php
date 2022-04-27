@@ -121,7 +121,7 @@ if($_SESSION['language']=="th"){
 					</tr>
 					-->
 					<tr>
-						<td style="width: 200px;" class="text-right"><b><?=$_SESSION['department_l_form_department_name']?>  <font color="red">*</font></b></td>
+						<td style="width: 30%;" class="text-right"><b><?=$_SESSION['department_l_form_department_name']?>  <font color="red">*</font></b></td>
 						<td><input type="text" name="departmentName" class="form-control " id="departmentName"></td>
 					</tr>
 					<tr>

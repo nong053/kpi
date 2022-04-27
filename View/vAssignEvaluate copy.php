@@ -191,15 +191,6 @@ if($_SESSION['language']=="th"){
 	.actionViewEmployee{
 		cursor: pointer;
 	}
-	.boxMargin{
-		margin-top:5px;
-		margin-bottom:5px;
-	}
-	
-	.fontLabelParam{
-		text-align:right; 
-		padding-top:5px;
-	} 
 </style>
 
 
@@ -630,50 +621,50 @@ if($_SESSION['language']=="th"){
 
 
 
-<div role="alert" class="alert alert-info1 bg-from">
+<div role="alert" class="alert alert-info bg-from">
 
-	<div class="row">
-		<div class="col-md-12">
+	<table>
+		<tr>
 
-			<div class="col-md-2 boxMargin fontLabelParam"><b class=''><?= $_SESSION['assign_l_search_year'] ?></b></div>
-			<div class="col-md-2 boxMargin assignKpiYearArea">
+			<td><b><?= $_SESSION['assign_l_search_year'] ?></b></td>
+			<td class="assignKpiYearArea">
 			
-			</div>
+			</td>
 
-			<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label '><?= $_SESSION['assign_l_search_appraisalPeriod'] ?></b></div>
-			<div class="col-md-2 boxMargin" id="periodAssignArea">
+			<td><b class='pre-search-label'><?= $_SESSION['assign_l_search_appraisalPeriod'] ?></b></td>
+			<td id="periodAssignArea">
 
-			</div>
+			</td>
 
-			<div class="col-md-2 boxMargin fontLabelParam">
-				<b class='pre-search-label '><?= $_SESSION['assign_l_search_department'] ?></b>
-			</div>
-			<div class="col-md-2 boxMargin">
-				<div id="depDropDrowListArea" >
+			<td>
+				<b class='pre-search-label'><?= $_SESSION['assign_l_search_department'] ?></b>
+			</td>
+			<td>
+				<div id="depDropDrowListArea" style="float:left;">
 
 				</div>
 
-			</div>
+			</td>
 			
-			<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label '><?= $_SESSION['assign_l_search_position'] ?></b></div>
-			<div class="col-md-2 boxMargin" id="positionAssignArea">
+			<td><b class='pre-search-label'><?= $_SESSION['assign_l_search_position'] ?></b></td>
+			<td id="positionAssignArea">
 
-			</div>
+			</td>
 
-			<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label '><?= $_SESSION['assign_l_search_fullname'] ?></b></div>
-			<div class="col-md-2 boxMargin" id="empAssignArea">
+			<td><b class='pre-search-label'><?= $_SESSION['assign_l_search_fullname'] ?></b></td>
+			<td id="empAssignArea">
 
-			</div>
+			</td>
 
 
-			<div>&nbsp;</div>
-			<div style="display: none;">
+			<td>&nbsp;</td>
+			<td style="display: none;">
 				<input type="button" value="<?= $_SESSION['assign_l_search_btn_search'] ?>" id="assign_kpi_search" class="btn btn-primary btn-sm">
 				
-			</div>
+			</td>
 			
-		</div>
-	</div>
+		</tr>
+	</table>
 </div>
 
 

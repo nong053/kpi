@@ -1110,6 +1110,26 @@ $(document).ready(function(){
 
 	searchAssignMasterKPIFn();
 
-		//Default Submit		
+		//Default Submit	
+		
+	
+		if(sessionStorage.getItem('checkMobile')=='mobile'){
+		
+		
+			$(".pre-search-label").css({"padding-left":"0px"});
+			$(".fontLabelParam").css({"text-align":"left"});
+
+			$("#delAllKpiEmpAssign").css({"width":"100%"});
+			$("#sendAllKpiEmpAssign").css({"width":"100%"});
+			$("#addAssignKPI").css({"width":"100%"});
+		}else{
+			
+			$(".pre-search-label").css({"padding-left":"15px"});
+			$(".fontLabelParam").css({"text-align":"right"});
+
+			$("#delAllKpiEmpAssign").css({"width":"auto"});
+			$("#sendAllKpiEmpAssign").css({"width":"auto"});
+			$("#addAssignKPI").css({"width":"auto"});
+		}
 
 });

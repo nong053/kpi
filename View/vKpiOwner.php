@@ -184,9 +184,9 @@ if($_SESSION['language']=="th"){
 												
 												<div class="box1" >
 													<div >
-														<b style="color:#31708f;" class='pre-search-label'>
+														<div  class='pre-search-label1' style="padding-right: 5px; font-weight:bold;">
 														<?=$_SESSION['kpi_owner_search_year']?>
-														</b>
+														</div>
 													</div>
 												</div> 
 												

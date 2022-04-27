@@ -1015,5 +1015,26 @@ $(document).ready(function(){
 		//searchListEmpByKPIFn();
 	});
 
+
+	//check mobile or desktop
+	//box-title-l
+	
+
+	// setTimeout(function(){
+		if(sessionStorage.getItem('checkMobile')=='mobile'){
+		
+			$(".box-title-l").css({"float":"initial"});
+			$(".pre-search-label").css({"padding-left":"0px"});
+			$(".fontLabelParam").css({"text-align":"left"});
+		}else{
+			$(".box-title-l").css({"float":"left"});
+			$(".pre-search-label").css({"padding-left":"15px"});
+			$(".fontLabelParam").css({"text-align":"right"});
+		}
+
+	// },500);
+	
+	
+
 });
 

@@ -1180,6 +1180,9 @@ $(document).ready(function(){
 	gaugeOwnerPerspective(sessionStorage.getItem("param_year"));
 	barChart(sessionStorage.getItem("param_year"));
 	departmentResultFn(sessionStorage.getItem("param_year"));
+
+
+	checkBrowserFn();
 });
 
 

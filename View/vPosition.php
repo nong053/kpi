@@ -74,6 +74,7 @@ if($_SESSION['language']=="th"){
  </style>
 
 
+
  <!-- Large modal start-->
 <div id='positionModal' class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog" role="document">
@@ -94,7 +95,7 @@ if($_SESSION['language']=="th"){
 					
 					
 					<tr>
-						<td style='width: 200px;'class="text-right"><b><?=$_SESSION['position_l_form_position_name']?><font color="red">*</font></b></td>
+						<td style='width: 30%;'class="text-right"><b><?=$_SESSION['position_l_form_position_name']?><font color="red">*</font></b></td>
 						<td>
 							<input type="text" id="positionName" name="positionName" class="form-control ">
 						</td>

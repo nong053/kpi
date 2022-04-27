@@ -244,6 +244,16 @@ if($_SESSION['language']=="th"){
 		cursor: pointer;
 		display: block;
 	}
+
+	.boxMargin{
+		margin-top:5px;
+		margin-bottom:5px;
+	}
+	
+	.fontLabelParam{
+		text-align:right; 
+		padding-top:5px;
+	} 
  </style>
 
 
@@ -765,66 +775,53 @@ if($_SESSION['language']=="th"){
 
 
 
-<div role="alert" class="alert alert-info bg-from">
+<div role="alert" class="alert alert-info1 bg-from">
 	
-<table>
-	<tr>
+<div class="row">
+	<div class="col-md-12">
 	
-		<td><b><?=$_SESSION['kpi_result_l_search_year']?></b></td>
-		<td class="assignKpiYearArea">
-		<!-- 
-			<select id="year">
-				<option>2012</option>
-				<option>2013</option>
-				<option>2014</option>
-				<option>2015</option>
-			</select>
-		 -->
-		</td>
+		<div class="col-md-2 boxMargin fontLabelParam"><b><?=$_SESSION['kpi_result_l_search_year']?></b></div>
+		<div class="col-md-2 boxMargin assignKpiYearArea">
+		</div>
 	
-		<td><b class='pre-search-label'><?=$_SESSION['kpi_result_l_search_appraisalPeriod']?></b></td>
-		<td id="periodAssignArea">
+		<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'><?=$_SESSION['kpi_result_l_search_appraisalPeriod']?></b></div>
+		<div class="col-md-2 boxMargin" id="periodAssignArea">
 			
-		</td>
+		</div>
 	
-		<td>
+		<div class="col-md-2 boxMargin fontLabelParam">
 			<b class='pre-search-label'><?=$_SESSION['kpi_result_l_search_department']?></b>
-		</td>
-		<td>
-			<div id="depDropDrowListArea" style="float:left;">
+		</div>
+		<div class="col-md-2 boxMargin">
+			<div id="depDropDrowListArea">
 			
 			</div>
 			
-		</td>
+		</div>
 		
 		
 	 	
-		<td><b class='pre-search-label'><?=$_SESSION['kpi_result_l_search_position']?></b></td>
-		<td id="positionAppaisalArea">
+		<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'><?=$_SESSION['kpi_result_l_search_position']?></b></div>
+		<div class="col-md-2 boxMargin" id="positionAppaisalArea">
 			
-		</td>
-		<td>
+		</div>
+		<div class="col-md-2 boxMargin fontLabelParam">
 		<b class='pre-search-label'>สิทธิ์</b>
-		</td>
-		<td>
-			<div id="roleDropDrowListArea" style="float:left;">
+		</div>
+		<div class="col-md-2 boxMargin">
+			<div  id="roleDropDrowListArea" style="float:left;">
 			
 			</div>
 			
-		</td>
+		</div>
 	
-		<td>&nbsp;</td>
-		<td style="display: none;">
+		<div>&nbsp;</div>
+		<div style="display: none;">
 			<input type="button" value="<?=$_SESSION['kpi_result_l_search_btn_search']?>" id="assign_kpi_search"  class="btn btn-primary btn-sm">
-		</td>
-		<!-- 
-		<td>&nbsp;</td>
-		<td>
-			<input type="button" value="Assign KPIs" id="assign_kpi_all"  class="btn btn-danger btn-xs">
-		</td>
-		 -->
-	</tr>
-	</table>
+		</div>
+		
+	</div>
+	</div>
 </div>
 
 

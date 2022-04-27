@@ -129,14 +129,14 @@ if($_SESSION['language']=="th"){
 						<td><input type="text" id="kpiCode" name="kpiCode"  style='width:100px;'  class="form-control "></td>
 					</tr>
 -->
-					<tr style="display: none;">
+					<tr style="display: none;" style="width:30%;" >
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_department']?> <font color="red">*</font></b></td>
 						<td id='formdepDropDrowListArea'></td>
 					</tr>
 					<tr>
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_name']?> <font color="red">*</font></b></td>
 						<td>
-							<input type="text" id="kpiName" name="kpiName"  style='width:300px;' class="form-control ">
+							<input type="text" id="kpiName" name="kpiName"  style='width:100%;' class="form-control ">
 						</td>
 					</tr>
 
@@ -179,7 +179,7 @@ if($_SESSION['language']=="th"){
 					<tr id="kpiDataTargetArea"  style="display: none;">
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_data_target']?> <font color="red">*</font></b></td>
 						<td>
-							<input type="text" id="kpiDataTarget" name="kpiDataTarget"  style='width:100px;' class="form-control ">
+							<input type="text" id="kpiDataTarget" name="kpiDataTarget"  style='width:100%;' class="form-control ">
 						</td>
 					</tr>
 

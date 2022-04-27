@@ -156,6 +156,16 @@ if($_SESSION['language']=="th"){
 		cursor: pointer;
 		display: block;
 	}
+
+	.boxMargin{
+		margin-top:5px;
+		margin-bottom:5px;
+	}
+	
+	.fontLabelParam{
+		text-align:right; 
+		padding-top:5px;
+	} 
  </style>
 
 
@@ -499,61 +509,44 @@ if($_SESSION['language']=="th"){
 
 
 
-<div class="alert alert-info bg-from" role="alert">
-<table>
-	<tr>
+<div class="alert alert-info1 bg-from" role="alert">
+<div class="row">
+	<div class="col-md-12">
 	
-		<td><b><?=$_SESSION['approve_l_search_year']?></b></td>
-		<td id="approveKpiYearArea">
-		<!-- 
-			<select id="year">
-				<option>2012</option>
-				<option>2013</option>
-				<option>2014</option>
-				<option>2015</option>
-			</select>
-		 -->
-		</td>
+		<div class="col-md-2 boxMargin fontLabelParam"><b><?=$_SESSION['approve_l_search_year']?></b></div>
+		<div class="col-md-2 boxMargin" id="approveKpiYearArea">
+		
+		</div>
 	
-		<td><b class='pre-search-label'><?=$_SESSION['approve_l_search_appraisalPeriod']?></b> </td>
-		<td id="periodApproveArea">
+		<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'><?=$_SESSION['approve_l_search_appraisalPeriod']?></b> </div>
+		<div class="col-md-2 boxMargin" id="periodApproveArea">
 			
-		</td>
+		</div>
 	
-		<td>
+		<div class="col-md-2 boxMargin fontLabelParam">
 			<b class='pre-search-label'><?=$_SESSION['approve_l_search_department']?></b>
-		</td>
-		<td>
-			<div id="approveDepDropDrowListArea" style="float:left;">
+		</div>
+		<div class="col-md-2 boxMargin">
+			<div id="approveDepDropDrowListArea" >
 			
 			</div>
 			
-		</td>
-	<!-- 
-		<td>
-		Division
-		</td>
-		<td>
-			<div id="divDropDrowListArea" style="float:left;">
+		</div>
+
+		<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'><?=$_SESSION['approve_l_search_position']?></b></div>
+		<div class="col-md-2 boxMargin" id="approvePositionArea">
 			
-			</div>
-			
-		</td>
-	 -->
-		<td><b class='pre-search-label'><?=$_SESSION['approve_l_search_position']?></b></td>
-		<td id="approvePositionArea">
-			
-		</td>
-		<td><b class='pre-search-label'>สิทธิ์</b></td>
-		<td >
-			<div id="roleDropDrowListArea" style="float:left;"></div>
-		</td>
-		<td>&nbsp;</td>
-		<td style="display: none;">
+		</div>
+		<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'>สิทธิ์</b></div>
+		<div class="col-md-2 boxMargin">
+			<div id="roleDropDrowListArea" ></div>
+		</div>
+		<div>&nbsp;</div>
+		<div style="display: none;">
 			<input type="button" value="<?=$_SESSION['approve_l_search_btn_search']?>" id="approve_kpi_search"  class="btn btn-primary btn-sm">
-		</td>
-	</tr>
-	</table>
+		</div>
+	</div>
+	</div>
 	</div>
 	
 	 <div style="margin-top: 5px;" class="panel panel-default panel-bottom displayHideShow">
@@ -567,15 +560,7 @@ if($_SESSION['language']=="th"){
 			  </div>
 	</div>
 	
-	<!--
-	<div class="alert alert-info bg-from displayHideShow" role="alert">
-		<p class="bg-warning1">
-		Adjustment Form
-		</p>	
-		<br>
-
-	</div>
-	-->
+	
 	<script src="../Controller/cApproveKpi.js"></script>
 
 	

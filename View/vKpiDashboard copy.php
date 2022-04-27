@@ -203,14 +203,6 @@ $department_name=$_GET['department_name'];
 		cursor: pointer;
 		/* display: block; */
 	}
-	.boxMargin{
-		margin-top:5px;
-		margin-bottom:5px;
-	}
-	.fontLabelParam{
-		text-align:right; 
-		padding-top:5px;
-	}
 		
 </style>
 
@@ -224,45 +216,44 @@ $department_name=$_GET['department_name'];
 		   
 									<div class="box-title-l">
 									
-										<div class="topParameter">
-				
-											<div class='row1'>
-												<div class="col-md-121">
-													
-													<div class='col-md-2 boxMargin fontLabelParam' >
-													<strong class="pre-search-label boxMargin"><?=$_SESSION['emp_dashboard_l_search_year']?></strong>
-													</div>
-													<div class='col-md-2 boxMargin' id="appraisalYearArea">
-													</div>
-													<div class='col-md-2 boxMargin fontLabelParam' ><strong class="pre-search-label"><?=$_SESSION['emp_dashboard_l_search_appraisal_period']?></strong></div>
-													<div class='col-md-2 boxMargin' id="appraisalPeriodAea">
-													</div>
-													<div class='col-md-2 boxMargin fontLabelParam'  id="kpiDashboardSearchParamDepLabelArea">
-														<strong class="pre-search-label boxMargin"><?=$_SESSION['emp_dashboard_l_search_department']?></strong>
-													</div>
-													<div class='col-md-2 boxMargin' id="appraisalDepDropDrowListArea">
-													</div>
-
-													<div class='col-md-2 boxMargin fontLabelParam'  id="kpiDashboardSearchParamPositionLabelArea">
-														<strong class="pre-search-label boxMargin"><?=$_SESSION['emp_dashboard_l_search_position']?></strong>
-													</div>
-													<div class='col-md-2 boxMargin' id="appraisalPositionDropDrowListArea">
-													</div>
-
-													<div class='col-md-2 boxMargin fontLabelParam'   id="kpiDashboardSearchParamEmpLabelArea">
-													<strong class="pre-search-label boxMargin"><?=$_SESSION['emp_dashboard_l_search_emp']?></strong></div>
-													<div class='col-md-2 boxMargin'  id="appraisalEmpDropDrowListArea">
-													</div>
-
-
-													<div >
-														<button style="display: none;" id="kpiDashboardSubmit" class="btn btn-primary btn-sm" ><?=$_SESSION['emp_dashboard_l_search_btn_search']?></button>
-														<!-- <input type="button" value="<?=$_SESSION['emp_dashboard_l_search_btn_back']?>" class="btn default  btn-sm" name="dashboardBackBtn" id="dashboardBackBtn"> -->
-													</div>
-												</div>
+									
+									
+									<div class="topParameter">
+			
+										<table>
+											<tr>
 												
-											</div>
-										</div>
+												<td>
+												 <strong class="pre-search-label"><?=$_SESSION['emp_dashboard_l_search_year']?></strong></td>
+												<td id="appraisalYearArea">
+												</td>
+												<td><strong class="pre-search-label"><?=$_SESSION['emp_dashboard_l_search_appraisal_period']?></strong></td>
+												<td id="appraisalPeriodAea">
+												</td>
+												<td id="kpiDashboardSearchParamDepLabelArea">
+												 <strong class="pre-search-label"><?=$_SESSION['emp_dashboard_l_search_department']?></strong></td>
+												<td id="appraisalDepDropDrowListArea">
+												</td>
+
+												<td id="kpiDashboardSearchParamPositionLabelArea">
+												 <strong class="pre-search-label"><?=$_SESSION['emp_dashboard_l_search_position']?></strong></td>
+												<td id="appraisalPositionDropDrowListArea">
+												</td>
+
+												<td id="kpiDashboardSearchParamEmpLabelArea">
+												 <strong class="pre-search-label"><?=$_SESSION['emp_dashboard_l_search_emp']?></strong></td>
+												<td id="appraisalEmpDropDrowListArea">
+												</td>
+
+
+												<td >
+													<button style="display: none;" id="kpiDashboardSubmit" class="btn btn-primary btn-sm" ><?=$_SESSION['emp_dashboard_l_search_btn_search']?></button>
+													<!-- <input type="button" value="<?=$_SESSION['emp_dashboard_l_search_btn_back']?>" class="btn default  btn-sm" name="dashboardBackBtn" id="dashboardBackBtn"> -->
+												</td>
+											</tr>
+											
+										</table>
+									</div>
 									
 									</div>
 									<div class="box-title-r">

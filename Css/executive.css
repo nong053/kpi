@@ -223,7 +223,7 @@
 	/*padding-left: 5px;*/
 }
 .topParameter .box2{
-	width:160px;
+	/* width:160px; */
 	float: left;
 	margin-top:2px;
 }
@@ -271,6 +271,10 @@
 	border-right: 1px solid #e5e5e5;
 	border-bottom: 0px solid #e5e5e5;
 }
+.set-right{
+	color: #5CB85C;
+	text-align: right;
+}
 
 select.{
 	height: 25px;
@@ -283,4 +287,5 @@ select.{
 	height: 25px;
 	padding: 2px 5px;
 }
+
 
