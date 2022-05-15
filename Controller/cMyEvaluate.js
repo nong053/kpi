@@ -1,3 +1,20 @@
+var checkMobileFn = function(){
+
+	if(sessionStorage.getItem('checkMobile')=='mobile'){
+			
+			
+		$(".pre-search-label").css({"padding-left":"0px"});
+		$(".fontLabelParam").css({"text-align":"left"});
+		
+	}else{
+		
+		$(".pre-search-label").css({"padding-left":"15px"});
+		$(".fontLabelParam").css({"text-align":"right"});
+		
+	}
+
+}
+
 //reuse start
 var getBaseLineAction=function(action){
 		
@@ -760,7 +777,7 @@ var paramMyEvaluateAppraisal = function(year){
 			success:function(data){
 				//console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"my_evaluate_period\" name=\"my_evaluate_period\" class=\"\" style=\"width:auto;\">";
+				htmlDropDrowList+="<select id=\"my_evaluate_period\" name=\"my_evaluate_period\" class=\"\" style=\"width:100%;\">";
 					$.each(data,function(index,indexEntry){
 						// if(appraisal_period_id==indexEntry[0]){
 						// 	htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -792,7 +809,7 @@ var paramMyEvaluateYear=function(kpi_year){
 		success:function(data){
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"myEvaluateYear\" name=\"myEvaluateYear\" class=\"\" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"myEvaluateYear\" name=\"myEvaluateYear\" class=\"\" style=\"width:100%;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_year!=undefined){
 						if(kpi_year==indexEntry[0]){
@@ -812,6 +829,7 @@ var paramMyEvaluateYear=function(kpi_year){
 			htmlDropDrowList+="</select>";
 			//alert(htmlDropDrowList);
 			$("#myEvaluateYearArea").html(htmlDropDrowList);
+			//checkMobileFn();
 			$("#myEvaluateYear").kendoDropDownList({
 			theme: "silver"
 			});
@@ -1216,6 +1234,12 @@ $("#empDisplayDepartment").html($("#emp_department").val());
 $("#empDisplayWorkAge").html(" "+$("#emp_work_age").val()+"ปี");
 
 $("#empDisplayRole").html($("#embed_emp_role_leve").val());
+
+
+
+
+checkMobileFn();
+
 
 
 });

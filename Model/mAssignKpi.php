@@ -172,14 +172,15 @@ if($_POST['action']=="showEmpData"){
 	$result=mysql_query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='Tableemployee' class='table grid table-striped'>";
+	$tableHTML.="<table id='Tableemployee' class=' '>";
 	$tableHTML.="<colgroup>";
-	// $tableHTML.="<col style='width:5%' />";
-	$tableHTML.="<col style='width:8%' />";
-	$tableHTML.="<col style='width:13%' />";
-	$tableHTML.="<col style='width:13%' />";
-	$tableHTML.="<col style='width:13%' />";
-	$tableHTML.="<col style='width:13%' />";
+	 $tableHTML.="<col style='width:100px' />";
+	$tableHTML.="<col style='width:100px' />";
+	$tableHTML.="<col style='width:100px' />";
+	$tableHTML.="<col style='width:100px' />";
+	$tableHTML.="<col style='width:100px' />";
+	$tableHTML.="<col style='width:100px' />";
+	$tableHTML.="<col style='width:100px' />";
 
 
 	$tableHTML.="</colgroup>";

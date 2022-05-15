@@ -165,6 +165,16 @@ if($_SESSION['language']=="th"){
 					font-weight: bold;
 					font-size: 24px;
 				}
+
+				.boxMargin{
+					margin-top:5px;
+					margin-bottom:5px;
+				}
+
+				.fontLabelParam{
+					text-align:right; 
+					padding-top:7px;
+				} 
                  
 
             </style>
@@ -172,26 +182,26 @@ if($_SESSION['language']=="th"){
 
  <div class="row1">
 		<div class="panel panel-default panel-top">
-		  <div class="panel-heading" style="padding:3px;">
+		  <div class="panel-heading" style="padding:0px;">
 		   
 									<div class="box-title-l">
 									
-									<div class="topParameter">
+									
 			
 										
 										<!-- Parameter Top KPI Owner Page Start-->
-											<row class="topParameter">
+											<div class="col-md-12">
 												
-												<div class="box1" >
+												<div class="col-md-2" >
 													<div >
-														<div  class='pre-search-label1' style="padding-right: 5px; font-weight:bold;">
+														<div  class='boxMargin pre-search-label fontLabelParam' style="padding-right: 5px; font-weight:bold;">
 														<?=$_SESSION['kpi_owner_search_year']?>
 														</div>
 													</div>
 												</div> 
 												
-												<div class="box2">
-														<div id="appraisalYearArea"></div>
+												<div class="col-md-2">
+														<div class='boxMargin' id="appraisalYearArea"></div>
 												</div>
 												
 
@@ -203,7 +213,7 @@ if($_SESSION['language']=="th"){
 												</div> -->
 												
 												
-											</row>
+											</div>
 										<!-- Parameter Top KPI Owner Page End-->
 										<!-- 
 										<table>
@@ -226,7 +236,7 @@ if($_SESSION['language']=="th"){
 										</table>
 										 -->
 										
-									</div>
+									
 									
 									
 									</div>

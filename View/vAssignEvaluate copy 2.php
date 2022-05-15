@@ -200,9 +200,6 @@ if($_SESSION['language']=="th"){
 		text-align:right; 
 		padding-top:5px;
 	} 
-
-	
-
 </style>
 
 
@@ -264,20 +261,20 @@ if($_SESSION['language']=="th"){
 								</tr> -->
 
 								<tr id="kpiTextAllArea" style="display: none;">
-									<td style="width: " class='text-right'><b><?= $_SESSION['assign_l_form_kpi_name'] ?></b></td>
+									<td style="width: 150px;" class='text-right'><b><?= $_SESSION['assign_l_form_kpi_name'] ?></b></td>
 									<td id="kpiTextArea">
 
 									</td>
 								</tr>
 								<tr id="kpiDropDrowListAllArea">
-									<td style="width: 30%;" class='text-right'><b><?= $_SESSION['assign_l_form_kpi_name'] ?></b></td>
-									<td style="width: 70%;" id="kpiDropDrowListArea">
+									<td style="width: 150px;" class='text-right'><b><?= $_SESSION['assign_l_form_kpi_name'] ?></b></td>
+									<td id="kpiDropDrowListArea">
 
 									</td>
 								</tr>
 
 								<tr>
-									<td  class='text-right'><b><?= $_SESSION['assign_l_form_weight'] ?></td>
+									<td class='text-right'><b><?= $_SESSION['assign_l_form_weight'] ?></td>
 									<td>
 										<input type="text" id="kpi_weight" name="kpi_weight" class="form-control " value="25.00" style="width:150px;">
 									</td>

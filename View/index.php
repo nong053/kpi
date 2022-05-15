@@ -270,7 +270,7 @@ if($_SESSION['login_status']!="1"){
 					
 
 					<strong>
-						<?=$rsEmp['emp_first_name']?> <?=$rsEmp['emp_last_name']?> <i class="fa fa-angle-double-right"></i> <?=$rsEmp['department_name']?> <i class="fa fa-angle-double-right"></i> <span style="color:orange"><?=$rsEmp['role_name']?></span>
+						<?=$rsEmp['emp_first_name']?> <?=$rsEmp['emp_last_name']?> <i class="fa fa-angle-double-right"></i> <span style="color:orange"><?=$rsEmp['role_name']?></span>
 					</strong>
 					<input type="hidden" name="emp_id" id="emp_id"  value="<?=$rsEmp['emp_id']?>">
 					<input type="hidden" name="emp_first_name" id="emp_first_name"  value="<?=$rsEmp['emp_first_name']?>">

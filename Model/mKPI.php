@@ -272,6 +272,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<col style='width:20%'/>";
 			$tableHTML.="<col style='width:13%'/>";
 			$tableHTML.="<col style='width:13%'/>";
+			$tableHTML.="<col style='width:13%'/>";
 		
 			/*
 			$tableHTML.="<col />";

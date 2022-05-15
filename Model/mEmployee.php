@@ -368,7 +368,7 @@ where (e.department_id='All' or 'All' ='All')
 	$tableHTML.="<thead>";
 		$tableHTML.="<tr>";
 			//$tableHTML.="<th data-field=\"employee_l_tbl_id\"><b> ".$_SESSION['employee_l_tbl_id']."</b></th>";
-			$tableHTML.="<th style='text-align:center;' data-field=\"employee_l_tbl_picture\"><b>".$_SESSION['employee_l_tbl_picture']."</b></th>";
+			$tableHTML.="<th style='text-align:center;' data-field=\"employee_l_tbl_picture\"></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_name\"><b>".$_SESSION['employee_l_tbl_name']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_department\"><b>".$_SESSION['employee_l_tbl_department']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_position\"><b>".$_SESSION['employee_l_tbl_position']."</b></th>";

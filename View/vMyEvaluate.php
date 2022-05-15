@@ -192,6 +192,15 @@ if($_SESSION['language']=="th"){
 		font-weight: bold;
 		font-size: 20px;
 	}
+	.boxMargin{
+		margin-top:5px;
+		margin-bottom:5px;
+	}
+	
+	.fontLabelParam{
+		text-align:right; 
+		padding-top:5px;
+	} 
 	
  </style>
 
@@ -221,23 +230,25 @@ if($_SESSION['language']=="th"){
 
 <div role="alert" class="alert alert-info bg-from">
 	
-<table>
-	<tr>
+<div class="">
+	<div class="col-md-12">
 	
-		<td><b><?=$_SESSION['emp_evaluate_l_search_year']?></b></td>
-		<td id="myEvaluateYearArea">
-		</td>
+		<div class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'><?=$_SESSION['emp_evaluate_l_search_year']?></b></div>
+		<div class="col-md-2  " id="myEvaluateYearArea" >
+		</div>
 	
-		<td><b><?=$_SESSION['emp_evaluate_l_search_appraisalPeriod']?></b></td>
-		<td id="myEvaluatePeriodArea">
+		<div  class="col-md-2 boxMargin fontLabelParam"><b class='pre-search-label'><?=$_SESSION['emp_evaluate_l_search_appraisalPeriod']?></b></div>
+		<div class="col-md-2 " id="myEvaluatePeriodArea" >
 			
-		</td>
-		<td>&nbsp;</td>
-		<td style="display: none;">
+		</div>
+		<div>&nbsp;</div>
+		<div class="col-md-2" style="display: none;">
 			<input type="button" value="<?=$_SESSION['emp_evaluate_l_search_btn_search']?>" id="my_evaluate_search"  class="btn btn-primary btn-sm">
-		</td>
-	</tr>
-	</table>
+		</div>
+		
+	</div>
+	</div>
+	<br style="clear:both">
 </div>
 
 
@@ -254,7 +265,7 @@ if($_SESSION['language']=="th"){
       <div class="alert alert-info bg-from displayHideShow" role="alert" style="display: block;">
 
 		<div class="row container-fluid">
-			<div class="col-md-6">
+			<div class="col-md-6 col-xs-12">
 				<div id="empNameArea" class="empNameArea">
 					<div class="">
 						<div class="impageEmpClass">
@@ -272,12 +283,13 @@ if($_SESSION['language']=="th"){
 				</div>
 
 			</div>
-			<div class="col-md-6 " style="text-align: right; font-weight: bold;font-size: 24px;">
+			<div class="col-md-6 col-xs-12 " style="text-align: right; font-weight: bold;font-size: 24px;">
 			
 				<div class="summary_kpi col-md-4">
-					<div style="display: none;;">
-					 	น้ำหนัก 					</div>
-					<div style="display: none;;">
+					<div style="display: none;">
+					 	น้ำหนัก 					
+					</div>
+					<div style="display: none;">
 						<div id="kpi_weight_total"><strong style="color:green"><strong></strong></strong></div> 
 					</div>
 					<div>

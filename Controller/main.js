@@ -138,6 +138,7 @@ var checkBrowserFn=function(){
 	//alert(sessionStorage.getItem('checkMobile'));
 };
 
+
 var currentDate = function(){
 	var d = new Date();
 	var month = d.getMonth()+1;
@@ -1557,10 +1558,15 @@ app.controller("pageController",function($scope, $route, $routeParams){
 
 	$route.current.templateUrl = $routeParams.url + ".php";
 	  $.get($route.current.templateUrl, function (data){
+
+		   checkBrowserFn();
 	       $("#mainContent").html(data);
 
 		   //alert($routeParams.url);
 		   checkWithDrawEnlarge();
+		   
+			
+		   
 		   
 		   var subjectPage="";
 	          $(".mainMenu").removeClass("active");
@@ -1664,6 +1670,7 @@ app.controller("pageController",function($scope, $route, $routeParams){
 				withdrawFn();
 				$("#withdrawEnlarge").addClass('active');
 			}
+			
 
 
 	  });

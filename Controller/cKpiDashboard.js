@@ -8,7 +8,7 @@ var fnDropdownListYearKpiDashboard=function(kpi_year){
 		async:false,
 		success:function(data){
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_year_table\" name=\"appraisal_year_table\" class=\" \" style=\"width:80px;\">";
+			htmlDropDrowList+="<select id=\"appraisal_year_table\" name=\"appraisal_year_table\" class=\" \" style=\"width:100%;\">";
 				$.each(data,function(index,indexEntry){
 					if(kpi_year!=undefined){
 						if(kpi_year==indexEntry[0]){
@@ -57,7 +57,7 @@ var fnDropdownListAppraisalKpiDashboard=function(year,appraisal_period_id){
 		success:function(data){
 			//alert(data);
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select id=\"appraisal_period_id_table\" name=\"appraisal_period_id_table\" class=\" \" style=\"width:auto;\">";
+			htmlDropDrowList+="<select id=\"appraisal_period_id_table\" name=\"appraisal_period_id_table\" class=\" \" style=\"width:100%;\">";
 				$.each(data,function(index,indexEntry){
 					if(appraisal_period_id==indexEntry[0]){
 						htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -93,7 +93,7 @@ $.ajax({
 	success:function(data){
 	
 		var htmlDropDrowList="";
-		htmlDropDrowList+="<select id=\"department_id_table\" name=\"department_id_table\" class=\" \"  style='width:150px;'>";
+		htmlDropDrowList+="<select id=\"department_id_table\" name=\"department_id_table\" class=\" \"  style='width:100%;'>";
 		//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 			$.each(data,function(index,indexEntry){
 				if(department_id==indexEntry[0]){
@@ -138,7 +138,7 @@ var fnDropdownListPositionKpiDashboard=function(position_id,paramSelectAll){
 			
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select style='width:150px;' id=\"assign_position_id\" name=\"assign_position_id\" class=\"\" >";
+			htmlDropDrowList+="<select style='width:100%;' id=\"assign_position_id\" name=\"assign_position_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -189,7 +189,7 @@ var fnDropdownListEmpKpiDashboard=function(year,appraisal_period_id,department_i
 			
 			
 			var htmlDropDrowList="";
-			htmlDropDrowList+="<select style='width:160px;' id=\"assign_employee_id\" name=\"assign_employee_id\" class=\"\" >";
+			htmlDropDrowList+="<select style='width:100%;' id=\"assign_employee_id\" name=\"assign_employee_id\" class=\"\" >";
 			//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 				$.each(data,function(index,indexEntry){
 					
@@ -752,14 +752,14 @@ function detailInit(e) {
 			var gridDepartment="";
 			gridDepartment+="<table id=\"gridDeparment\">";
 			gridDepartment+="<colgroup>";
-				gridDepartment+="<col style=\"width:7%\"/>";
-				gridDepartment+="<col style=\"width:15%\" />";
-				gridDepartment+="<col style=\"width:13%\" />";
-				gridDepartment+="<col style=\"width:15%\" />";
+				gridDepartment+="<col style=\"width:200px\"/>";
+				gridDepartment+="<col style=\"width:150px\" />";
+				gridDepartment+="<col style=\"width:100px\" />";
+				gridDepartment+="<col style=\"width:100px\" />";
 				//gridDepartment+="<col style=\"width:7%\" />";
 				//gridDepartment+="<col style=\"width:7%\"  />";
-				gridDepartment+="<col  style=\"width:15%\" />";
-				gridDepartment+="<col  style=\"width:15%\" />";
+				gridDepartment+="<col  style=\"width:100px\" />";
+				// gridDepartment+="<col  style=\"width:15%\" />";
 				/*gridDepartment+="<col style=\"width:70px\"  />";*/
 			gridDepartment+="</colgroup>";
 				gridDepartment+="<thead>";
@@ -1026,6 +1026,8 @@ $(document).ready(function(){
 			$(".box-title-l").css({"float":"initial"});
 			$(".pre-search-label").css({"padding-left":"0px"});
 			$(".fontLabelParam").css({"text-align":"left"});
+			
+
 		}else{
 			$(".box-title-l").css({"float":"left"});
 			$(".pre-search-label").css({"padding-left":"15px"});

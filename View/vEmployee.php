@@ -719,7 +719,7 @@ if($_SESSION['language']=="th"){
 
 <div class="alert alert-info1 bg-from" role="alert">
 
-	<div class="container">
+	<div class="row">
 		<div class="col-md-12">
 			
 			<div class='col-md-2 boxMargin fontLabelParam'>
@@ -747,7 +747,7 @@ if($_SESSION['language']=="th"){
 
 		</div>
 	</div>
-
+</div>
 
 
 	<div style="margin-top: 5px;" class="panel panel-default panel-bottom">

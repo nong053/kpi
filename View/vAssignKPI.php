@@ -254,6 +254,11 @@ if($_SESSION['language']=="th"){
 		text-align:right; 
 		padding-top:5px;
 	} 
+
+
+
+
+
  </style>
 
 

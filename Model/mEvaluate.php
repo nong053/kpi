@@ -557,7 +557,7 @@ $division_id=$_POST['division_id'];
 			$tableHTML.="<col  style='width:45%'/>";
 			$tableHTML.="<col style='width:10%'/>";
 			$tableHTML.="<col style='width:10%'/>";
-			//$tableHTML.="<col style='width:10%'/>";
+			$tableHTML.="<col style='width:10%'/>";
 			$tableHTML.="<col style='width:15%'/>";
 		
 		$tableHTML.="</colgroup>";

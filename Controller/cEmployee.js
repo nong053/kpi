@@ -33,7 +33,7 @@ $(document).ready(function(){
 			success:function(data){
 				//console.log(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"department_search_id\" name=\"department_search_id\" class=\"\" >";
+				htmlDropDrowList+="<select id=\"department_search_id\" name=\"department_search_id\" class=\"\" style='width:100%;'>";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(department_id==indexEntry[0]){
@@ -88,7 +88,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"status_work_search_id\" name=\"status_work_search_id\" class=\"\"  >";
+				htmlDropDrowList+="<select id=\"status_work_search_id\" name=\"status_work_search_id\" class=\"\" style='width:100%;' >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(status_work_id==indexEntry[0]){
@@ -126,7 +126,7 @@ $(document).ready(function(){
 			success:function(data){
 				//alert(data);
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"empDepartment\" name=\"empDepartment\" class=\"\" >";
+				htmlDropDrowList+="<select id=\"empDepartment\" name=\"empDepartment\" class=\"\" style='width:100%;'>";
 				//htmlDropDrowList+="<option value='0'>ไม่ระบุ</option>";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
@@ -174,7 +174,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select  id=\"position_search_id\" name=\"position_search_id\" class=\"\" >";
+				htmlDropDrowList+="<select  id=\"position_search_id\" name=\"position_search_id\" class=\"\" style='width:100%;' >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(position_id==indexEntry[0]){
@@ -217,7 +217,7 @@ $(document).ready(function(){
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"emp_role_id\" name=\"emp_role_id\" class=\"\" style='width:120px;' >";
+				htmlDropDrowList+="<select id=\"emp_role_id\" name=\"emp_role_id\" class=\"\" style='width:100%;' >";
 				//htmlDropDrowList+="<option value=\"All\" >ทั้งหมด</option>";
 					$.each(data,function(index,indexEntry){
 						if(role_id==indexEntry[0]){
@@ -268,7 +268,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"empPosition\" name=\"empPosition\" class=\"\" >";
+				htmlDropDrowList+="<select id=\"empPosition\" name=\"empPosition\" class=\"\" style='width:100%;'>";
 					$.each(data,function(index,indexEntry){
 						if(position_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	
@@ -313,7 +313,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 			success:function(data){
 				
 				var htmlDropDrowList="";
-				htmlDropDrowList+="<select id=\"empStatusWork\" name=\"empStatusWork\" class=\"\" >";
+				htmlDropDrowList+="<select id=\"empStatusWork\" name=\"empStatusWork\" class=\"\" style='width:100%;'>";
 					$.each(data,function(index,indexEntry){
 						if(status_id==indexEntry[0]){
 							htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[1]+"</option>";	

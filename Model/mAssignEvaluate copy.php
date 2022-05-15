@@ -355,7 +355,7 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         $i = 1;
         $tableHTML .= "
         
-        <div id='Tableemployee' class='table'>";
+        <table id='Tableemployee' class='table'>";
         $tableHTML .= "<colgroup>";
         $tableHTML .= "<col style='width:10%' />";
         $tableHTML .= "<col style='width:80%' />";
@@ -368,49 +368,23 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
         // $tableHTML .= "</tr>";
         // $tableHTML .= "</thead>";
-        $tableHTML .= "<div class='contentemployee'>";
+        $tableHTML .= "<tbody class='contentemployee'>";
         while ($rs = mysql_fetch_array($result)) {
 
-            
+            $tableHTML .= "<tr>
+            <div>
+            ";
+            $tableHTML .= "<td style='text-align:center;'>";
 
 
-
-            $tableHTML .= "</div>";
-            $tableHTML .= "<div>";
-            
-
-            
-
-
-            $tableHTML .= "<div >";
-            
-            $tableHTML .= "<div style='text-align:center;'>";
-
-
-            $tableHTML .= "<div class='thumbnail' style='width:auto;'>";
-
-            $tableHTML .= "
-            <div class='alert alert-warning' style=''>
-            
-					 <div class='col-md-6 object-text-left'>
-					  <span class='head-box-assign'  id=\"status_confirm_flag-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."\" >ยังไม่ส่งประเมิน</span>
-                     </div>
-                     
-					 <div class='col-md-6 object-text-right'>
-					 <button class='btn btn-warning sendKpiAssignByEmp' id='assignKpiByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>ส่งประเมิน</button>
-					 <button class='btn btn-primary assignKpiByEmp' id='sendKpiAssignByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>มอบหมายตัวชี้วัด</button>
-					 </div>
-					 <br style='clear:both'>
-			</div>";
-
-
+            $tableHTML .= "<div class='thumbnail' style='width:200px; margin-top:10px;'>";
             if (empty($rs['emp_picture_thum'])) {
-                $tableHTML .= "	<img style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" style='float: left;'  class='thumbnail imagePerson'>";
+                $tableHTML .= "	<img style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" >";
             } else {
-                $tableHTML .= "	<img  src=\"" . $rs['emp_picture_thum'] . "\" style='float: left;'  class='thumbnail imagePerson'>";
+                $tableHTML .= "	<img  src=\"" . $rs['emp_picture_thum'] . "\" >";
             }
             $tableHTML .= " 
-					<div class='caption' style='float: left;'>";
+					<div class='caption'>";
                  
             $tableHTML .= "<p class='emp-text-left'>";
 
@@ -429,10 +403,26 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
             $tableHTML .= "<br> ตำแหน่ง" . $rs['position_name'];
             $tableHTML .= "<br> อายุงาน " . dateDifference($rs['emp_age_working'],date("Y-m-d"))."ปี";
             $tableHTML .= "</p>";
+            $tableHTML .= " 
+					</div>
+					</div>";
 
-            $tableHTML .= "<br style='clear:both;'> </div>";
 
-
+            $tableHTML .= "</td>";
+            $tableHTML .= "<td>";
+            $tableHTML .= "
+            <div class='alert alert-warning' style='margin-top:10px;'>
+            
+					 <div class='col-md-6 object-text-left'>
+					  <span class='head-box-assign'  id=\"status_confirm_flag-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."\" >ยังไม่ส่งประเมิน</span>
+                     </div>
+                     
+					 <div class='col-md-6 object-text-right'>
+					 <button class='btn btn-warning sendKpiAssignByEmp' id='assignKpiByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>ส่งประเมิน</button>
+					 <button class='btn btn-primary assignKpiByEmp' id='sendKpiAssignByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>มอบหมายตัวชี้วัด</button>
+					 </div>
+					 <br style='clear:both'>
+			</div>";
 
             $tableHTML .= "<table class='table' >";
             $tableHTML .= "<thead>";
@@ -533,16 +523,17 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
             
             $tableHTML .= "</table>";
             $tableHTML .= "</td>";
-            $tableHTML .= "</tr>";
+            $tableHTML .= "</tr>
+            ";
         
         }
-        $tableHTML .= "</div>";
-        $tableHTML .= "</div>
+        $tableHTML .= "</tbody>";
+        $tableHTML .= "</table>
            
             </div>
             
         </div>
-   
+        
             ";
 
 
