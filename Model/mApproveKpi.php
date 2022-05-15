@@ -99,7 +99,7 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="<thead>";
 	$tableHTML.="<tr>";
 	// $tableHTML.="<th data-field=\"column1\"><b>".$_SESSION['approve_emp_l_tbl_id']."</b></th>";
-	$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['approve_emp_l_tbl_picture']."</b></th>";
+	$tableHTML.="<th style='text-align:center;' data-field=\"column2\"><b>".$_SESSION['approve_emp_l_tbl_picture']."</b></th>";
 	$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['approve_emp_l_tbl_fullname']."</b></th>";
 	//$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['approve_emp_l_tbl_department']."</b></th>";
 	// $tableHTML.="<th data-field=\"column5\"><b>".$_SESSION['approve_emp_l_tbl_position']."</b></th>";
@@ -141,7 +141,7 @@ if($_POST['action']=="showEmpData"){
 		$tableHTML.="<tbody class=\"contentemployee\">";
 		$tableHTML.="<tr>";
 		//$tableHTML.="	<td>".$i."|".$rs['emp_id']."</td>";
-		$tableHTML.="	<td style='text-align:center;'>";
+		$tableHTML.="	<td style='text-align:;'>";
 		
 		if (empty($rs['emp_picture_thum'])) {
 			$tableHTML .= "	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a>";

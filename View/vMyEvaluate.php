@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['emp_evaluate_l_des_title']="ประเมินตนเอง";
-	$_SESSION['emp_evaluate_l_des_detail']="พื่อนำมาพัฒนาประสิทธิภาพและประสิทธิผลให้ได้มาตรฐานตามตัวชี้วัด ";
+	$_SESSION['emp_evaluate_l_des_detail']="พนักงานประเมินตนเอง เพื่อนำมาพัฒนาประสิทธิภาพและประสิทธิผลให้ได้มาตรฐานตามตัวชี้วัด ";
 	
 
 	//Search
