@@ -1,8 +1,10 @@
-$result=$conn->query($strSQL);
-$rs=$result->fetch_assoc();
+$result=$conn->query($strSQL);  $conn->query
+$rs=$result->fetch_assoc();  $result->fetch_assoc()
 $result->num_rows;
 $conn->close();
-$conn->error;
+$conn->error;  echo $conn->error;
+$conn->errno;
+$conn -> insert_id
 
 PHP 5 Update to PHP Version 7.2.34
 You can download Welcome to XAMPP for Windows 7.2.34 for virtual host
