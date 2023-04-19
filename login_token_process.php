@@ -1,4 +1,4 @@
-<? session_start(); ob_start();
+<?php session_start(); ob_start();
 include("config.inc.php");
 $user=$_POST['username'];
 $pass=$_POST['password'];

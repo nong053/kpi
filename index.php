@@ -89,7 +89,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 </head>
 <body>
 
-test by nong
+
 
 
     <div id="sign_up2">
@@ -112,7 +112,7 @@ test by nong
                                 ลงชื่อเข้าใช้งาน<br>KPI<i class='fa fa-angle-double-right'></i>BSC
                                 </h3>
                                 <font  style='color:red;' >
-                                <?=$_SESSION['activated_message'];?>
+                                <?echo $_SESSION['activated_message'];?>
                                 </font>
                                 <br>
                                 <font id='warning' style='display: none; color:red;' >ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง</font>
@@ -126,7 +126,7 @@ test by nong
                                     echo $_SESSION['ERORRLOGIN'];
                                     ?>
                                      </font>
-                                    <?
+                                    <?php
                                 }
                                 ?>
                             </div>

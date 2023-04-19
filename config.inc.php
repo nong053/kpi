@@ -21,15 +21,21 @@ $db="person_kpi";
 $header = '{"typ":"JWT","alg":"HS256"}';
 $JWT = new JWT;
 
-$conn=mysql_connect($host,$user,$pass);
-//$conn = mysqli_connect($host, $user, $pass, $db);
+//$conn=mysql_connect($host,$user,$pass);
+$conn = new mysqli($host, $user, $pass,$db);
+$conn->set_charset("utf8");
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+/*
+$conn = mysqli_connect($host, $user, $pass, $db);
 if($conn){
   mysql_query("SET NAMES UTF8");
   mysql_select_db($db);
-  //echo"connect success.";
 }else{
   echo"can't connect database";
 }
+*/
 
 //get token for virify.
 
