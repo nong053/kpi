@@ -502,7 +502,7 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
             $confirm_flag=$rsKPIByEmp['confirm_flag'];
             $total_weight_kpi_by_emp=$rsKPIByEmp['total_weight_kpi_by_emp'];
             $tableHTML .= "<tr >";
-                $tableHTML .= "<td style='padding-left:15px;' id='kpiName-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."'>";
+                $tableHTML .= "<td style='padding-left:15px; text-align:left;' id='kpiName-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."'>";
                 $tableHTML .= $rsKPIByEmp['kpi_name'];
                 $tableHTML .= "</td>";
                 $tableHTML .= "<td style='text-align:right'>";

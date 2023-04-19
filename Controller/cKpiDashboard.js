@@ -752,7 +752,7 @@ function detailInit(e) {
 			var gridDepartment="";
 			gridDepartment+="<table id=\"gridDeparment\">";
 			gridDepartment+="<colgroup>";
-				gridDepartment+="<col style=\"width:200px\"/>";
+				gridDepartment+="<col style=\"width:40px\"/>";
 				gridDepartment+="<col style=\"width:150px\" />";
 				gridDepartment+="<col style=\"width:100px\" />";
 				gridDepartment+="<col style=\"width:100px\" />";
