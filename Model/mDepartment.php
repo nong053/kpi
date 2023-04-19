@@ -25,29 +25,29 @@ if($_POST['action']=="checkUsedData"){
 		where department_id='$departmentId'
 	";
 
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	echo "[\"$rs[countDep]\"]";
-	mysql_close($conn);
+	$conn->close();
 }
 //CheckUsing in employee End
 
 if($_POST['action']=="add"){
 	$strSQL="INSERT INTO department(department_code,department_name,department_detail,admin_id)
 	VALUES('$departmentCode','$departmentName','$departmentDetail','$admin_id')";
-	$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
 	//echo "Show Data";
 	$strSQL="SELECT * FROM department where  admin_id='$admin_id' order by department_id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tabledepartment' class='grid table-striped' style='width:100%'>";
@@ -70,7 +70,7 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 	
 	$tableHTML.="<tbody class=\"contentdepartment\">";
@@ -95,28 +95,28 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM department WHERE department_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM department WHERE department_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		//echo "[{\"abc\":$rs[department_id],\"def\":\"22\"}]";
 		
@@ -127,7 +127,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 	$id=$_POST['departmentId'];
@@ -140,14 +140,14 @@ if($_POST['action']=="editAction"){
 	
 	
 	$strSQL="UPDATE department SET department_code='$departmentCode',department_name='$departmentName',department_detail='$departmentDetail' WHERE department_id='$id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 

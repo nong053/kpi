@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 
 <?php
 include './../config.inc.php';
@@ -19,13 +19,13 @@ $admin_id=$_SESSION['admin_id'];
 if($_POST['action']=="add"){
 	$strSQL="INSERT INTO perspective(perspective_name,perspective_weight,admin_id)
 	VALUES('$perspectiveName','$perspectiveWeight','$admin_id')";
-	$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
-		echo'error '.mysql_error();
+		echo'error '.$conn->error; ;
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
@@ -34,7 +34,7 @@ if($_POST['action']=="showData"){
  where admin_id='$admin_id' 
  order by  perspective_id
 	";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='TablePerspective' class='grid table-striped' style='width:100%'>";
@@ -57,7 +57,7 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentPerspective\">";
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 	
 	
@@ -81,28 +81,28 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM perspective WHERE perspective_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM perspective WHERE perspective_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		 echo "[{\"perspective_id\":\"$rs[perspective_id]\",\"perspective_name\":\"$rs[perspective_name]\",\"perspective_weight\":\"$rs[perspective_weight]\"}]";
 		
@@ -110,7 +110,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 	$id=$_POST['perspectiveId'];
@@ -122,14 +122,14 @@ if($_POST['action']=="editAction"){
 	
 	
 	$strSQL="UPDATE perspective SET perspective_name='$perspectiveName',perspective_weight='$perspectiveWeight' WHERE perspective_id='$id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error; ;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -142,10 +142,10 @@ if($_POST['action']=="checkUsedData"){
 		where perspective_id='$perspective_id'
 	";
 
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	echo "[\"$rs[countPers]\"]";
-	mysql_close($conn);
+	$conn->close();
 }
 //CheckUsing in employee End
 

@@ -12,11 +12,11 @@ $admin_id=$_SESSION['admin_id'];
 $department_id=$_POST['department_id'];
 //$admin_id='198';
 $strSQL="SELECT * FROM kpi  where admin_id='$admin_id' and department_id='$department_id'";
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 $i=0;
 $dataObject="";
 $dataObject.="[";
-while($rs=mysql_fetch_array($result)){
+while($rs=$result->fetch_assoc()){
 	if($i==0){
 		$dataObject.="[";
 		$dataObject.="\"".$rs["kpi_id"]."\",\"".$rs["kpi_name"]."\"";

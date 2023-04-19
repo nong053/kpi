@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 
 include './../config.inc.php';
@@ -32,11 +32,11 @@ if($jsonArray["login_status"]==1){
 	}
 	//$year="2012";
 	
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$i=0;
 	$dataObject="";
 	$dataObject.="[";
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		if($i==0){
 			$dataObject.="[";
 			$dataObject.="\"".$rs["position_id"]."\",\"".$rs["position_name"]."\"";

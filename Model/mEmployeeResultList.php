@@ -45,11 +45,11 @@ SELECT 'All' AS emp_id,'ทุกคน' as fullname  ,0 as seq
 		order by e.emp_id";
 	}
 
-	$result = mysql_query($strSQL);
+	$result = $conn->query($strSQL);
 	$i = 0;
 	$dataObject = "";
 	$dataObject .= "[";
-	while ($rs = mysql_fetch_array($result)) {
+	while ($rs = $result->fetch_assoc()) {
 		if ($i == 0) {
 			$dataObject .= "[";
 			$dataObject .= "\"" . $rs["emp_id"] . "\",\"" . $rs["fullname"] ."\"";

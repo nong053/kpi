@@ -34,8 +34,8 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 			where admin_username = '$admin_username'
 			)as checkUser
 		";
-		$table=mysql_query($sql) or die(mysql_error());
-		$rs=mysql_fetch_array($table);
+		$table=$conn->query($sql) or die($conn->error);
+		$rs=$table->fetch_assoc();
 		//echo $rs['totalUser'];
 
 		if($rs['totalUser']>0){
@@ -45,15 +45,15 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 			$sql="INSERT INTO admin (admin_name, admin_surname, admin_username, admin_password, admin_status,admin_email,admin_website,admin_send_email,admin_tel,admin_age ,register_date,package,admin_company)
 			 VALUES 
 			('$admin_name', '$admin_surname', '$admin_username', '".MD5($admin_password)."', '$admin_status','$admin_email','$admin_website','$admin_send_email','$admin_tel','$admin_age','$c',1,'$admin_company')";
-			if(mysql_query($sql)){
+			if($conn->query($sql)){
 				//echo'["insert-success"]';
 				
 				$strSQL="select * from admin where admin_username='$admin_username' and admin_password='".MD5($admin_password)."'";
-				$result=mysql_query($strSQL);
+				$result=$conn->query($strSQL);
 				
 				
-				if($num=mysql_num_rows($result)){
-					$rs=mysql_fetch_array($result);
+				if($num=$result->num_rows;){
+					$rs=$result->fetch_assoc();
 					$_SESSION['admin_id']=$rs['admin_id'];
 					$_SESSION['admin_name']=$rs['admin_name'];
 					$_SESSION['new_register_admin_username']=$rs['admin_username'];

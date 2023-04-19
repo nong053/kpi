@@ -1,4 +1,4 @@
- <? @session_start(); ob_start();
+ <?php @session_start(); ob_start();
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 ?>
@@ -44,13 +44,13 @@ if($_POST['action']=="add"){
 	$strSQL="INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 	VALUES('$baselineBegin','$baselineEnd','$baselinetargetScore ','$paramKpiId','$suggestion')";
 
-	$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -59,7 +59,7 @@ if($_POST['action']=="showData"){
 	//echo "Show Data";
 	$strSQL="SELECT * FROM baseline where kpi_id=$paramKpiId 
 	order by baseline_score";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tablebaseline' class='grid table-striped'>";
@@ -91,7 +91,7 @@ if($_POST['action']=="showData"){
 	$colorThresholdTrueFalse = array("","#DD0000", "#336666");
 	
 	
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 
 	$tableHTML.="<tbody class=\"contentkpi\">";
@@ -127,28 +127,28 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 
 	$strSQL="DELETE FROM baseline WHERE baseline_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 	
 	$strSQL="SELECT * FROM baseline WHERE baseline_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		//echo "[{\"abc\":$rs[kpi_id],\"def\":\"22\"}]";
 		
@@ -160,7 +160,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 
@@ -168,14 +168,14 @@ if($_POST['action']=="editAction"){
 	$strSQL="UPDATE baseline SET baseline_begin='$baselineBegin',baseline_end='$baselineEnd',baseline_score='$baselinetargetScore',
 	suggestion='$suggestion'
 	WHERE baseline_id='$baselineId'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 }else{

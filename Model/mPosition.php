@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 
 <?php
 include './../config.inc.php';
@@ -25,12 +25,12 @@ if($_POST['action']=="checkUsedData"){
 		where position_id='$positionId'
 	";
 
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	
 	echo "[\"$rs[countPosition]\"]";
 	
-	mysql_close($conn);
+	$conn->close();
 }
 //checkUsedData End
 
@@ -41,13 +41,13 @@ if($_POST['action']=="add"){
 	
 	$strSQL="INSERT INTO position_emp(position_name,admin_id,role_id)
 	VALUES('$positionName','$admin_id','$role_id')";
-	$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
-		echo mysql_error();
+		echo $conn->error;
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
@@ -55,7 +55,7 @@ if($_POST['action']=="showData"){
 	$strSQL="SELECT pe.*,r.role_name FROM position_emp pe
 LEFT JOIN role r on pe.role_id=r.role_id
  where admin_id='$admin_id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tableposition' class='grid table-striped' style='width:100%'>";
@@ -77,7 +77,7 @@ LEFT JOIN role r on pe.role_id=r.role_id
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 	
 	$tableHTML.="<tbody class=\"contentposition\" >";
@@ -100,28 +100,28 @@ LEFT JOIN role r on pe.role_id=r.role_id
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM position_emp WHERE position_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM position_emp WHERE position_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		//echo "[{\"abc\":$rs[position_id],\"def\":\"22\"}]";
 		
@@ -131,7 +131,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 	$id=$_POST['positionId'];
@@ -143,14 +143,14 @@ if($_POST['action']=="editAction"){
 	
 	
 	$strSQL="UPDATE position_emp SET position_name='$positionName',role_id='$role_id' WHERE position_id='$id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -158,5 +158,6 @@ if($_POST['action']=="editAction"){
 echo'{"status":"400","error":"not token."}';
 
 }
+?>
 
 

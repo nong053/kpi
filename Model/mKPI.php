@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 
@@ -37,10 +37,10 @@ if($_POST['action']=="checkUsedData"){
 	where kpi_id='$kpiId'
 	";
 
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	echo "[\"$rs[countKPIs]\"]";
-	mysql_close($conn);
+	$conn->close();
 }
 //CheckUsingKpiAssignAndKpiResult End
 
@@ -49,10 +49,10 @@ if($_POST['action']=="checkUniqueKPICode"){
 	$numrows="0";
 	$sqlSQL="SELECT * FROM person_kpi.kpi where kpi_code='$kpiCode' and admin_id='$admin_id'";
 
-	$result=mysql_query($sqlSQL);
-	$numrows = mysql_num_rows($result);
+	$result=$conn->query($sqlSQL);
+	$numrows = $result->num_rows;;
 	echo "[\"$numrows\"]";
-	mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -64,8 +64,8 @@ if($_POST['action']=="add"){
 
 	$strSQL="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target,perspective_id)
 	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget','$perspectiveId')";
-	$rs=mysql_query($strSQL);
-	$id = mysql_insert_id();
+	$rs=$conn->query($strSQL);
+	$id = $conn -> insert_id;
 	if($rs){
 
 		if($kpiTypeScore==1){
@@ -79,7 +79,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin1','$baseline_end1','0 ','$id','ไม่ผ่าน');
 				";
-			    mysql_query($strSQL1);
+			    $conn->query($strSQL1);
 
 
 			    $baseline_begin2=$baseline_end1+1;
@@ -88,7 +88,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin2','$baseline_end2','1','$id','ต่ำกว่าเกณฑ์');
 				";
-			    mysql_query($strSQL2);
+			    $conn->query($strSQL2);
 
 			    $baseline_begin3=$baseline_end2+1;
 				$baseline_end3=(($kpiDataTarget*60/100)-1);
@@ -96,7 +96,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin3','$baseline_end3','2','$id','ผ่านเกณฑ์ขั้นต่ำ');
 				";
-			    mysql_query($strSQL3);
+			    $conn->query($strSQL3);
 
 			    $baseline_begin4=$baseline_end3+1;
 				$baseline_end4=(($kpiDataTarget*80/100)-1);
@@ -104,7 +104,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin4','$baseline_end4','3','$id','น่าพอใจ');
 				";
-			    mysql_query($strSQL4);
+			    $conn->query($strSQL4);
 
 			    $baseline_begin5=$baseline_end4+1;
 				$baseline_end5=(($kpiDataTarget*100/100)-1);
@@ -112,7 +112,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin5','$baseline_end5','4','$id','ดี');
 				";
-			    mysql_query($strSQL5);
+			    $conn->query($strSQL5);
 			
 			    $baseline_begin6=$baseline_end5+1;
 				$baseline_end6=$kpiDataTarget*100;
@@ -120,7 +120,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin6','$baseline_end6','5 ','$id','ดีมาก');
 				";
-			    mysql_query($strSQL6);
+			    $conn->query($strSQL6);
 
 
 			}else{
@@ -133,7 +133,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin1','$baseline_end1','5 ','$id','ดีมาก');
 				";
-			    mysql_query($strSQL1);
+			    $conn->query($strSQL1);
 
 
 			    $baseline_begin2=$baseline_end1+0.01;
@@ -142,7 +142,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin2','$baseline_end2','4','$id','ดี');
 				";
-			    mysql_query($strSQL2);
+			    $conn->query($strSQL2);
 
 			    $baseline_begin3=$baseline_end2+0.01;
 				$baseline_end3=$baseline_begin3+(($kpiDataTarget*40/100));
@@ -150,7 +150,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin3','$baseline_end3','3','$id','น่าพอใจ');
 				";
-			    mysql_query($strSQL3);
+			    $conn->query($strSQL3);
 
 			    $baseline_begin4=$baseline_end3+0.01;
 				$baseline_end4=$baseline_begin4+(($kpiDataTarget*60/100));
@@ -158,7 +158,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin4','$baseline_end4','2','$id','ผ่านเกณฑ์ขั้นต่ำ');
 				";
-			    mysql_query($strSQL4);
+			    $conn->query($strSQL4);
 
 			    $baseline_begin5=$baseline_begin4+0.01;
 				$baseline_end5=$baseline_begin5+(($kpiDataTarget*80/100));
@@ -166,7 +166,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin5','$baseline_end5','1','$id','ต่ำกว่าเกณฑ์');
 				";
-			    mysql_query($strSQL5);
+			    $conn->query($strSQL5);
 			
 			    $baseline_begin6=$baseline_end5+0.01;
 				$baseline_end6=$baseline_begin6+$kpiDataTarget*100;
@@ -174,7 +174,7 @@ if($_POST['action']=="add"){
 				INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 				VALUES('$baseline_begin6','$baseline_end6','0 ','$id','ไม่ผ่าน');
 				";
-			    mysql_query($strSQL6);
+			    $conn->query($strSQL6);
 
 
 
@@ -187,38 +187,38 @@ if($_POST['action']=="add"){
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('0','0','0 ','$id','ไม่ผ่าน');
 			";
-		    mysql_query($strSQL1);
+		    $conn->query($strSQL1);
 
 		    $strSQL2="
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('1','1','1','$id','ต่ำกว่าเกณฑ์');
 			";
-		    mysql_query($strSQL2);
+		    $conn->query($strSQL2);
 
 		    $strSQL3="
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('2','2','2','$id','ผ่านเกณฑ์ขั้นต่ำ');
 			";
-		    mysql_query($strSQL3);
+		    $conn->query($strSQL3);
 
 		    $strSQL4="
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('3','3','3','$id','น่าพอใจ');
 			";
-		    mysql_query($strSQL4);
+		    $conn->query($strSQL4);
 
 		    $strSQL5="
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('4','4','4','$id','ดี');
 			";
-		    mysql_query($strSQL5);
+		    $conn->query($strSQL5);
 		
 
 			$strSQL6="
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('5','5','5 ','$id','ดีมาก');
 			";
-		    mysql_query($strSQL6);
+		    $conn->query($strSQL6);
 
 		
 
@@ -229,13 +229,13 @@ if($_POST['action']=="add"){
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('0','0','0','$id','ไม่ผ่าน');
 			";
-		    mysql_query($strSQL1);
+		    $conn->query($strSQL1);
 
 		    $strSQL2="
 			INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
 			VALUES('5','5','5 ','$id','ผ่าน');
 			";
-		    mysql_query($strSQL2);
+		    $conn->query($strSQL2);
 
 	}
 
@@ -250,9 +250,9 @@ if($_POST['action']=="add"){
 		
 	}else{
 		//echo'["error"]';
-		echo mysql_error();
+		echo $conn->error;
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
@@ -262,7 +262,7 @@ if($_POST['action']=="showData"){
 	where k.admin_id='$admin_id' 
 	-- and department_id='$departmentId' 
 			order by k.kpi_id  desc";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tablekpi' class='grid table-striped'>";
@@ -304,7 +304,7 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentkpi\">";
 
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 		if($rs['kpi_type_actual']==1){
 			$type_target="<i class='glyphicon glyphicon-ok'></i>";
@@ -377,21 +377,21 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM kpi WHERE kpi_id='$id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 
 		$strSQL2="delete from  baseline  WHERE kpi_id='$id'";
-		$result2=mysql_query($strSQL2);
+		$result2=$conn->query($strSQL2);
 
 		if($result2){
 			$strSQL3="delete from  assign_evaluate_kpi  WHERE kpi_id='$id'";
-			$result3=mysql_query($strSQL3);
+			$result3=$conn->query($strSQL3);
 
 			if($result3){
 				echo'["success"]';
@@ -407,16 +407,16 @@ if($_POST['action']=="del"){
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM kpi WHERE kpi_id='$id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		//echo "[{\"abc\":$rs[kpi_id],\"def\":\"22\"}]";
 		
@@ -427,7 +427,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 	
@@ -436,14 +436,14 @@ if($_POST['action']=="editAction"){
 	$strSQL="UPDATE kpi SET kpi_name='$kpiName',kpi_better_flag='$kpiBetterFlag',kpi_detail='$kpiDetail',
 	kpi_code='$kpiCode',department_id='$departmentId',perspective_id='$perspectiveId'
 	WHERE kpi_id='$kpiId'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 }else{

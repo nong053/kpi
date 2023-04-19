@@ -18,13 +18,13 @@ $departmentId = $_POST['departmentId'];
 if($_POST['action']=="add"){
 	$strSQL="INSERT INTO division(division_name,division_detail,department_id)
 	VALUES('$divisionName','$divisionDetail','$departmentId')";
-	$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
@@ -32,7 +32,7 @@ if($_POST['action']=="showData"){
 	$strSQL="SELECT * FROM division
 left   JOIN department dep
 ON dep.department_id=division.department_id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tabledivision' class='grid'>";
@@ -55,7 +55,7 @@ ON dep.department_id=division.department_id";
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 	
 	$tableHTML.="<tbody class=\"contentdivision\">";
@@ -77,28 +77,28 @@ ON dep.department_id=division.department_id";
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM division WHERE division_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM division WHERE division_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		//echo "[{\"abc\":$rs[division_id],\"def\":\"22\"}]";
 		
@@ -109,7 +109,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 
@@ -119,14 +119,14 @@ if($_POST['action']=="editAction"){
 	
 	
 	$strSQL="UPDATE division SET division_name='$divisionName',department_id='$departmentId',division_detail='$divisionDetail' WHERE division_id='$divisionId'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 }else{

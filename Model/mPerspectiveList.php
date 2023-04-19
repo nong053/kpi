@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 // Convert JSON string to Array
@@ -11,11 +11,11 @@ if($jsonArray["login_status"]==1){
 	
 // "admin_id=".$admin_id;
 $strSQL="SELECT * FROM perspective where admin_id='$admin_id'";
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 $i=0;
 $dataObject="";
 $dataObject.="[";
-while($rs=mysql_fetch_array($result)){
+while($rs=$result->fetch_assoc()){
 	if($i==0){
 		$dataObject.="[";
 		$dataObject.="\"".$rs["perspective_id"]."\",\"".$rs["perspective_name"]."\"";

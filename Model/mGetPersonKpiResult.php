@@ -86,7 +86,7 @@ order by kpi_year,appraisal asc
 // $columnName="kpi_year,actual_score,target,appraisal";
 // genarateJson($strSQL,$columnName,$conn);
 
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 $json = array();
 $rows = array();
 while($r = mysql_fetch_assoc($result)) {
@@ -245,8 +245,8 @@ if($_GET['action']=='emp_info'){
 INNER JOIN position_emp pe 
 on e.position_id=pe.position_id
 where  emp_id='$emp_id'";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 	
 	$htmlEmpInfo="
 				

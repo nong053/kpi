@@ -99,8 +99,8 @@ empOther
 if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 	
 	$sqlSQL="select count(*) as countEmp from assign_evaluate_kpi where emp_id='$emp_id'";
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	
 	echo "[\"$rs[countEmp]\"]";
 }
@@ -110,8 +110,8 @@ if($_POST['action']=="checkUsingKpiAssignAndKpiResult"){
 if($_POST['action']=="checkUserForPackage"){
 	
 	$sqlSQL="SELECT count(*) as user_amount FROM employee where admin_id='$admin_id'";
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	
 	echo "[\"$rs[user_amount]\"]";
 }
@@ -132,8 +132,8 @@ if($_POST['action']=="checkUserDuplicate"){
 		)as checkUser
 
 	";
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
 	
 	echo "[\"$rs[totalUser]\"]";
 }
@@ -315,15 +315,15 @@ if($_POST['empAction']=="add"){
 		VALUES('$empUser',md5('$empPass'),'$empTel','$empMobile','$empAge','$empFullName','$empEmail','$empPosition','$empPosition2','$empOther','$image_save_folder','$thumb_save_folder','$empDepartment','$role_id','$admin_id',
 		'$empFirstName','$empLastName','$empBrithDay','$empAgeWorking','$empStatus','$empAddress','$empDistict','$empSubDistict','$empProvince','$empPostcode','$empStatusWork','$empCode'
 )";
-		$rs=mysql_query($strSQL);
+		$rs=$conn->query($strSQL);
 		if($rs){
 			//echo'success';
 			//echo"<script>alert(บันทึกข้อมูลเรียบร้อย);</script>";
 			echo"<script>window.location.href = \"../View/index.php#/pages/vEmployee\";</script>";
 		}else{
-			echo mysql_error();
+			echo $conn->error;;
 		}
-		mysql_close($conn);
+		$conn->close();
 		
 	}
 }
@@ -350,7 +350,7 @@ where (e.department_id='All' or 'All' ='All')
  and (e.position_id='All' or 'All' ='All')
 	";
 	*/
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tableemployee' class='grid table-striped' style='width:100%'>";
@@ -381,7 +381,7 @@ where (e.department_id='All' or 'All' ='All')
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentemployee\">";
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 	//echo "emp_picture_thum".$rs['emp_picture_thum'];
 
@@ -436,15 +436,15 @@ where (e.department_id='All' or 'All' ='All')
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQLDelPic="SELECT * FROM employee WHERE emp_id=$id";
-	$resultDelPic=mysql_query($strSQLDelPic);
+	$resultDelPic=$conn->query($strSQLDelPic);
 	
-	$rsDelPic=mysql_fetch_array($resultDelPic);
+	$rsDelPic=$resultDelPic->fetch_assoc();
 	
 	@unlink($rsDelPic['emp_picture']);
 	@unlink($rsDelPic['emp_picture_thum']);
@@ -455,19 +455,19 @@ if($_POST['action']=="del"){
 	
 	
 	$strSQL="DELETE FROM employee WHERE emp_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 
 
 		$strSQLAssign="DELETE FROM assign_kpi WHERE emp_id=$id";
-		$resultAssign=mysql_query($strSQLAssign);
+		$resultAssign=$conn->query($strSQLAssign);
 		
 
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
@@ -490,9 +490,9 @@ inner join  emp_status es on e.emp_status_work_id= es.id
 	
 	WHERE emp_id=$id";
 	
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		 echo "[{\"emp_id\":\"$rs[emp_id]\",\"emp_user\":\"$rs[emp_user]\",
 		 		\"emp_pass\":\"$rs[emp_pass]\",\"emp_picture\":\"$rs[emp_picture]\",
@@ -520,7 +520,7 @@ inner join  emp_status es on e.emp_status_work_id= es.id
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['empAction']=="editAction"){
 
@@ -645,9 +645,9 @@ if($_POST['empAction']=="editAction"){
 	/*Edit Immage End Here*/
 	
 		$strSQLDelPic="SELECT * FROM employee WHERE emp_id=$empId";
-		$resultDelPic=mysql_query($strSQLDelPic);
+		$resultDelPic=$conn->query($strSQLDelPic);
 		
-		$rsDelPic=mysql_fetch_array($resultDelPic);
+		$rsDelPic=$resultDelPic->fetch_assoc();
 		
 		@unlink($rsDelPic['emp_picture']);
 		@unlink($rsDelPic['emp_picture_thum']);
@@ -708,17 +708,17 @@ if($_POST['empAction']=="editAction"){
 				
 	}
 	
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		//echo'editSuccess';
 		//echo"<script>alert('แก้ไขข้อมูลเรียบร้อย');</script>";
 		echo"<script>window.location.href = \"../View/index.php#/pages/vEmployee\";</script>";
 
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 // }else{

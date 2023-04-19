@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 
 <?php
 include './../config.inc.php';
@@ -28,7 +28,7 @@ $copyTo=$_POST['vCoppyTo'];
 
 if($_POST['action']=='appraisal_period'){
   $strSQLDel="delete from appraisal_period where admin_id='$copyTo'";
-  $resultDel= mysql_query($strSQLDel);
+  $resultDel= $conn->query($strSQLDel);
   if(!$resultDel){
   	echo '["notSuccess"]';
   }else{
@@ -40,7 +40,7 @@ if($_POST['action']=='appraisal_period'){
 					appraisal_period_desc,appraisal_period_start,appraisal_period_end
 					appraisal_period_end,appraisal_period_target_percentage,".$copyTo." FROM appraisal_period
 					WHERE admin_id='$copyForm'; ";
-			$result= mysql_query($strSQL);
+			$result= $conn->query($strSQL);
 			if(!$result){
 				echo '["notSuccess"]';
 			}else{
@@ -52,7 +52,7 @@ if($_POST['action']=='appraisal_period'){
 }
 if($_POST['action']=='assign_kpi'){
 	$strSQLDel="delete from assign_kpi where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess"]';
 	}else{
@@ -120,7 +120,7 @@ if($_POST['action']=='assign_kpi'){
 				WHERE ap.admin_id='$copyForm'; 
 				
 				";
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess"]';
 		}else{
@@ -133,7 +133,7 @@ if($_POST['action']=='assign_kpi'){
 
 if($_POST['action']=='assign_kpi_master'){
 	$strSQLDel="delete from assign_kpi_master where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 		
@@ -196,10 +196,10 @@ if($_POST['action']=='assign_kpi_master'){
 				WHERE akm.admin_id='$copyForm';
 				
 		";
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
-			//echo mysql_error();
+			//echo $conn->error;
 		}else{
 			echo '["success"]';
 		}
@@ -210,7 +210,7 @@ if($_POST['action']=='assign_kpi_master'){
 if($_GET['action']=='assign_kpi_master_test'){
 
 	$strSQLDel="delete from assign_kpi_master where admin_id=198";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 		
@@ -258,13 +258,13 @@ if($_GET['action']=='assign_kpi_master_test'){
 				on akm.appraisal_period_id=ap1.appraisal_period_id
 				WHERE akm.admin_id='197';
 		";
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
 			
 		}else{
 
-			while($rs=mysql_fetch_array($result)){
+			while($rs=$result->fetch_assoc()){
 
 				echo "assign_kpi_year=".$rs['assign_kpi_year']."<br>";
 				echo "appraisal_period_id=".$rs['appraisal_period_id']."<br>";
@@ -303,7 +303,7 @@ if($_GET['action']=='assign_kpi_master_test'){
 if($_POST['action']=='department'){
 	
 	$strSQLDel="delete from department where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -319,7 +319,7 @@ if($_POST['action']=='department'){
 				FROM department
 				WHERE admin_id='$copyForm'; ";
 		
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
 		}else{
@@ -333,7 +333,7 @@ if($_POST['action']=='department'){
 if($_POST['action']=='employee'){
 
 	$strSQLDel="delete from employee where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -399,10 +399,10 @@ if($_POST['action']=='employee'){
 				on pe1.position_id=e.position_id
 				WHERE e.admin_id='$copyForm'; ";
 
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			//echo '["notSuccess2"]';
-			echo mysql_error();
+			echo $conn->error;
 		}else{
 			echo '["success"]';
 		}
@@ -414,7 +414,7 @@ if($_POST['action']=='employee'){
 if($_POST['action']=='kpi_bk'){
 
 	$strSQLDel="delete from kpi where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -434,7 +434,7 @@ if($_POST['action']=='kpi_bk'){
 				FROM kpi
 				WHERE admin_id='$copyForm'; ";
 
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
 		}else{
@@ -452,7 +452,7 @@ if($_GET['action']=='kpi'){
 	$message="";
 
 	$strSQLDel="delete from kpi where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -469,8 +469,8 @@ if($_GET['action']=='kpi'){
 				FROM kpi
 				WHERE admin_id='$copyForm'; ";
 
-		$result= mysql_query($strSQL);
-		while($rs= mysql_fetch_array($result)){
+		$result= $conn->query($strSQL);
+		while($rs= $result->fetch_assoc()){
 			//echo "kpi_id=".$rs['kpi_id']."<br>";
 			$strSQLInsert="
 				INSERT INTO kpi(
@@ -487,16 +487,16 @@ if($_GET['action']=='kpi'){
 				'".$rs['department_code']."'
 				)";
 
-				$resultInsert=mysql_query($strSQLInsert);
+				$resultInsert=$conn->query($strSQLInsert);
 				if($resultInsert){
 					//echo "insert to baseline".mysql_insert_id()." <br>";
 					// $strSQLInsertBaseline="select baseline_id,kpi_id,baseline_begin,
 					// baseline_end,baseline_score,suggestion
 					// from baseline
 					// where kpi_id ='".$rs['kpi_code']."'";
-					// $resultBaseline= mysql_query($strSQLInsertBaseline);
+					// $resultBaseline= $conn->query($strSQLInsertBaseline);
 					$strSQLBaseLineDel="delete from baseline where kpi_id='".$rs['kpi_id']."'";
-					$resultBaseLineDel= mysql_query($strSQLBaseLineDel);
+					$resultBaseLineDel= $conn->query($strSQLBaseLineDel);
 					$strSQLBaseline="INSERT INTO baseline(
 						
 						kpi_id,
@@ -519,7 +519,7 @@ if($_GET['action']=='kpi'){
 
 						
 
-					$resultBaseline= mysql_query($strSQLBaseline);
+					$resultBaseline= $conn->query($strSQLBaseline);
 
 
 					if($resultBaseline){
@@ -527,12 +527,12 @@ if($_GET['action']=='kpi'){
 						$message="[\"baselineSuccess\"]";
 					}else{
 						$message="[\"baselineNotSuccess\"]";
-						echo mysql_error();
+						echo $conn->error;
 
 					}
 
 				}else{
-					echo mysql_error();
+					echo $conn->error;
 				}
 			}
 
@@ -545,7 +545,7 @@ if($_GET['action']=='kpi'){
 if($_POST['action']=='kpi_result'){
 
 	$strSQLDel="delete from kpi_result where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -614,10 +614,10 @@ if($_POST['action']=='kpi_result'){
 				
 			 ";
 
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
-			//echo mysql_error();
+			//echo $conn->error;
 		}else{
 			echo '["success"]';
 		}
@@ -629,7 +629,7 @@ if($_POST['action']=='kpi_result'){
 if($_POST['action']=='position_emp'){
 
 	$strSQLDel="delete from position_emp where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -648,7 +648,7 @@ if($_POST['action']=='position_emp'){
 				FROM position_emp
 				WHERE admin_id='$copyForm'; ";
 
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
 		}else{
@@ -663,7 +663,7 @@ if($_POST['action']=='position_emp'){
 if($_POST['action']=='threshold'){
 
 	$strSQLDel="delete from threshold where admin_id='$copyTo'";
-	$resultDel= mysql_query($strSQLDel);
+	$resultDel= $conn->query($strSQLDel);
 	if(!$resultDel){
 		echo '["notSuccess1"]';
 	}else{
@@ -687,7 +687,7 @@ if($_POST['action']=='threshold'){
 				FROM threshold
 				WHERE admin_id='$copyForm'; ";
 
-		$result= mysql_query($strSQL);
+		$result= $conn->query($strSQL);
 		if(!$result){
 			echo '["notSuccess2"]';
 		}else{

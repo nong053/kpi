@@ -30,7 +30,7 @@ and appraisal_period_id='$appraisalPeriod'
 and ak.emp_id='$emp_id '
 and p.perspective_id='$perspective'";
 	
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='TableKpi' class='grid table-striped'>";
@@ -61,7 +61,7 @@ and p.perspective_id='$perspective'";
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 		
 	$tableHTML.="<tbody class=\"contentassignKpi\">";
@@ -86,7 +86,7 @@ and p.perspective_id='$perspective'";
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -118,15 +118,15 @@ and ak.emp_id='$emp_id '
 and k.kpi_id='$kpi_id'";
 
 	
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 	
 	$strSQLKpiResult="select * from kpi_result where assign_kpi_id='$assign_kpi_id'
 and kpi_id='$kpi_id'";
-$resultKpiResult=mysql_query($strSQLKpiResult);
-$rsKpiResult=mysql_fetch_array($resultKpiResult);
+$resultKpiResult=$conn->query($strSQLKpiResult);
+$rsKpiResult=$resultKpiResult->fetch_assoc();
 
-echo "test".$rsKpiResult[kpi_actual];
+echo "test".$rsKpiResult['kpi_actual'];
 	
 	
 	
@@ -273,23 +273,23 @@ if($_POST['action']=="editAction"){
 	$strSQL="UPDATE assign_kpi SET assign_kpi_year='$year',appraisal_period_id='$appraisalPeriod' ,
 	position_id='$position' ,emp_id='$employee' ,perspective_id='$perspective' 
 	WHERE assign_kpi_id='$assignKpiId'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="setActualKpi"){
  $strSQL="select count(*) as countRow from kpi_result
  	where assign_kpi_id='$assign_kpi_id'
  	and kpi_id='$kpi_id'";
- $result=mysql_query($strSQL);
- $rs=mysql_fetch_array($result);
- if($rs[countRow]==0){
+ $result=$conn->query($strSQL);
+ $rs=$result->fetch_assoc();
+ if($rs['countRow']==0){
  	//echo"ok".$rs[countRow];
 /*
 kpi_result
@@ -312,13 +312,13 @@ $assign_kpi_id
  	
  	$strSQL="INSERT INTO kpi_result(assign_kpi_id,kpi_id,kpi_actual)
  	VALUES('$assign_kpi_id','$kpi_id','$actualData')";
- 	$rs=mysql_query($strSQL);
+ 	$rs=$conn->query($strSQL);
  	if($rs){
  		echo'["success"]';
  	}else{
  		echo'["error"]';
  	}
- 	mysql_close($conn);
+ 	$conn->close();
  	
  	
  	
@@ -328,14 +328,14 @@ $assign_kpi_id
  	
  	$strSQL="UPDATE kpi_result SET kpi_id='$kpi_id',kpi_actual='$actualData' 
  	WHERE assign_kpi_id='$assign_kpi_id'";
- 	$result=mysql_query($strSQL);
+ 	$result=$conn->query($strSQL);
  	if($result){
  		echo'["editSuccess"]';
  	}else{
- 		echo'["error"]'.mysql_error();
+ 		echo'["error"]'.$conn->error;
  	}
  	
- 	mysql_close($conn);
+ 	$conn->close();
  	
  }
 }

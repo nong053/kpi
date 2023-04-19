@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 // Convert JSON string to Array
@@ -51,8 +51,10 @@ if($_POST['action']=="add"){
 	and admin_id='$admin_id'
 	";
 	
-	$rsCount=mysql_query($strSQLCount);
-	$resultCount=mysql_fetch_array($rsCount);
+	//$rsCount=$conn->query($strSQLCount);
+	//$resultCount=mysql_fetch_array($rsCount);
+	$rsCount=$conn->query($strSQLCount);
+	$resultCount=$rsCount->fetch_assoc();
 	
 	
 	
@@ -72,19 +74,24 @@ if($_POST['action']=="add"){
 			and e.admin_id='$admin_id'
 			order by e.emp_id
 			";
-			$resultSelectEmp=mysql_query($strSQLselectEmp);
-			while($rsSelectEmp=mysql_fetch_array($resultSelectEmp)){
+			//$resultSelectEmp=$conn->query($strSQLselectEmp);
+			//while($rsSelectEmp=mysql_fetch_array($resultSelectEmp)){
+
+			$resultSelectEmp=$conn->query($strSQLselectEmp);
+			while($rsSelectEmp=$resultSelectEmp->fetch_assoc()){
 				
 				$strSQL="INSERT INTO assign_kpi(assign_kpi_year,appraisal_period_id,emp_id,position_id,kpi_weight,kpi_type_actual,
 				kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id)
 				VALUES('$year','$appraisal_period_id','$rsSelectEmp[emp_id]','$rsSelectEmp[position_id]','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
 				'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id')";
-				$rs=mysql_query($strSQL);
+				//$rs=$conn->query($strSQL);
+				$rs=$conn->query($strSQL);
 				
 				if($rs){
 					echo'["success"]';
 				}else{
-					echo mysql_error();
+					//echo $conn->error;
+					echo $conn->error;
 				}
 				
 			}
@@ -96,11 +103,13 @@ if($_POST['action']=="add"){
 				kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id)
 				VALUES('$year','$appraisal_period_id','$employee_id','$position_id','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
 				'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id')";
-				$rs=mysql_query($strSQL);
+				//$rs=$conn->query($strSQL);
+				 $rs=$conn->query($strSQL);
 				if($rs){
 					echo'["success"]';
 				}else{
-					echo mysql_error();
+					//echo $conn->error;
+					echo $conn->error;
 				}
 				
 				
@@ -113,7 +122,8 @@ if($_POST['action']=="add"){
 	
 	
 	
-	mysql_close($conn);
+	//$conn->close();
+	$conn->close();
 }
 
 
@@ -169,7 +179,7 @@ if($_POST['action']=="showEmpData"){
 			";
 	}
 	
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tableemployee' class=' '>";
@@ -203,7 +213,7 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentemployee\">";
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 
 		
 		$tableHTML.="<tr>";
@@ -278,8 +288,8 @@ distinct complete_kpi_score_flag
 				and kr.admin_id='$admin_id'
 		";
 
-		$resultKpiResult=mysql_query($strSQLKpiResult);
-		$rsKpiResult=mysql_fetch_array($resultKpiResult);
+		$resultKpiResult=$conn->query($strSQLKpiResult);
+		$rsKpiResult=$resultKpiResult->fetch_assoc();
 
 		$strSQLCountAssignMaster="
 				select count(*)  as  count_assign_evaluate_kpi  from assign_evaluate_kpi where 
@@ -291,7 +301,7 @@ distinct complete_kpi_score_flag
 				and confirm_flag='Y'
 		";
 
-		$resultCountAssignMaster=mysql_query($strSQLCountAssignMaster);
+		$resultCountAssignMaster=$conn->query($strSQLCountAssignMaster);
 		$rsKpiCountAssignMaster=mysql_fetch_array($resultCountAssignMaster);
 
 
@@ -304,7 +314,7 @@ distinct complete_kpi_score_flag
 						and emp_id=".$rs['emp_id']." 
 						and admin_id='$admin_id'
 		";
-		$resultCheckAssignKpi=mysql_query($strSQLEmpCheckAssignKpi);
+		$resultCheckAssignKpi=$conn->query($strSQLEmpCheckAssignKpi);
 		$rsCheckAssignKpi=mysql_fetch_array($resultCheckAssignKpi);
 		
 
@@ -414,7 +424,7 @@ distinct complete_kpi_score_flag
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 
 /*
@@ -435,7 +445,7 @@ if($_POST['action']=="showDataAssignAll"){
 
 
 
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 			$i=1;
 			$tableHTML.="<table id='TableassignKpi' class='grid table-striped'>";
@@ -460,7 +470,7 @@ if($_POST['action']=="showDataAssignAll"){
 			$tableHTML.="</tr>";
 			$tableHTML.="</thead>";
 
-			while($rs=mysql_fetch_array($result)){
+			while($rs=$result->fetch_assoc()){
 
 				if($rs['kpi_type_actual']=="0"){
 					$kpi_actual=$rs['kpi_actual_manual'];
@@ -488,7 +498,7 @@ if($_POST['action']=="showDataAssignAll"){
 			$tableHTML.="</tbody>";
 			$tableHTML.="</table>";
 			echo $tableHTML;
-			mysql_close($conn);
+			$conn->close();
 }
 */
 /*
@@ -504,7 +514,7 @@ if($_POST['action']=="addAssignAll"){
 	(kpi_id='$kpi_id' or '$kpi_id'='All')
 	";
 	
-	$rsCount=mysql_query($strSQLCount);
+	$rsCount=$conn->query($strSQLCount);
 	$resultCount=mysql_fetch_array($rsCount);
 
 	if($resultCount['countRow']==0){
@@ -523,19 +533,19 @@ if($_POST['action']=="addAssignAll"){
 			and e.admin_id='$admin_id'
 			order by e.emp_id
 			";
-			$resultSelectEmp=mysql_query($strSQLselectEmp);
+			$resultSelectEmp=$conn->query($strSQLselectEmp);
 			while($rsSelectEmp=mysql_fetch_array($resultSelectEmp)){
 
 				$strSQL="INSERT INTO assign_kpi(assign_kpi_year,appraisal_period_id,emp_id,position_id,kpi_weight,kpi_type_actual,
 				kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id)
 				VALUES('$year','$appraisal_period_id','$rsSelectEmp[emp_id]','$rsSelectEmp[position_id]','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
 				'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id')";
-				$rs=mysql_query($strSQL);
+				$rs=$conn->query($strSQL);
 
 				if($rs){
 					echo'["success"]';
 				}else{
-					echo mysql_error();
+					echo $conn->error;
 				}
 
 			}
@@ -547,11 +557,11 @@ if($_POST['action']=="addAssignAll"){
 			kpi_actual_query,kpi_actual_manual,target_data,target_score,kpi_id,department_id,total_kpi_actual_score,kpi_actual_score,performance,admin_id)
 			VALUES('$year','$appraisal_period_id','$employee_id','$position_id','$kpi_weight','$kpi_type_actual','$kpi_actual_query','$kpi_actual_manual',
 			'$target_data','$target_score','$kpi_id','$department_id','$total_kpi_actual_score','$kpi_actual_score','$performance','$admin_id')";
-			$rs=mysql_query($strSQL);
+			$rs=$conn->query($strSQL);
 			if($rs){
 				echo'["success"]';
 			}else{
-				echo mysql_error();
+				echo $conn->error;
 			}
 
 
@@ -564,7 +574,7 @@ if($_POST['action']=="addAssignAll"){
 
 
 
-	mysql_close($conn);
+	$conn->close();
 }
 */
 
@@ -609,7 +619,7 @@ $division_id=$_POST['division_id'];
 	
 	
 	
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='TableassignKpi' class='table grid table-striped'>";
@@ -637,7 +647,7 @@ $division_id=$_POST['division_id'];
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentassignKpi\">";
 	
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 		if($rs['kpi_type_actual']=="0"){
 			$kpi_actual=$rs['kpi_actual_manual'];
@@ -677,13 +687,13 @@ $division_id=$_POST['division_id'];
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM assign_kpi WHERE assign_kpi_id=$id and admin_id='$admin_id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		
 		// check count rows assign_kpi
@@ -697,8 +707,8 @@ if($_POST['action']=="del"){
 		and admin_id='$admin_id'
 		";
 		
-		$rsResultCount=mysql_query($strSQLCount);
-		$resultResultCount=mysql_fetch_array($rsResultCount);
+		$rsResultCount=$conn->query($strSQLCount);
+		$resultResultCount=$rsResultCount->fetch_assoc();
 		
 		// delete kpi_result if assign_kpi=0
 		
@@ -711,7 +721,7 @@ if($_POST['action']=="del"){
 			(emp_id='$employee_id' or '$employee_id'='All')
 			and admin_id='$admin_id'
 			";
-			$result=mysql_query($strSQL);
+			$result=$conn->query($strSQL);
 		}else{
 			// SET confirm_flag is N Start
 			$strSQLUpdate="
@@ -725,9 +735,9 @@ if($_POST['action']=="del"){
 			and admin_id='$admin_id'
 			";
 			
-			$rsResultUpdate=mysql_query($strSQLUpdate);
+			$rsResultUpdate=$conn->query($strSQLUpdate);
 			if(!$rsResultUpdate){
-				echo mysql_error();
+				echo $conn->error;
 			}else{
 				//echo'["success"]';
 			}
@@ -737,7 +747,7 @@ if($_POST['action']=="del"){
 		echo'["success"]';
 		/*
 		$strSQLKpiResult="DELETE FROM kpi_result WHERE assign_kpi_id='$id'";
-		$resultKpiResult=mysql_query($strSQLKpiResult);
+		$resultKpiResult=$conn->query($strSQLKpiResult);
 		*/
 		
 	
@@ -746,7 +756,7 @@ if($_POST['action']=="del"){
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="removeAssignKPIs"){
@@ -775,7 +785,7 @@ if($_POST['action']=="removeAssignKPIs"){
 			and emp_id='$employee_id'
 			and admin_id='$admin_id'
 		";
-			$result=mysql_query($strSQL);
+			$result=$conn->query($strSQL);
 			
 	if($result){
 		//echo'["success1"]';
@@ -789,15 +799,15 @@ if($_POST['action']=="removeAssignKPIs"){
 			and emp_id='$employee_id' 
 			and admin_id='$admin_id'
 			";
-			$result2=@mysql_query($strSQL2);
+			$result2=@$conn->query($strSQL2);
 			if(!$result2){
-				echo mysql_error();
+				echo $conn->error;
 			}else{
 				//echo'["success2"]';
 			}
 	
 	}else{
-		echo mysql_error();
+		echo $conn->error;
 	}
 	echo'["success"]';
 
@@ -814,7 +824,7 @@ if($_POST['action']=="backToAssignKPI"){
 		and emp_id='$employee_id' 
 		and admin_id='$admin_id'
 		";
-		$result1=@mysql_query($strSQL1);
+		$result1=@$conn->query($strSQL1);
 		if($result1){
 			//kpi_actual_manual,target_data,target_score,total_kpi_actual_score,kpi_actual_score,performance
 			$strSQL2="
@@ -845,9 +855,9 @@ if($_POST['action']=="backToAssignKPI"){
 			and emp_id='$employee_id' 
 			and admin_id='$admin_id'
 			";
-			$result2=@mysql_query($strSQL2);
+			$result2=@$conn->query($strSQL2);
 			if(!$result2){
-				echo mysql_error();
+				echo $conn->error;
 			}else{
 				echo'["success"]';
 			}
@@ -881,9 +891,9 @@ $kpi_id=$_POST['kpi_id'];
 	and aek.kpi_id=$kpi_id 
 	and aek.admin_id='$admin_id'";
 
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		/*
 		kpi_id
@@ -908,10 +918,10 @@ $kpi_id=$_POST['kpi_id'];
 	}else{
 
 		echo'["error"]';
-	echo mysql_error();
+	echo $conn->error;
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 	
@@ -949,7 +959,7 @@ if($_POST['action']=="editAction"){
 		and kpi_id=$kpi_id 
 		and admin_id='$admin_id'
 		";
-		$result=mysql_query($strSQL);
+		$result=$conn->query($strSQL);
 		if($result){
 
 			$strSQL2="
@@ -960,7 +970,7 @@ if($_POST['action']=="editAction"){
 			and position_id='$position_id'
 			and emp_id='$employee_id'
 		";
-		$result2=mysql_query($strSQL2);
+		$result2=$conn->query($strSQL2);
 
 		if($result2){
 
@@ -968,7 +978,7 @@ if($_POST['action']=="editAction"){
 		}
 			
 		}else{
-			echo'["error"]'.mysql_error();
+			echo'["error"]'.$conn->error;;
 		}
 
 	}else{
@@ -998,7 +1008,7 @@ if($_POST['action']=="editAction"){
 		and kpi_id=$kpi_id 
 		and admin_id='$admin_id'
 		";
-		$result=mysql_query($strSQL);
+		$result=$conn->query($strSQL);
 		if($result){
 
 			$strSQL2="
@@ -1009,7 +1019,7 @@ if($_POST['action']=="editAction"){
 			and position_id='$position_id'
 			and emp_id='$employee_id'
 		";
-		$result2=mysql_query($strSQL2);
+		$result2=$conn->query($strSQL2);
 
 		if($result2){
 
@@ -1017,12 +1027,12 @@ if($_POST['action']=="editAction"){
 		}
 			
 		}else{
-			echo'["error"]'.mysql_error();
+			echo'["error"]'.$conn->error;;
 		}
 
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -1040,8 +1050,8 @@ left JOIN baseline base
 on kpi.kpi_id=base.kpi_id
 where kpi.kpi_id='$kpi_id'
 GROUP BY kpi.kpi_id";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 	echo "[{\"kpi_target_data\":\"$rs[max_baseline_data]\",\"target_score\":\"$rs[max_baseline_score]\"}]";
 }
 if($_POST['action']=="getAllDataBaseline"){
@@ -1050,8 +1060,8 @@ if($_POST['action']=="getAllDataBaseline"){
 	$strSQL="select kpi_id,baseline_begin,baseline_end,baseline_score from baseline
 where kpi_id='$kpi_id'
 ORDER BY baseline_score desc";
-	$result=mysql_query($strSQL);
-	//$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	//$rs=$result->fetch_assoc();
 	$tableHtml.="<table class='table table-striped' id='baselineTable' style='width:400px;'>
 				 	<thead>
 						<tr>
@@ -1065,7 +1075,7 @@ ORDER BY baseline_score desc";
 				  	</thead>
 					<tbody>";
 				$i=0;
-				while($rs=mysql_fetch_array($result)){
+				while($rs=$result->fetch_assoc()){
 					$tableHtml.="<tr>
 									
 									<td><center>$rs[baseline_begin]</center></td>
@@ -1090,8 +1100,8 @@ if($_POST['action']=="getKpiScore"){
 	where kpi_id='$kpi_id'
 	and  '$kpi_actual_manual' BETWEEN baseline_begin AND baseline_end; 
 	";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 
 
 
@@ -1110,8 +1120,8 @@ if($_POST['action']=="getSumWeightKpi"){
 		and admin_id='$admin_id'
 		group by assign_kpi_year,appraisal_period_id,position_id,emp_id
 		";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 	echo "[{\"kpi_weight\":\"$rs[sum_kpi_weight]\"}]";
 	
 }
@@ -1126,9 +1136,9 @@ if($_POST['action']=="getKPIPercentage"){
 	and admin_id='$admin_id'
 	group by assign_kpi_year,appraisal_period_id,position_id,emp_id
 	";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
-	$total_kpi_actual_score=($rs[sum_kpi_weight]/100);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
+	$total_kpi_actual_score=($rs['sum_kpi_weight']/100);
 	
 	
 	if($rs){
@@ -1141,8 +1151,8 @@ if($_POST['action']=="getKPIPercentage"){
 						and (emp_id='$employee_id' or '$employee_id'='All')
 						and admin_id='$admin_id'
 		";
-		$resultKpiResult=mysql_query($strSQLKpiResult);
-		$rsKpiResult=mysql_fetch_array($resultKpiResult);
+		$resultKpiResult=$conn->query($strSQLKpiResult);
+		$rsKpiResult=$resultKpiResult->fetch_assoc();
 		
 		
 		echo "[{\"total_kpi_actual_score\":\"$total_kpi_actual_score\",\"confirm_flag\":\"$rsKpiResult[confirm_flag]\"}]";
@@ -1159,8 +1169,8 @@ if($_POST['action']=="getKPIPercentage"){
 						and (emp_id='$employee_id' or '$employee_id'='All')
 						and admin_id='$admin_id'
 		";
-		$resultKpiResult=mysql_query($strSQLKpiResult);
-		$rsKpiResult=mysql_fetch_array($resultKpiResult);
+		$resultKpiResult=$conn->query($strSQLKpiResult);
+		$rsKpiResult=$resultKpiResult->fetch_assoc();
 
 
 		$strSQLEmpCheckAssignKpi="
@@ -1172,7 +1182,7 @@ if($_POST['action']=="getKPIPercentage"){
 						and (emp_id='$employee_id' or '$employee_id'='All')
 						and admin_id='$admin_id'
 		";
-		$resultCheckAssignKpi=mysql_query($strSQLEmpCheckAssignKpi);
+		$resultCheckAssignKpi=$conn->query($strSQLEmpCheckAssignKpi);
 		$rsCheckAssignKpi=mysql_fetch_array($resultCheckAssignKpi);
 
 		
@@ -1198,8 +1208,8 @@ if($_POST['action']=="confrimKpi"){
 		and admin_id='$admin_id'
 		";
 			
-		$rsResultCount=mysql_query($strSQLCount);
-		$resultResultCount=mysql_fetch_array($rsResultCount);
+		$rsResultCount=$conn->query($strSQLCount);
+		$resultResultCount=$rsResultCount->fetch_assoc();
 			
 		if($resultResultCount['countRow']==0){
 			
@@ -1220,10 +1230,10 @@ if($_POST['action']=="confrimKpi"){
 			'Y',
 			'Y',
 			'$admin_id')";
-			$rsResult=mysql_query($strSQLKpiResult);
+			$rsResult=$conn->query($strSQLKpiResult);
 				
 				if(!$rsResult){
-				echo mysql_error();
+				echo $conn->error;
 				}else{
 					echo'["success"]';
 				}
@@ -1251,9 +1261,9 @@ if($_POST['action']=="confrimKpi"){
 			";
 			
 		
-												$rsResultUpdate=mysql_query($strSQLUpdate);
+												$rsResultUpdate=$conn->query($strSQLUpdate);
 												if(!$rsResultUpdate){
-													echo mysql_error();
+													echo $conn->error;
 												}else{
 													echo'["success"]';
 												}
@@ -1274,8 +1284,8 @@ if($_POST['action']=="confrimKpi"){
 		and admin_id='$admin_id'
 		";
 			
-		$rsResultCount=mysql_query($strSQLCount);
-		$resultResultCount=mysql_fetch_array($rsResultCount);
+		$rsResultCount=$conn->query($strSQLCount);
+		$resultResultCount=$rsResultCount->fetch_assoc();
 			
 		if($resultResultCount['countRow']==0){
 			
@@ -1283,10 +1293,10 @@ if($_POST['action']=="confrimKpi"){
 			score_sum_percentage,adjust_percentage,adjust_reason,approve_flag,confirm_flag,admin_id)
 			VALUES('$year','$appraisal_period_id','$department_id','$position_id','$employee_id',
 			'$score_sum_percentage','','','0','Y','$admin_id')";
-			$rsResult=mysql_query($strSQLKpiResult);
+			$rsResult=$conn->query($strSQLKpiResult);
 				
 				if(!$rsResult){
-				echo mysql_error();
+				echo $conn->error;
 				}else{
 					echo'["success"]';
 				}
@@ -1313,9 +1323,9 @@ if($_POST['action']=="confrimKpi"){
 			";
 			
 		
-												$rsResultUpdate=mysql_query($strSQLUpdate);
+												$rsResultUpdate=$conn->query($strSQLUpdate);
 												if(!$rsResultUpdate){
-													echo mysql_error();
+													echo $conn->error;
 												}else{
 													echo'["success"]';
 												}
@@ -1340,10 +1350,10 @@ if($_POST['action']=='copyAssignMasterKpi'){
 	and admin_id='$admin_id'
 		
 		";
-	$resultCountAssign=mysql_query($strsSQLCountAssign);
-	$rsCountAssign=mysql_fetch_array($resultCountAssign);
+	$resultCountAssign=$conn->query($strsSQLCountAssign);
+	$rsCountAssign=$resultCountAssign->fetch_assoc();
 	
-	if($rsCountAssign[countAssign]==0){
+	if($rsCountAssign['countAssign']==0){
 	
 		$sqlSQL="
 			insert into assign_kpi (assign_kpi_year,appraisal_period_id,kpi_id,
@@ -1362,9 +1372,9 @@ if($_POST['action']=='copyAssignMasterKpi'){
 		and confirm_flag='Y'
 			";
 		
-		$result=mysql_query($sqlSQL);
+		$result=$conn->query($sqlSQL);
 		if(!$result){
-			echo mysql_error();
+			echo $conn->error;
 		}else{
 		 	echo'["copyAready"]';
 		}
