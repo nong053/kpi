@@ -118,20 +118,24 @@ var withdrawFn=function(){
 var checkWithDrawEnlarge = function(){
 	if($("#withdrawEnlarge").hasClass("active")){
 		withdrawFn();
+	
  	}else{
  		EnlargeFn();
+		
  	}
 }
 
 //CHECK BROWSER FN
 
 var checkBrowserFn=function(){
-
+	
 	if($(window).width()<980){
 		$("#withdrawEnlarge").addClass('active');
 		sessionStorage.setItem('checkMobile','mobile');
 		withdrawFn();
+		
 	}else{
+		
 		sessionStorage.setItem('checkMobile','desktop');
 		
 	}
@@ -650,6 +654,8 @@ var callProgramControl=function(programControl){
 $(document).ready(function(){
 	
 	//Start Program ....
+
+	
 	
 	//Default Parameter		
 	//sessionStorage.setItem("param_year", "All");
@@ -1300,6 +1306,7 @@ $(document).ready(function(){
 			EnlargeFn();
 			$("#withdrawEnlarge").removeClass('active');
 			
+			
    			 
    		 }else{
 		
@@ -1527,6 +1534,18 @@ $(document).ready(function(){
       });
 
 
+	  //default mobile display start
+	  setTimeout(function(){
+		checkBrowserFn();
+	  },1000);
+	 
+	//   if(sessionStorage.getItem('checkMobile')=='mobile'){
+
+	// 	  withdrawFn();
+	// 	  $("#withdrawEnlarge").addClass('active');
+	//   }
+ 	  //default mobile display end
+	
 
 	  
 });
@@ -1559,11 +1578,12 @@ app.controller("pageController",function($scope, $route, $routeParams){
 	$route.current.templateUrl = $routeParams.url + ".php";
 	  $.get($route.current.templateUrl, function (data){
 
-		   checkBrowserFn();
+		  
 	       $("#mainContent").html(data);
 
 		   //alert($routeParams.url);
 		   checkWithDrawEnlarge();
+		   
 		   
 			
 		   
@@ -1665,20 +1685,33 @@ app.controller("pageController",function($scope, $route, $routeParams){
 			//   }
 
 			  
-			if(sessionStorage.getItem('checkMobile')=='mobile'){
 
-				withdrawFn();
-				$("#withdrawEnlarge").addClass('active');
-			}
+		
+				checkBrowserFn();
+
+				// if(sessionStorage.getItem('checkMobile')=='mobile'){
+	
+				// 	withdrawFn();
+				// 	$("#withdrawEnlarge").addClass('active');
+				// }
+			 
+			
 			
 
 
 	  });
 
 
+	  
+		
+	
+
+
 
 
 });
+
+
 
 
 /*end route single page*/
