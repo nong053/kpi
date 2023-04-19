@@ -6,7 +6,7 @@ if($_SESSION['language']=="th"){
 	
 	//description
 	$_SESSION['approve_l_des_title']="ปรับคะแนนผลการปฏิบัติงาน";
-	$_SESSION['approve_l_des_detail']="ผู้ประเมินสู่งสุดหรือผู้บริหาร ปรับคะแนนและอนุมััติผลประเมิน";
+	$_SESSION['approve_l_des_detail']="ผู้ประเมินสูงสุดหรือผู้บริหาร ปรับคะแนนและอนุมััติผลประเมิน";
 	
 
 	//Search

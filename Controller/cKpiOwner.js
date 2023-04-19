@@ -1060,17 +1060,17 @@ var paramYear=function(kpi_year){
 					$.each(data,function(index,indexEntry){
 						if(kpi_year!=undefined){
 							if(kpi_year==indexEntry[0]){
-								htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[0]+"</option>";	
+								htmlDropDrowList+="<option value="+indexEntry[0]+" selected> "+indexEntry[0]+"</option>";	
 							}else{
-								htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
+								htmlDropDrowList+="<option value="+indexEntry[0]+"> "+indexEntry[0]+"</option>";
 							}
 							
 						}else{
 							//alert(indexEntry[1]);
 							if(indexEntry[1]==1){
-								htmlDropDrowList+="<option value="+indexEntry[0]+" selected>"+indexEntry[0]+"</option>";	
+								htmlDropDrowList+="<option value="+indexEntry[0]+" selected> "+indexEntry[0]+"</option>";	
 							}else{
-								htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
+								htmlDropDrowList+="<option value="+indexEntry[0]+"> "+indexEntry[0]+"</option>";
 							}
 							
 						}

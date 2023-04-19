@@ -1,4 +1,4 @@
-<? session_start(); ob_start();
+<?php session_start(); ob_start();
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 
@@ -16,7 +16,8 @@ $admin_id=186;
 $emp_id=82;
 */
 require_once("setPDFKPIReport.php");
-include '../Model/config.php';
+
+include './../config.inc.php';
 // if($emp_id!=""){
 // 	$strSQL="
 	
@@ -66,13 +67,13 @@ include '../Model/config.php';
 
 		";
 // }
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 $htmlcontent="";
 $appraisal_period_desc="";
 if(!$result){
-	echo mysql_error();
+	echo $conn->error;
 }		
-while($rs=mysql_fetch_array($result)){
+while($rs=$result->fetch_assoc()){
 	//echo "emp_picture_thum=".$rs['emp_picture_thum']."<br>";
 	if($appraisal_period_id=="All"){
 		$appraisal_period_desc="ทั้งหมด";
@@ -192,8 +193,8 @@ GROUP BY kpi.kpi_id
 				
   			
 		";
-  			$resultKpi=mysql_query($strSQLKpi);
-  			while($rsKPI=mysql_fetch_array($resultKpi)){
+  			$resultKpi=$conn->query($strSQLKpi);
+  			while($rsKPI=$resultKpi->fetch_assoc()){
 				//echo $rsKPI['kpi_code'];
   				
 	  				$htmlcontent.="

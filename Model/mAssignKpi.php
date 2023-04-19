@@ -302,7 +302,7 @@ distinct complete_kpi_score_flag
 		";
 
 		$resultCountAssignMaster=$conn->query($strSQLCountAssignMaster);
-		$rsKpiCountAssignMaster=mysql_fetch_array($resultCountAssignMaster);
+		$rsKpiCountAssignMaster=$resultCountAssignMaster->fetch_assoc();
 
 
 		$strSQLEmpCheckAssignKpi="
@@ -315,7 +315,7 @@ distinct complete_kpi_score_flag
 						and admin_id='$admin_id'
 		";
 		$resultCheckAssignKpi=$conn->query($strSQLEmpCheckAssignKpi);
-		$rsCheckAssignKpi=mysql_fetch_array($resultCheckAssignKpi);
+		$rsCheckAssignKpi=$resultCheckAssignKpi->fetch_assoc();
 		
 
 
@@ -336,9 +336,9 @@ distinct complete_kpi_score_flag
 
 		$tableHTML.="	<td ><div style=' text-align:right; font-weight:bold; color:green;'>".number_format((float)$total_score_percentage, 2, '.', '')."%</div></td>";
 		
-		if($rsKpiResult[emp_id]!="" and $rsCheckAssignKpi['complete_kpi_score_flag']=='Y'){
+		if($rsKpiResult['emp_id']!="" and $rsCheckAssignKpi['complete_kpi_score_flag']=='Y'){
 			
-			if(($rsKpiResult[approve_flag]=="Y") and ($rsKpiResult[confirm_flag]=="Y")){
+			if(($rsKpiResult['approve_flag']=="Y") and ($rsKpiResult['confirm_flag']=="Y")){
 				// $tableHTML.="<td>
 				// <div style='text-align:center;'>
 				// <button type='button' id='idAssignKPI-".$rs['emp_id']."' class='approvedKpi btn btn-success btn-xs'>Approved</button>
@@ -352,7 +352,7 @@ distinct complete_kpi_score_flag
 				</div>
 				</td>";
 
-			}else if($rsKpiResult[confirm_flag]=="Y" and $rsKpiResult[emp_confirm_flag]=="Y"){
+			}else if($rsKpiResult['confirm_flag']=="Y" and $rsKpiResult['emp_confirm_flag']=="Y"){
 			$tableHTML.="	<td>
 			<div style='text-align:right;'>";
 				if($_SESSION['emp_role_level_id']==2 or $_SESSION['emp_role_level_id']==1 ){
@@ -365,7 +365,7 @@ distinct complete_kpi_score_flag
 
 			$tableHTML.="</div>
 			</td>";
-			}else if($rsKpiResult[confirm_flag]=="Y"){
+			}else if($rsKpiResult['confirm_flag']=="Y"){
 			$tableHTML.="<td>
 				<div style='text-align:right;'>
 				
@@ -374,7 +374,7 @@ distinct complete_kpi_score_flag
 				
 				</div>
 			</td>";
-			}else if($rsKpiResult[emp_confirm_flag]=="Y"){
+			}else if($rsKpiResult['emp_confirm_flag']=="Y"){
 				$tableHTML.="<td>
 					<div style='text-align:right;'>
 					
@@ -1183,7 +1183,7 @@ if($_POST['action']=="getKPIPercentage"){
 						and admin_id='$admin_id'
 		";
 		$resultCheckAssignKpi=$conn->query($strSQLEmpCheckAssignKpi);
-		$rsCheckAssignKpi=mysql_fetch_array($resultCheckAssignKpi);
+		$rsCheckAssignKpi=$resultCheckAssignKpi->fetch_assoc();
 
 		
 		
