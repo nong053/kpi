@@ -25,11 +25,11 @@ if($jsonArray["login_status"]==1){
 		$strSQL="SELECT role_id,role_name FROM role  order by role_id desc";
 	}
 
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 $i=0;
 $dataObject="";
 $dataObject.="[";
-while($rs=mysql_fetch_array($result)){
+while($rs=$result->fetch_assoc()){
 	if($i==0){
 		$dataObject.="[";
 		$dataObject.="\"".$rs["role_id"]."\",\"".$rs["role_name"]."\"";

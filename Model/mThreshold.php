@@ -18,13 +18,13 @@ $admin_id=$_SESSION['admin_id'];
 if($_POST['action']=="add"){
 	$strSQL="INSERT INTO threshold(threshold_name,threshold_begin,threshold_end,threshold_color,admin_id)
 	VALUES('$thresholdName','$thresholdBegin','$thresholdEnd','$thresholdColor','$admin_id')";
-	$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
@@ -32,7 +32,7 @@ if($_POST['action']=="showData"){
 	$strSQL="SELECT * FROM threshold 
 	-- where admin_id='$admin_id' 
 	";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='TableThreshold' class='grid table-striped' style='width:100%'>";
@@ -59,7 +59,7 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentThreshold\">";
-	while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		
 	
 	
@@ -91,28 +91,28 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM threshold WHERE threshold_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM threshold WHERE threshold_id=$id";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
 		//echo "[{\"abc\":$rs[threshold_id],\"def\":\"22\"}]";
 		
@@ -124,7 +124,7 @@ if($_POST['action']=="edit"){
 		echo'["error"]';
 	}
 	
-	mysql_close($conn);
+	$conn->close();
 }
 if($_POST['action']=="editAction"){
 	$id=$_POST['thresholdId'];
@@ -138,14 +138,14 @@ if($_POST['action']=="editAction"){
 	
 	$strSQL="UPDATE threshold SET threshold_name='$thresholdName',threshold_begin='$thresholdBegin',
 	threshold_end='$thresholdEnd',threshold_color='$thresholdColor' WHERE threshold_id='$id'";
-	$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;
 	}
 
-	mysql_close($conn);
+	$conn->close();
 }
 
 

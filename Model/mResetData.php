@@ -489,7 +489,7 @@ if($_GET['action']=='kpi'){
 
 				$resultInsert=$conn->query($strSQLInsert);
 				if($resultInsert){
-					//echo "insert to baseline".mysql_insert_id()." <br>";
+					//echo "insert to baseline".$conn -> insert_id." <br>";
 					// $strSQLInsertBaseline="select baseline_id,kpi_id,baseline_begin,
 					// baseline_end,baseline_score,suggestion
 					// from baseline
@@ -508,7 +508,7 @@ if($_GET['action']=='kpi'){
 						SELECT
 
 						
-						".mysql_insert_id().",
+						".$conn -> insert_id.",
 						baseline_begin,
 						baseline_end,
 						baseline_score,
