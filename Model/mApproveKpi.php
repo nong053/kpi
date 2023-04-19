@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 include 'mGenarateJson.php';
@@ -77,7 +77,8 @@ if($_POST['action']=="showEmpData"){
 	and (e.position_id='All' or 'All' ='All')
 	";
 	*/
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='Tableemployee' class=''>";
@@ -117,7 +118,8 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 
-	while($rs=mysql_fetch_array($result)){
+	//while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		$score_percentage="";
 		$emp_score_percentage="";
 		$adjust_score_percentage="";
@@ -215,11 +217,12 @@ year	2012
 				and (kr.emp_id='".$rs['emp_id']."' or '".$rs['emp_id']."'='All')
 				and kr.confirm_flag='Y'
 		";
-		$resultKpiResult=mysql_query($strSQLKpiResult);
+		//$resultKpiResult=mysql_query($strSQLKpiResult);
+		//$rsKpiResult=mysql_fetch_array($resultKpiResult);
+		$resultKpiResult=$conn->query($strSQLKpiResult);
+		$rsKpiResult=$rs=$resultKpiResult->fetch_assoc();;
 		
-		$rsKpiResult=mysql_fetch_array($resultKpiResult);
-		
-		if($rsKpiResult[approve_flag]=="Y"){
+		if($rsKpiResult['approve_flag']=="Y"){
 		$tableHTML.="	<td>
 			<div style='text-align:right'>
 			<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
@@ -245,7 +248,8 @@ year	2012
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="edit"){
@@ -258,15 +262,16 @@ and kpi_year='$year'
 and appraisal_period_id='$appraisal_period_id'
 and emp_id='$employee_id'
 	";
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		echo "[{\"adjust_percentage\":\"$rs[adjust_percentage]\",\"adjust_reason\":\"$rs[adjust_reason]\"}]";
 	}else{
 		echo'["error"]';
 	}
-	
-	mysql_close($conn);
+	$conn->close();
+	//mysql_close($conn);
 }
 if($_POST['action']=="editAction"){
 	
@@ -279,8 +284,10 @@ if($_POST['action']=="editAction"){
 	and appraisal_period_id='$appraisal_period_id'
 	and emp_id='$employee_id'
 	";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	//$result=mysql_query($strSQL);
+	//$rs=mysql_fetch_array($result);
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 	if($rs){
 		
 		//echo "score_sum_percentage1=". $rs['score_sum_percentage'];
@@ -295,18 +302,20 @@ if($_POST['action']=="editAction"){
 			 and confirm_flag='Y'
 			";
 		
-			 $rsResultUpdate=mysql_query($strSQLUpdate);
+			 //$rsResultUpdate=mysql_query($strSQLUpdate);
+			 $rsResultUpdate=$conn->query($strSQLUpdate);
 			 
 			 if($rsResultUpdate){
 			 	echo '["updateSuccess"]';
 			 }else{
-			 	echo mysql_error();
+			 	echo $conn->error;
 			 }
 			 
 			 //echo" update kpi_result".$resultResultCount['countRow'];
-	mysql_close($conn);
+			 $conn->close();
 	}else{
-		echo mysql_error();
+		//echo mysql_error();
+		echo $conn->error;
 	}
 }
 if($_POST['action']=="approveKpiAction"){
@@ -323,8 +332,11 @@ if($_POST['action']=="approveKpiAction"){
 	and emp_id='$employee_id'
 	and admin_id='$admin_id'
 	";
-	$result=mysql_query($strSQL);
-	$rs=mysql_fetch_array($result);
+	//$result=mysql_query($strSQL);
+	//$rs=mysql_fetch_array($result);
+
+	$result=$conn->query($strSQL);
+	$rs=$result->fetch_assoc();
 	if($rs){
 	
 		
@@ -371,7 +383,8 @@ if($_POST['action']=="approveKpiAction"){
 		if($rsResultUpdate){
 		echo '["approveSuccess"]';
 		}else{
-		echo mysql_error();
+		//echo mysql_error();
+		$conn->error;
 		}
 	
 	
@@ -381,7 +394,8 @@ if($_POST['action']=="approveKpiAction"){
 
 
 
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 }
 
 
@@ -407,13 +421,15 @@ if($_POST['action']=="newEvaluateAction"){
 		if($rsResultUpdate){
 		echo '["success"]';
 		}else{
-		echo mysql_error();
+		//echo mysql_error();
+		$conn->error;
 		}
 	
 	
 	
 	
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 }
 
 

@@ -4,11 +4,13 @@ function genarateJson($strSQL,$columnName,$conn){
 	$explodeColumnName= (explode(",",$columnName));
 
 
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		$i=0;
-		$json.="[";
-		while($rs=mysql_fetch_array($result)){
+		$json="[";
+		//while($rs=mysql_fetch_array($result)){
+		while($rs=$result->fetch_assoc()){
 			if($i==0){
 				$json.="[";
 				for($j=0;$j<count($explodeColumnName);$j++){
@@ -40,7 +42,8 @@ function genarateJson($strSQL,$columnName,$conn){
 		}else{
 			echo $json;
 		}
-		mysql_close($conn);
+		//mysql_close($conn);
+		$conn->close();
 	}
 
 }

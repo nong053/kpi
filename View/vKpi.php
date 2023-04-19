@@ -1,4 +1,4 @@
-<? @session_start(); ob_start();error_reporting(0);error_reporting(E_ERROR | E_PARSE);
+<?php @session_start(); ob_start();error_reporting(0);error_reporting(E_ERROR | E_PARSE);
 
 if($_SESSION['language']=="th"){
 	

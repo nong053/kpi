@@ -22,7 +22,7 @@ if($_SESSION['login_status']!="1"){
 		color:blue;
 	}
 </style>
-<?
+<?php
 /*##########ดึง oject มาใช้งาน Start*/
 	function __autoload($filename){
 		require_once "../oop/".$filename.".php";
@@ -227,12 +227,12 @@ p{
 		<?php
 		if($_SESSION['admin_name']){
 		?>
-		<?=$_SESSION['admin_name']?> <?=$_SESSION['admin_surname']?>
-        <?
+		<?php echo $_SESSION['admin_name']?> <?php echo$_SESSION['admin_surname']?>
+        <?php
 		}else{
 		?>
-        <?=$_SESSION['member_name_upline']?>
-        <?
+        <?php echo$_SESSION['member_name_upline']?>
+        <?php
 		}
 		?>
         </strong> <img src="images/logout.gif" width="16" height="16" border="0" align="absbottom" /> <a href="index.php?logout">ออกจากระบบ</a>	</div>
@@ -273,7 +273,7 @@ p{
 </div>
 <div id="content-r">
 	<div id="content-main">
-	   <?
+	   <?php
 		switch($_GET['page']){
 			
 			
@@ -336,8 +336,8 @@ p{
 	 		});
      }	
   	$(document).ready(function(){
-  			var admin_id="<?=$admin_id?>";
-  			//alert(admin_id);
+  			var admin_id="<?php echo$admin_id?>";
+  			alert(admin_id);
 
      $("#btnResetData").click(function(){
      

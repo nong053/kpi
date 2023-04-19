@@ -1,4 +1,4 @@
-<? session_start(); ob_start();
+<?php session_start(); ob_start();
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 
@@ -242,7 +242,7 @@ if($_SESSION['login_status']!="1"){
 					
 					<?php 
 					// GET EMPLOYEE FOR DISPLAY HERE..
-					if($_SESSION[emp_ses_id]!=""){
+					if($_SESSION['emp_ses_id']!=""){
 					$strSQLEmp="select e.*,pe.*,d.*,r.role_name from employee  e
 								inner join  position_emp pe 
 								on e.position_id=pe.position_id
@@ -252,18 +252,19 @@ if($_SESSION['login_status']!="1"){
 								on r.role_id=e.role_id
 								where emp_id=$_SESSION[emp_ses_id]";
 
-					$resultEmp=mysql_query($strSQLEmp);
-					$rsEmp=mysql_fetch_array($resultEmp);
-						//echo $rsEmp['emp_picture_thum'];
+					//$resultEmp=mysql_query($strSQLEmp);
+					//$rsEmp=mysql_fetch_array($resultEmp);
+					$resultEmp=$conn->query($strSQLEmp);
+					$rsEmp=$resultEmp->fetch_assoc();
 					$role="emp";
 					if($rsEmp['emp_picture_thum']==""){
 						?>
 						<img src="../View/uploads/avatar.jpg" width="45" class="img-circle" style="opacity: 0.1;">
-						<?
+						<?php
 					}else{
 						?>
 						<img src="<?=$rsEmp['emp_picture_thum']?>" width="45" class="img-circle">
-						<?
+						<?php
 					}
 					?>
 
@@ -286,8 +287,13 @@ if($_SESSION['login_status']!="1"){
 					<?php
 					}else if($_SESSION[admin_id]!=""){
 						$strSQLEmp="select * from admin where admin_id=$_SESSION[admin_id]";
+						/*
 						$resultEmp=mysql_query($strSQLEmp);
 						$rsEmp=mysql_fetch_array($resultEmp);
+						*/
+						$resultEmp=$conn->query($strSQLEmp);
+						$rsEmp=$resultEmp->fetch_assoc();
+
 						$role="admin";
 						
 						//echo $rsEmp['emp_picture_thum'];
@@ -322,7 +328,7 @@ if($_SESSION['login_status']!="1"){
 						<li>
 							<a href='../admin' id='profile' class=''><i  class='glyphicon glyphicon-cog'></i> ผู้ดูแลละบบ</a>
 						</li>
-						<?
+						<?php
 					}
 					?>
 						<!-- <a href='?language=EN' id='EnLanguage' class=''>
@@ -330,11 +336,11 @@ if($_SESSION['login_status']!="1"){
 							if($_SESSION['language']=='en'){
 								?>
 								<i style="color: blue;" class='glyphicon glyphicon-globe'></i> EN</a>
-								<?
+								<?php
 							}else{
 								?>
 								<i class='glyphicon glyphicon-globe'></i> EN</a>
-								<?
+								<?php
 							}
 							?>
 							
@@ -343,11 +349,11 @@ if($_SESSION['login_status']!="1"){
 							if($_SESSION['language']=='th'){
 								?>
 								<i style="color: blue;" class='glyphicon glyphicon-globe'></i> ไทย</a>
-								<?
+								<?php
 							}else{
 								?>
 								<i class='glyphicon glyphicon-globe'></i> ไทย</a>
-								<?
+								<?php
 							}
 							?> -->
 
@@ -462,7 +468,7 @@ if($_SESSION['login_status']!="1"){
 
 
 					  		
-				  		<?
+				  		<?php
 						}else if($_SESSION['emp_role_level_id']=="2"){//chief
 						?>
 
@@ -486,7 +492,7 @@ if($_SESSION['login_status']!="1"){
 					  		
 					  		
 						
-						<?
+						<?php
 
 						}else if($_SESSION['emp_role_level_id']=="3"){//emp
 						?>
@@ -502,7 +508,7 @@ if($_SESSION['login_status']!="1"){
 					  		</li>
 					  		
 
-				  		<?
+				  		<?php
 				  		}
 				  		?>
 				  		
@@ -520,7 +526,7 @@ if($_SESSION['login_status']!="1"){
 			<div class="boxLeft" style="margin-left: 7px;">
 				
 				<div class="boxLeftTopLarge">
-					<?
+					<?php
 					//echo $_SESSION['admin_status'];
 					if($_SESSION['admin_status']!="1" and $_SESSION['admin_status']!="3"){
 
@@ -537,7 +543,7 @@ if($_SESSION['login_status']!="1"){
 					<button class="boxC btn btn-danger connect-mission">
 						<i class="glyphicon glyphicon glyphicon-save"></i>
 					</button>
-					<?
+					<?php
 					}else{
 					?>
 
@@ -556,7 +562,7 @@ if($_SESSION['login_status']!="1"){
 						<i class="glyphicon glyphicon glyphicon-save"></i>
 					</button>
 
-					<?
+					<?php
 					}
 					?>
 				</div>

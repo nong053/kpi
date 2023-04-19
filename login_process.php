@@ -1,10 +1,10 @@
-<? session_start(); ob_start();
+<?php session_start(); ob_start();
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?
+<?php
 include("config.inc.php");
 $user=$_POST['user'];
 $pass=$_POST['pass'];
@@ -18,7 +18,7 @@ and a.admin_password=MD5('$pass')
 ";
 
 //$strSQL="select * from admin where admin_username='$user' and admin_password='$pass' and admin_id='$admin_id'";
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 
 $strSQLEmp="select e.*,r.role_id,r.role_name as role_name,ad.*,p.* from employee e
 INNER JOIN position_emp pe on e.position_id=pe.position_id
@@ -28,11 +28,11 @@ left join package p on ad.package = p.id
 where e.emp_user='$user'
 and e.emp_pass=MD5('$pass')
 		";
-$resultEmp=mysql_query($strSQLEmp);
+$resultEmp=$conn->query($strSQLEmp);
 
 
-if($num=mysql_num_rows($result)){
-	$rs=mysql_fetch_array($result);
+if($num=$result->num_rows){
+	$rs=$result->fetch_assoc();
 	$_SESSION['admin_id']=$rs['admin_id'];
 	$_SESSION['admin_name']=$rs['admin_name'];
 	$_SESSION['admin_surname']=$rs['admin_surname'];
@@ -66,9 +66,10 @@ if($num=mysql_num_rows($result)){
 		echo"<script>window.location='View/index.php#/pages/vKpiOwner'</script>";
 	}
 	//echo "admin here..";
-	}else if($num=mysql_num_rows($resultEmp)){
-		
-		$rsEmp=mysql_fetch_array($resultEmp);
+	
+	}else if($num=$resultEmp->num_rows){
+	
+		$rsEmp=$resultEmp->fetch_assoc();
 		$_SESSION['emp_ses_id']=$rsEmp['emp_id'];
 		$_SESSION['emp_name']=$rsEmp['emp_name'];
 		$_SESSION['admin_status']=0;
@@ -92,8 +93,8 @@ if($num=mysql_num_rows($result)){
 			where admin_id='$admin_id'
 			and role_id=3
 			";
-			$resultPosition=mysql_query($strSQLPosition);
-			$rsPosition=mysql_fetch_array($resultPosition);
+			$resultPosition=$conn->query($strSQLPosition);
+			$rsPosition=$resultPosition->fetch_assoc();
 			$_SESSION['role_underling_position_id']=$rsPosition['position_id'];
 
 		}

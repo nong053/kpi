@@ -1,0 +1,5 @@
+$result=$conn->query($strSQL);
+$rs=$result->fetch_assoc();
+$result->num_rows;
+$conn->close();
+$conn->error;

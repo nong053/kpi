@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 
@@ -70,7 +70,8 @@ if ($jsonArray["login_status"] == 1) {
             and (confirm_flag='N' or confirm_flag='' or confirm_flag=null) 
         ";
 
-        $result = mysql_query($strSQL);
+        //$result = mysql_query($strSQL);
+        $result=$conn->query($strSQL);
         if ($result) {
             $strSQL2 = "
             DELETE FROM kpi_result 
@@ -84,16 +85,19 @@ if ($jsonArray["login_status"] == 1) {
       
             ";
     
-            $result2 = mysql_query($strSQL2);
+            //$result2 = mysql_query($strSQL2);
+            $result2 = $conn->query($strSQL2);
             if($result2){
                 echo '["success"]';
             }else{
-                echo mysql_error();
+                //echo mysql_error();
+                echo $conn->error;
             }
 
             
         }else{
-            echo mysql_error();
+            //echo mysql_error();
+            echo $conn->error;
         }
    // }
 
@@ -113,11 +117,13 @@ if ($jsonArray["login_status"] == 1) {
             and (kpi_id='".$kpi_id."')
         ";
 
-        $result = mysql_query($strSQL);
+       // $result = mysql_query($strSQL);
+       $result=$conn->query($strSQL);
         if ($result) {
             echo '["success"]';
         }else{
-            echo mysql_error();
+           // echo mysql_error();
+           echo $conn->error;
         }
 
 
@@ -159,8 +165,11 @@ if ($jsonArray["login_status"] == 1) {
 				ORDER BY appraisal_period_id ASC
 			
 			";
-        $resultSelectAppraisalPeriod = mysql_query($strSQLseleAppraisalPeriod);
-        while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)) {
+        //$resultSelectAppraisalPeriod = mysql_query($strSQLseleAppraisalPeriod);
+        //while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)) {
+
+        $resultSelectAppraisalPeriod = $conn->query($strSQLseleAppraisalPeriod);
+        while ($rsSelecAppraisalPeriod=$resultSelectAppraisalPeriod->fetch_assoc()) {
 
             // echo "<br>loop appraisal_period " . $rsSelecAppraisalPeriod['appraisal_period_id'];
             // echo "<br>";
@@ -181,9 +190,11 @@ if ($jsonArray["login_status"] == 1) {
                         
                         ";
 
-            $resultEmployee = mysql_query($strSQLEmployee);
-            while ($rsEmployee = mysql_fetch_array($resultEmployee)) {
+            //$resultEmployee = mysql_query($strSQLEmployee);
+            //while ($rsEmployee = mysql_fetch_array($resultEmployee)) {
 
+            $resultEmployee =$conn->query($strSQLEmployee);
+            while ($rsEmployee = $resultEmployee->fetch_assoc()) {
 
                 // echo "<br>--------------------department" . $rsEmployee['department_id'];
                 // echo "<br>--------------------position" . $rsEmployee['position_id'];
@@ -217,8 +228,10 @@ if ($jsonArray["login_status"] == 1) {
                 
                 ";
 
-                $resultEmpConfirmed = mysql_query($strSQLCheckEmpIsConfirmed);
-                $rsEmpConfirmed = mysql_fetch_array($resultEmpConfirmed);
+                //$resultEmpConfirmed = mysql_query($strSQLCheckEmpIsConfirmed);
+                //$rsEmpConfirmed = mysql_fetch_array($resultEmpConfirmed);
+                $resultEmpConfirmed = $conn->query($strSQLCheckEmpIsConfirmed);
+                $rsEmpConfirmed = $resultEmpConfirmed->fetch_assoc();
                
                 //print_r($rsEmpConfirmed['count_flag_confirmed']);
                 if($rsEmpConfirmed['count_flag_confirmed']==0){
@@ -256,7 +269,8 @@ if ($jsonArray["login_status"] == 1) {
 										'$admin_id'
 									)";
 
-                $rs = mysql_query($strSQL);
+                //$rs = mysql_query($strSQL);
+                $rs = $conn->query($strSQL);
                 if (!$rs) {
                     $error_count = 1;
                 }
@@ -270,11 +284,11 @@ if ($jsonArray["login_status"] == 1) {
         } else {
 
            
-            if(mysql_errno()==1062){
+            if($conn->errno==1062){
                 echo '["key-duplicate"]';
                 //echo "{\"error\":\"duplicateKey\"}";
             }else{
-                echo mysql_error();
+                echo $conn->error;
             }
             
         }
@@ -284,8 +298,8 @@ if ($jsonArray["login_status"] == 1) {
         //Loop insert kpi if select All param into assign end
 
 
-
-        mysql_close($conn);
+        //mysql_close($conn);
+        $conn->close();
     }
 
     
@@ -303,8 +317,12 @@ if ($_POST['action'] == "showEmpData") {
     ORDER BY appraisal_period_id ASC
 
 ";
+/*
 $resultSelectAppraisalPeriod = mysql_query($strSQLseleAppraisalPeriod);
 while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)) 
+*/
+$resultSelectAppraisalPeriod = $conn->query($strSQLseleAppraisalPeriod);
+while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc()) 
 {
 
     //$tableHTML .= "<br>loop appraisal_period " . $rsSelecAppraisalPeriod['appraisal_period_id'];
@@ -350,8 +368,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
 	";
 
-        $result = mysql_query($strSQL);
-       
+        //$result = mysql_query($strSQL);
+        $result=$conn->query($strSQL);
         $i = 1;
         $tableHTML .= "
         
@@ -369,8 +387,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         // $tableHTML .= "</tr>";
         // $tableHTML .= "</thead>";
         $tableHTML .= "<div class='contentemployee'>";
-        while ($rs = mysql_fetch_array($result)) {
-
+        //while ($rs = mysql_fetch_array($result)) {
+        while ($rs = $result->fetch_assoc()) {
             
 
 
@@ -475,10 +493,12 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
             ";
 
-        $resultKPIByEmp = mysql_query($strKPIByEmpSQL);
+        //$resultKPIByEmp = mysql_query($strKPIByEmpSQL);
+        $resultKPIByEmp = $conn->query($strKPIByEmpSQL);
         $total_weight_kpi_by_emp=0;
         $confirm_flag="";
-        while ($rsKPIByEmp = mysql_fetch_array($resultKPIByEmp)) {
+        //while ($rsKPIByEmp = mysql_fetch_array($resultKPIByEmp)) {
+        while ($rsKPIByEmp = $resultKPIByEmp->fetch_assoc()) {
             $confirm_flag=$rsKPIByEmp['confirm_flag'];
             $total_weight_kpi_by_emp=$rsKPIByEmp['total_weight_kpi_by_emp'];
             $tableHTML .= "<tr >";
@@ -549,7 +569,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
     }
 
         echo $tableHTML;
-        mysql_close($conn);
+        $conn->close();
+       // mysql_close($conn);
     }
 
 
@@ -573,7 +594,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
 
 
-        $result = mysql_query($strSQL);
+       // $result = mysql_query($strSQL);
+        $result=$conn->query($strSQL);
         $tableHTML = "";
         $i = 1;
         $tableHTML .= "<table id='TableassignKpi' class=' table grid table-striped'>";
@@ -598,7 +620,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         $tableHTML .= "</tr>";
         $tableHTML .= "</thead>";
 
-        while ($rs = mysql_fetch_array($result)) {
+        //while ($rs = mysql_fetch_array($result)) {
+        while ($rs =$result->fetch_assoc()) {
 
             if ($rs['kpi_type_actual'] == "0") {
                 $kpi_actual = $rs['kpi_actual_manual'];
@@ -637,7 +660,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         $tableHTML .= "</tbody>";
         $tableHTML .= "</table>";
         echo $tableHTML;
-        mysql_close($conn);
+        //mysql_close($conn);
+        $conn->close();
     }
     if ($_POST['action'] == "del") {
         $id = $_POST['id'];
@@ -650,16 +674,19 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 
 
         $strSQLAssignKpi = "DELETE FROM assign_kpi WHERE  assign_kpi_year='$year' and department_id='$department_id' and  appraisal_period_id='$appraisal_period_id'  and admin_id='$admin_id'";
-        $resultAssignKpi = mysql_query($strSQLAssignKpi);
+        //$resultAssignKpi = mysql_query($strSQLAssignKpi);
+        $resultAssignKpi = $conn->query($strSQLAssignKpi);
 
 
         $strSQLKpiResult = "DELETE FROM kpi_result WHERE  kpi_year='$year' and department_id='$department_id' and  appraisal_period_id='$appraisal_period_id'  and admin_id='$admin_id'";
-        $resultKpiResult = mysql_query($strSQLKpiResult);
+        //$resultKpiResult = mysql_query($strSQLKpiResult);
+        $resultKpiResult = $conn->query($strSQLKpiResult);
 
 
 
 
-        $result = mysql_query($strSQL);
+        //$result = mysql_query($strSQL);
+        $result=$conn->query($strSQL);
         if ($result) {
             echo '["success"]';
 
@@ -672,9 +699,11 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 				and admin_id='$admin_id'
 			";
 
-            $rsResultUpdate = mysql_query($strSQLUpdate);
+            //$rsResultUpdate = mysql_query($strSQLUpdate);
+            $rsResultUpdate = $conn->query($strSQLUpdate);
             if (!$rsResultUpdate) {
-                echo mysql_error();
+                //echo mysql_error();
+                echo $conn->error;
             }
 
             // check count rows assign_kpi_master
@@ -684,7 +713,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         } else {
             echo '["error"]';
         }
-        mysql_close($conn);
+        //mysql_close($conn);
+        $conn->close();
     }
     if ($_POST['action'] == "removeAssignKPIs") {
         /*
@@ -710,7 +740,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 			and position_id='$position_id'
 			and admin_id='$admin_id'
 		";
-        $result = mysql_query($strSQL);
+        //$result = mysql_query($strSQL);
+        $result=$conn->query($strSQL);
 
         if ($result) {
 
@@ -721,16 +752,20 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         $id = $_POST['id'];
 
         $strSQLAssignKpi = "DELETE FROM assign_kpi WHERE  assign_kpi_year='$year' and department_id='$department_id' and  appraisal_period_id='$appraisal_period_id'  and admin_id='$admin_id'";
-        $resultAssignKpi = mysql_query($strSQLAssignKpi);
+        //$resultAssignKpi = mysql_query($strSQLAssignKpi);
+        $resultAssignKpi = $conn->query($strSQLAssignKpi);
 
         $strSQLKpiResult = "DELETE FROM kpi_result WHERE  kpi_year='$year' and department_id='$department_id' and  appraisal_period_id='$appraisal_period_id'  and admin_id='$admin_id'";
-        $resultKpiResult = mysql_query($strSQLKpiResult);
+        //$resultKpiResult = mysql_query($strSQLKpiResult);
+        $resultKpiResult = $conn->query($strSQLKpiResult);
 
 
         $strSQL = "SELECT * FROM assign_kpi_master WHERE assign_kpi_id=$id and admin_id='$admin_id'";
-        $result = mysql_query($strSQL);
+        //$result = mysql_query($strSQL);
+        $result = $conn->query($strSQL);
         if ($result) {
-            $rs = mysql_fetch_array($result);
+           // $rs = mysql_fetch_array($result);
+           $rs=$result->fetch_assoc();
 
             /*
 		kpi_id
@@ -754,7 +789,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
             echo '["error"]';
         }
 
-        mysql_close($conn);
+       // mysql_close($conn);
+       $conn->close();
     }
     if ($_POST['action'] == "editAction") {
         /*
@@ -792,7 +828,8 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         and kpi_id='$kpi_id'
         and admin_id='$admin_id'";
             
-        $result = mysql_query($strSQL);
+        //$result = mysql_query($strSQL);
+        $result=$conn->query($strSQL);
         
         if ($result) {
             echo '["editSuccess"]';
@@ -817,9 +854,11 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
         }
         */
 
-        mysql_close($conn);
+        //mysql_close($conn);
+        $conn->close();
     }else{
-        echo '["error"]' . mysql_error();
+        //echo '["error"]' . mysql_error();
+        echo '["error"]' . $conn->error;
     }
 }
 
@@ -849,9 +888,11 @@ while ($rsSelecAppraisalPeriod = mysql_fetch_array($resultSelectAppraisalPeriod)
 			and admin_id='$admin_id'
 			";
 
-        $rsResultUpdate = mysql_query($strSQLUpdate);
+        //$rsResultUpdate = mysql_query($strSQLUpdate);
+        $rsResultUpdate = $conn->query($strSQLUpdate);
         if (!$rsResultUpdate) {
-            echo mysql_error();
+            //echo mysql_error();
+            echo $conn->error;
         } else {
             echo '["success"]';
         }

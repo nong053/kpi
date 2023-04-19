@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 
 <?php
 include './../config.inc.php';
@@ -31,11 +31,13 @@ if($jsonArray["login_status"]==1){
 	}
 	
 	
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	$i=0;
 	$dataObject="";
 	$dataObject.="[";
-	while($rs=mysql_fetch_array($result)){
+	//while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){
 		if($i==0){
 			$dataObject.="[";
 			$dataObject.="\"".$rs["appraisal_period_id"]."\",\"".$rs["appraisal_period_desc"]."\"";

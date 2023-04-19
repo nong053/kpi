@@ -1,4 +1,4 @@
-<? session_start(); ob_start();
+<?php session_start(); ob_start();
 error_reporting(0);
 error_reporting(E_ERROR | E_PARSE);
 
@@ -325,36 +325,11 @@ if($_SESSION['language']=="th"){
 		    	
 		  </div>
 		
-		
-
-
 		    	
-		    	<row>
-				<div id="perspectiveArea">
-					
-				</div>
-				
-
-		    		
-		    		<!-- <div class="col-md-12">
-		    		 		
-							<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
-									  <div class="panel-heading">
-									<b><i class="glyphicon glyphicon-record"></i> <?=$_SESSION['kpi_owner_l_tbl_title2']?> 	</b>		
-									  </div>
-									  <div class="panel-body panel-body-bottom" >
-									  
-									 		<div id="tableGridKpieResultArea"></div>
-									 		
-									  </div>
-							</div>
-							
-		    		</div> -->
-		    		<!-- ### Panel Start ### -->
-		    		
-		    		<!-- ### Panel End ### -->
-		    	</row>
-		 <br style="clear: both;">   	
+	 <row>
+			<div id="perspectiveArea"></div>
+	</row>
+	<br style="clear: both;">   	
 		  
 </div>
 </div>

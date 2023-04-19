@@ -8,7 +8,7 @@ $emp_role_level="";
 
 
 $strSQL="select * from admin where admin_username='$user' and admin_password=MD5('$pass')";
-$result=mysql_query($strSQL);
+$result=$conn->query($strSQL);
 $strSQLEmp="select e.*,r.role_name as role_name,ad.* from employee e
 INNER JOIN position_emp pe on e.position_id=pe.position_id
 INNER JOIN role r on e.role_id=r.role_id
@@ -17,10 +17,10 @@ where e.emp_user='$user'
 and e.emp_pass=MD5('$pass')
 
 ";
-$resultEmp=mysql_query($strSQLEmp);
+$resultEmp=$conn->query($strSQLEmp);
 
-if($num=mysql_num_rows($result)){
-	$rs=mysql_fetch_array($result);
+if($num=$result->num_rows){
+	$rs=$result->fetch_assoc();
 
 	$admin_name=$rs['admin_name'];
 	$payload = '{"iss":"'.$user.'",
@@ -39,9 +39,9 @@ if($num=mysql_num_rows($result)){
 
 
 
-	}else if($num=mysql_num_rows($resultEmp)){
+	}else if($num=$resultEmp->num_rows){
 		
-		$rsEmp=mysql_fetch_array($resultEmp);
+		$rsEmp=$resultEmp->fetch_assoc();
 		$emp_role_level=$rsEmp['role_name'];
 		$payload = '{"iss":"'.$rsEmp['emp_id'].'",
 				"emp_name":"'.$rsEmp['emp_name'].'",

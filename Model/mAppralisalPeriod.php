@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 
@@ -24,30 +24,37 @@ if($_POST['action']=="checkUsedData"){
 			where appraisal_period_id='$appraisalPeriodId'
 		";
 	
-	$result=mysql_query($sqlSQL);
-	$rs=mysql_fetch_array($result);
+	//$result=mysql_query($sqlSQL);
+	//$rs=mysql_fetch_array($result);
+	$result=$conn->query($sqlSQL);
+	$rs=$result->fetch_assoc();
+
 	echo "[\"$rs[countAppraisal]\"]";
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 }
 //CheckUsingKpiAssignAndKpiResult End
 
 if($_POST['action']=="add"){
 	$strSQL="INSERT INTO appraisal_period(appraisal_period_year,appraisal_period_desc,appraisal_period_start,appraisal_period_end,appraisal_period_target_percentage,admin_id)
 	VALUES('$appraisalPeriodYear','$appraisalPeriodDesc','$appraisalPeriodStart','$appraisalPeriodEnd','$appraisal_period_target_percentage','$admin_id')";
-	$rs=mysql_query($strSQL);
+	//$rs=mysql_query($strSQL);
+	$rs=$conn->query($strSQL);
 	if($rs){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 }
 
 if($_POST['action']=="showData"){
 	//echo "Show Data";
 	$strSQL="SELECT * FROM appraisal_period where  appraisal_period_year='$appraisalPeriodYear' and admin_id='$admin_id'  order by appraisal_period_id  ";
-	$result=mysql_query($strSQL);
-	$$tableHTML="";
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
+	$tableHTML="";
 	$i=1;
 	$tableHTML.="<table id='TableappraisalPeriod' class='grid table-striped' style='width:100%'>";
 		$tableHTML.="<colgroup>";
@@ -72,8 +79,8 @@ if($_POST['action']=="showData"){
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentappraisalPeriod\">";
-	while($rs=mysql_fetch_array($result)){
-		
+	//while($rs=mysql_fetch_array($result)){
+	while($rs=$result->fetch_assoc()){	
 	
 	
 	$tableHTML.="<tr>";
@@ -98,30 +105,34 @@ if($_POST['action']=="showData"){
 	$tableHTML.="</tbody>";
 	$tableHTML.="</table>";
 	echo $tableHTML;
-	mysql_close($conn);
+	$conn->close();
+	//mysql_close($conn);
 }
 if($_POST['action']=="del"){
 	$id=$_POST['id'];
 	
 	$strSQL="DELETE FROM appraisal_period WHERE appraisal_period_id=$id";
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["success"]';
 	}else{
 		echo'["error"]';
 	}
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 	
 }
 if($_POST['action']=="edit"){
 	$id=$_POST['id'];
 
 	$strSQL="SELECT * FROM appraisal_period WHERE appraisal_period_id=$id";
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
-		$rs=mysql_fetch_array($result);
+		//$rs=mysql_fetch_array($result);
+		$rs=$result->fetch_assoc();
 		
-		//echo "[{\"abc\":$rs[appraisalPeriod_id],\"def\":\"22\"}]";
 		
 		 echo "[{\"appraisal_period_id\":\"$rs[appraisal_period_id]\",\"appraisal_period_year\":\"$rs[appraisal_period_year]\",
 		 		\"appraisal_period_desc\":\"$rs[appraisal_period_desc]\",\"appraisal_period_start\":\"$rs[appraisal_period_start]\",
@@ -130,8 +141,8 @@ if($_POST['action']=="edit"){
 	}else{
 		echo'["error"]';
 	}
-	
-	mysql_close($conn);
+	$conn->close();
+	//mysql_close($conn);
 }
 if($_POST['action']=="editAction"){
 
@@ -143,14 +154,16 @@ if($_POST['action']=="editAction"){
 	appraisal_period_target_percentage='$appraisal_period_target_percentage'
 	 WHERE appraisal_period_id='$appraisalPeriodId'";
 	
-	$result=mysql_query($strSQL);
+	//$result=mysql_query($strSQL);
+	$result=$conn->query($strSQL);
 	if($result){
 		echo'["editSuccess"]';
 	}else{
-		echo'["error"]'.mysql_error();
+		echo'["error"]'.$conn->error;
 	}
 
-	mysql_close($conn);
+	//mysql_close($conn);
+	$conn->close();
 }
 
 }else{
