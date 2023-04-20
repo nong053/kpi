@@ -486,13 +486,13 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 				$("#employeeShowData").html(data);
 			
 				  $("#Tableemployee").kendoGrid({
-                //     // height: 350,
-                //      sortable: true,
-                //      pageable: {
-                //          refresh: true,
-                //          pageSizes: true,
-                //          buttonCount: 5
-                //      },
+                    // height: 350,
+                    //  sortable: true,
+                    //  pageable: {
+                    //      refresh: true,
+                    //      pageSizes: true,
+                    //      buttonCount: 5
+                    //  },
                   });
 				 setGridTable();
 				 

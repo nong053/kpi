@@ -216,7 +216,7 @@ $department_name=$_GET['department_name'];
 
  <div class="row1">
  	
- 	<div class="col-md-12">
+ 	<div class="col-md-121">
  	
 		<!--  panel1 start -->
 		<div class="panel panel-default">
