@@ -258,7 +258,7 @@ var  getColorBall=function(score)
 		                   
 						   
 						   
-						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold;  color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> ";
+						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold;  color:green;'>"+parseFloat(score).toFixed(2)+"%</span> ";
 						   ballScoll+="<div  class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
 					 }else if(index==1 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
@@ -267,7 +267,7 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
 						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
 					 }else if(index==2 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
@@ -276,7 +276,7 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
 						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
 					 }else if(index==3 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
@@ -285,7 +285,7 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
 						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
 					 }else if(index==4 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
@@ -294,7 +294,7 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
 						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
 					 }else if(index==5 && (parseInt(indexEntry[1])<= score  ) ){
@@ -303,7 +303,7 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold; color:green; font-size:20px;'>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
 						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 					 }
 				
