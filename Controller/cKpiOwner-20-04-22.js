@@ -25,7 +25,7 @@ function drawChart() {
 		data_id=data_id.split("-");
 		id=data_id[1];
 		value=data_id[2];
-		alert(value);
+		//alert(value);
 
 		var data = google.visualization.arrayToDataTable([
 			['Label', 'Value'],
@@ -37,16 +37,16 @@ function drawChart() {
 		  
 		  var options = {
 			width: '100%', height: '100%',
-			redFrom: 0, redTo: 60,
+			redFrom: 20, redTo: 60,
 			yellowFrom:60, yellowTo: 80,
 			greenFrom:80, greenTo: 100,
 			minorTicks: 5
 		  };
 	  
-		  var chart = new google.visualization.Gauge(document.getElementById('gaugePerspective-'+id));
+		  var chart = new google.visualization.Gauge(document.getElementById('gauge'+id));
 		  chart.draw(data, options);
 
-		  $("#gaugePerspective-"+id+" table").css({"margin":"auto"});
+		  $("#gauge"+id+" table").css({"margin":"auto"});
 		
 	});
 
@@ -387,9 +387,7 @@ var  getColorEasyPieChart=function(score){
 								htmlPerspectiveHTML+="<b><i class=\"glyphicon glyphicon-eye-open\"></i> "+indexEntry[1]+"</b>";	
 								htmlPerspectiveHTML+="</div>";
 								htmlPerspectiveHTML+="<div class=\"panel-body panel-body-top\">";
-								htmlPerspectiveHTML+="<div id=\"gauge-container1\">";
-								var guagePercentage=parseFloat(indexEntry[2]).toFixed(2);
-								htmlPerspectiveHTML+="<div style='display:none;' class='gauge_data' id=\"gauge_data-"+indexEntry[0]+"-"+guagePercentage+"\"  ></div>";
+								htmlPerspectiveHTML+="<div id=\"gauge-container\">";
 								htmlPerspectiveHTML+="<div class=\"gaugePerspective\" id=\"gaugePerspective-"+indexEntry[0]+"\"></div>";
 								htmlPerspectiveHTML+="<div class='gaugePerspectiveValue' id=\"gaugePerspectiveValue-"+indexEntry[0]+"\"></div>";
 								htmlPerspectiveHTML+="</div>";
@@ -397,7 +395,7 @@ var  getColorEasyPieChart=function(score){
 						htmlPerspectiveHTML+="</div>";
 					htmlPerspectiveHTML+="</div>";
 					$("#perspectiveArea").append(htmlPerspectiveHTML);
-					/*
+
 					$("#gaugePerspective-"+indexEntry[0]).kendoRadialGauge({
 					 		
 						pointer: {
@@ -415,13 +413,11 @@ var  getColorEasyPieChart=function(score){
 						   
 						}
 					});
-					
 				    $("#gaugePerspectiveValue-"+indexEntry[0]).html(parseFloat(indexEntry[2]).toFixed(2)+"%");
-					*/
+
 
 
 				  });
-				 
 				  
 				  org_result=pers_result/pers_weight;
 				  org_result=parseFloat(org_result).toFixed(2);
@@ -445,8 +441,6 @@ var  getColorEasyPieChart=function(score){
 				});
 				$("#gaugeOwnerValue").html(org_result+"%");
 				  //alert(org_result);
-				   //call google chart
-				   google.charts.setOnLoadCallback(drawChart);
 
 
 				 }catch(err) {
@@ -1225,8 +1219,6 @@ $(".glyphicon-remove-bottom").click(function(){
 
 $(document).ready(function(){
 	
-	//google chart setting
-	google.charts.load('current', {'packages':['gauge']});
 	
 	paramYear(sessionStorage.getItem("param_year"));
 	$( "body" ).off( "change", "#appraisal_year");

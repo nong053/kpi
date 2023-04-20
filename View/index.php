@@ -111,6 +111,9 @@ if($_SESSION['login_status']!="1"){
     
     <link href="../kendoCommercial/styles/kendo.common.min.css" rel="stylesheet" />
     <link href="../kendoCommercial/styles/kendo.default.min.css" rel="stylesheet" />
+
+	 
+
     <!--
     <script src="../kendoCommercial/js/angular.min.js"></script>
     -->
@@ -123,6 +126,10 @@ if($_SESSION['login_status']!="1"){
 	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	 <!-- jquery confirm end -->
+
+	 <!--google chart start-->
+	 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<!--google chart end-->
 	 
 	 <!-- load angular fame work start-->
 	<script src="../js/angular.min.js"></script>
