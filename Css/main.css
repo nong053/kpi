@@ -275,10 +275,11 @@ body{
 .iconMenu{
 	
 	font-size:18px;
-	font-wieght:blod;
+	font-weight:blod;
 }
 .menu-text{
 	padding-bottom:2px;
+    font-weight:bold;
 }
 .listGroupTop{
 	margin-top: 57px;

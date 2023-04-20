@@ -162,9 +162,10 @@ if($_SESSION['language']=="th"){
    
       <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
-						<button style="" data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary " id="btnAddPerspective" type="button"><i class="glyphicon  glyphicon-plus"></i>
+						<button style="float:right" data-toggle="modal" data-target=".appraisalPeriodSetup" class="btn btn-primary " id="btnAddPerspective" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['perspective_l_btn_add']?>
-						</button>		
+						</button>	
+						<br style="clear:both"	>
 			  </div>
 			  <div class="panel-body panel-body-top">
 			  		

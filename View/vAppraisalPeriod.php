@@ -188,14 +188,14 @@ if($_SESSION['language']=="th"){
    <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
 				
-
-					<span style="float:left;" class='appraisalYearArea'></span>
-
-					<span style="float:left; padding-left: 5px;" class="pre-search-label1" >
+			  		<span style="float:right; " class="pre-search-label1" >
 						<button data-toggle="modal" data-target=".appraisalPeriodSetup" data-backdrop="static" data-keyboard="false" class="btn btn-primary " id="btnAppraisalPeriod" type="button"><i class="glyphicon  glyphicon-plus"></i>
 						<?=$_SESSION['appraisalPeriod_l_des_btn_add']?>
 						</button>
 					</span>
+					<span style="float:right; padding-right: 5px;" class='appraisalYearArea'></span>
+
+					
 				
 				<br style="clear: both;">			
 			  </div>

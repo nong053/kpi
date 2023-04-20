@@ -256,14 +256,15 @@ if($_SESSION['language']=="th"){
 					
 					</td>
 					<td >
-						<button class="btn btn-primary " id="addKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
-						<?=$_SESSION['kpi_l_des_btn_add']?>
-						</button>		
+							
 					</td>
 
 			  	</tr>
-			  	</table>		
-						
+			  	</table>	
+				  <button style="float:right" class="btn btn-primary " id="addKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
+						<?=$_SESSION['kpi_l_des_btn_add']?>
+				 </button>		
+				 <br style="clear: both;">
 			  </div>
 			  <div class="panel-body panel-body-top">
 			  

@@ -84,9 +84,10 @@ if($_SESSION['language']=="th"){
     <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">
 					
-				<button data-toggle="modal" data-target="" class="btn btn-primary " id="btnAddDepartment" type="button"><i class="glyphicon  glyphicon-plus"></i>
+				<button style="float:right" data-toggle="modal" data-target="" class="btn btn-primary " id="btnAddDepartment" type="button"><i class="glyphicon  glyphicon-plus"></i>
 				<?=$_SESSION['department_l_des_btn_add']?>
-				</button>		
+				</button>	
+				<br style="clear: both;"	>
 			  </div>
 			  <div class="panel-body panel-body-top">
 			  

@@ -336,8 +336,8 @@ p{
 	 		});
      }	
   	$(document).ready(function(){
-  			var admin_id="<?php echo$admin_id?>";
-  			alert(admin_id);
+  			var admin_id="<?=$admin_id?>";
+  			
 
      $("#btnResetData").click(function(){
      

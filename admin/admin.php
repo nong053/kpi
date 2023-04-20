@@ -1,4 +1,4 @@
-<? session_start();
+<?php session_start();
  $_SESSION['admin_surname'];
  $vExpired_date="";
  ?>
@@ -105,17 +105,17 @@
 			<div id="action" >การจัดการ</div>
 			<br style="clear:both"  />
 		</div>
-		<?
+		<?php
 		if($_SESSION["admin_id"]==1){
 			$sql="select * from admin  order by admin_id asc";
 		}else{
 			$sql="select * from admin where admin_id='$_SESSION[admin_id]' order by admin_id asc";
 		}
 		
-		$table=mysql_query($sql) or die(mysql_error());
-		if($num_rows=mysql_num_rows($table)) {
+		$table=$conn->query($sql) or die($conn->error);
+		if($num_rows=$table->num_rows) {
 			$i = 1;
-			while($row=mysql_fetch_array($table)) {
+			while($row=$table->fetch_assoc()) {
 				if($row['admin_status'] == '1'){
 					$vAdmin_status1 = "<div id=\"status\" style=\"color:#006600\">ใช้งานได้</div>\r\n";
 				}elseif($row['admin_status'] == '3'){
@@ -174,7 +174,7 @@
 <br style="clear:both"  />
 
 
-<? 
+<?php 
 	if($_GET['action'] == "edit"){
 		if($_SESSION['admin_status'] == '3'){
 		echo "<h2>แก้ไขข้อมูลผู้ดูแลระบบ <span class=\"add\"><a href=\"index.php?page=admin\">เพิ่มข้อมูลผู้ดูแลระบบ</a></span></h2>";
@@ -187,8 +187,8 @@
 			$sql="select * from admin where admin_id = '$_SESSION[admin_id]'";
 		}
 		
-		$table=mysql_query($sql) or die(mysql_error());
-			if($row=mysql_fetch_array($table)) {
+		$table=$conn->query($sql) or die($conn->error);
+			if($row=$table->fetch_assoc()) {
 				$vAdmin_id = $row['admin_id'];
 				$vAadmin_name1 = $row['admin_name'];
 				$vAdmin_surname = $row['admin_surname'];
@@ -335,8 +335,8 @@ if($_SESSION['admin_status']=="3"){
 	<div id="frm-admin2">
 		
 		<select id='activated' name='activated'>
-			<option <? if($vActivated == "0"){echo "selected=\"selected\"";}?>  value='0'>Non Activated</option>
-			<option <? if($vActivated == "1"){echo "selected=\"selected\"";}?>  value='1'>Activated</option>
+			<option <?php if($vActivated == "0"){echo "selected=\"selected\"";}?>  value='0'>Non Activated</option>
+			<option <?php if($vActivated == "1"){echo "selected=\"selected\"";}?>  value='1'>Activated</option>
 		
 		</select>
 
@@ -357,18 +357,18 @@ if($_SESSION['admin_status']=="3"){
 		
 		<select id='package' name='package'>
 
-		<?
+		<?php
 		$sql="SELECT * FROM person_kpi.package order by id asc";
-		$table=mysql_query($sql) or die(mysql_error());
-		while($row=mysql_fetch_array($table)) {
+		$table=$conn->query($sql) or die($conn->error);
+		while($row=$table->fetch_assoc()) {
 			if($row['id']==$vPackage){
 				?>
 				<option selected value="<?=$row['id']?>"><?=$row['name']?></option>
-				<?
+				<?php
 			}else{
 				?>
 				<option value="<?=$row['id']?>"><?=$row['name']?></option>
-				<?
+				<?php
 			}
 			
 
@@ -387,18 +387,18 @@ if($_SESSION['admin_status']=="3"){
 <div id="admin-line-frm">
 <div id="frm-admin">สถานะ</div>
 	<div id="frm-admin2">
-	<? if( $_SESSION['admin_status'] == '3' && $vAdmin_status1 != '3' ){ ?>
+	<?php if( $_SESSION['admin_status'] == '3' && $vAdmin_status1 != '3' ){ ?>
 		<select name="admin_status" id="admin_status" >
-		  <option <? if($vAdmin_status1 == "1"){echo "selected=\"selected\"";}?> value="1">ใช้งานได้</option>
-		  <option <? if($vAdmin_status1 == "0"){echo "selected=\"selected\"";}?> value="0">ระงับชั่วคราว</option>
+		  <option <?php if($vAdmin_status1 == "1"){echo "selected=\"selected\"";}?> value="1">ใช้งานได้</option>
+		  <option <?php if($vAdmin_status1 == "0"){echo "selected=\"selected\"";}?> value="0">ระงับชั่วคราว</option>
   	    </select>
-	<? }else{ ?>
+	<?php }else{ ?>
 		<select name="admin_status" id="admin_status" disabled="disabled">
-		  <option <? if($vAdmin_status1 == "1"){echo "selected=\"selected\"";}?> value="1">ใช้งานได้</option>
-		  <option <? if($vAdmin_status1 == "0"){echo "selected=\"selected\"";}?> value="0">ระงับชั่วคราว</option>
+		  <option <?php if($vAdmin_status1 == "1"){echo "selected=\"selected\"";}?> value="1">ใช้งานได้</option>
+		  <option <?php if($vAdmin_status1 == "0"){echo "selected=\"selected\"";}?> value="0">ระงับชั่วคราว</option>
   	    </select>
 		<input name="admin_status" id="admin_status" type="hidden" value="<?=$vAdmin_status1?>">
-	<? } ?>
+	<?php } ?>
 		
 	</div>
 <br style="clear:both"  />

@@ -35,7 +35,7 @@ echo "admin_password".$admin_password."<br>";
 				alert("กรอกข้อมูลไม่ครบ !");
 				window.history.back();
 			</script>
-			<?
+			<?php
 			exit();
 			
 		}
@@ -47,7 +47,7 @@ echo "admin_password".$admin_password."<br>";
 				alert("กรอกข้อมูลไม่ครบ !");
 				window.history.back();
 			</script>
-			<?
+			<?php
 			exit();
 			
 		}
@@ -59,22 +59,22 @@ echo "admin_password".$admin_password."<br>";
 					$admin_password=md5($admin_password);
 				}
 				$sql="UPDATE admin SET admin_name='$admin_name', admin_surname='$admin_surname', admin_password='$admin_password', admin_status='$admin_status',admin_email='$admin_email',admin_tel='$admin_tel',admin_website='$admin_website',admin_send_email='$admin_send_email',expired_date='$expired_date',activated='$activated',package='$package',admin_company='$admin_company' WHERE admin_id='$admin_id'";
-				mysql_query($sql)or die (mysql_error());
+				$conn->query($sql)or die ($conn->error);
 				break;
 			case 'add' :
 				$sql="select * from admin where admin_username='$admin_username'";
-				$table=mysql_query($sql) or die(mysql_error());
-				if($row=mysql_fetch_array($table)){
+				$table=$conn->query($sql) or die($conn->error);
+				if($row=$table->fetch_assoc()){
 					?>
 					<script>
 						alert("ชื่อผู้ใช้นี้มีอยู่ในระบบแล้ว !");
 						window.history.back();
 					</script>
-					<?
+					<?php
 					exit();	
 				}
 				$sql="INSERT INTO admin (admin_name, admin_surname, admin_username, admin_password, admin_status,admin_email,admin_website,admin_send_email,admin_tel,expired_date,activated,package ) VALUES ('$admin_name', '$admin_surname', '$admin_username', '$admin_password', '$admin_status','$admin_email','$','$admin_website','$admin_send_email','$expired_date','$activated','$package')";
-				mysql_query($sql)or die (mysql_error());
+				$conn->query($sql)or die ($conn->error);
 				break;
 			default	:
 			
