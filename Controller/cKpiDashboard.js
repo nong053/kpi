@@ -21,7 +21,7 @@ function drawChart() {
 
 		  
 		  var options = {
-			width: '100%', height: '100%',
+			width: 180, height: 180,
 			redFrom: 0, redTo: 60,
 			yellowFrom:60, yellowTo: 80,
 			greenFrom:80, greenTo: 100,

@@ -308,7 +308,7 @@
 										'เข้าใช้งาน': {
 										btnClass: 'btn-blue',
 										action: function(){
-												window.location="/";
+												//window.location="/kpi";
 										}
 										},
 										'ปิด': function () {}

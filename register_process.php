@@ -50,10 +50,113 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 				
 				$strSQL="select * from admin where admin_username='$admin_username' and admin_password='".MD5($admin_password)."'";
 				$result=$conn->query($strSQL);
-				
-				
-				if($num=$result->num_rows;){
+				$position_id="";
+				$department_id="";
+				if($num=$result->num_rows){
 					$rs=$result->fetch_assoc();
+
+
+					//Example Period data start
+					$strSQLPeriod="INSERT INTO appraisal_period(appraisal_period_year,appraisal_period_desc,appraisal_period_start,appraisal_period_end,appraisal_period_target_percentage,admin_id)
+					VALUES(YEAR(CURDATE()),'ครั้งที่1',now(),now(),'80','$rs[admin_id]'),
+					(YEAR(CURDATE()),'ครั้งที่2',now(),now(),'80','$rs[admin_id]'),
+					(YEAR(CURDATE()),'ครั้งที่3',now(),now(),'80','$rs[admin_id]'),
+					(YEAR(CURDATE()),'ครั้งที่4',now(),now(),'80','$rs[admin_id]')
+					";
+					$rsPeriod=$conn->query($strSQLPeriod);
+					if($rsPeriod){
+						//echo'["success"]';
+					}else{
+						//echo'["error"]';
+						echo'appraisal_period '.$conn->error;
+					}
+					//Example Period data end
+					//Example perspective data start
+					$strSQLPerspective="INSERT INTO perspective(perspective_name,perspective_weight,admin_id)
+					VALUES('พัฒนาบุคคลากร','25','$rs[admin_id]'),
+					('ด้านลูกค้า','25','$rs[admin_id]'),
+					('การเงิน','25','$rs[admin_id]'),
+					('การเรียนรู้และการเติบโต','25','$rs[admin_id]')
+					";
+					$rsPerspective=$conn->query($strSQLPerspective);
+					if($rsPerspective){
+						//echo'["success"]';
+					}else{
+						echo'perspective '.$conn->error;
+					}
+					//Example perspective data end
+
+					//Example department data start
+					
+					$strSQLDepartment="INSERT INTO department(department_code,department_name,department_detail,admin_id)
+					VALUES('D001','ฝ่ายเงิน','ฝ่ายการเงิน','$rs[admin_id]'),
+					('D002','ฝ่ายตลาด','ฝ่ายการตลาด','$rs[admin_id]'),
+					('D003','ฝ่ายบัญชี','ฝ่ายบัญชี','$rs[admin_id]'),
+					('D004','ฝ่ายไอที','ฝ่ายไอที','$rs[admin_id]')
+					";
+					$rsDepartment=$conn->query($strSQLDepartment);
+					if($rsDepartment){
+						//echo'["success"]';
+						$strSQLSelectDepartment="select * from department where admin_id='$rs[admin_id]' order by department_code";
+						$resultSelectDepartment=$conn->query($strSQLSelectDepartment);
+						if($numSelectDepartment=$resultSelectDepartment->num_rows){
+							$rsSelectDepartment=$resultSelectDepartment->fetch_assoc();
+							$department_id=$rsSelectDepartment['department_id'];
+						}
+
+					}else{
+						echo'department '.$conn->error;
+					}
+					//Example department data end
+					//Example position data start
+					
+					$strSQLPosiion="INSERT INTO position_emp(position_name,admin_id,role_id)
+					VALUES('ผู้บริหาร','$rs[admin_id]','1'),
+					('หัวหน้าแผนก','$rs[admin_id]','2'),
+					('พนักงานทั่วไป','$rs[admin_id]','3')
+					";
+					$rsPosiion=$conn->query($strSQLPosiion);
+					if($rsPosiion){
+						//echo'["success"]';
+						$strSQLSelectPosiion="select * from position_emp where admin_id='$rs[admin_id]' order by role_id";
+						$resultSelectPosiion=$conn->query($strSQLSelectPosiion);
+						if($numSelectPosiion=$resultSelectPosiion->num_rows){
+							$rsSelectPosiion=$resultSelectPosiion->fetch_assoc();
+							$position_id=$rsSelectPosiion['position_id'];
+						}
+					}else{
+						echo "position_emp ".$conn->error;
+					}
+					//Example position data end
+
+					//Example Employee data start
+					$strSQLEmp="INSERT INTO employee(emp_user,emp_pass,emp_tel,emp_mobile,emp_age,emp_email,position_id,emp_other,emp_picture,emp_picture_thum,department_id,role_id,admin_id,
+						emp_first_name,emp_last_name,emp_date_of_birth,emp_age_working,emp_status,emp_adress,emp_district,emp_sub_district,emp_province,emp_postcode,emp_status_work_id,emp_code)
+						VALUES(
+						'user001',md5('user001'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'ไกรสร','คงไว้',now(),'10','single','553/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM001'
+						),(
+						'user002',md5('user002'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'วรเวช','อยู่เจริญ',now(),'10','single','554/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM002'
+						),(
+						'user003',md5('user003'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'เธียรธาร','คันโธสา',now(),'10','single','555/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM003'
+						),(
+						'user004',md5('user004'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'ศิริพร','สิงห์ทองกล้า',now(),'10','single','556/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM004'
+						),(
+						'user005',md5('user005'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'บูรณา','คงไว้',now(),now(),'single','557/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM005'
+						)";
+						$rsEmp=$conn->query($strSQLEmp);
+						if($rsEmp){
+							//echo'["success"]';
+						}else{
+							echo "employee ".$conn->error;;
+						}
+					//Example Employee data end
+
+
 					$_SESSION['admin_id']=$rs['admin_id'];
 					$_SESSION['admin_name']=$rs['admin_name'];
 					$_SESSION['new_register_admin_username']=$rs['admin_username'];
@@ -76,7 +179,7 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 					$flgSend1 = @mail($strTo,$strSubject,$strMessage,$strHeader);  // @ = No Show Error //
 					$flgSend2 = @mail($strTo2,$strSubject2,$strMessage2,$strHeader2);  // @ = No Show Error //
 
-					echo '{"status":"200","admin_username":"'.$rs[admin_username].'"}';
+					echo '{"status":"200","admin_username":"'.$rs['admin_username'].'"}';
 				}
 				
 			}
