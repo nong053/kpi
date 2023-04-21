@@ -39,7 +39,7 @@ $_SESSION['main_menul_l_appraisal_result']="Appraisal Result";
 
 }else{
 //TH
-$_SESSION['main_menul_l_kpiDashboard']="แดชบอร์ด BSC";
+$_SESSION['main_menul_l_kpiDashboard']="แดชบอร์ด";
 $_SESSION['main_menul_l_threshold']="เกณฑ์การประเมิน";
 $_SESSION['main_menul_l_appraisalPeriod']="ช่วงประเมิน";
 $_SESSION['main_menul_l_department']="แผนก";
@@ -426,7 +426,7 @@ if($_SESSION['login_status']!="1"){
 							</li>
 							<li class="mainMenu menuLevel1">
 								  <a href="index.php#/pages/vPerspective" id="perspectiveMenu" 
-								  class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
+								  class=""><i class="glyphicon glyphicon-eye-open"></i></i>  <span class="menu-text"> มุมมองธุรกิจ</span></a>
 					  			<b class="arrow"></b>
 							</li>
 							
@@ -437,7 +437,11 @@ if($_SESSION['login_status']!="1"){
 					 		</li>
 							
 							<li class="mainMenu menuLevel1">
-					  			<a href="index.php#/pages/vPosition" id="positionMenu" class=""><i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  <span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
+					  			<a href="index.php#/pages/vPosition" id="positionMenu" class="">
+									<!-- <i class="iconMenu glyphicon glyphicon glyphicon-fire"></i>  -->
+									<i class="iconMenu glyphicon glyphicon glyphicon-briefcase"></i> 
+									 
+									<span class="menu-text"> <?=$_SESSION['main_menul_l_position']?></span></a>
 					  			<b class="arrow"></b>
 							</li>
 							

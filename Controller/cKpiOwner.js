@@ -25,7 +25,7 @@ function drawChart() {
 		data_id=data_id.split("-");
 		id=data_id[1];
 		value=data_id[2];
-		alert(value);
+		//alert(value);
 
 		var data = google.visualization.arrayToDataTable([
 			['Label', 'Value'],
@@ -49,6 +49,32 @@ function drawChart() {
 		  $("#gaugePerspective-"+id+" table").css({"margin":"auto"});
 		
 	});
+
+	//create guage chart owner start
+	var ownerValue=$("#gaugeOwnerValue").text();
+	//alert(ownerValue);
+	var ownerData = google.visualization.arrayToDataTable([
+		['Label', 'Value'],
+		['', parseInt(ownerValue)]
+	  ]);
+
+	
+	
+	  
+	  var OwnerOptions = {
+		width: '100%', height: '100%',
+		redFrom: 0, redTo: 60,
+		yellowFrom:60, yellowTo: 80,
+		greenFrom:80, greenTo: 100,
+		minorTicks: 5
+	  };
+  
+	  var chartOwner = new google.visualization.Gauge(document.getElementById('gaugeOwner'));
+	  chartOwner.draw(ownerData, OwnerOptions);
+
+	  $("#gaugeOwner table").css({"margin":"auto"});
+	  //create guage chart owner end
+
 
   }
 var  getColorEasyPieChart=function(score){
@@ -392,6 +418,7 @@ var  getColorEasyPieChart=function(score){
 								htmlPerspectiveHTML+="<div style='display:none;' class='gauge_data' id=\"gauge_data-"+indexEntry[0]+"-"+guagePercentage+"\"  ></div>";
 								htmlPerspectiveHTML+="<div class=\"gaugePerspective\" id=\"gaugePerspective-"+indexEntry[0]+"\"></div>";
 								htmlPerspectiveHTML+="<div class='gaugePerspectiveValue' id=\"gaugePerspectiveValue-"+indexEntry[0]+"\"></div>";
+								htmlPerspectiveHTML+="<p class=\"bg-info\" style=\"padding: 15px;margin:10px; text-align:center;\">ประสิทธิภาพ<b> "+guagePercentage+"% </b></p>";
 								htmlPerspectiveHTML+="</div>";
 							htmlPerspectiveHTML+="</div>";
 						htmlPerspectiveHTML+="</div>";
@@ -425,7 +452,7 @@ var  getColorEasyPieChart=function(score){
 				  
 				  org_result=pers_result/pers_weight;
 				  org_result=parseFloat(org_result).toFixed(2);
-
+				  /*
 				  $("#gaugeOwner").kendoRadialGauge({
 					 		
 					pointer: {
@@ -443,7 +470,9 @@ var  getColorEasyPieChart=function(score){
 					   
 					}
 				});
+				*/
 				$("#gaugeOwnerValue").html(org_result+"%");
+				$("#gaugeOwnerValueDisplay").html("ประสิทธิภาพ <b>"+org_result+"%</b>");
 				  //alert(org_result);
 				   //call google chart
 				   google.charts.setOnLoadCallback(drawChart);

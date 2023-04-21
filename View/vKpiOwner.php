@@ -194,8 +194,10 @@ if($_SESSION['language']=="th"){
 			
 										
 										<!-- Parameter Top KPI Owner Page Start-->
-											<div class="row container">
-												<div class="col-md-8" ></div>
+											<div class="row1 container">
+												<div class="col-md-8" style="padding-top: 12px; font-weight:bold; ">
+													<span style="">สรุปผลประเมิน KPI<i class="fa fa-angle-double-right"></i>BSC</span>
+												</div>
 												<div class="col-md-2" >
 													<div >
 														<div  class='boxMargin pre-search-label fontLabelParam' style="padding-right: 5px; font-weight:bold;">
@@ -266,7 +268,7 @@ if($_SESSION['language']=="th"){
 		  </div>
 		  <div class="panel-body panel-body-top" >
 		    	
-		    	<row >
+		    	<div >
 		    		<div class="col-md-3 ">
 		    		<!-- ### Panel Start ### -->
 						<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
@@ -275,9 +277,10 @@ if($_SESSION['language']=="th"){
 								  </div>
 								  <div class="panel-body panel-body-top">
 								  
-								 		<div id="gauge-container">
+								 		<div id="gauge-container1">
 						    				<div class="gaugeOwner" id="gaugeOwner"></div>
-						    				<div id="gaugeOwnerValue"></div>
+						    				<div style="display:none;" id="gaugeOwnerValue"></div>
+											<p class="bg-info" style="padding: 15px;margin:10px; text-align:center;" id="gaugeOwnerValueDisplay"></p>
 						    			</div>
 								 		
 								  </div>
@@ -325,10 +328,11 @@ if($_SESSION['language']=="th"){
 						<!-- ### Panel End ### -->
 		    			
 		    		</div>
-		    	</row>
-				<row>
+					<br style="clear:both">
+		    	</div>
+				<div>
 					<div id="perspectiveArea"></div>
-				</row>
+				</div>
 				<br style="clear:both">
 		    	
 		  </div>

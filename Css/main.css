@@ -452,7 +452,7 @@ body{
     top: 4px;
 }
 .listGroupTop .nav-list > li.active > a, .listGroupTop .nav-list > li.active > a:focus, .listGroupTop .nav-list > li.active > a:hover {
-    background-color: #fff;
+    background-color: #F5F5F5;
 }
 .listGroupTop .nav-list > li.active > a {
     color: #2b7dbc;

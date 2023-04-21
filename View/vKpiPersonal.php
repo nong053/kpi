@@ -91,9 +91,11 @@ $emp_id=$_GET['emp_id'];
 						
 							<div id="gaugePersonalArea">
 			
-								<div id="gauge-container">
+								<div id="gauge-container1">
 									<div class="gaugePersonal" id="gaugePersonal-<?=$emp_id?>" style=' height: 175px;'></div>
-									<div id="gauge-value-<?=$emp_id?>"> ฝ่ายการเงิน <b> 86%</b></div>
+									<div style='display:none;' class='gauge_data' id="gauge_data-<?=$emp_id?>"  ></div>
+									<p class="bg-info" style="padding: 15px;margin:10px; text-align:center;margin-bottom:0px;" id="gauge-value-<?=$emp_id?>">  <b> 86%</b></p>
+									<p style="display:none;" id="gaugeValue-<?=$emp_id?>"></p>
 								</div>
 							</div>
 					</div>

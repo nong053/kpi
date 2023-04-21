@@ -1,4 +1,42 @@
 //#################  Create Parameter Year Start   ############
+function drawChart() {
+	
+	  
+	$.each($(".gauge_data").get(),function(index,indexEntry){
+		
+		var id="";
+		var value="";
+		var data_id = indexEntry.id;
+		data_id=data_id.split("-");
+		id=data_id[1];
+		
+		value = $("#gaugeValue-"+id).text();
+
+		//alert(value);
+
+		var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['', parseInt(value)]
+		  ]);
+
+		  
+		  var options = {
+			width: '100%', height: '100%',
+			redFrom: 0, redTo: 60,
+			yellowFrom:60, yellowTo: 80,
+			greenFrom:80, greenTo: 100,
+			minorTicks: 5
+		  };
+	  
+		  var chart = new google.visualization.Gauge(document.getElementById('gaugePersonal-'+id));
+		  chart.draw(data, options);
+
+		  $("#gaugePersonal-"+id+" table").css({"margin":"auto"});
+		
+	});
+
+  }
+
 var fnDropdownListYearKpiDashboard=function(kpi_year){
 	$.ajax({
 		url:"../Model/mAppraisalYearList.php",
@@ -24,11 +62,6 @@ var fnDropdownListYearKpiDashboard=function(kpi_year){
 							htmlDropDrowList+="<option value="+indexEntry[0]+">"+indexEntry[0]+"</option>";
 						}
 					}
-						
-								
-						
-						
-					
 				});
 			htmlDropDrowList+="</select>";
 			$("#appraisalYearArea").html(htmlDropDrowList);
@@ -508,7 +541,7 @@ function detailInit(e) {
 									var objRanges=eval("("+$ranges+")");
 							
 							//Gauge for check data value end
-							
+							/*
 							 $("#gaugePersonal-"+e.data.fieldId).kendoRadialGauge({
 
 								  pointer: {
@@ -526,10 +559,12 @@ function detailInit(e) {
 					                  ranges:objRanges
 					              }
 					          });
-							 
-							 $("#gauge-value-"+e.data.fieldId).html("<b>"+parseFloat(data[0][0]).toFixed(2)+"% </b>");
+							 */
+							 $("#gauge-value-"+e.data.fieldId).html("ประสิทธิภาพ<b> "+parseFloat(data[0][0]).toFixed(2)+"% </b>");
+							 $("#gaugeValue-"+e.data.fieldId).html(parseFloat(data[0][0]).toFixed(2));
 							$(".gaugePersonal > svg").css({"top":"6px"});
-
+							//call google chart
+							google.charts.setOnLoadCallback(drawChart);
 
 							}catch(err) {
 							 console.log(err.message);
@@ -931,6 +966,9 @@ function detailInit(e) {
 	
 
 $(document).ready(function(){
+
+	//seting google chart
+	google.charts.load('current', {'packages':['gauge']});
 
 	fnDropdownListYearKpiDashboard(sessionStorage.getItem("param_year"));
 	fnDropdownListAppraisalKpiDashboard(sessionStorage.getItem("param_year"));
