@@ -317,6 +317,7 @@
 
 										
 										$("#admin_username").val("");
+										$("#admin_company").val("");
 						    			$("#admin_password").val("");
 							    		$("#admin_name").val("");
 								    	$("#admin_surname").val("");
@@ -491,7 +492,7 @@ Website
 					
 				<br style="clear:both">
 
-				<div class="container" style="margin-top:25px;">
+				<div class="container" style="margin-top:25px; display:none;">
 				<h4 style="color:white; margin-top:15px;">&nbsp;</h4>
 					<div class="row" style="color:white;">
 						<div class='col-md-12' >

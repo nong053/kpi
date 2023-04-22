@@ -52,6 +52,7 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 				$result=$conn->query($strSQL);
 				$position_id="";
 				$department_id="";
+				$perspective_id="";
 				if($num=$result->num_rows){
 					$rs=$result->fetch_assoc();
 
@@ -81,6 +82,13 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 					$rsPerspective=$conn->query($strSQLPerspective);
 					if($rsPerspective){
 						//echo'["success"]';
+						$strSQLSelectPerspective="select * from perspective where admin_id='$rs[admin_id]' order by perspective_id";
+						$resultSelectPerspective=$conn->query($strSQLSelectPerspective);
+						if($numSelectPerspective=$resultSelectPerspective->num_rows){
+							$rsSelectPerspective=$resultSelectPerspective->fetch_assoc();
+							$perspective_id=$rsSelectPerspective['perspective_id'];
+						}
+
 					}else{
 						echo'perspective '.$conn->error;
 					}
@@ -133,16 +141,16 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 					$strSQLEmp="INSERT INTO employee(emp_user,emp_pass,emp_tel,emp_mobile,emp_age,emp_email,position_id,emp_other,emp_picture,emp_picture_thum,department_id,role_id,admin_id,
 						emp_first_name,emp_last_name,emp_date_of_birth,emp_age_working,emp_status,emp_adress,emp_district,emp_sub_district,emp_province,emp_postcode,emp_status_work_id,emp_code)
 						VALUES(
-						'user001',md5('user001'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'user001',md5('user001'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
 						'ไกรสร','คงไว้',now(),'10','single','553/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM001'
 						),(
-						'user002',md5('user002'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'user002',md5('user002'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
 						'วรเวช','อยู่เจริญ',now(),'10','single','554/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM002'
 						),(
-						'user003',md5('user003'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'user003',md5('user003'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
 						'เธียรธาร','คันโธสา',now(),'10','single','555/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM003'
 						),(
-						'user004',md5('user004'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'user004',md5('user004'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','2','$rs[admin_id]',
 						'ศิริพร','สิงห์ทองกล้า',now(),'10','single','556/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM004'
 						),(
 						'user005',md5('user005'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
@@ -155,6 +163,110 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 							echo "employee ".$conn->error;;
 						}
 					//Example Employee data end
+
+
+					//Example kpi data start
+					//KPI1
+					$strSQL_KPI1="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_type_score,kpi_data_target,perspective_id)
+					VALUES('ความพึงพอใจของผู้ใช้บริหาร','Y','','$rs[admin_id]','2','5','$perspective_id')";
+					$rs_KPI1=$conn->query($strSQL_KPI1);
+					$id_KPI1 = $conn -> insert_id;
+					if($rs_KPI1){
+						$strSQL1_KPI1="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('0','0','0 ','$id_KPI1','ไม่ผ่าน');
+						";
+						$conn->query($strSQL1_KPI1);
+
+						$strSQL2_KPI1="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('1','1','1','$id_KPI1','ต่ำกว่าเกณฑ์');
+						";
+						$conn->query($strSQL2_KPI1);
+
+						$strSQL3_KPI1="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('2','2','2','$id_KPI1','ผ่านเกณฑ์ขั้นต่ำ');
+						";
+						$conn->query($strSQL3_KPI1);
+
+						$strSQL4_KPI1="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('3','3','3','$id_KPI1','น่าพอใจ');
+						";
+						$conn->query($strSQL4_KPI1);
+
+						$strSQL5_KPI1="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('4','4','4','$id_KPI1','ดี');
+						";
+						$conn->query($strSQL5_KPI1);
+					
+
+						$strSQL6_KPI1="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('5','5','5 ','$id_KPI1','ดีมาก');
+						";
+						$conn->query($strSQL6_KPI1);
+					}
+
+					//KPI2
+					$strSQL_KPI2="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_type_score,kpi_data_target,perspective_id)
+					VALUES('ความรวดเร็วในการให้บริการ','Y','','$rs[admin_id]','2','5','$perspective_id')";
+					$rs_KPI2=$conn->query($strSQL_KPI2);
+					$id_KPI2 = $conn -> insert_id;
+					if($rs_KPI2){
+						$strSQL1_KPI2="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('0','0','0 ','$id_KPI2','ไม่ผ่าน');
+						";
+						$conn->query($strSQL1_KPI2);
+
+						$strSQL2_KPI2="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('1','1','1','$id_KPI2','ต่ำกว่าเกณฑ์');
+						";
+						$conn->query($strSQL2_KPI2);
+
+						$strSQL3_KPI2="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('2','2','2','$id_KPI2','ผ่านเกณฑ์ขั้นต่ำ');
+						";
+						$conn->query($strSQL3_KPI2);
+
+						$strSQL4_KPI2="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('3','3','3','$id_KPI2','น่าพอใจ');
+						";
+						$conn->query($strSQL4_KPI2);
+
+						$strSQL5_KPI2="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('4','4','4','$id_KPI2','ดี');
+						";
+						$conn->query($strSQL5_KPI2);
+					
+
+						$strSQL6_KPI2="
+						INSERT INTO baseline(baseline_begin,baseline_end,baseline_score,kpi_id,suggestion)
+						VALUES('5','5','5 ','$id_KPI2','ดีมาก');
+						";
+						$conn->query($strSQL6_KPI2);
+					}
+
+	
+
+			
+
+		
+			
+
+		
+
+
+
+	
+					//Example kpi data end
 
 
 					$_SESSION['admin_id']=$rs['admin_id'];

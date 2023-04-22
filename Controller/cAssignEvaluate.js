@@ -775,7 +775,10 @@ var searchAssignMasterKPIFn = function(){
 		$(".status_not_complete").each(function(index,indexEntry){
 			status_not_complete+=1;
 		});
-		
+		//alert($(".contentemployee").html());
+		//alert($("#assignKpiToEmpShowData").html());
+		//alert(status_not_complete);
+
 		if($(".contentemployee").html()=="" || $("#assignKpiToEmpShowData").html()=="" || status_not_complete==0){
 			$("#delAllKpiEmpAssign").prop("disabled",true);
 			$("#sendAllKpiEmpAssign").prop("disabled",true);

@@ -72,7 +72,7 @@ LEFT JOIN role r on pe.role_id=r.role_id
 			$tableHTML.="<th style='text-align:center;' data-field=\"position_l_tbl_id\"><b> ".$_SESSION['position_l_tbl_id']."</b></th>";
 			$tableHTML.="<th data-field=\"position_l_tbl_position_name\"><b> ".$_SESSION['position_l_tbl_position_name']."</b></th>";
 			//$tableHTML.="<th data-field=\"position_l_tbl_role_name\"><b> ".$_SESSION['position_l_tbl_role_name']." </b></th>";
-			$tableHTML.="<th data-field=\"position_l_tbl_manage\" style='text-align:right;'><b> ".$_SESSION['position_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"position_l_tbl_manage\" style='text-align:center;'><b> ".$_SESSION['position_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -87,7 +87,7 @@ LEFT JOIN role r on pe.role_id=r.role_id
 	//$tableHTML.="	<td>".$rs['role_name']."</td>";
 
 	 $tableHTML.="<td>
-					<div style='text-align: right;'>
+					<div style='text-align: center;'>
 							<button type='button' id='idEdit-".$rs['position_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 							<button type='button' id='idDel-".$rs['position_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 					</div>

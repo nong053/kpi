@@ -376,7 +376,7 @@ where (e.department_id='All' or 'All' ='All')
 			//$tableHTML.="<th data-field=\"employee_l_tbl_age_working\"><b>".$_SESSION['employee_l_tbl_age_working']." </b></th>";
 			//$tableHTML.="<th data-field=\"employee_l_tbl_age\"><b>".$_SESSION['employee_l_tbl_age']."</b></th>";
 			$tableHTML.="<th data-field=\"employee_l_tbl_status\"><b>".$_SESSION['employee_l_tbl_status']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_manage\" style='text-align:right;'><b>".$_SESSION['employee_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"employee_l_tbl_manage\" style='text-align:center;'><b>".$_SESSION['employee_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -421,7 +421,7 @@ where (e.department_id='All' or 'All' ='All')
 	
 
 	$tableHTML.="	<td>
-	<div style='text-align: right;'>
+	<div style='text-align: center;'>
 			<button type='button' id='idView-".$rs['emp_id']."' class='actionView btn btn-primary '><i class='glyphicon  glyphicon-eye-open'></i></button>
 			<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>

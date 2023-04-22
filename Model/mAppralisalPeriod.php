@@ -59,11 +59,11 @@ if($_POST['action']=="showData"){
 	$tableHTML.="<table id='TableappraisalPeriod' class='grid table-striped' style='width:100%'>";
 		$tableHTML.="<colgroup>";
 			 //$tableHTML.="<col style='width:3%' />";
-			 $tableHTML.="<col  style='width:20%'/>";
-			 $tableHTML.="<col style='width:40%'/>";
-			 $tableHTML.="<col style='width:20%'/>";
-			 $tableHTML.="<col  style='width:20%'/>";
-			 $tableHTML.="<col  style='width:25%'/>";
+			 $tableHTML.="<col  />";
+			 $tableHTML.="<col />";
+			 $tableHTML.="<col />";
+			 $tableHTML.="<col />";
+			 $tableHTML.="<col  />";
 		
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
@@ -74,7 +74,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_start\"><b>".$_SESSION['appraisalPeriod_l_tbl_start']." </b></th>";
 			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_end\"><b>".$_SESSION['appraisalPeriod_l_tbl_end']." </b></th>";
 			//$tableHTML.="<th  data-field=\"appraisalPeriod_l_tbl_target\"><b>".$_SESSION['appraisalPeriod_l_tbl_target']."</b></th>";
-			$tableHTML.="<th style='text-align:right;'  data-field=\"appraisalPeriod_l_tbl_manage\"><b>".$_SESSION['appraisalPeriod_l_tbl_manage']."</b></></th>";
+			$tableHTML.="<th style='text-align:center;'  data-field=\"appraisalPeriod_l_tbl_manage\"><b>".$_SESSION['appraisalPeriod_l_tbl_manage']."</b></></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -92,7 +92,7 @@ if($_POST['action']=="showData"){
 	//$tableHTML.="	<td style='text-align:right;'>".$rs['appraisal_period_target_percentage']."%</td>";
 	
 	$tableHTML.="	<td >
-	<div style='text-align: right;'>
+	<div style='text-align: center;'>
 			<button type='button' id='idEdit-".$rs['appraisal_period_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			<button type='button' id='idDel-".$rs['appraisal_period_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 	</div>

@@ -39,7 +39,7 @@ $_SESSION['main_menul_l_appraisal_result']="Appraisal Result";
 
 }else{
 //TH
-$_SESSION['main_menul_l_kpiDashboard']="แดชบอร์ด";
+$_SESSION['main_menul_l_kpiDashboard']="ผลประเมินองค์กร";
 $_SESSION['main_menul_l_threshold']="เกณฑ์การประเมิน";
 $_SESSION['main_menul_l_appraisalPeriod']="ช่วงประเมิน";
 $_SESSION['main_menul_l_department']="แผนก";
@@ -50,7 +50,7 @@ $_SESSION['main_menul_l_assign_master_kpi']="มอบหมายตัวช�
 $_SESSION['main_menul_l_assign_kpi']="ประเมิน";
 $_SESSION['main_menul_l_assign_kpi_emp']="ประเมินตนเอง";
 $_SESSION['main_menul_l_approve_kpi_result']="อนุมัติผลประเมิน";
-$_SESSION['main_menul_l_appraisal_result']="ผลประเมิน";
+$_SESSION['main_menul_l_appraisal_result']="ผลประเมินรายบุคคล";
 
 }
 // Sett Main Menu End

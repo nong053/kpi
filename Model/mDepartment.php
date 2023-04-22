@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 
@@ -65,7 +65,7 @@ if($_POST['action']=="showData"){
 			//$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['department_l_tbl_department_code']."</b></th>";
 			$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['department_l_tbl_department_name']."</b></th>";
 			$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['department_l_tbl_department_detail']."</b></th>";
-			$tableHTML.="<th data-field=\"column5\" style='text-align:right;'><b>".$_SESSION['department_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"column5\" style='text-align:center;'><b>".$_SESSION['department_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -82,7 +82,7 @@ if($_POST['action']=="showData"){
 
 	$tableHTML.="	<td>
 
-				<div style='text-align: right;'>
+				<div style='text-align: center;'>
 					<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 					<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 				</div>

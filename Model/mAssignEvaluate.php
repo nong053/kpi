@@ -393,7 +393,7 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
 
 
 
-            $tableHTML .= "</div>";
+           // $tableHTML .= "</div>";
             $tableHTML .= "<div>";
             
 
@@ -415,15 +415,15 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
                      </div>
                      
 					 <div class='col-md-6 object-text-right'>
-					 <button class='btn btn-warning sendKpiAssignByEmp' id='assignKpiByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>ส่งประเมิน</button>
-					 <button class='btn btn-primary assignKpiByEmp' id='sendKpiAssignByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>มอบหมายตัวชี้วัด</button>
+					 <button class='btn btn-warning sendKpiAssignByEmp' id='assignKpiByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>ส่งประเมินรายบุคคล</button>
+					 <button class='btn btn-primary assignKpiByEmp' id='sendKpiAssignByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>มอบหมายตัวชี้วัดรายบุคคล</button>
 					 </div>
 					 <br style='clear:both'>
 			</div>";
 
 
             if (empty($rs['emp_picture_thum'])) {
-                $tableHTML .= "	<img style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" style='float: left;'  class='thumbnail imagePerson'>";
+                $tableHTML .= "	<img src=\"../View/uploads/avatar.jpg\" style='float: left; opacity:0.1; width:200px; height:200px;'  class='thumbnail imagePerson'>";
             } else {
                 $tableHTML .= "	<img  src=\"" . $rs['emp_picture_thum'] . "\" style='float: left;'  class='thumbnail imagePerson'>";
             }
@@ -552,18 +552,18 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
             ";
             
             $tableHTML .= "</table>";
-            $tableHTML .= "</td>";
-            $tableHTML .= "</tr>";
+            $tableHTML .= "</div>";
+            $tableHTML .= "</div>";
+            $tableHTML .= "</div>";
+            $tableHTML .= "</div>";
         
         }
         $tableHTML .= "</div>";
-        $tableHTML .= "</div>
-           
-            </div>
-            
-        </div>
+        $tableHTML .= "</div>";
+        $tableHTML .= "</div>";
+        $tableHTML .= "</div>";
    
-            ";
+      
 
 
     }

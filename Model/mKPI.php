@@ -61,7 +61,10 @@ if($_POST['action']=="add"){
 	$strSQL="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_code,department_id,kpi_type_score,kpi_data_target)
 	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$departmentId','$kpiTypeScore','$kpiDataTarget')";
 	*/
-
+	
+	if($kpiTypeScore==2 || $kpiTypeScore==3){
+		$kpiDataTarget=5;
+	}
 	$strSQL="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target,perspective_id)
 	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget','$perspectiveId')";
 	$rs=$conn->query($strSQL);
@@ -272,7 +275,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<col style='width:20%'/>";
 			$tableHTML.="<col style='width:13%'/>";
 			$tableHTML.="<col style='width:13%'/>";
-			$tableHTML.="<col style='width:13%'/>";
+			$tableHTML.="<col style='width:20%'/>";
 		
 			/*
 			$tableHTML.="<col />";
@@ -298,7 +301,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<th><b>Actual by Query</b></th>";
 			$tableHTML.="<th><b>Kpi Target</b></th>";
 			*/
-			$tableHTML.="<th data-field=\"kpi_l_tbl_manage\" style='text-align:right;'><b>".$_SESSION['kpi_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"kpi_l_tbl_manage\" style='text-align:center;'><b>".$_SESSION['kpi_l_tbl_manage']."</b></th>";
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -356,7 +359,7 @@ if($_POST['action']=="showData"){
 	
 
 		$tableHTML.="	<td>
-			<div style='text-align: right;'>
+			<div style='text-align: center;'>
 			<button type='button' id='idKPI-".$rs['kpi_id']."-".$rs['kpi_type_score']."-".$rs['kpi_better_flag']."' class=' actionBaseline btn btn-primary '><i class='glyphicon glyphicon-transfer'></i></button>
 
 			<button type='button' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>

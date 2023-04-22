@@ -90,7 +90,7 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="<col style='width:100px;' />";
 	$tableHTML.="<col style='width:100px;'/>";
 	$tableHTML.="<col style='width:100px;'/>";
-	$tableHTML.="<col style='width:100px; text-align:right'/>";
+	$tableHTML.="<col style='width:100px; text-align:center'/>";
 	
 	//$tableHTML.="<col style='width:5%'/>";
 	// $tableHTML.="<col style='width:10% text-align:right'/>";
@@ -113,7 +113,7 @@ if($_POST['action']=="showEmpData"){
 	$tableHTML.="<th style='text-align:right;'  data-field=\"column12\"><b>".$_SESSION['approve_emp_l_tbl_adjust_result']."</b></th>";
 	$tableHTML.="<th style='text-align:right;'  data-field=\"column13\"><b>".$_SESSION['approve_emp_l_tbl_total_result']."</b></th>";
 
-	$tableHTML.="<th style='text-align:right;'  data-field=\"column14\" style='text-align:center;'><b>".$_SESSION['approve_emp_l_tbl_manage']."</b></th>";
+	$tableHTML.="<th style='text-align:center;'  data-field=\"column14\" style='text-align:center;'><b>".$_SESSION['approve_emp_l_tbl_manage']."</b></th>";
 		
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -224,7 +224,7 @@ year	2012
 		
 		if($rsKpiResult['approve_flag']=="Y"){
 		$tableHTML.="	<td>
-			<div style='text-align:right'>
+			<div style='text-align:center'>
 			<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
 				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveEditKPI btn btn-primary'>ปรับคะแนน</button>
 				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveKPI btn btn-success '>อนุมัติแล้ว </button>
@@ -232,7 +232,7 @@ year	2012
 			</td>";
 		}else{
 			$tableHTML.="<td>
-			<div style='text-align:right'>
+			<div style='text-align:center'>
 				<button type='button' id='actionNewEvaluate-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionNewEvaluate btn btn-danger'>ประเมินใหม่</button>
 				<button type='button' id='idApproveEditKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveEditKPI btn btn-primary '>ปรับคะแนน</button>
 				<button type='button' id='idApproveKPI-".$rs['kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['role_id']."' class='actionApproveKPI btn btn-warning '>กดอนุมัติ </button>

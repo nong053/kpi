@@ -1221,7 +1221,7 @@ $("#emp_role_id").change(function(){
 	$("#btnAddEmployee").click(function(){
 		
 		
-		if(parseInt(checkPackageFn()) < parseInt($("#embed_user_amount").val())){
+		//if(parseInt(checkPackageFn()) < parseInt($("#embed_user_amount").val())){
 
 			resetDataEmployee();
 			fnDropdownListEmpPostion(sessionStorage.getItem("param_position"));
@@ -1229,18 +1229,17 @@ $("#emp_role_id").change(function(){
 			fnDropdownListEmpStatus(sessionStorage.getItem("status_work"));		
 			$("#employeeModal").modal({backdrop: 'static', keyboard: false});
 
-		}else{
-			$.alert({
-				buttons: {
-				'ปิด': function () {}
-				},
-				title: 'แจ้งเตือน!',
-				content: 'ไม่สามารถเพิ่มพนักงานอีกได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจโทร.0809926565',
-				});
+		// }else{
+		// 	$.alert({
+		// 		buttons: {
+		// 		'ปิด': function () {}
+		// 		},
+		// 		title: 'แจ้งเตือน!',
+		// 		content: 'ไม่สามารถเพิ่มพนักงานอีกได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจโทร.0809926565',
+		// 		});
 
-			//confirmMainModalFn("ไม่สามารถเพิ่มพนักงานอีกได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจโทร.0809926565","แจ้งเตือน","warning");
-			//alert("ไม่สามารถเพิ่มพนักงานได้ <br>ติดต่อผู้ดูแลระบบเพื่อเปลี่ยนแพคเกจ โทร.0809926565");
-		}
+			
+		// }
 	});
 
 	//add empoyell end

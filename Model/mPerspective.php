@@ -52,7 +52,7 @@ if($_POST['action']=="showData"){
     $tableHTML.="<th data-field=\"perspective_l_tbl_perspective_name\"><b>".$_SESSION['perspective_l_tbl_perspective_name']."</b></th>";
     $tableHTML.="<th style='text-align:right;' data-field=\"perspective_l_tbl_perspective_weight\"><b>".$_SESSION['perspective_l_tbl_perspective_weight']."</b></th>";
 
-	$tableHTML.="<th data-field=\"perspective_l_tbl_perspective_manage\" style='text-align:right;'><b>".$_SESSION['perspective_l_tbl_perspective_manage']."</b></th>";
+	$tableHTML.="<th data-field=\"perspective_l_tbl_perspective_manage\" style='text-align:center;'><b>".$_SESSION['perspective_l_tbl_perspective_manage']."</b></th>";
 
 	$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
@@ -67,7 +67,7 @@ if($_POST['action']=="showData"){
     $tableHTML.="	<td><div style='text-align: right;'>".$rs['perspective_weight']."%</div></td>";
     		
 	$tableHTML.="<td>
-			<div style='text-align: right;'>
+			<div style='text-align: center;'>
 				<button type='button' id='idEdit-".$rs['perspective_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			    <button type='button' id='idDel-".$rs['perspective_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 			</div>
