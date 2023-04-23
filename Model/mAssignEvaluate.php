@@ -388,27 +388,30 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
         // $tableHTML .= "</thead>";
         $tableHTML .= "<div class='contentemployee'>";
         //while ($rs = mysql_fetch_array($result)) {
+        $countEmpByPeriod=0;
         while ($rs = $result->fetch_assoc()) {
             
 
+            
 
-
-           // $tableHTML .= "</div>";
             $tableHTML .= "<div>";
             
-
-            
-
-
             $tableHTML .= "<div >";
             
             $tableHTML .= "<div style='text-align:center;'>";
 
-
-            $tableHTML .= "<div class='thumbnail' style='width:auto;'>";
+      /*
+            if(( $countEmpByPeriod % 2 ) == 0 ){
+                $tableHTML .= "<div class='thumbnail' style='width:auto; background:#f5f5f5;'>";
+            }else{
+                $tableHTML .= "<div class='thumbnail' style='width:auto;'>";
+            }
+            $countEmpByPeriod++;
+*/
+            $tableHTML .= "<div class='thumbnail' style='width:auto; background:#f5f5f5;'' >";
 
             $tableHTML .= "
-            <div class='alert alert-warning' style=''>
+            <div class='alert alert-danger' style=''>
             
 					 <div class='col-md-6 object-text-left'>
 					  <span class='head-box-assign'  id=\"status_confirm_flag-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."\" >ยังไม่ส่งประเมิน</span>
@@ -461,7 +464,7 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
             $tableHTML .= "<th style='text-align:right'>";
             $tableHTML .= "น้ำหนักตัวชี้วัด";
             $tableHTML .= "</th>";
-            $tableHTML .= "<th style='text-align:right'>";
+            $tableHTML .= "<th style='text-align:center'>";
             $tableHTML .= "จัดการ";
             $tableHTML .= "</th>";
 
@@ -514,7 +517,7 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
 
                 $tableHTML .= "</td>";
                 $tableHTML .= "<td>";
-                $tableHTML .= "<div style=\"text-align: right;\">
+                $tableHTML .= "<div style=\"text-align: center;\">
                                     <button type=\"button\" id=\"idEdit-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."\" class=\"actionEdit actionEdit-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']." btn btn-primary \"><i class=\"glyphicon glyphicon-pencil\"></i></button>
                                     <button type=\"button\" id=\"idDel-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rsKPIByEmp['kpi_id']."\" class=\" actionDel actionDel-".$rsKPIByEmp['assign_kpi_year']."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']." btn btn-danger \"><i class=\"glyphicon glyphicon-trash\"></i></button>
                                </div>";
@@ -527,9 +530,9 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
             $tableHTML .= "<tfoot >";
             if($total_weight_kpi_by_emp==100){
                 if($confirm_flag=='Y'){
-                    $tableHTML .= "<tr id='check_status-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='alert-info status_complete confirm_flag_complete' style='font-weight:bold;font-size:20px; '>";
+                    $tableHTML .= "<tr id='check_status-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='alert-success status_complete confirm_flag_complete' style='font-weight:bold;font-size:20px; '>";
                 }else{
-                    $tableHTML .= "<tr id='check_status-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='alert-info status_complete' style='font-weight:bold;font-size:20px; '>";
+                    $tableHTML .= "<tr id='check_status-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='alert-success status_complete' style='font-weight:bold;font-size:20px; '>";
                 }
             }else{
                 $tableHTML .= "<tr id='check_status-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."' class='alert-danger status_not_complete' style='font-weight:bold;font-size:20px; '>";

@@ -643,7 +643,7 @@ ORDER BY baseline_score desc";
 							<th style='text-align:right;width:110px;'>ถึง</th>
 							<th style='text-align:right;width:80px;'>คะแนน</th>
 							<th><div style='padding-left:10px;'>เกฑณ์ประเมิน</div></th>
-							<th style='text-align:right;'>เลือก</th>
+							<th style='text-align:center;'></th>
 						</tr>
 				  	</thead>
 					<tbody>";
@@ -656,8 +656,8 @@ ORDER BY baseline_score desc";
 									<td id='baseline_end_result-".$rs['baseline_id']."'><div style='text-align:right'>$rs[baseline_end]</div></td>
 									<td><div style='text-align:right'>".$rs['baseline_score']."</div></td>
 									<td><div style='padding-left:10px;'>".$rs['suggestion']."</div></td>
-<td style='text-align:right;'> 
-	<button class='btn-primary'><i class='glyphicon glyphicon-check'></i></button>
+<td style='text-align:center;'> 
+	<button class='btn btn-primary'><i class='glyphicon glyphicon-check'></i> กดให้คะแนน</button>
 </td>
 								<tr>
 						";

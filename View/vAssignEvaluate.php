@@ -11,7 +11,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['assign_l_des_detail']="เพื่อทำการมอบหมายตัวชี้วัดที่ต้องการวัดผลการปฏิบัติงานให้กับพนักงานโดยสามารถมอบหมายได้พร้อมกันทั้งหมด หรือ มอบหมายตามตัวชี้วัดตามรายบุคคล";
 	$_SESSION['assign_l_des_btn_add']="มอบหมายตัวชี้วัดทั้งหมด";
 	$_SESSION['assign_l_des_btn_confirm']="ส่งประเมินทั้งหมด";
-	$_SESSION['assign_l_des_btn_del_all']="ยกเลิกมอบหมายทั้งหมด";
+	$_SESSION['assign_l_des_btn_del_all']="ยกเลิกมอบหมายตัวชี้วัดทั้งหมด";
 	
 
 	//Search
@@ -56,7 +56,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['assign_l_des_detail']="To assign a measure to measure performance for employees. This will be Assign default metrics Assignment at the level of position, that is, employees under that position.";
 	$_SESSION['assign_l_des_btn_add']="All KPI Assignment";
 	$_SESSION['assign_l_des_btn_confirm']="All Confirm";
-	$_SESSION['assign_l_des_btn_del_all']="Cancel All";
+	$_SESSION['assign_l_des_btn_del_all']="Cancel Assign KPI All";
 
 	//Search
 	$_SESSION['assign_l_search_year']="Year";
