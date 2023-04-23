@@ -334,7 +334,7 @@ if($_SESSION['language']=="th"){
 	
 
 <div class="alert alert-info bg-from" role="alert">
-<p class="bg-warning1">
+<!-- <p class="bg-warning1">
 
 	<?=$_SESSION['kpi_result_l_form_name2']?> 
 </p>
