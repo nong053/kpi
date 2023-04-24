@@ -1,4 +1,4 @@
-<? session_start(); ob_start();?>
+<?php session_start(); ob_start();?>
 <?php
 include './../config.inc.php';
 
@@ -686,8 +686,10 @@ ORDER BY b.baseline_score desc";
 						$tableHtml.="
 								<tr id='baseline_radio-".$rs['baseline_id']."'  class='baseline_radio' style ='cursor:pointer;'>
 								
-									
-									<td><div style='text-align:right'><span class=\"label label-primary\">".$rs['baseline_score']."</span></div></td>
+								
+									<td>
+									<div style='display:none;' id='baseline_begin_result-".$rs['baseline_id']."'><div style='text-align:right'>".number_format($rs['baseline_begin'], 2, '.', ',')."</div></div>
+									<div style='text-align:right'><span class=\"label label-primary\">".$rs['baseline_score']."</span></div></td>
 									<td><div style='padding-left:10px;'>".$rs['suggestion']."</div></td>
 <td style='text-align:center;'> 
 	<button class='btn btn-warning'><i class='glyphicon glyphicon-check'></i> กดให้คะแนน</button>

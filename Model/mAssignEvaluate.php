@@ -247,9 +247,9 @@ if ($jsonArray["login_status"] == 1) {
                                                         kpi_id,
                                                         kpi_weight,
 
-                                                        -- kpi_type_actual,
-                                                        -- target_data,
-                                                        -- target_score,
+                                                         kpi_type_actual,
+                                                         target_data,
+                                                         target_score,
                                                         created_dt,
                                                         admin_id)
 									VALUES(
@@ -262,9 +262,9 @@ if ($jsonArray["login_status"] == 1) {
                                         '$kpi_id',
 										'$kpi_weight',
 
-										-- '0',
-										-- '$target_data',
-										-- '$target_score',
+										 '0',
+										 '$target_data',
+										 '$target_score',
                                         '".date('Y-m-d H:i:s')."',
 										'$admin_id'
 									)";

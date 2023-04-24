@@ -10,7 +10,7 @@ var getBaseLineAction=function(action){
 			data:{"action":"getDataBaseline","kpi_id":$("#kpi_id").val()},
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			success:function(data){
-			
+		
 				
 				  $("#kpi_target_data").val(data[0]["kpi_target_data"]);
 				  $("#target_score").val(data[0]["target_score"]);
@@ -284,7 +284,7 @@ var calculate_kpi_score_by_manual_fn = function(kpi_actual_manual){
 			type:"post",
 			dataType:"json",
 			async:false,
-			data:{"action":"getKpiScore","kpi_id":$("#kpi_id").val(),"kpi_actual_manual":kpi_actual_manual},
+			data:{"action":"getKpiScore","kpi_id":$("#kpi_id").val(),"kpi_actual_manual":parseInt(kpi_actual_manual.replace(",", ""))},
 			headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 			success:function(data){
 				

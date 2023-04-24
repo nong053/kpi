@@ -63,7 +63,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_result_l_form_begin']="เริ่ม";
 	$_SESSION['kpi_result_l_form_end']="ถึง";
 	$_SESSION['kpi_result_l_form_score']="คะแนน";
-	$_SESSION['kpi_result_l_form_acutal_data']="ผลการประเมิน";
+	$_SESSION['kpi_result_l_form_acutal_data']="กรอกผลการปฎิบัติงาน";
 
 	//form employee detail start
 	$_SESSION['employee_l_form_name']="พนักงาน";
@@ -362,19 +362,19 @@ if($_SESSION['language']=="th"){
 		<tr class='hiddenProduction' style='display: block;'>
 			<td class='text-right'><b>KPI Weight</td>
 			<td >
-				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control "  style="width:150px;" value="0.00">
+				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control " disabled style="width:150px;" value="0.00">
 			</td>
 		</tr>
 		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>Target Data</b></td>
 			<td >
-				<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style="background: #ddd; width:150px;"  disabled>
+				<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style=" width:150px;"  disabled>
 			</td>
 		</tr>
 		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>Target Score</b></td>
 			<td >
-				<input type="text" id="target_score" name="target_score"  class="form-control " style="background: #ddd; width:150px;" disabled>
+				<input type="text" id="target_score" name="target_score"  class="form-control " style=" width:150px;" disabled>
 			</td>
 		</tr>
 		<tr class='hiddenProduction' style="display: block;">
@@ -411,7 +411,7 @@ if($_SESSION['language']=="th"){
 			<td class='text-right'><b>KPI Score</b></td>
 			<td id="areaKPIActualScore">
 			 
-				<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control " value="0.00" style="background: #ddd;width:150px;" disabled>
+				<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
 				
 			</td>
 		</tr>
@@ -420,7 +420,7 @@ if($_SESSION['language']=="th"){
 			<td class='text-right'><b>Performance% </b></td>
 			<td id="areTotalKpiScore">
 			
-				<input id="performance" name="performance"  class="form-control " value="0.00" style="background: #ddd;width:150px;" disabled>
+				<input id="performance" name="performance"  class="form-control " value="0.00" style="width:150px;" disabled>
 				
 				
 			</td>
@@ -429,7 +429,7 @@ if($_SESSION['language']=="th"){
 		<tr class='hiddenProduction'  style="display: block;">
 			<td class='text-right'><b>Total  Score</b></td>
 			<td id="areTotalKpiScore">
-				<input id="total_kpi_actual_score" name="total_kpi_actual_score"  class="form-control " value="0.00" style="background: #ddd;width:150px;">
+				<input id="total_kpi_actual_score" name="total_kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
 			</td>
 		</tr>
 	<!-- HIDE WHEN PRODUCTION START-->

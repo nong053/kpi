@@ -304,8 +304,31 @@ var fnDropdownAssignListKPI=function(kpi_id){
 					theme: "silver"
 				});
 			
-	
+				
+			$("#kpi_id").change(function(){
+
 			
+				$.ajax({
+					url:"../Model/mAssignMasterKpi.php",
+					type:"post",
+					dataType:"json",
+					data:{"action":"getDataBaseline","kpi_id":$(this).val()},
+					headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+					success:function(data){
+				
+						
+						  $("#kpi_target_data").val(data[0]["kpi_target_data"]);
+						  $("#target_score").val(data[0]["target_score"]);
+						  
+						  
+		
+					}
+				});
+				
+
+				
+			});
+			$("#kpi_id").change();
 		}
 	});
 }	
@@ -911,7 +934,7 @@ $(document).ready(function(){
 				appraisal_period_id=sessionStorage.getItem("param_appraisal_period");
 				department_id=sessionStorage.getItem("param_department");
 				position_id=sessionStorage.getItem("param_position");
-				emp_id=sessionStorage.getItem("param_emp")
+				emp_id=sessionStorage.getItem("param_emp");
 				
 				
 			}else{
@@ -944,7 +967,10 @@ $(document).ready(function(){
 				"position_id":position_id,
 				"emp_id":emp_id,
 				"kpi_id":kpi_id,
-				"kpi_weight":$("#kpi_weight").val(),"kpi_target_data":$("#kpi_target_data").val(),"kpi_type_actual":$(".kpi_type_actual:checked").val(),
+				"kpi_weight":$("#kpi_weight").val(),
+				"kpi_target_data":$("#kpi_target_data").val(),
+				"target_score":$("#target_score").val(),
+				"kpi_type_actual":$(".kpi_type_actual:checked").val(),
 				"action":$("#assign_kpi_action").val(),
 					},
 				success:function(data){

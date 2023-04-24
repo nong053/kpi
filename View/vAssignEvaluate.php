@@ -282,19 +282,20 @@ if($_SESSION['language']=="th"){
 										<input type="text" id="kpi_weight" name="kpi_weight" class="form-control " value="25.00" style="width:150px;">
 									</td>
 								</tr>
-<!--                                 
-								<tr style="display: none;">
+                                
+								<tr style="display: block;">
 									<td class='text-right'><b>Target Data</b></td>
 									<td>
 										<input type="text" id="kpi_target_data" name="kpi_target_data" class="form-control " style="background: #ddd; width:150px;" disabled>
 									</td>
 								</tr>
-								<tr style="display: none;">
+								<tr style="display: block;">
 									<td class='text-right'><b>Target Score</b></td>
 									<td>
 										<input type="text" id="target_score" name="target_score" class="form-control " style="background: #ddd; width:150px;" disabled>
 									</td>
 								</tr>
+								<!-- 
 								<tr style="display: none;">
 									<td class='text-right'><b>Type Actaul Data</b></td>
 									<td id="kpiTypeActualArea">
@@ -302,6 +303,7 @@ if($_SESSION['language']=="th"){
 									</td>
 
 								</tr>
+								
 								<tr class="hidden">
 									<td class='text-right'><b> Actual Data</b></td>
 									<td id="areaKPIActual">
