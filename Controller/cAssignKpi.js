@@ -707,7 +707,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 							
 							var imageEmp="";
 							
-							imageEmp+="<img class='img-circle' src='"+$("#image_emp_data-"+empId).attr("src")+"' width='100px;'>";
+							imageEmp+="<img class='img-circle' src='"+$("#image_emp_data-"+empId).attr("src")+"' width='100px;' style='opacity:0.1'>";
 
 							var empAreaData="";
 							empAreaData+="<div class=''>";

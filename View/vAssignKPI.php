@@ -39,9 +39,12 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_result_l_tbl_id']="#";
 	$_SESSION['kpi_result_l_tbl_kpi_name']="ตัวชี้วัด";
 	$_SESSION['kpi_result_l_tbl_weight']="น้ำหนัก";
-	$_SESSION['kpi_result_l_tbl_target']="เป้า";
-	$_SESSION['kpi_result_l_tbl_target_score']="ผลการประเมิน";
-	$_SESSION['kpi_result_l_tbl_manage']="ประเมิน";
+	$_SESSION['kpi_result_l_tbl_target']="เป้าข้อมูลดิบ";
+	$_SESSION['kpi_baseline_start_l_tbl']="ช่วงคะแนน(เริ่ม)";
+	$_SESSION['kpi_baseline_end_l_tbl']="ช่วงคะแนน(ถึง)";
+	
+	$_SESSION['kpi_result_l_tbl_target_score']="ได้คะแนน";
+	$_SESSION['kpi_result_l_tbl_manage']="จัดการ";
 
 	
 
@@ -134,8 +137,10 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_result_l_tbl_kpi_name']="KPI Name";
 	$_SESSION['kpi_result_l_tbl_weight']="Weight";
 	$_SESSION['kpi_result_l_tbl_target']="Target";
+	$_SESSION['kpi_baseline_start_l_tbl']="Target Start";
+	$_SESSION['kpi_baseline_end_l_tbl']="Targe End";
 	$_SESSION['kpi_result_l_tbl_target_score']="Actual";
-	$_SESSION['kpi_result_l_tbl_manage']="Appraisal";
+	$_SESSION['kpi_result_l_tbl_manage']="Manage";
 
 	
 
@@ -259,6 +264,8 @@ if($_SESSION['language']=="th"){
 
 
 
+
+
  </style>
 
 
@@ -351,41 +358,37 @@ if($_SESSION['language']=="th"){
 			<span style="font-weight: bold;"><?=$_SESSION['kpi_result_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
 			</td>
 		</tr>
-		
-		<tr style='display: none;'>
+		<!-- HIDE WHEN PRODUCTION START-->
+		<tr class='hiddenProduction' style='display: block;'>
 			<td class='text-right'><b>KPI Weight</td>
 			<td >
 				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control "  style="width:150px;" value="0.00">
 			</td>
 		</tr>
-		<tr class='' style="display: none;">
+		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>Target Data</b></td>
 			<td >
 				<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style="background: #ddd; width:150px;"  disabled>
 			</td>
 		</tr>
-		<tr class='' style="display: none;">
+		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>Target Score</b></td>
 			<td >
 				<input type="text" id="target_score" name="target_score"  class="form-control " style="background: #ddd; width:150px;" disabled>
 			</td>
 		</tr>
-		<tr class='' style="display: none;">
+		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>Type Actaul Data</b></td>
 			<td id="kpiTypeActualArea">
 			<input type="radio" checked="" value="0" class="kpi_type_actual" id="actual_manual" name="kpi_type_actual">Manaul : <input type="radio" value="1" class="kpi_type_actual" name="kpi_type_actual" id="actual_query"> Query 
 			</td>
 		
 		</tr>
-		<tr>
-			<!-- <td  class='text-right' style="display: table; float:right; margin-right:10px;"><b><?=$_SESSION['kpi_result_l_form_baseline']?></b></td> -->
+		<tr class='hiddenProduction'>
+		
 			<td colspan='2'>
 				<div style="margin-top: 0px;margin-bottom:0px;" class="panel panel-default panel-bottom">
-				  <!--
-				  <div class="panel-heading">
-					<b>Baseline List</b>			
-				  </div>
-				  -->
+				
 				  <div class="panel-body panel-body-top">
 				  
 				 		<div id="baseLineArea" style="display: none;"></div>
@@ -395,7 +398,7 @@ if($_SESSION['language']=="th"){
 			</td>
 		</tr>
 		 
-		<tr  style="display: none;">
+		<tr class='hiddenProduction'  style="display: block;">
 			<td class='text-right'><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></td>
 			<td id="areaKPIActual">
 			 
@@ -404,7 +407,7 @@ if($_SESSION['language']=="th"){
 			</td>
 		</tr>
 		
-		<tr class='' style="display: none;">
+		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>KPI Score</b></td>
 			<td id="areaKPIActualScore">
 			 
@@ -413,7 +416,7 @@ if($_SESSION['language']=="th"){
 			</td>
 		</tr>
 			
-		<tr class='' style="display: none;">
+		<tr class='hiddenProduction' style="display: block;">
 			<td class='text-right'><b>Performance% </b></td>
 			<td id="areTotalKpiScore">
 			
@@ -423,15 +426,15 @@ if($_SESSION['language']=="th"){
 			</td>
 		</tr>
 		
-		<tr style="display: none;">
+		<tr class='hiddenProduction'  style="display: block;">
 			<td class='text-right'><b>Total  Score</b></td>
 			<td id="areTotalKpiScore">
-			
 				<input id="total_kpi_actual_score" name="total_kpi_actual_score"  class="form-control " value="0.00" style="background: #ddd;width:150px;">
-				
-				
 			</td>
 		</tr>
+	<!-- HIDE WHEN PRODUCTION START-->
+
+
 
 
 		
@@ -504,10 +507,10 @@ if($_SESSION['language']=="th"){
 	
 </div>
 
+	<div class="modal-footer">
 
 
-
-<div class="assignData" style="display: none;" id="resultKpiShowData"></div>
+		<div class="assignData" style="display: none;" id="resultKpiShowData"></div>
 
 
 
@@ -515,14 +518,15 @@ if($_SESSION['language']=="th"){
 		<div style="float: right;">
 			<!-- <div style="display: inline;" id="confirm_kpi"></div> -->
 			
-			
-			<input type="button" id="kpi_process" name="kpi_process" value="ยืนยันผลการประเมิน" class="btn btn-warning ">
+			<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button>
+			<input type="button" id="kpi_process" name="kpi_process" value="ยืนยันผลการประเมิน" class="btn btn-primary ">
+			<br style='clear: both'>
 		</div>
 		<br style='clear: both'>
 		<div id="warningInModalArea"></div>
 
-	   		<!-- content end-->
-
+					<!-- content end-->
+	</div>
 	   </div> 
    </div>
 

@@ -630,12 +630,18 @@ GROUP BY kpi.kpi_id";
 if($_POST['action']=="getAllDataBaseline"){
 
 	$tableHtml="";
-	$strSQL="select baseline_id,kpi_id,baseline_begin,baseline_end,baseline_score,suggestion from baseline
-where kpi_id='$kpi_id'
-ORDER BY baseline_score desc";
+	$strSQL="
+	
+	select b.baseline_id,b.kpi_id,b.baseline_begin,b.baseline_end,b.baseline_score,b.suggestion ,k.kpi_type_score
+from baseline b
+inner join kpi k on b.kpi_id=k.kpi_id
+where b.kpi_id='$kpi_id'
+ORDER BY b.baseline_score desc";
+	$resultCheckTypeScore=$conn->query($strSQL);
 	$result=$conn->query($strSQL);
-	//$rs=$result->fetch_assoc();
-	$tableHtml.="<table class='table table-striped' id='baselineTable'>
+	$rsCheckTypeScore=$resultCheckTypeScore->fetch_assoc();
+	if($rsCheckTypeScore['kpi_type_score']==1){
+		$tableHtml.="<table class='table table-striped' id='baselineTable'>
 				 	<thead>
 						<tr>
 							
@@ -647,20 +653,48 @@ ORDER BY baseline_score desc";
 						</tr>
 				  	</thead>
 					<tbody>";
+	}else {
+		$tableHtml.="<table class='table table-striped' id='baselineTable'>
+				 	<thead>
+						<tr>
+							
+							
+							<th style='text-align:right;width:80px;'>คะแนน</th>
+							<th><div style='padding-left:10px;'>เกฑณ์ประเมิน</div></th>
+							<th style='text-align:center;'></th>
+						</tr>
+				  	</thead>
+					<tbody>";
+	}
+	
 				$i=0;
 				while($rs=$result->fetch_assoc()){
+					if($rs['kpi_type_score']==1){
 					$tableHtml.="
 								<tr id='baseline_radio-".$rs['baseline_id']."'  class='baseline_radio' style ='cursor:pointer;'>
 								
-									<td id='baseline_begin_result-".$rs['baseline_id']."'><div style='text-align:right'>$rs[baseline_begin]</div></td>
-									<td id='baseline_end_result-".$rs['baseline_id']."'><div style='text-align:right'>$rs[baseline_end]</div></td>
-									<td><div style='text-align:right'>".$rs['baseline_score']."</div></td>
+									<td id='baseline_begin_result-".$rs['baseline_id']."'><div style='text-align:right'>".number_format($rs['baseline_begin'], 2, '.', ',')."</div></td>
+									<td id='baseline_end_result-".$rs['baseline_id']."'><div style='text-align:right'>".number_format($rs['baseline_end'], 2, '.', ',')."</div></td>
+									<td><div style='text-align:right'><span class=\"label label-primary\">".$rs['baseline_score']."</span></div></td>
 									<td><div style='padding-left:10px;'>".$rs['suggestion']."</div></td>
 <td style='text-align:center;'> 
-	<button class='btn btn-primary'><i class='glyphicon glyphicon-check'></i> กดให้คะแนน</button>
+	<button class='btn btn-warning'><i class='glyphicon glyphicon-check'></i> กดให้คะแนน</button>
 </td>
 								<tr>
 						";
+					}else{
+						$tableHtml.="
+								<tr id='baseline_radio-".$rs['baseline_id']."'  class='baseline_radio' style ='cursor:pointer;'>
+								
+									
+									<td><div style='text-align:right'><span class=\"label label-primary\">".$rs['baseline_score']."</span></div></td>
+									<td><div style='padding-left:10px;'>".$rs['suggestion']."</div></td>
+<td style='text-align:center;'> 
+	<button class='btn btn-warning'><i class='glyphicon glyphicon-check'></i> กดให้คะแนน</button>
+</td>
+								<tr>
+						";
+					}
 					$i++;
 				}
 				
