@@ -622,7 +622,7 @@ $division_id=$_POST['division_id'];
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='TableassignKpi' class='table grid table-striped'>";
+	$tableHTML.="<table style='width:100%;' id='TableassignKpi' class='table grid table-striped'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
 			$tableHTML.="<col  style='width:30%'/>";
@@ -631,7 +631,7 @@ $division_id=$_POST['division_id'];
 			// $tableHTML.="<col style='width:13%'/>";
 			$tableHTML.="<col style='width:10%'/>";
 			$tableHTML.="<col style='width:10%'/>";
-			$tableHTML.="<col style='width:15%'/>";
+			// $tableHTML.="<col style='width:15%'/>";
 		
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";

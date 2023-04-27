@@ -283,13 +283,13 @@ if($_SESSION['language']=="th"){
 									</td>
 								</tr>
                                 
-								<tr style="display: block;">
+								<tr style="display: none;">
 									<td class='text-right'><b>Target Data</b></td>
 									<td>
 										<input type="text" id="kpi_target_data" name="kpi_target_data" class="form-control " style="background: #ddd; width:150px;" disabled>
 									</td>
 								</tr>
-								<tr style="display: block;">
+								<tr style="display: none;">
 									<td class='text-right'><b>Target Score</b></td>
 									<td>
 										<input type="text" id="target_score" name="target_score" class="form-control " style="background: #ddd; width:150px;" disabled>

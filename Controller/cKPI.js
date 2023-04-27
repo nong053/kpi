@@ -42,9 +42,11 @@ $(document).ready(function(){
 		if($("#kpiTypeScore1").prop( "checked")==true){
 			$("#kpiDataTargetArea").show();
 			$("#kpi_better_flag_area").show();
+			$("#kpiDataUnitArea").show();
 		}else{
 			$("#kpiDataTargetArea").hide();
 			$("#kpi_better_flag_area").hide();
+			$("#kpiDataUnitArea").hide();
 		}
 	
 	});

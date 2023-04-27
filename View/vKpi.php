@@ -35,7 +35,9 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_l_form_kpi_name']="ตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_better_flag']="ประเภทตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_type_score']="การคิดคะแนน";
-	$_SESSION['kpi_l_form_kpi_data_target']="เป้าข้อมูลดิบ";
+	$_SESSION['kpi_l_form_kpi_data_target']="เป้าหมาย";
+	$_SESSION['kpi_l_form_kpi_data_unit']="หน่วย";
+	
 	
 	$_SESSION['kpi_l_form_kpi_detail']="รายละเอียดตัวชี้วัด";
 	$_SESSION['kpi_l_form_kpi_perspective']="มุมมองธุรกิจ";
@@ -75,6 +77,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_l_form_kpi_detail']="KPI Detail";
 	$_SESSION['kpi_l_form_kpi_type_score']="KPI Score Type ";
 	$_SESSION['kpi_l_form_kpi_data_target']="Target Data";
+	$_SESSION['kpi_l_form_kpi_data_unit']="Unit";
 	$_SESSION['kpi_l_form_btn_add']="Add";
 	$_SESSION['kpi_l_form_btn_reset']="Reset";
 	$_SESSION['kpi_l_form_required']="Required";
@@ -180,6 +183,12 @@ if($_SESSION['language']=="th"){
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_data_target']?> <font color="red">*</font></b></td>
 						<td>
 							<input type="text" id="kpiDataTarget" name="kpiDataTarget"  style='width:100%;' class="form-control ">
+						</td>
+					</tr>
+					<tr id="kpiDataUnitArea"  style="display: none;">
+						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_data_unit']?> <font color="red">*</font></b></td>
+						<td>
+							<input type="text" id="kpiDataUnit" name="kpiDataUnit"  style='width:100%;' class="form-control ">
 						</td>
 					</tr>
 
