@@ -28,7 +28,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#departmentShowData").html(data);
 				
-				 $("#Tabledepartment").kendoGrid({
+				// $("#Tabledepartment").kendoGrid({
                      /*
 					 height: 250,
                      sortable: true,
@@ -38,7 +38,7 @@ $(document).ready(function(){
                          buttonCount: 5
                      },
                      */
-                 });
+                // });
 				 setGridTable();
 				 
 				//alert(data);

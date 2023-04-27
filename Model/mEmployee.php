@@ -353,7 +353,7 @@ where (e.department_id='All' or 'All' ='All')
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='Tableemployee' class='grid table-striped' style='width:100%'>";
+	$tableHTML.="<table id='Tableemployee' class='grid table-striped table' style='width:100%'>";
 		$tableHTML.="<colgroup>";
 			//$tableHTML.="<col style='width:5%' />";
 			$tableHTML.="<col  style='width:8%'/>";

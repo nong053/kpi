@@ -68,7 +68,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#appraisalPeriodShowData").html(data);
 				
-				 $("#TableappraisalPeriod").kendoGrid({
+				 //$("#TableappraisalPeriod").kendoGrid({
                     
 					 // height: 250,
       //                sortable: true,
@@ -78,7 +78,7 @@ $(document).ready(function(){
       //                    buttonCount: 5
       //                },
                      
-                 });
+                 //});
 				 setGridTable();
 				 
 				//alert(data);

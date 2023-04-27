@@ -131,7 +131,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#kpiShowData").html(data);
 				
-				 $("#Tablekpi").kendoGrid({
+				 //$("#Tablekpi").kendoGrid({
 					 /*
                      height: 300,
                      sortable: true,
@@ -141,7 +141,7 @@ $(document).ready(function(){
                          buttonCount: 5
                      },
                      */
-                 });
+                 //});
 				 setGridTable();
 				 
 				//alert(data);

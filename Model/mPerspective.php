@@ -37,7 +37,7 @@ if($_POST['action']=="showData"){
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='TablePerspective' class='grid table-striped' style='width:100%'>";
+	$tableHTML.="<table id='TablePerspective' class='grid table-striped table' style='width:100%'>";
 	$tableHTML.="<colgroup>";
 	$tableHTML.="<col style='width:5%' />";
     $tableHTML.="<col  />";

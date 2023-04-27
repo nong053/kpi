@@ -45,7 +45,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#showDataPerspective").html(data);
 				
-				 $("#TablePerspective").kendoGrid();
+				// $("#TablePerspective").kendoGrid();
 				 setGridTable();
 				 
 				

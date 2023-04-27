@@ -58,10 +58,10 @@ LEFT JOIN role r on pe.role_id=r.role_id
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='Tableposition' class='grid table-striped' style='width:100%'>";
+	$tableHTML.="<table id='Tableposition' class='grid table-striped table' style='width:100%'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col  style='width:80%' />";
+			$tableHTML.="<col  style='width:70%' />";
 			$tableHTML.="<col  style='width:20%' />";
 
 			

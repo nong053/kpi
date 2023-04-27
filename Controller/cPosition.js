@@ -31,7 +31,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#positionShowData").html(data);
 				
-				 $("#Tableposition").kendoGrid({
+				 //$("#Tableposition").kendoGrid({
 					 /*
                      height: 250,
                      sortable: true,
@@ -41,7 +41,7 @@ $(document).ready(function(){
                          buttonCount: 5
                      },
                      */
-                 });
+                // });
 				 setGridTable();
 				 
 				//alert(data);

@@ -50,7 +50,7 @@ $(document).ready(function(){
 			success:function(data){
 				$("#kpiBaselineShowData").html(data);
 				
-				 $("#Tablebaseline").kendoGrid({
+				 //$("#Tablebaseline").kendoGrid({
 					 /*
                      height: 300,
                      sortable: true,
@@ -60,7 +60,7 @@ $(document).ready(function(){
                          buttonCount: 5
                      },
                      */
-                 });
+                 //});
 				 setGridTable();
 				 
 				//alert(data);

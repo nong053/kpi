@@ -485,7 +485,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 			success:function(data){
 				$("#employeeShowData").html(data);
 			
-				  $("#Tableemployee").kendoGrid({
+				  //$("#Tableemployee").kendoGrid({
                     // height: 350,
                     //  sortable: true,
                     //  pageable: {
@@ -493,7 +493,7 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
                     //      pageSizes: true,
                     //      buttonCount: 5
                     //  },
-                  });
+                 // });
 				 setGridTable();
 				 
 				
@@ -856,7 +856,7 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
 			success:function(data){
 				$("#assignKpiShowData").html(data);
 				
-				 $("#TableassignKpi").kendoGrid({
+				/// $("#TableassignKpi").kendoGrid({
 					/*	 
                      height: 250,
                      sortable: true,
@@ -866,7 +866,7 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
                          buttonCount: 5
                      },
                     */
-				 });
+				 //});
 				 
 				 setGridTable();
 
@@ -1208,7 +1208,7 @@ $(document).ready(function(){
 				
 				var htmlGridKpiResult="";
 				// table grid start
-				htmlGridKpiResult+="<table id=\"tableKpiResult\">";
+				htmlGridKpiResult+="<table id=\"tableKpiResult\" class='grid table-striped table'>";
 				htmlGridKpiResult+="<colgroup>";
 				
 						htmlGridKpiResult+="<col style=\"width:50px\" />";

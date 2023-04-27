@@ -407,7 +407,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
 				
 				$("#employeeShowData").html(data);
 				
-				 $("#Tableemployee").kendoGrid({
+				// $("#Tableemployee").kendoGrid({
                     // height: 350,
                     //  sortable: true,
                     //  pageable: {
@@ -415,7 +415,7 @@ fnDropdownListSearchEmpRole(sessionStorage.getItem("param_role"));
                     //      pageSizes: true,
                     //      buttonCount: 5
                     //  },
-                 });
+                // });
 				 setGridTable();
 				 
 				//alert(data);

@@ -268,7 +268,7 @@ if($_POST['action']=="showData"){
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='Tablekpi' class='grid table-striped'>";
+	$tableHTML.="<table id='Tablekpi' class='grid table-striped table'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
 			$tableHTML.="<col  style='width:30%'/>";
