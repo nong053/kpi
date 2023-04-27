@@ -683,7 +683,7 @@ $division_id=$_POST['division_id'];
 		$unit=$rs['kpi_unit'];
 	}
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')." ".$unit."</div></td>";
-	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_actual_score'], 2, '.', '') ." ".$unit."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_actual_manual'], 2, '.', '') ." ".$unit."</div></td>";
 	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
 	$tableHTML.="	<td>
 			
