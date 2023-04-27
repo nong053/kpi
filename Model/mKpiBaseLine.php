@@ -81,7 +81,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<th  style='text-align:right;' data-field=\"column4\"><b> ".$_SESSION['baseline_l_tbl_kpi_score']."</b></th>";
 			$tableHTML.="<th data-field=\"column5\"><b> ".$_SESSION['baseline_l_tbl_kpi_suggestion']."</b></th>";
 			if($paramkpiTypeScore==1){
-			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['baseline_l_tbl_manage']."</b></th>";
+			$tableHTML.="<th data-field=\"column6\" style='text-align:center;'><b>".$_SESSION['baseline_l_tbl_manage']."</b></th>";
 			}
 			
 		$tableHTML.="</tr>";
@@ -112,7 +112,7 @@ if($_POST['action']=="showData"){
 	if($paramkpiTypeScore==1){
 	$tableHTML.="
 	<td>
-	<div style='text-align: right;'>
+	<div style='text-align: center;'>
 			<button type='button' id='idEdit-".$rs['baseline_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			<!-- <button type='button' id='idDel-".$rs['baseline_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button> -->
 			

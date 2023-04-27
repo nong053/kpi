@@ -39,11 +39,11 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_result_l_tbl_id']="#";
 	$_SESSION['kpi_result_l_tbl_kpi_name']="ตัวชี้วัด";
 	$_SESSION['kpi_result_l_tbl_weight']="น้ำหนัก";
-	$_SESSION['kpi_result_l_tbl_target']="เป้าข้อมูลดิบ";
+	$_SESSION['kpi_result_l_tbl_target']="เป้าหมาย";
 	$_SESSION['kpi_baseline_start_l_tbl']="ช่วงคะแนน(เริ่ม)";
 	$_SESSION['kpi_baseline_end_l_tbl']="ช่วงคะแนน(ถึง)";
 	
-	$_SESSION['kpi_result_l_tbl_target_score']="ได้คะแนน";
+	$_SESSION['kpi_result_l_tbl_target_score']="ผลปฏิบัติงาน";
 	$_SESSION['kpi_result_l_tbl_manage']="จัดการ";
 
 	

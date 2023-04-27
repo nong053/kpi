@@ -185,10 +185,10 @@ if($_SESSION['language']=="th"){
 							<input type="text" id="kpiDataTarget" name="kpiDataTarget"  style='width:100%;' class="form-control ">
 						</td>
 					</tr>
-					<tr id="kpiDataUnitArea"  style="display: none;">
+					<tr id="kpiUnitArea"  style="display: none;">
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_kpi_data_unit']?> <font color="red">*</font></b></td>
 						<td>
-							<input type="text" id="kpiDataUnit" name="kpiDataUnit"  style='width:100%;' class="form-control ">
+							<input type="text" id="kpiUnit" name="kpiUnit"  style='width:100%;' class="form-control ">
 						</td>
 					</tr>
 

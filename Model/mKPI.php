@@ -9,6 +9,7 @@ if($jsonArray["login_status"]==1){
 
 
 $kpiName =$_POST['kpiName'];
+$kpiUnit =$_POST['kpiUnit'];
 $perspectiveId =$_POST['perspectiveId'];
 $kpiBetterFlag =$_POST['kpiBetterFlag'];
 $kpiDetail = $_POST['kpiDetail'];
@@ -65,8 +66,8 @@ if($_POST['action']=="add"){
 	if($kpiTypeScore==2 || $kpiTypeScore==3){
 		$kpiDataTarget=5;
 	}
-	$strSQL="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target,perspective_id)
-	VALUES('$kpiName','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget','$perspectiveId')";
+	$strSQL="INSERT INTO kpi(kpi_name,kpi_unit,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target,perspective_id)
+	VALUES('$kpiName','$kpiUnit','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget','$perspectiveId')";
 	$rs=$conn->query($strSQL);
 	$id = $conn -> insert_id;
 	if($rs){
@@ -423,7 +424,7 @@ if($_POST['action']=="edit"){
 		
 		//echo "[{\"abc\":$rs[kpi_id],\"def\":\"22\"}]";
 		
-		 echo "[{\"kpi_id\":\"$rs[kpi_id]\",\"kpi_code\":\"$rs[kpi_code]\",\"kpi_name\":\"$rs[kpi_name]\",\"kpi_better_flag\":\"$rs[kpi_better_flag]\",
+		 echo "[{\"kpi_id\":\"$rs[kpi_id]\",\"kpi_code\":\"$rs[kpi_code]\",\"kpi_name\":\"$rs[kpi_name]\",\"kpi_unit\":\"$rs[kpi_unit]\",\"kpi_better_flag\":\"$rs[kpi_better_flag]\",
 		 		\"kpi_detail\":\"$rs[kpi_detail]\",\"department_id\":\"$rs[department_id]\",\"division_id\":\"$rs[division_id]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",\"kpi_target\":\"$rs[kpi_target]\",\"kpi_type_score\":\"$rs[kpi_type_score]\",\"kpi_data_target\":\"$rs[kpi_data_target]\"}]";
 		 
 	}else{
@@ -436,7 +437,7 @@ if($_POST['action']=="editAction"){
 	
 
 
-	$strSQL="UPDATE kpi SET kpi_name='$kpiName',kpi_better_flag='$kpiBetterFlag',kpi_detail='$kpiDetail',
+	$strSQL="UPDATE kpi SET kpi_name='$kpiName',kpi_unit='$kpiUnit',kpi_better_flag='$kpiBetterFlag',kpi_detail='$kpiDetail',
 	kpi_code='$kpiCode',department_id='$departmentId',perspective_id='$perspectiveId'
 	WHERE kpi_id='$kpiId'";
 	$result=$conn->query($strSQL);

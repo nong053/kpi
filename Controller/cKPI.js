@@ -42,11 +42,11 @@ $(document).ready(function(){
 		if($("#kpiTypeScore1").prop( "checked")==true){
 			$("#kpiDataTargetArea").show();
 			$("#kpi_better_flag_area").show();
-			$("#kpiDataUnitArea").show();
+			$("#kpiUnitArea").show();
 		}else{
 			$("#kpiDataTargetArea").hide();
 			$("#kpi_better_flag_area").hide();
-			$("#kpiDataUnitArea").hide();
+			$("#kpiUnitArea").hide();
 		}
 	
 	});
@@ -92,6 +92,7 @@ $(document).ready(function(){
 		$("#warningInModal").hide();
 		$("#kpiCode").val("");
 		$("#kpiName").val("");
+		$("#kpiUnit").val("");
 		$("#kpiBetterFlagY").prop("checked",true);
 		$("#kpiTypeScore2").prop("checked",true);
 		$("#kpi_better_flag_area").hide();
@@ -170,6 +171,7 @@ $(document).ready(function(){
 
 
 								$("input#kpiName").val(data[0]["kpi_name"]);
+								$("input#kpiUnit").val(data[0]["kpi_unit"]);
 
 								if(data[0]["kpi_better_flag"]=="Y"){
 									$("#kpiBetterFlagY").prop("checked",true);
@@ -177,21 +179,25 @@ $(document).ready(function(){
 									$("#kpiBetterFlagN").prop("checked",true);
 								}
 
-								/*
+								
 								if(data[0]["kpi_type_score"]==1){
-									$("#kpiTypeScore1").prop("checked",true);
-									$("#kpiDataTargetArea").show();
+									// $("#kpiTypeScore1").prop("checked",true);
+									// $("#kpiDataTargetArea").show();
+									$("#kpiUnitArea").show();
+									
 
 								}else if(data[0]["kpi_type_score"]==2){
-
-									$("#kpiTypeScore2").prop("checked",true);
-									$("#kpiDataTargetArea").hide();
+									$("#kpiUnitArea").hide();
+									
+									// $("#kpiTypeScore2").prop("checked",true);
+									// $("#kpiDataTargetArea").hide();
 								}else if(data[0]["kpi_type_score"]==3){
-
-									$("#kpiTypeScore3").prop("checked",true);
-									$("#kpiDataTargetArea").hide();
+									$("#kpiUnitArea").hide();
+									
+									// $("#kpiTypeScore3").prop("checked",true);
+									// $("#kpiDataTargetArea").hide();
 								}
-								*/
+								
 
 								$("#kpiDataTarget").val(data[0]["kpi_data_target"]);
 
@@ -664,6 +670,7 @@ $(document).ready(function(){
 				data:{"kpiName":$("#kpiName").val(),
 					"kpiBetterFlag":$(".kpiBetterFlag:checked").val(),
 					"kpiDetail":$("#kpiDetail").val(),
+					"kpiUnit":$("#kpiUnit").val(),
 					"action":$("#kpiAction").val(),
 					"kpiId":$("#kpiId").val(),
 					"perspectiveId":$("#formPerspective").val(),

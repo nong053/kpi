@@ -602,7 +602,7 @@ $division_id=$_POST['division_id'];
 */
 	$strSQL="
 
-	select kpi.kpi_id,ak.appraisal_period_id,ak.assign_kpi_year,ak.department_id,ak.position_id,ak.emp_id,
+	select kpi.kpi_id, kpi.kpi_type_score,kpi.kpi_unit,ak.appraisal_period_id,ak.assign_kpi_year,ak.department_id,ak.position_id,ak.emp_id,
 	kpi_name,ak.kpi_weight,ak.target_data,ak.kpi_actual_score,ak.target_score,ak.kpi_type_actual,ak.kpi_actual_manual,ak.kpi_actual_query,ak.complete_kpi_score_flag
 	from assign_evaluate_kpi ak
 	left JOIN kpi
@@ -641,8 +641,10 @@ $division_id=$_POST['division_id'];
 			$tableHTML.="<th data-field=\"column3\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_weight']."</b></th>";
 			// $tableHTML.="<th data-field=\"column4\" style='text-align:right;'><b>".$_SESSION['kpi_baseline_start_l_tbl']." </b></th>";
 			// $tableHTML.="<th data-field=\"column5\" style='text-align:right;'><b>".$_SESSION['kpi_baseline_end_l_tbl']." </b></th>";
+			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_target']." </b></th>";
 			$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_target_score']." </b></th>";
-			//$tableHTML.="<th data-field=\"column6\" style='text-align:right;'><b>".$_SESSION['kpi_result_l_tbl_target']." </b></th>";
+			
+			
 			
 			//$tableHTML.="<th><b>Target Score</b></th>";
 			$tableHTML.="<th data-field=\"column7\" style='text-align:center;'><b>".$_SESSION['kpi_result_l_tbl_manage']."</b></th>";
@@ -674,8 +676,14 @@ $division_id=$_POST['division_id'];
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</div></td>";
 	// $tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
 	// $tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
-	//$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
-	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_actual_score'], 2, '.', '') ."</div></td>";
+	$unit="";
+	if($rs['kpi_type_score']=='3' || $rs['kpi_type_score']=='2'){
+		$unit="คะแนน";
+	}else{
+		$unit=$rs['kpi_unit'];
+	}
+	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')." ".$unit."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_actual_score'], 2, '.', '') ." ".$unit."</div></td>";
 	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
 	$tableHTML.="	<td>
 			
