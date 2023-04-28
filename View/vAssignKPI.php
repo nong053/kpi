@@ -337,173 +337,7 @@ if($_SESSION['language']=="th"){
 
 	
 	
-<div id="formKPI" style="display:none;">
-	
 
-<div class="alert alert-info bg-from" role="alert">
-<!-- <p class="bg-warning1">
-
-	<?=$_SESSION['kpi_result_l_form_name2']?> 
-</p>
-<br>
-	
-	<row>
-		<div class='col-md-12'><!-- colum12 -->
-		<form id="AssignKpiForm">
-		<table style="width: 100%;">
-		
-		<tr>
-			<!-- <td style="width:150px;" class='text-right'><b><?=$_SESSION['kpi_result_l_form_kpi_name']?></b></td> -->
-			<td colspan='2'>
-			<span style="font-weight: bold;"><?=$_SESSION['kpi_result_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
-			</td>
-		</tr>
-		<!-- HIDE WHEN PRODUCTION START-->
-		<tr class='hiddenProduction' style='display: block;'>
-			<td class='text-right'><b>KPI Weight</td>
-			<td >
-				<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control " disabled style="width:150px;" value="0.00">
-			</td>
-		</tr>
-		<tr class='hiddenProduction' style="display: block;">
-			<td class='text-right'><b>Target Data</b></td>
-			<td >
-				<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style=" width:150px;"  disabled>
-			</td>
-		</tr>
-		<tr class='hiddenProduction' style="display: block;">
-			<td class='text-right'><b>Target Score</b></td>
-			<td >
-				<input type="text" id="target_score" name="target_score"  class="form-control " style=" width:150px;" disabled>
-			</td>
-		</tr>
-		<tr class='hiddenProduction' style="display: block;">
-			<td class='text-right'><b>Type Actaul Data</b></td>
-			<td id="kpiTypeActualArea">
-			<input type="radio" checked="" value="0" class="kpi_type_actual" id="actual_manual" name="kpi_type_actual">Manaul : <input type="radio" value="1" class="kpi_type_actual" name="kpi_type_actual" id="actual_query"> Query 
-			</td>
-		
-		</tr>
-		<tr class='hiddenProduction'>
-		
-			<td colspan='2'>
-				<div style="margin-top: 0px;margin-bottom:0px;" class="panel panel-default panel-bottom">
-				
-				  <div class="panel-body panel-body-top">
-				  
-				 		<div id="baseLineArea" style="display: none;"></div>
-				 		
-						  </div>
-				</div>
-			</td>
-		</tr>
-		 
-		<tr class='hiddenProduction'  style="display: block;">
-			<td class='text-right'><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></td>
-			<td id="areaKPIActual">
-			 
-				<input id="kpi_actual_manual" name="kpi_actual_manual" value=""  class="form-control " style="width:100px;">
-				<textarea id="kpi_actual_query" name="kpi_actual_query" style="display: none;"></textarea> 
-			</td>
-		</tr>
-		
-		<tr class='hiddenProduction' style="display: block;">
-			<td class='text-right'><b>KPI Score</b></td>
-			<td id="areaKPIActualScore">
-			 
-				<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
-				
-			</td>
-		</tr>
-			
-		<tr class='hiddenProduction' style="display: block;">
-			<td class='text-right'><b>Performance% </b></td>
-			<td id="areTotalKpiScore">
-			
-				<input id="performance" name="performance"  class="form-control " value="0.00" style="width:150px;" disabled>
-				
-				
-			</td>
-		</tr>
-		
-		<tr class='hiddenProduction'  style="display: block;">
-			<td class='text-right'><b>Total  Score</b></td>
-			<td id="areTotalKpiScore">
-				<input id="total_kpi_actual_score" name="total_kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
-			</td>
-		</tr>
-	<!-- HIDE WHEN PRODUCTION START-->
-
-
-
-
-		
-		<tr style="display: none;">
-			<td ></td>
-			<td >
-				<div style="float:left;">
-					<input type="hidden" name="assign_kpi_action" id ="assign_kpi_action"  value="add">
-
-					<input type="hidden" name="assign_kpi_year" id ="assign_kpi_year"  value="">
-					<input type="hidden" name="assign_kpi_appraisal_period" id ="assign_kpi_appraisal_period"  value="">
-					<input type="hidden" name="assign_kpi_department" id ="assign_kpi_department"  value="">
-					<input type="hidden" name="assign_kpi_position" id ="assign_kpi_position"  value="">
-					<input type="hidden" name="assign_kpi_emp" id ="assign_kpi_emp"  value="">
-					<input type="hidden" name="assign_kpi_role_id" id ="assign_kpi_role_id"  value="">
-
-
-					<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
-					<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="Add" class="btn btn-primary btn-sm">
-					<input type="button" value="Reset" id="assign_kpi_reset" class="btn btn-default btn-sm">
-					
-					<!--
-					<input type="button" id="kpi_process" name="kpi_process" value="Finish" class="btn btn-primary btn-sm">
-				-->
-					<!--<input type="button" id="send_to_approve" name="send_to_approve" value="Send to Approve">
-					 <input type="button" value="Search" id="assign_kpi_search"> -->
-				</div>
-			</td>
-		</tr>
-
-		</form>
-		
-		
-		
-	</table>
-
-	
-
-
-	</div><!-- column12-->
-	<!--
-		<div class='col-md-3'>
-			
-				<div style="margin-top: 0px;" class="panel panel-default panel-bottom">
-				  <div class="panel-heading">
-					<b>Baseline List</b>			
-				  </div>
-				  <div class="panel-body panel-body-top">
-				  
-				 		<div id="baseLineArea" style="display: none;"></div>
-				 		
-						  </div>
-				</div>
-			
-		</div>
-		-->
-
-
-		
-
-	</row>
-
-
-
-	
-	
-	<br style='clear: both'>
-</div>	
-	
 	
 </div>
 
@@ -764,16 +598,288 @@ if($_SESSION['language']=="th"){
 	   				<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
 	   		
 				</div>
-
-			
-
 		</div>
 
 	</div>
 </div>
 <!-- Large view employee detail modal end-->
 
+<!-- Large add score modal start-->
+<div id='addScoreModal' class="modal fade " tabindex="-1" role="dialog" aria-labelledby="addScoreModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
 
+		<div class="modal-content">
+			<div class="modal-header alert-info">
+				<button aria-label="Close" data-dismiss="modal" class="close" type="button">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 id="addScoreModalLabel" class="modal-title"> บันทึกผลปฏิบัติงาน </h4>
+			</div>
+			
+				<div class="modal-body">
+
+					<!-- content start-->
+
+					<div id="formKPI" style="display:none;">
+					<div class="alert alert-info bg-from" role="alert">
+					<!-- <p class="bg-warning1">
+
+						<?=$_SESSION['kpi_result_l_form_name2']?> 
+					</p>
+					<br>
+						
+						<row>
+							<div class='col-md-12'><!-- colum12 -->
+							<form id="AssignKpiForm">
+							<table style="width: 100%;">
+							
+							<tr>
+								<!-- <td style="width:150px;" class='text-right'><b><?=$_SESSION['kpi_result_l_form_kpi_name']?></b></td> -->
+								<td colspan='2'>
+								<span style="font-weight: bold;"><?=$_SESSION['kpi_result_l_form_kpi_name']?></span>:<span id="kpiDropDrowListArea"></span>
+								</td>
+							</tr>
+							<!-- HIDE WHEN PRODUCTION START-->
+							<tr>
+								<td>
+									<div class="row1 container1 ">
+										<div class="col-md-9">
+											<div class="row1 alert alert-warning">
+												<div class="col-md-4">
+													<div><b>น้ำหนักตัวชี้วัด</b></div>
+													<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control " disabled style="width:150px;" value="0.00">
+												</div>
+												
+												<div class="col-md-4">
+													<div><b>เป้าหมาย<span id='kpi_unit'></span></b></div>
+													<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style=" width:150px;"  disabled>
+												</div>
+
+												<div class="col-md-4">
+													<div><b>เป้าคะแนน</b></div>
+													<input type="text" id="target_score" name="target_score"  class="form-control " style=" width:150px;" disabled>
+												</div>
+
+												<div style="display:none;" class="col-md-3 ">
+													<div>Type Actaul Data</div>
+													<input type="radio" checked="" value="0" class="kpi_type_actual" id="actual_manual" name="kpi_type_actual">Manaul : <input type="radio" value="1" class="kpi_type_actual" name="kpi_type_actual" id="actual_query"> Query 
+												</div>
+												
+
+												<div class="col-md-4">
+													<div><b>ผลคะแนน</b></div>
+													<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
+												</div>
+												<div class="col-md-4">
+													<div><b>ผลรวมคะแนน</b></div>
+													<input id="total_kpi_actual_score" name="total_kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
+												</div>
+
+												<div class="col-md-4">
+													<div><b>ผลปฏิบัติงาน% </b></div>
+													<input id="performance" name="performance"  class="form-control " value="0.00" style="width:150px;" disabled>
+												</div>
+												
+												<br style="clear:both">
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="row1 alert alert-success">
+												<div class="col-md-12 ">
+													<div><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></div>
+													<div id="dataAreaKpiTypeScore"></div>
+
+													<!-- <select id="kpi_actual_manual_typ_3" class="kpi_actual_manual" style="display:none;">
+														<option value="5">ผ่าน</option>
+														<option value="0">ไม่ผ่าน</option>
+													</select>
+													<select id="kpi_actual_manual_typ_2" class="kpi_actual_manual" style="display:none;">
+														<option value="1">1 คะแนน</option>
+														<option value="2">2 คะแนน</option>
+														<option value="3">3 คะแนน</option>
+														<option value="4">4 คะแนน</option>
+														<option value="5">5 คะแนน</option>
+													</select>
+
+													<input id="kpi_actual_manual_typ_1" name="kpi_actual_manual" value=""  class="kpi_actual_manual form-control " style="width:100px;"> -->
+												
+												</div>
+												<br style="clear:both">
+											</div>
+										</div>
+											
+
+											
+											
+									
+
+											
+									</div>
+									
+								</td>
+							<!-- </tr>
+							<tr class='hiddenProduction' style='display: block;'>
+							
+								<td class='text-right'><b>KPI Weight</b></td>
+								<td >
+									<input type="text" id="kpi_weight" name="kpi_weight"  class="form-control " disabled style="width:150px;" value="0.00">
+								</td>
+							</tr>
+							<tr class='hiddenProduction' style="display: block;">
+								<td class='text-right'><b>Target Data</b></td>
+								<td >
+									<input type="text" id="kpi_target_data" name="kpi_target_data"  class="form-control " style=" width:150px;"  disabled>
+								</td>
+							</tr> 
+							<tr class='hiddenProduction' style="display: block;">
+								<td class='text-right'><b>Target Score</b></td>
+								<td >
+									<input type="text" id="target_score" name="target_score"  class="form-control " style=" width:150px;" disabled>
+								</td>
+							</tr>
+							<tr class='hiddenProduction' style="display: none;">
+								<td class='text-right'><b>Type Actaul Data</b></td>
+								<td id="kpiTypeActualArea">
+								<input type="radio" checked="" value="0" class="kpi_type_actual" id="actual_manual" name="kpi_type_actual">Manaul : <input type="radio" value="1" class="kpi_type_actual" name="kpi_type_actual" id="actual_query"> Query 
+								</td>
+							
+							</tr>
+							-->
+							<tr class='hiddenProduction'>
+							
+								<td colspan='2'>
+									<div style="margin-top: 0px;margin-bottom:0px;" class="panel panel-default panel-bottom">
+									
+									<div class="panel-body panel-body-top">
+											<div><b>เกณฑ์การประเมิน</b></div>
+											<div id="baseLineArea" style="display: none;"></div>
+											
+											</div>
+									</div>
+								</td>
+							</tr>
+<!-- 							
+							<tr class='hiddenProduction'  style="display: block;">
+								<td class='text-right'><b> <?=$_SESSION['kpi_result_l_form_acutal_data']?></b></td>
+								<td id="areaKPIActual">
+								
+									<input id="kpi_actual_manual" name="kpi_actual_manual" value=""  class="form-control " style="width:100px;">
+									<textarea id="kpi_actual_query" name="kpi_actual_query" style="display: none;"></textarea> 
+								</td>
+							</tr>
+							
+							<tr class='hiddenProduction' style="display: block;">
+								<td class='text-right'><b>KPI Score</b></td>
+								<td id="areaKPIActualScore">
+								
+									<input id="kpi_actual_score" name="kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
+									
+								</td>
+							</tr>
+								
+							<tr class='hiddenProduction' style="display: block;">
+								<td class='text-right'><b>Performance% </b></td>
+								<td id="areTotalKpiScore">
+								
+									<input id="performance" name="performance"  class="form-control " value="0.00" style="width:150px;" disabled>
+									
+									
+								</td>
+							</tr>
+							
+							<tr class='hiddenProduction'  style="display: block;">
+								<td class='text-right'><b>Total  Score</b></td>
+								<td id="areTotalKpiScore">
+									<input id="total_kpi_actual_score" name="total_kpi_actual_score"  class="form-control " value="0.00" style="width:150px;" disabled>
+								</td>
+							</tr> -->
+						<!-- HIDE WHEN PRODUCTION START-->
+
+
+
+
+							
+							<tr style="display: none;">
+								<td ></td>
+								<td >
+									<div style="float:left;">
+										<input type="hidden" name="assign_kpi_action" id ="assign_kpi_action"  value="add">
+
+										<input type="hidden" name="assign_kpi_year" id ="assign_kpi_year"  value="">
+										<input type="hidden" name="assign_kpi_appraisal_period" id ="assign_kpi_appraisal_period"  value="">
+										<input type="hidden" name="assign_kpi_department" id ="assign_kpi_department"  value="">
+										<input type="hidden" name="assign_kpi_position" id ="assign_kpi_position"  value="">
+										<input type="hidden" name="assign_kpi_emp" id ="assign_kpi_emp"  value="">
+										<input type="hidden" name="assign_kpi_role_id" id ="assign_kpi_role_id"  value="">
+
+
+										<input type="hidden" name="assign_kpi_id" id ="assign_kpi_id"  value="">
+										<input type="submit" id="assign_kpi_submit" name="assign_kpi_submit" value="Add" class="btn btn-primary btn-sm">
+										<input type="button" value="Reset" id="assign_kpi_reset" class="btn btn-default btn-sm">
+										
+										<!--
+										<input type="button" id="kpi_process" name="kpi_process" value="Finish" class="btn btn-primary btn-sm">
+									-->
+										<!--<input type="button" id="send_to_approve" name="send_to_approve" value="Send to Approve">
+										<input type="button" value="Search" id="assign_kpi_search"> -->
+									</div>
+								</td>
+							</tr>
+
+							</form>
+							
+							
+							
+						</table>
+
+						
+
+
+						</div><!-- column12-->
+						<!--
+							<div class='col-md-3'>
+								
+									<div style="margin-top: 0px;" class="panel panel-default panel-bottom">
+									<div class="panel-heading">
+										<b>Baseline List</b>			
+									</div>
+									<div class="panel-body panel-body-top">
+									
+											<div id="baseLineArea" style="display: none;"></div>
+											
+											</div>
+									</div>
+								
+							</div>
+							-->
+
+
+							
+
+						</row>
+
+
+
+						
+						
+						<br style='clear: both'>
+					</div>	
+						
+
+					<!-- content end-->
+
+				</div>
+
+				<div class="modal-footer">
+					
+	   				<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
+	   				<input type="button" id="btn_add_score" name="btn_add_score" value="บันทึก" class="btn btn-primary " fdprocessedid="zemdoh">
+				</div>
+		</div>
+
+	</div>
+</div>
+<!-- Large add score modal end-->
 
  
 <div role="alert" class="alert alert-info">

@@ -671,7 +671,7 @@ $division_id=$_POST['division_id'];
 
 	
 	$tableHTML.="<tr>";
-	$tableHTML.="	<td style='background:yellow;'><div style='text-align:center;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
+	$tableHTML.="	<td><div style='text-align:center;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
 	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
 	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</div></td>";
 	// $tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
@@ -682,8 +682,8 @@ $division_id=$_POST['division_id'];
 	}else{
 		$unit=$rs['kpi_unit'];
 	}
-	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')." ".$unit."</div></td>";
-	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_actual_manual'], 2, '.', '') ." ".$unit."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".$rs['target_data']." ".$unit."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".$rs['kpi_actual_manual']." ".$unit."</div></td>";
 	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
 	$tableHTML.="	<td>
 			
@@ -927,7 +927,7 @@ $kpi_id=$_POST['kpi_id'];
 	\"kpi_weight\":\"$rs[kpi_weight]\",\"target_data\":\"$rs[target_data]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",
 	\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",\"target_score\":\"$rs[target_score]\",
 	\"department_id\":\"$rs[department_id]\",\"total_kpi_actual_score\":\"$rs[total_kpi_actual_score]\",
-	\"kpi_actual_score\":\"$rs[kpi_actual_score]\",\"performance\":\"$rs[performance]\",\"kpi_name\":\"$rs[kpi_name]\"
+	\"kpi_actual_score\":\"$rs[kpi_actual_score]\",\"performance\":\"$rs[performance]\",\"kpi_name\":\"$rs[kpi_name]\",\"kpi_type_score\":\"$rs[kpi_type_score]\",\"kpi_unit\":\"$rs[kpi_unit]\"
 	}]";
 		
 	}else{
