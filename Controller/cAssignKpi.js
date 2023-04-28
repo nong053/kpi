@@ -454,10 +454,35 @@ var manageFn = function(this_id,actionType){
 				$("#kpi_actual_query").val(data[0]["kpi_actual_query"]);
 				$("#target_score").val(data[0]["target_score"]);
 				
+
+				if(data[0]["total_kpi_actual_score"]==""){
+
+					$("#total_kpi_actual_score").val(0);	
+				}else{
+
+					$("#total_kpi_actual_score").val(data[0]["total_kpi_actual_score"]);
+				}
+
+				if(data[0]["kpi_actual_score"]==""){
+
+					$("#kpi_actual_score").val(0);	
+				}else{
+
+					$("#kpi_actual_score").val(data[0]["kpi_actual_score"]);
+				}
+
+				if(data[0]["performance"]==""){
+
+					$("#performance").val(0+"%");	
+				}else{
+
+					$("#performance").val(data[0]["performance"]+"%");
+				}
+/*
 				$("#total_kpi_actual_score").val(data[0]["total_kpi_actual_score"]);
 				$("#kpi_actual_score").val(data[0]["kpi_actual_score"]);
 				$("#performance").val(data[0]["performance"]+"%");
-				
+*/				
 				
 				$("#assign_kpi_action").val("editAction");
 				$("#assign_kpi_id").val(data[0]["assign_kpi_id"]);
@@ -928,6 +953,7 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
 					$("#addScoreModal").modal('show');
 					$("#formKPI").show();
 				 	manageFn(this.id,actionType='addScore');
+				
 				 });
 				 
 				 
