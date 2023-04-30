@@ -1359,8 +1359,7 @@ $(document).ready(function(){
 
 	});
 
-
-	/*kpi_actual_manual fill status start*/
+	/*kpi_actual_manual fill status end*/
 	
 	/*kpi_weight action start*/
 	
