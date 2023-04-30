@@ -364,6 +364,7 @@ var fngetKpiName=function(kpi_id){
 					$("#kpi_process").show();
 
 					$("#score_sum_percentage").css({"color":"red"});
+					showDataEmployee(sessionStorage.getItem("param_year"),sessionStorage.getItem("param_appraisal_period"),sessionStorage.getItem("param_department"),sessionStorage.getItem("param_position"),sessionStorage.getItem("param_role"));
 					//$("#score_sum_percentage").css({"color":"red"});
 					
 				}else if(data[0]['confirm_flag']=="Y"){
@@ -371,6 +372,8 @@ var fngetKpiName=function(kpi_id){
 					confirm_kpi='<strong style=\"color:green\"> (ยืนยันการประเมินเรียบร้อย) </strong>';
 					$("#kpi_process").hide();
 					$("#score_sum_percentage").css({"color":"green"});
+					
+					
 					//$("#score_sum_percentage").css({"color":"green"});
 				}
 				if(confirmKpi=="notConfirmKpi"){
@@ -1051,6 +1054,7 @@ var savePerformanceFn = function(){
 
 	if($("#kpi_actual_manual").val()==""){
 		alert('กรุณาการผลการปฏิบัติงาน');
+		
 		return false;
 	}
 	
@@ -1102,6 +1106,7 @@ var savePerformanceFn = function(){
 			   alert("บันทึกข้อมูลเรียบร้อย");	
 			   //showDataAssignKpi();
 			   showDataAssignKpi($("#assign_kpi_year").val(),$("#assign_kpi_appraisal_period").val(),$("#assign_kpi_department").val(),$("#assign_kpi_position").val(),$("#assign_kpi_emp").val());
+			   $("#addScoreModal").modal('hide');  
 			   //resetDataAssignKpi(false);	
 			   //$("#formKPI").hide();
 		   }
