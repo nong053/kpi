@@ -19,7 +19,7 @@ error_reporting (E_ALL ^ E_NOTICE);
     <link rel="stylesheet" href="Css/sign-up.css" type="text/css" media="screen" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="Css/font-awesome/css/font-awesome.min.css">
-    <link href="favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="./favicon/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

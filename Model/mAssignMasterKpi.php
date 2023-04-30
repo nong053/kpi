@@ -641,7 +641,7 @@ ORDER BY b.baseline_score desc";
 	$result=$conn->query($strSQL);
 	$rsCheckTypeScore=$resultCheckTypeScore->fetch_assoc();
 	if($rsCheckTypeScore['kpi_type_score']==1){
-		$tableHtml.="<table class='table table-striped' id='baselineTable'>
+		$tableHtml.="<table class='table' id='baselineTable'>
 				 	<thead>
 						<tr>
 							
@@ -654,7 +654,7 @@ ORDER BY b.baseline_score desc";
 				  	</thead>
 					<tbody>";
 	}else {
-		$tableHtml.="<table class='table table-striped' id='baselineTable'>
+		$tableHtml.="<table class='table ' id='baselineTable'>
 				 	<thead>
 						<tr>
 							

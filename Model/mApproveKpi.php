@@ -78,7 +78,7 @@ if($_POST['action']=="showEmpData"){
 	and (e.position_id='All' or 'All' ='All')
 	";
 	*/
-	//$result=mysql_query($strSQL);
+	//$result=$conn->query($strSQL);
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
@@ -219,10 +219,10 @@ year	2012
 				and (kr.emp_id='".$rs['emp_id']."' or '".$rs['emp_id']."'='All')
 				and kr.confirm_flag='Y'
 		";
-		//$resultKpiResult=mysql_query($strSQLKpiResult);
+		//$resultKpiResult=$conn->query($strSQLKpiResult);
 		//$rsKpiResult=mysql_fetch_array($resultKpiResult);
 		$resultKpiResult=$conn->query($strSQLKpiResult);
-		$rsKpiResult=$rs=$resultKpiResult->fetch_assoc();;
+		$rsKpiResult=$resultKpiResult->fetch_assoc();;
 		
 		if($rsKpiResult['approve_flag']=="Y"){
 		$tableHTML.="	<td>
@@ -264,7 +264,7 @@ and kpi_year='$year'
 and appraisal_period_id='$appraisal_period_id'
 and emp_id='$employee_id'
 	";
-	//$result=mysql_query($strSQL);
+	//$result=$conn->query($strSQL);
 	$result=$conn->query($strSQL);
 	if($result){
 		$rs=$result->fetch_assoc();
@@ -286,7 +286,7 @@ if($_POST['action']=="editAction"){
 	and appraisal_period_id='$appraisal_period_id'
 	and emp_id='$employee_id'
 	";
-	//$result=mysql_query($strSQL);
+	//$result=$conn->query($strSQL);
 	//$rs=mysql_fetch_array($result);
 	$result=$conn->query($strSQL);
 	$rs=$result->fetch_assoc();
@@ -304,7 +304,7 @@ if($_POST['action']=="editAction"){
 			 and confirm_flag='Y'
 			";
 		
-			 //$rsResultUpdate=mysql_query($strSQLUpdate);
+			 //$rsResultUpdate=$conn->query($strSQLUpdate);
 			 $rsResultUpdate=$conn->query($strSQLUpdate);
 			 
 			 if($rsResultUpdate){
@@ -334,7 +334,7 @@ if($_POST['action']=="approveKpiAction"){
 	and emp_id='$employee_id'
 	and admin_id='$admin_id'
 	";
-	//$result=mysql_query($strSQL);
+	//$result=$conn->query($strSQL);
 	//$rs=mysql_fetch_array($result);
 
 	$result=$conn->query($strSQL);
@@ -380,7 +380,7 @@ if($_POST['action']=="approveKpiAction"){
 		and confirm_flag='Y'
 		";
 		*/
-		$rsResultUpdate=mysql_query($strSQLUpdate);
+		$rsResultUpdate=$conn->query($strSQLUpdate);
 		
 		if($rsResultUpdate){
 		echo '["approveSuccess"]';
@@ -418,7 +418,7 @@ if($_POST['action']=="newEvaluateAction"){
 			";	
 
 
-		$rsResultUpdate=mysql_query($strSQLUpdate);
+		$rsResultUpdate=$conn->query($strSQLUpdate);
 		
 		if($rsResultUpdate){
 		echo '["success"]';

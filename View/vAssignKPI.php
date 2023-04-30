@@ -55,7 +55,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['kpi_result_l_form_name']="";
 	$_SESSION['kpi_result_l_form_name2']="รายการประเมิน";
 	$_SESSION['kpi_result_l_form_kpi_weight']="น้ำหนัก ";
-	$_SESSION['kpi_result_l_form_kpi_percentage']="ผลการประเมิน";
+	$_SESSION['kpi_result_l_form_kpi_percentage']="ผลหัวหน้าประเมิน";
 
 	$_SESSION['kpi_result_l_form_kpi_name']="ตัวชี้วัด";
 	$_SESSION['kpi_result_l_form_baseline']="ตารางคะแนน ";

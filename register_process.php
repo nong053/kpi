@@ -141,19 +141,19 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 					$strSQLEmp="INSERT INTO employee(emp_user,emp_pass,emp_tel,emp_mobile,emp_age,emp_email,position_id,emp_other,emp_picture,emp_picture_thum,department_id,role_id,admin_id,
 						emp_first_name,emp_last_name,emp_date_of_birth,emp_age_working,emp_status,emp_adress,emp_district,emp_sub_district,emp_province,emp_postcode,emp_status_work_id,emp_code)
 						VALUES(
-						'user001',md5('user001'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
+						'$admin_username-user001',md5('$admin_username-user001'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
 						'ไกรสร','คงไว้',now(),'10','single','553/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM001'
 						),(
-						'user002',md5('user002'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
+						'$admin_username-user002',md5('$admin_username-user002'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
 						'วรเวช','อยู่เจริญ',now(),'10','single','554/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM002'
 						),(
-						'user003',md5('user003'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
+						'$admin_username-user003',md5('$admin_username-user003'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
 						'เธียรธาร','คันโธสา',now(),'10','single','555/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM003'
 						),(
-						'user004',md5('user004'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','2','$rs[admin_id]',
+						'$admin_username-user004',md5('$admin_username-user004'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','2','$rs[admin_id]',
 						'ศิริพร','สิงห์ทองกล้า',now(),'10','single','556/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM004'
 						),(
-						'user005',md5('user005'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
+						'$admin_username-user005',md5('$admin_username-user005'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
 						'บูรณา','คงไว้',now(),now(),'single','557/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM005'
 						)";
 						$rsEmp=$conn->query($strSQLEmp);
@@ -167,8 +167,8 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 
 					//Example kpi data start
 					//KPI1
-					$strSQL_KPI1="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_type_score,kpi_data_target,perspective_id)
-					VALUES('ความพึงพอใจของผู้ใช้บริหาร','Y','','$rs[admin_id]','2','5','$perspective_id')";
+					$strSQL_KPI1="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_type_score,kpi_data_target,perspective_id,kpi_unit)
+					VALUES('ความพึงพอใจของผู้ใช้บริหาร','Y','','$rs[admin_id]','2','5','$perspective_id','คะแนน')";
 					$rs_KPI1=$conn->query($strSQL_KPI1);
 					$id_KPI1 = $conn -> insert_id;
 					if($rs_KPI1){
@@ -211,8 +211,8 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 					}
 
 					//KPI2
-					$strSQL_KPI2="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_type_score,kpi_data_target,perspective_id)
-					VALUES('ความรวดเร็วในการให้บริการ','Y','','$rs[admin_id]','2','5','$perspective_id')";
+					$strSQL_KPI2="INSERT INTO kpi(kpi_name,kpi_better_flag,kpi_detail,admin_id,kpi_type_score,kpi_data_target,perspective_id,kpi_unit)
+					VALUES('ความรวดเร็วในการให้บริการ','Y','','$rs[admin_id]','2','5','$perspective_id','คะแนน')";
 					$rs_KPI2=$conn->query($strSQL_KPI2);
 					$id_KPI2 = $conn -> insert_id;
 					if($rs_KPI2){

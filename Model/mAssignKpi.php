@@ -927,7 +927,12 @@ $kpi_id=$_POST['kpi_id'];
 	\"kpi_weight\":\"$rs[kpi_weight]\",\"target_data\":\"$rs[target_data]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",
 	\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",\"target_score\":\"$rs[target_score]\",
 	\"department_id\":\"$rs[department_id]\",\"total_kpi_actual_score\":\"$rs[total_kpi_actual_score]\",
-	\"kpi_actual_score\":\"$rs[kpi_actual_score]\",\"performance\":\"$rs[performance]\",\"kpi_name\":\"$rs[kpi_name]\",\"kpi_type_score\":\"$rs[kpi_type_score]\",\"kpi_unit\":\"$rs[kpi_unit]\"
+	\"kpi_actual_score\":\"$rs[kpi_actual_score]\",\"performance\":\"$rs[performance]\",\"kpi_name\":\"$rs[kpi_name]\",\"kpi_type_score\":\"$rs[kpi_type_score]\",\"kpi_unit\":\"$rs[kpi_unit]\",
+	\"emp_total_kpi_actual_score\":\"$rs[emp_total_kpi_actual_score]\",
+	\"emp_kpi_actual_manual\":\"$rs[emp_kpi_actual_manual]\",
+	\"emp_kpi_actual_score\":\"$rs[emp_kpi_actual_score]\",
+	\"emp_performance\":\"$rs[emp_performance]\"
+
 	}]";
 		
 	}else{
