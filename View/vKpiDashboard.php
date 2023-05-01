@@ -38,7 +38,7 @@ if($_SESSION['language']=="th"){
 	$_SESSION['emp_dashboard2_l_title_kpi_result']="ผลประเมินรายตัวชี้วัด";
 	$_SESSION['emp_dashboard2_l_tbl_id']="#";
 	$_SESSION['emp_dashboard2_l_tbl_kpi_name']="ตัวชี้วัด";
-	$_SESSION['emp_dashboard2_l_tbl_target']="เป้าข้อมูลดิบ";
+	$_SESSION['emp_dashboard2_l_tbl_target']="เป้าหมาย";
 	$_SESSION['emp_dashboard2_l_tbl_actual']="ผล";
 	$_SESSION['emp_dashboard2_l_tbl_graph']="กราฟ";
 	$_SESSION['emp_dashboard2_l_tbl_actual_target']="เทียบเป้า";

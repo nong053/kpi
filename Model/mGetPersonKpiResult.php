@@ -18,7 +18,8 @@ $admin_id=$_SESSION['admin_id'];
 
 if($_GET['action']=='list_kpi'){
 	$strSQL="
-		select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
+		select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,kpi.kpi_unit,
+		kr.adjust_percentage,kr.adjust_reason,kr.score_final_percentage,
 	ak.target_data as 'kpi_target' ,ak.kpi_actual_manual as 'kpi_actual' ,
 	sum(ak.performance)/count(ak.appraisal_period_id)  as 'kpi_performent',
 	ifnull(ak.emp_kpi_actual_manual,0) as 'emp_kpi_actual' ,
@@ -40,7 +41,10 @@ if($_GET['action']=='list_kpi'){
 	GROUP BY kpi.kpi_id
 
 	";
-	$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,kpi_target_percentage,emp_kpi_actual,emp_performance";
+	$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,
+	kpi_target_percentage,emp_kpi_actual,emp_performance,kpi_unit,adjust_percentage,
+	adjust_reason,score_final_percentage
+	";
 	genarateJson($strSQL,$columnName,$conn);
 }
 

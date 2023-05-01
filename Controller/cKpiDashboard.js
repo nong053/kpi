@@ -404,9 +404,9 @@ function detailInit(e) {
 											
 												textJson+="\"Field1\":\"<div class='' style='text-align:center;'>"+(index+1)+"</div>\",";
 												textJson+="\"Field2\":\"<div class=''>"+EntryIndex[1]+"</div>\",";
-												textJson+="\"Field3\":\"<div class='textR' >"+EntryIndex[2]+"</div>\",";
-												textJson+="\"Field4\":\"<div class='textR'>"+EntryIndex[6]+"</div>\",";
-												textJson+="\"Field5\":\"<div class='textR'>"+EntryIndex[3]+"</div>\",";
+												textJson+="\"Field3\":\"<div class='textR' >"+EntryIndex[2]+" "+EntryIndex[8]+"</div>\",";
+												textJson+="\"Field4\":\"<div class='textR'>"+EntryIndex[6]+" "+EntryIndex[8]+"</div>\",";
+												textJson+="\"Field5\":\"<div class='textR'>"+EntryIndex[3]+" "+EntryIndex[8]+"</div>\",";
 												//textJson+="\"Field5\":\"<div class='textR'><div class='lineSparklinekpi-"+e.data.fieldId+"'>"+score_spraph+"</div></div>\",";
 												//textJson+="\"Field6\":\"<div class=''><div class='sparklineBulletKpi-"+e.data.fieldId+"'>"+EntryIndex[5]+",100,100,"+EntryIndex[4]+"</div></div>\",";
 												var performance_emp=EntryIndex[7]*40/100;
