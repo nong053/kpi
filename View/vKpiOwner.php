@@ -301,7 +301,7 @@ if($_SESSION['language']=="th"){
 								  <div class="panel-heading">
 									<b> <i class="glyphicon glyphicon-random"></i>&nbsp;<span id='titleDepTop'></span>	<?=$_SESSION['kpi_owner_l_by_department']?></b>	
 								  </div>
-								  <div class="panel-body panel-body-top" style="padding: 0px;margin-bottom: 0px;">
+								  <div class="panel-body panel-body-top" style="padding: 5px;margin-bottom: 0px;">
 								  
 								 		<div id="areaPieByDepartment" style="width: auto;"></div>
 								 		

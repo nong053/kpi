@@ -751,9 +751,30 @@ var manageFn = function(this_id,actionType){
 				//$("#kpi_actual_manual").val(data[0]["emp_kpi_actual_manual"]);
 				$("#kpi_actual_query").val(data[0]["kpi_actual_query"]);
 				$("#target_score").val(data[0]["target_score"]);
-				$("#total_kpi_actual_score").val(data[0]["total_kpi_actual_score"]);
-				$("#kpi_actual_score").val(data[0]["emp_total_kpi_actual_score"]);
-				$("#performance").val(data[0]["emp_performance"]+"%");
+
+
+				
+				var emp_total_kpi_actual_score=0.00;
+				var kpi_actual_score=0.00;
+				var performance=0.00;
+				if(data[0]["emp_total_kpi_actual_score"]!==""){
+					emp_total_kpi_actual_score=data[0]["emp_total_kpi_actual_score"];
+				}
+
+				if(data[0]["emp_kpi_actual_score"]!==""){
+					kpi_actual_score=data[0]["emp_kpi_actual_score"];
+				}
+
+				if(data[0]["emp_performance"]!==""){
+					performance=data[0]["emp_performance"];
+				}
+
+
+				$("#total_kpi_actual_score").val(emp_total_kpi_actual_score);
+				$("#kpi_actual_score").val(kpi_actual_score);
+				$("#performance").val(performance);
+
+				
 				
 				
 				$("#assign_kpi_action").val("editAction");
@@ -799,7 +820,7 @@ var manageFn = function(this_id,actionType){
 					$("#dataAreaKpiTypeScore").html(kpi_actual_manual_typ_3);
 				}
 				
-				if(data[0]["kpi_actual_manual"]==""){
+				if(data[0]["emp_kpi_actual_manual"]==""){
 
 					$("#kpi_actual_manual").val(0);	
 				}else{
