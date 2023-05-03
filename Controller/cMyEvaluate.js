@@ -317,7 +317,7 @@ var showDataAssignKpi=function(year,appraisal_period_id,department_id,position_i
 			 });
 
 			 $(".actionAddScore").click(function(){
-				alert(1);
+		
 				$("#addScoreModal").modal('show');
 			 	$("#formKPI").show();
 			 	manageFn(this.id,actionType='addScore');
