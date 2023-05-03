@@ -682,8 +682,12 @@ $division_id=$_POST['division_id'];
 	}else{
 		$unit=$rs['kpi_unit'];
 	}
-	$tableHTML.="	<td><div style='text-align:right;'>".$rs['target_data']." ".$unit."</div></td>";
-	$tableHTML.="	<td><div style='text-align:right;'>".$rs['kpi_actual_manual']." ".$unit."</div></td>";
+	$kpi_actual_manual=0;
+	if($rs['kpi_actual_manual']!=0 && $rs['kpi_actual_manual']!=''){
+		$kpi_actual_manual=$rs['kpi_actual_manual'];
+	}
+	$tableHTML.="	<td><div style='text-align:right;'>".$rs['target_data']."<br>".$unit."</div></td>";
+	$tableHTML.="	<td><div style='text-align:right;'>".$kpi_actual_manual."<br>".$unit."</div></td>";
 	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
 	$tableHTML.="	<td>
 			
