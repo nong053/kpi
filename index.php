@@ -183,9 +183,10 @@ error_reporting (E_ALL ^ E_NOTICE);
             </div>
         </div>
     </div>   
-
-
-
+<!--Adssense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9478268987509661"
+     crossorigin="anonymous"></script>
+<!--Adssense -->
 <script src='kendoCommercial/js/jquery.min.js'></script>
 <script>
     $(document).ready(function(){

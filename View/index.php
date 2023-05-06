@@ -675,6 +675,12 @@ if($_SESSION['login_status']!="1"){
 
 
   </body>
+
+  <!--Adssense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9478268987509661"
+     crossorigin="anonymous"></script>
+<!--Adssense -->
+
 </html>
 
 
