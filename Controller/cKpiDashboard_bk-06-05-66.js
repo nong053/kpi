@@ -349,59 +349,91 @@ var  getColorBall=function(score)
   }
 
 
-function detailKpiByEmp(emp_id) {
+function detailInit(e) {
 			
 			$.ajax({
 				url:"../View/vKpiPersonal.php",
 				type:"get",
 				dataType:"html",
 				async:false,
-				data:{"emp_id":emp_id},
+				data:{"emp_id":e.data.fieldId},
 				success:function(data){
-					$("#kpiViewDetailArea").html(data);
+					//$("#mainContent").html(data);
+					//console.log(data):
+					$("<div>"+data+"</div>").appendTo(e.detailCell);
+					/*
+					$("#gridPersonal").kendoGrid({
+				       // height: 230,
+				        sortable: true
+				    });
+					*/
+					// ################ Genarate Table Emp  START ################# //
 					
+					// ################ Genarate Table Emp GRID  START ################# //
+					// $.ajax({
+					// 	url:"../Model/mGetPersonKpiResult.php",
+					// 	headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
+					// 	type:"get",
+					// 	dataType:"html",
+					// 	async:false,
+					// 	data:{"emp_id":e.data.fieldId,"action":"emp_info"},
+					// 	success:function(data){
+					// 		$("#empArea-"+e.data.fieldId).html(data);
+					// 	}
+					// });
+					// ################ Genarate Person KPI GRID  START ################# //
+
 					$.ajax({
 						url:"../Model/mGetPersonKpiResult.php",
 						headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 						type:"get",
 						dataType:"json",
 						async:false,
-						data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"emp_id":emp_id,"action":"list_kpi"},
+						data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"emp_id":e.data.fieldId,"action":"list_kpi"},
 						success:function(data){
 							//alert(data);
 							var textJson="";
-							
+							textJson+="[";
 							$.each(data,function(index,EntryIndex){
-								textJson+="<div class='col-md-6'>";
-								textJson+="<div class='alert alert-success'>";
+								
+											if(index==0){
+												textJson+="{";
+											}else{
+												textJson+=",{";
+											}
 											
-											
-												//textJson+="<div class='' style='text-align:center;'>"+(index+1)+"</div>\",";
-												textJson+="<div class=''>ตัวชี้วัด "+EntryIndex[1]+"</div>";
-												textJson+="<div class='textR1' >เป้าหมาย "+EntryIndex[2]+" "+EntryIndex[8]+"</div>";
-												textJson+="<div class='textR1'>ผลประเมินตนเอง"+EntryIndex[6]+" "+EntryIndex[8]+"</div>";
-												textJson+="<div class='textR1'>ผลหัวหน้าประเมิน"+EntryIndex[3]+" "+EntryIndex[8]+"</div>";
+												textJson+="\"Field1\":\"<div class='' style='text-align:center;'>"+(index+1)+"</div>\",";
+												textJson+="\"Field2\":\"<div class=''>"+EntryIndex[1]+"</div>\",";
+												textJson+="\"Field3\":\"<div class='textR' >"+EntryIndex[2]+" "+EntryIndex[8]+"</div>\",";
+												textJson+="\"Field4\":\"<div class='textR'>"+EntryIndex[6]+" "+EntryIndex[8]+"</div>\",";
+												textJson+="\"Field5\":\"<div class='textR'>"+EntryIndex[3]+" "+EntryIndex[8]+"</div>\",";
+												//textJson+="\"Field5\":\"<div class='textR'><div class='lineSparklinekpi-"+e.data.fieldId+"'>"+score_spraph+"</div></div>\",";
+												//textJson+="\"Field6\":\"<div class=''><div class='sparklineBulletKpi-"+e.data.fieldId+"'>"+EntryIndex[5]+",100,100,"+EntryIndex[4]+"</div></div>\",";
 												var performance_emp=EntryIndex[7]*40/100;
 												var performance_chief=EntryIndex[4]*60/100;
 												
 												var performance_total=performance_emp+performance_chief;
 
 												performance_total =parseFloat(performance_total).toFixed(2);
-												textJson+="<div>ผลประเมินทั้งหมด</div>";
-												textJson+="<div class='textR1'>";
+												
+												textJson+="\"Field7\":\"<div class='textR'>";
 												textJson+=""+getColorBall(performance_total)+"";
-												textJson+="</div>";
-
-
-								textJson+="</div>";
-							textJson+="</div>";	
+												textJson+="<div>\"";
+											textJson+="}";
+									
 							});
+							textJson+="]";
+							var objJson2=eval("("+textJson+")");
 							
-				
-						
-							$("#gridPersonalKPI-"+emp_id).html(textJson);
+							$("#gridPersonalKPI-"+e.data.fieldId).kendoGrid({
+								 dataSource: {
+							          data:objJson2 
+							          },
+						        sortable: true
+						   	});
 							
-	
+							sparklineBulet(".sparklineBulletKpi-"+e.data.fieldId);
+							//sparklineLine(".lineSparklinekpi-"+e.data.fieldId);
 						}
 					});
 					
@@ -418,7 +450,7 @@ function detailKpiByEmp(emp_id) {
 						url:"../Model/mGetPersonKpiScore.php",
 						headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 						type:"get",
-						data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"emp_id":emp_id},
+						data:{"kpi_year":kpi_year,"appraisal_period_id":appraisal_period_id,"emp_id":e.data.fieldId},
 						dataType:"json",
 						success:function(data){
 
@@ -510,7 +542,7 @@ function detailKpiByEmp(emp_id) {
 							
 							//Gauge for check data value end
 							/*
-							 $("#gaugePersonal-"+emp_id).kendoRadialGauge({
+							 $("#gaugePersonal-"+e.data.fieldId).kendoRadialGauge({
 
 								  pointer: {
 					                  value:data[0][0]
@@ -528,8 +560,8 @@ function detailKpiByEmp(emp_id) {
 					              }
 					          });
 							 */
-							 $("#gauge-value-"+emp_id).html("ประสิทธิภาพ<b> "+parseFloat(data[0][0]).toFixed(2)+"% </b>");
-							 $("#gaugeValue-"+emp_id).html(parseFloat(data[0][0]).toFixed(2));
+							 $("#gauge-value-"+e.data.fieldId).html("ประสิทธิภาพ<b> "+parseFloat(data[0][0]).toFixed(2)+"% </b>");
+							 $("#gaugeValue-"+e.data.fieldId).html(parseFloat(data[0][0]).toFixed(2));
 							$(".gaugePersonal > svg").css({"top":"6px"});
 							//call google chart
 							google.charts.setOnLoadCallback(drawChart);
@@ -549,7 +581,7 @@ function detailKpiByEmp(emp_id) {
 						headers:{Authorization:"Bearer "+sessionStorage.getItem('token')},
 						type:"get",
 						dataType:"json",
-						data:{"kpi_year":kpi_year,"emp_id":emp_id,"action":"bar_chart_appraisal"},
+						data:{"kpi_year":kpi_year,"emp_id":e.data.fieldId,"action":"bar_chart_appraisal"},
 						success:function(data){
 
 						// ####### Create Category Bargrpah Start.
@@ -617,7 +649,7 @@ function detailKpiByEmp(emp_id) {
 							
 							/*bar chart power by kendo ui start*/
 							
-							 $("#barChartPersonal-"+emp_id).kendoChart({
+							 $("#barChartPersonal-"+e.data.fieldId).kendoChart({
 								    theme:"Flat",
 							        title: {
 							        	visible: true,
@@ -664,7 +696,23 @@ function detailKpiByEmp(emp_id) {
 
 						}
 					});
-			
+					 
+					 /*startline start*/
+					 var sparklineBuletPerso=function(){
+							$(".sparklineBulletPerso").sparkline([10,12,12,9,7], {
+							    type: 'bullet'});
+							}
+
+					 //sparklineBuletPerso();
+
+						var sparklineLinePerso=function(){
+							$(".lineSparklinePerso").sparkline([5,6,7,9,9,5,3,2,2,4,6,7], {
+							    type: 'line',
+							    width: '80',
+							    height: '40'});
+						}
+						//sparklineLinePerso();
+					 /*startline end*/
 				}
 			});
 
@@ -689,60 +737,120 @@ function detailKpiByEmp(emp_id) {
 
 			var textJson="";
 			
-			
+			textJson+="[";
 			$.each(data,function(index,EntryIndex){
-			
-									
-									
-										
-										
-										
+				
+				if(EntryIndex==0){
+					
+					textJson+="";
+					return false;
+				}
 
-
-										textJson+="<div class='col-md-3 '>";
-											textJson+="<div class='thumbnail'>";
-												if(EntryIndex[0]==""){
-													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center; opacity:0.1'><img width='80px' height='80px' class='img-circle'  src='../View/uploads/avatar.jpg'></div>";
-												}else{
-													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80px' height='80px' class='img-circle'  src='"+EntryIndex[0]+"'></div>";
-												}
-												textJson+="<div><a class='actionViewEmployee' id='actionViewEmployee-"+EntryIndex[5]+"'>"+EntryIndex[1]+"</a></div>";
-												textJson+="<div>แผนก/ฝ่าย "+EntryIndex[6]+"</div>";
-												textJson+="<div>ตำแหน่ง "+EntryIndex[2]+"</div>";
-													textJson+="<div class='alet alert-success'>";
-														textJson+="<div>ประเมินตนเอง "+EntryIndex[8]+"%</div>";
-														textJson+="<div>หัวหน้าประเมิน "+EntryIndex[9]+"%</div>";
-														textJson+="<div>ผลประเมิน "+EntryIndex[3]+"%</div>";
-
-														if(EntryIndex[7]==0){
-															textJson+="<div class='textL'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></div>";
-														}else{
-															textJson+="<div class='textL'>"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div style='font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div></div>";
-														}
-														textJson+="<div style='text-align:right;' ><button id='viewKpiDetail-"+EntryIndex[5]+"' class='btn-block btn btn-primary viewKpiDetail'>รายละเอียด</button></div>";
-												textJson+="</div>";
-											textJson+="</div>";
-										textJson+="</div>";
-												
-										
+							if(index==0){
+								textJson+="{";
+							}else{
+								textJson+=",{";
+							}
 							
-
-				
-					
-					
-
-
-				
-				
+								textJson+="\"fieldId\":\""+EntryIndex[5]+"\",";
+								
+								if(EntryIndex[0]==""){
+									textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center; opacity:0.1'><img width='80' class='img-circle'  src='../View/uploads/avatar.jpg'></div>\",";
+								}else{
+									textJson+="\"field0\":\"<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80' class='img-circle'  src='"+EntryIndex[0]+"'></div>\",";
+								}
+								textJson+="\"field1\":\"<div class='kpi'>";
+								textJson+="<a class='actionViewEmployee' id='actionViewEmployee-"+EntryIndex[5]+"'><b >"+EntryIndex[1]+"</b></a><br>";
+								textJson+=""+EntryIndex[6]+"<br>";
+								textJson+="ตำแหน่ง"+EntryIndex[2]+"";
+								textJson+="</div>\",";
+								textJson+="\"field3\":\"<div class='textR' style='font-weight:bold;'>"+EntryIndex[8]+"%</div>\",";
+								textJson+="\"field7\":\"<div class='textR' style='font-weight:bold;'>"+EntryIndex[9]+"%</div>\",";
+								if(EntryIndex[7]==0){
+									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div>\",";
+								}else{
+									textJson+="\"field8\":\"<div class='textR'>"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div style='font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div><div>\",";
+								}
+								//textJson+="\"field9\":\"<div class='textR'><center><a href='#' class='downloadPDFbyPerson' id='id-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></center><div>\"";
+								
+							textJson+="}";
+				// 	}
+				// });
 			});
+			textJson+="]";
+			//alert(textJson);
+			var objJson=eval("("+textJson+")");
 			
-		
 			
 			
-	
+			// table grid start --
+			var gridDepartment="";
+			gridDepartment+="<table id=\"gridDeparment\">";
+			gridDepartment+="<colgroup>";
+				gridDepartment+="<col style=\"width:40px\"/>";
+				gridDepartment+="<col style=\"width:150px\" />";
+				gridDepartment+="<col style=\"width:100px\" />";
+				gridDepartment+="<col style=\"width:100px\" />";
+				//gridDepartment+="<col style=\"width:7%\" />";
+				//gridDepartment+="<col style=\"width:7%\"  />";
+				gridDepartment+="<col  style=\"width:100px\" />";
+				// gridDepartment+="<col  style=\"width:15%\" />";
+				/*gridDepartment+="<col style=\"width:70px\"  />";*/
+			gridDepartment+="</colgroup>";
+				gridDepartment+="<thead>";
+					gridDepartment+="<tr>";
+				
+					if($("#embed_language").val()=="th"){
+						gridDepartment+="<th style='text-align:center;'  data-field=\"field0\" ><b></b></th>";
+						gridDepartment+="<th data-field=\"field1\" ><b>ข้อมูลส่วนตัว</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field3\"><b>ประเมินตนเอง%</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field7\"><b>หัวหน้าประเมิน%</b></th>";
+						
+						gridDepartment+="<th style='text-align:right' data-field=\"field8\"><b>ผลประเมิน% <a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+$("#appraisal_year_table").val()+"-"+$("#appraisal_period_id_table").val()+"-"+$("#department_id_table").val()+"-"+$("#assign_position_id").val()+"-"+$("#assign_employee_id").val()+"'><img width='20' src='../images/PDF_downlaod.png'></a></b></th>";
+						//gridDepartment+="<th data-field=\"field9\"><b>ดาวน์โหลด</b></th>";
+						  
+					}else{
+						gridDepartment+="<th data-field=\"field0\" ><b></b></th>";
+						gridDepartment+="<th data-field=\"field1\" ><b>Employee Info</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field3\"><b>Evaluate</b></th>";
+						gridDepartment+="<th style='text-align:right;' data-field=\"field7\"><b>Chief Evaluate</b></th>";
+						gridDepartment+="<th data-field=\"field8\"><b>Result</b></th>";
+						//gridDepartment+="<th data-field=\"field9\"><b>Download</b></th>";
+						  
+					}
+						
+				
+						gridDepartment+="</tr>";
+				gridDepartment+=" </thead>";
+					gridDepartment+=" <tbody>";
+						gridDepartment+=" <tr>";
+							gridDepartment+="<td></td>";
+							gridDepartment+="<td></td>";
+							gridDepartment+="<td></td>";
+							gridDepartment+="<td></td>";
+							gridDepartment+="<td></td>";
+							gridDepartment+="<td></td>";
+							//gridDepartment+="<td></td>";
+							//gridDepartment+="<td></td>";
+						gridDepartment+="</tr>	";
+					gridDepartment+="</tbody>";
+				gridDepartment+="</table>";
+			// table grid end 
   			
-  			$("#departmentArea").html(textJson);
-		
+  			$("#departmentArea").html(gridDepartment);
+			$("#gridDeparment").kendoGrid({
+				  //ไม่กำหนดความสูง height จะเป็น auto
+		          //height: 500,
+				  detailInit: detailInit,
+		          dataSource: {
+		          data: objJson,//[{"Filed1":"content1"},{"Filed2":"content2"}]
+			
+		          },
+		   	});
+			sparklineBulet(".sparklineBullet");
+			sparklineLine(".lineSparkline");
+			$(".k-grid td").css({"padding":"0px;"});
+		   	
 			
 		}
 	});
@@ -764,9 +872,9 @@ function detailKpiByEmp(emp_id) {
 				try {
 					
 						if(data[0]["emp_picture"]==""){
-							$("#image_file_display").html("<img style=\"opacity:0.1\" class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"150px\" height=\"150px\">");
+							$("#image_file_display").html("<img style=\"opacity:0.1\" class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"150\" height=\"150\">");
 						}else{
-							$("#image_file_display").html("<img class=\"img-circle\" src=\""+data[0]["emp_picture"]+"\" width=\"150px\" height=\"150px\">");
+							$("#image_file_display").html("<img class=\"img-circle\" src=\""+data[0]["emp_picture"]+"\" width=\"150\" height=\"150\">");
 						}
 						$("#empCode_display").html(data[0]["emp_code"]);
 						$("#empUser_display").html(data[0]["emp_user"]);
@@ -806,16 +914,6 @@ function detailKpiByEmp(emp_id) {
 
 			   }
 		});
-		
-	});
-
-	$(".viewKpiDetail").click(function(){
-		var data_id = this.id;
-		var data_array= data_id.split("-");
-		var	emp_id=data_array[1];
-		alert(emp_id);
-		detailKpiByEmp(emp_id);
-		$("#kpiViewDetailModal").modal('show');
 		
 	});
 

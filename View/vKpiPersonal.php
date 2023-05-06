@@ -79,7 +79,7 @@ $emp_id=$_GET['emp_id'];
 		
 			
 <div class='row container'>
-	<div class="col-md-3" style="margin-top:5px;">
+	<div class="col-md-12" style="margin-top:5px;">
 
 		<!-- ### Panel Start ### -->
 		<div class="panel panel-default panel-bottom">
@@ -109,7 +109,7 @@ $emp_id=$_GET['emp_id'];
 		<!-- <img width="250" src="../images/user.jpg" class="img-rounded">-->
 	</div>
 
-	<div class="col-md-9" >
+	<div class="col-md-12" >
 					
 			<!-- ### Panel Start ### -->
 					<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
@@ -118,7 +118,7 @@ $emp_id=$_GET['emp_id'];
 								</div>
 								<div class="panel-body panel-body-bottom" style="padding: 5px;margin-bottom: 5px;">
 								
-										<div id="barChartPersonal-<?=$emp_id?>"  style="height:236px;"></div> 
+										<div id="barChartPersonal-<?=$emp_id?>"  style="100%"></div> 
 
 								</div>
 					</div>
@@ -140,43 +140,11 @@ $emp_id=$_GET['emp_id'];
 							
 									
 								<!-- ### Panel End ### -->
-					<!--  table grid start -->
-						<table id="gridPersonalKPI-<?=$emp_id?>">
-							<colgroup>
-								<col style="width:5%"/>
-								<col style="width:35%"/>
-								<col />
-								<col />
-								<col  />
-								<col  />
-								<!--  <col /> -->
-							</colgroup>
-							<thead>
-								<tr>
-									<th style='text-align:center;' data-field="Field1" ><b><?=$_SESSION['emp_dashboard2_l_tbl_id']?></b></th>
-									<th data-field="Field2"><b><?=$_SESSION['emp_dashboard2_l_tbl_kpi_name']?></b></th>
-									<th style='text-align:right;' data-field="Field3"><b><?=$_SESSION['emp_dashboard2_l_tbl_target']?></b></th>
-									<th style='text-align:right;' data-field="Field4"><b>ประเมินตนเอง</b></th>
-									<th style='text-align:right;' data-field="Field5"><b>หัวหน้าประเมิน</b></th>
-									<!-- <th data-field="Field6"><b><?=$_SESSION['emp_dashboard2_l_tbl_actual_target']?></b></th> -->
-									
-									<th style='text-align:right;' data-field="Field7"><b><?=$_SESSION['emp_dashboard2_l_tbl_status']?></b></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<!--  table grid end -->
+							<!--  table grid start -->
+							<div  id="gridPersonalKPI-<?=$emp_id?>"></div>
+							
+							
+							<!--  table grid end -->
 								
 								
 							</div>

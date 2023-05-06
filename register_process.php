@@ -142,16 +142,16 @@ if ($_POST["vercode1"] != $_SESSION["vercode2"] OR $_SESSION["vercode2"]=='')  {
 						emp_first_name,emp_last_name,emp_date_of_birth,emp_age_working,emp_status,emp_adress,emp_district,emp_sub_district,emp_province,emp_postcode,emp_status_work_id,emp_code)
 						VALUES(
 						'$admin_username-user001',md5('$admin_username-user001'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
-						'ไกรสร','คงไว้',now(),'10','single','553/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM001'
+						'ไกรสร','คงไว้',now(),now(),'single','553/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM001'
 						),(
 						'$admin_username-user002',md5('$admin_username-user002'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
-						'วรเวช','อยู่เจริญ',now(),'10','single','554/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM002'
+						'วรเวช','อยู่เจริญ',now(),now(),'single','554/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM002'
 						),(
 						'$admin_username-user003',md5('$admin_username-user003'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','3','$rs[admin_id]',
-						'เธียรธาร','คันโธสา',now(),'10','single','555/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM003'
+						'เธียรธาร','คันโธสา',now(),now(),'single','555/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM003'
 						),(
 						'$admin_username-user004',md5('$admin_username-user004'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','2','$rs[admin_id]',
-						'ศิริพร','สิงห์ทองกล้า',now(),'10','single','556/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM004'
+						'ศิริพร','สิงห์ทองกล้า',now(),now(),'single','556/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM004'
 						),(
 						'$admin_username-user005',md5('$admin_username-user005'),'020000000','0800000000','20','test001@gmail.com','$position_id','อื่นๆ','','','$department_id','1','$rs[admin_id]',
 						'บูรณา','คงไว้',now(),now(),'single','557/80','เขตบางกะปิ','คลองจั่น','กทม.','10210','1','EM005'

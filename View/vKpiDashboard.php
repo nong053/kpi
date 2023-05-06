@@ -556,6 +556,45 @@ $department_name=$_GET['department_name'];
 	</div>
 </div>
 <!-- Large view employee detail modal end-->
+<!-- modal start -->
+
+<!-- Large view kpi detail modal start-->
+<div id='kpiViewDetailModal' class="modal fade " tabindex="-1" role="dialog" aria-labelledby="kpiViewDetailModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+
+		<div class="modal-content">
+			<div class="modal-header alert-info">
+				<button aria-label="Close" data-dismiss="modal" class="close" type="button">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 id="myLargeModalLabel" class="modal-title"> ผลการประเมินรายตัวชี้วัด </h4>
+			</div>
+			
+				<div class="modal-body">
+
+					<!-- content start-->
+
+					<div id="kpiViewDetailArea"></div>
+					
+
+
+					<!-- content end-->
+
+				</div>
+
+				<div class="modal-footer">
+					
+	   				<button data-dismiss="modal" class="btn btn-default" type="button">ปิด</button> 
+	   		
+				</div>
+
+			
+
+		</div>
+
+	</div>
+</div>
+<!-- Large view kpi detail modal end-->
 
 
    
