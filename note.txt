@@ -8,3 +8,11 @@ $conn -> insert_id
 
 PHP 5 Update to PHP Version 7.2.34
 You can download Welcome to XAMPP for Windows 7.2.34 for virtual host
+
+
+edit not success file need to open again
+vkpiDashboard.php
+cKpiDashboard.js
+mDashboardDivision.php
+vKpiPersonal.php
+register_process.php
