@@ -119,11 +119,11 @@ if($_SESSION['language']=="th"){
 						<td><input type="text" name="appraisalPeriodDesc" id="appraisalPeriodDesc" class="form-control " ></td>
 					</tr>
 					
-					<tr>
+					<tr style="display:none;">
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_start']?> <font color="red">*</font></b></td>
 						<td><input type="text" name="appraisalPeriodStart" id="appraisalPeriodStart" class=" " style="width:150px;"></td>
 					</tr>
-					<tr>
+					<tr style="display:none;">
 						<td class='text-right'><b><?=$_SESSION['appraisalPeriod_l_form_end']?> <font color="red">*</font></b></td>
 						<td><input type="text" name="appraisalPeriodEnd" id="appraisalPeriodEnd" class=" " style="width:150px;"></td>
 					</tr>

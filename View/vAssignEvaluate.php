@@ -724,10 +724,17 @@ if($_SESSION['language']=="th"){
             </div> -->
 			<div class="col-md-12 text object-text-right">
 
-				<input type="button" id="delAllKpiEmpAssign" name="delAllKpiEmpAssign" value="<?= $_SESSION['assign_l_des_btn_del_all'] ?>" class="btn btn-danger btn-lg">		
-				<input type="button" id="sendAllKpiEmpAssign" name="sendAllKpiEmpAssign" value="<?= $_SESSION['assign_l_des_btn_confirm'] ?>" class="btn btn-warning btn-lg">
-				<button class="btn btn-primary btn-lg" id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
+				<!-- <input type="button" id="delAllKpiEmpAssign" name="delAllKpiEmpAssign" value="<?= $_SESSION['assign_l_des_btn_del_all'] ?>" class="btn btn-danger btn-lg">		 -->
+				<button class="btn btn-danger btn-lg" id="delAllKpiEmpAssign" type="button"><i class="glyphicon glyphicon-refresh"></i>
+					<?= $_SESSION['assign_l_des_btn_del_all'] ?>
+				</button>
+
+				<button class="btn btn-warning btn-lg" id="addAssignKPI" type="button"><i class="glyphicon  glyphicon-plus"></i>
 					<?= $_SESSION['assign_l_des_btn_add'] ?>
+				</button>
+				<!-- <input type="button" id="sendAllKpiEmpAssign" name="sendAllKpiEmpAssign" value="<?= $_SESSION['assign_l_des_btn_confirm'] ?>" class="btn btn-primary btn-lg"> -->
+				<button class="btn btn-primary btn-lg" id="sendAllKpiEmpAssign" type="button"><i class="glyphicon glyphicon-send"></i>
+					<?= $_SESSION['assign_l_des_btn_confirm'] ?>
 				</button>
 			</div>
 			<br style="clear:both">

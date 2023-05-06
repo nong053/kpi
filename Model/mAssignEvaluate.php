@@ -418,9 +418,10 @@ while ($rsSelecAppraisalPeriod = $resultSelectAppraisalPeriod->fetch_assoc())
                      </div>
                      
 					 <div class='col-md-6 object-text-right'>
-					 <button class='btn btn-warning sendKpiAssignByEmp' id='assignKpiByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>ส่งประเมินรายบุคคล</button>
-					 <button class='btn btn-primary assignKpiByEmp' id='sendKpiAssignByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'>มอบหมายตัวชี้วัดรายบุคคล</button>
-					 </div>
+					 
+					 <button class='btn btn-warning assignKpiByEmp' id='sendKpiAssignByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'><i class=\"glyphicon  glyphicon-plus\"></i> มอบหมายตัวชี้วัดรายบุคคล</button>
+					 <button class='btn btn-primary sendKpiAssignByEmp' id='assignKpiByEmp-".$year."-".$rsSelecAppraisalPeriod['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."'><i class=\"glyphicon glyphicon-send\"></i> ส่งประเมินรายบุคคล</button>
+                     </div>
 					 <br style='clear:both'>
 			</div>";
 

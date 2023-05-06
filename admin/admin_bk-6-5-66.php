@@ -358,7 +358,7 @@ if($_SESSION['admin_status']=="3"){
 		<select id='package' name='package'>
 
 		<?php
-		$sql="SELECT * FROM package order by id asc";
+		$sql="SELECT * FROM person_kpi.package order by id asc";
 		$table=$conn->query($sql) or die($conn->error);
 		while($row=$table->fetch_assoc()) {
 			if($row['id']==$vPackage){

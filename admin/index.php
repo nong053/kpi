@@ -306,10 +306,11 @@ p{
 				
 		}	
 	?>
-    
+    <br style="clear:both;" />
 	</div>
+	<br style="clear:both;" />
 </div>
-<br style="clear:both;" />
+<div style="clear:both;" ></div>
 </div>
 
 </body>

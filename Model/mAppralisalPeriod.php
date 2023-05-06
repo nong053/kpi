@@ -62,8 +62,8 @@ if($_POST['action']=="showData"){
 			 $tableHTML.="<col  />";
 			 $tableHTML.="<col />";
 			 $tableHTML.="<col />";
-			 $tableHTML.="<col />";
-			 $tableHTML.="<col  />";
+			 //$tableHTML.="<col />";
+			 //$tableHTML.="<col  />";
 		
 		$tableHTML.="</colgroup>";
 	$tableHTML.="<thead>";
@@ -71,8 +71,8 @@ if($_POST['action']=="showData"){
 			//$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_id\"><b>".$_SESSION['appraisalPeriod_l_tbl_id']."</b></th>";
 			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_year\"><b>".$_SESSION['appraisalPeriod_l_tbl_year']."</b></th>";
 			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_des\"><b>".$_SESSION['appraisalPeriod_l_tbl_des']."</b></th>";
-			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_start\"><b>".$_SESSION['appraisalPeriod_l_tbl_start']." </b></th>";
-			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_end\"><b>".$_SESSION['appraisalPeriod_l_tbl_end']." </b></th>";
+			//$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_start\"><b>".$_SESSION['appraisalPeriod_l_tbl_start']." </b></th>";
+			//$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_end\"><b>".$_SESSION['appraisalPeriod_l_tbl_end']." </b></th>";
 			//$tableHTML.="<th  data-field=\"appraisalPeriod_l_tbl_target\"><b>".$_SESSION['appraisalPeriod_l_tbl_target']."</b></th>";
 			$tableHTML.="<th style='text-align:center;'  data-field=\"appraisalPeriod_l_tbl_manage\"><b>".$_SESSION['appraisalPeriod_l_tbl_manage']."</b></></th>";
 			
@@ -87,8 +87,8 @@ if($_POST['action']=="showData"){
 	//$tableHTML.="	<td>".$i."</td>";
 	$tableHTML.="	<td>".$rs['appraisal_period_year']."</td>";
 	$tableHTML.="	<td>".$rs['appraisal_period_desc']."</td>";
-	$tableHTML.="	<td>".$rs['appraisal_period_start']."</td>";
-	$tableHTML.="	<td>".$rs['appraisal_period_end']."</td>";
+	//$tableHTML.="	<td>".$rs['appraisal_period_start']."</td>";
+	//$tableHTML.="	<td>".$rs['appraisal_period_end']."</td>";
 	//$tableHTML.="	<td style='text-align:right;'>".$rs['appraisal_period_target_percentage']."%</td>";
 	
 	$tableHTML.="	<td >

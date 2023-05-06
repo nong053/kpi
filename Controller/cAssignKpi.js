@@ -511,7 +511,7 @@ var manageFn = function(this_id,actionType){
 				kpi_actual_manual_typ_2+="</select>";
 				kpi_actual_manual_typ_2+="<input id=\"kpi_type_score\" value=\"2\"  style='display:none;' ></input>";
 
-				kpi_actual_manual_typ_1+="<input id=\"kpi_actual_manual\" name=\"kpi_actual_manual\" value=\"\"  class=\"kpi_actual_manual form-control\"></input>";
+				kpi_actual_manual_typ_1+="<input id=\"kpi_actual_manual\" name=\"kpi_actual_manual\" placeholder='หน่วย:"+data[0]["kpi_unit"]+"' value=\"\"  class=\"kpi_actual_manual form-control\"></input>";
 				kpi_actual_manual_typ_1+="<input id=\"kpi_type_score\" value=\"1\"  style='display:none;' ></input>";					
 			
 				$("#kpi_unit").html("(หน่วย:"+data[0]["kpi_unit"]+")");
