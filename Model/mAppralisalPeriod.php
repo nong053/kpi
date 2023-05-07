@@ -56,54 +56,31 @@ if($_POST['action']=="showData"){
 	$result=$conn->query($strSQL);
 	$tableHTML="";
 	$i=1;
-	$tableHTML.="<table id='TableappraisalPeriod' class='grid table-striped table' style='width:100%'>";
-		$tableHTML.="<colgroup>";
-			 //$tableHTML.="<col style='width:3%' />";
-			 $tableHTML.="<col  />";
-			 $tableHTML.="<col />";
-			 $tableHTML.="<col />";
-			 //$tableHTML.="<col />";
-			 //$tableHTML.="<col  />";
-		
-		$tableHTML.="</colgroup>";
-	$tableHTML.="<thead>";
-		$tableHTML.="<tr>";
-			//$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_id\"><b>".$_SESSION['appraisalPeriod_l_tbl_id']."</b></th>";
-			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_year\"><b>".$_SESSION['appraisalPeriod_l_tbl_year']."</b></th>";
-			$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_des\"><b>".$_SESSION['appraisalPeriod_l_tbl_des']."</b></th>";
-			//$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_start\"><b>".$_SESSION['appraisalPeriod_l_tbl_start']." </b></th>";
-			//$tableHTML.="<th data-field=\"appraisalPeriod_l_tbl_end\"><b>".$_SESSION['appraisalPeriod_l_tbl_end']." </b></th>";
-			//$tableHTML.="<th  data-field=\"appraisalPeriod_l_tbl_target\"><b>".$_SESSION['appraisalPeriod_l_tbl_target']."</b></th>";
-			$tableHTML.="<th style='text-align:center;'  data-field=\"appraisalPeriod_l_tbl_manage\"><b>".$_SESSION['appraisalPeriod_l_tbl_manage']."</b></></th>";
-			
-		$tableHTML.="</tr>";
-	$tableHTML.="</thead>";
-	$tableHTML.="<tbody class=\"contentappraisalPeriod\">";
-	//while($rs=mysql_fetch_array($result)){
+	
 	while($rs=$result->fetch_assoc()){	
 	
 	
-	$tableHTML.="<tr>";
-	//$tableHTML.="	<td>".$i."</td>";
-	$tableHTML.="	<td>".$rs['appraisal_period_year']."</td>";
-	$tableHTML.="	<td>".$rs['appraisal_period_desc']."</td>";
-	//$tableHTML.="	<td>".$rs['appraisal_period_start']."</td>";
-	//$tableHTML.="	<td>".$rs['appraisal_period_end']."</td>";
-	//$tableHTML.="	<td style='text-align:right;'>".$rs['appraisal_period_target_percentage']."%</td>";
-	
-	$tableHTML.="	<td >
-	<div style='text-align: center;'>
-			<button type='button' id='idEdit-".$rs['appraisal_period_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
-			<button type='button' id='idDel-".$rs['appraisal_period_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
-	</div>
-			</td>";
-	$tableHTML.="</tr>";
+	$tableHTML.="<div class='col-md-4'>";
+	$tableHTML.="	<div class='alert alert-success'>";
+		$tableHTML.="	<div>ปีประเมิน <b>".$rs['appraisal_period_year']."</b></div>";
+		$tableHTML.="	<div>ช่วงประเมิน <b>".$rs['appraisal_period_desc']."</b></div>";
+		//$tableHTML.="	<td>".$rs['appraisal_period_start']."</td>";
+		//$tableHTML.="	<td>".$rs['appraisal_period_end']."</td>";
+		//$tableHTML.="	<td style='text-align:right;'>".$rs['appraisal_period_target_percentage']."%</td>";
+		
+		$tableHTML.="
+						<div style='text-align: right;' class='row'>
+								<button type='button' id='idEdit-".$rs['appraisal_period_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+								<button type='button' id='idDel-".$rs['appraisal_period_id']."' class='  actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+						</div>
+		";
+	$tableHTML.="</div>";
+	$tableHTML.="</div>";
 
 	
 	$i++;
 	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
+	
 	echo $tableHTML;
 	$conn->close();
 	//mysql_close($conn);

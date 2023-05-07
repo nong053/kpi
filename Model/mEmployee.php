@@ -352,89 +352,59 @@ where (e.department_id='All' or 'All' ='All')
 	*/
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
-	$i=1;
-	$tableHTML.="<table id='Tableemployee' class='grid table-striped table' style='width:100%'>";
-		$tableHTML.="<colgroup>";
-			//$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col  style='width:8%'/>";
-			$tableHTML.="<col style='width:15%'/>";
-			$tableHTML.="<col style='width:12%'/>";
-			//$tableHTML.="<col style='width:12%'/>";
-			$tableHTML.="<col style='width:10%'/>";
-			$tableHTML.="<col style='width:10%'/>";
-			$tableHTML.="<col style='width:13%'/>";
-		
-		$tableHTML.="</colgroup>";
-	$tableHTML.="<thead>";
-		$tableHTML.="<tr>";
-			//$tableHTML.="<th data-field=\"employee_l_tbl_id\"><b> ".$_SESSION['employee_l_tbl_id']."</b></th>";
-			$tableHTML.="<th style='text-align:center;' data-field=\"employee_l_tbl_picture\"></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_name\"><b>".$_SESSION['employee_l_tbl_name']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_department\"><b>".$_SESSION['employee_l_tbl_department']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_position\"><b>".$_SESSION['employee_l_tbl_position']."</b></th>";
-			//$tableHTML.="<th><b>Role</th>";
-			//$tableHTML.="<th data-field=\"employee_l_tbl_age_working\"><b>".$_SESSION['employee_l_tbl_age_working']." </b></th>";
-			//$tableHTML.="<th data-field=\"employee_l_tbl_age\"><b>".$_SESSION['employee_l_tbl_age']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_status\"><b>".$_SESSION['employee_l_tbl_status']."</b></th>";
-			$tableHTML.="<th data-field=\"employee_l_tbl_manage\" style='text-align:center;'><b>".$_SESSION['employee_l_tbl_manage']."</b></th>";
-			
-		$tableHTML.="</tr>";
-	$tableHTML.="</thead>";
-	$tableHTML.="<tbody class=\"contentemployee\">";
+	
 	while($rs=$result->fetch_assoc()){
 		
-	//echo "emp_picture_thum".$rs['emp_picture_thum'];
+
 
 	
-	$tableHTML.="<tr>";
-	//$tableHTML.="	<td>".$i."|".$rs[emp_code]."</td>";
-	$tableHTML.="	<td > <div style='text-align:center;'>";
-	if(empty($rs['emp_picture_thum'])){
+	$tableHTML.="<div class='col-md-3'>";
+		$tableHTML.="<div class='alert alert-success'>";
+		
+		$tableHTML.="	<div style='text-align:center;'>";
+		if(empty($rs['emp_picture_thum'])){
 
-		$tableHTML.="	<img style='opacity:0.1;' class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height=\"80\">";
+			$tableHTML.="	<img style='opacity:0.1;' class=\"img-circle\" src=\"../View/uploads/avatar.jpg\" width=\"80\" height=\"80\">";
 
-	}else{
+		}else{
 
-		$tableHTML.="	<img   class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\">";
+			$tableHTML.="	<img   class=\"img-circle\" src=\"".$rs['emp_picture_thum']."\" width=\"80\">";
+		
+		}
+		$tableHTML.=" 	</div>";
+		$tableHTML.="	<div>";
+			$tableHTML.="	<div>รหัส <b>".$rs['emp_code']."<br>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b></div>";
+			if($rs['role_id']==1){
+				$tableHTML.="<div style='color:red;'>(สิทธิ์".$rs['role_name'].")</div>";
+			}else if($rs['role_id']==2){
+				$tableHTML.="<div style='color:orange;'>(สิทธิ์".$rs['role_name'].")</div>";
+			}else{
+				$tableHTML.="<div style='color:green;'>(สิทธิ์".$rs['role_name'].")</div>";
+			}
+		
+
+		$tableHTML.="</div>";
+
+		$tableHTML.="	<div>แผนก <b>".$rs['department_name']."</b></div>";
+		$tableHTML.="	<div>ตำแหน่ง <b>".$rs['position_name']."</b></div>";
+		$tableHTML.="	<div>สถานะ <b>".$rs['emp_status_work']."</b></div>";
+		
+
+		$tableHTML.="
+						<div style='text-align: right;'>
+								<button type='button' id='idView-".$rs['emp_id']."' class='actionView btn btn-primary '><i class='glyphicon  glyphicon-eye-open'></i></button>
+								<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+								<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+						</div>
+				";
+				
+		$tableHTML.="</div>";
+	$tableHTML.="</div>";
+
+	
 	
 	}
-	$tableHTML.=" 	</div></td>";
-	$tableHTML.="	<td>รหัส ".$rs['emp_code']."<br>".$rs['emp_first_name']." ".$rs['emp_last_name']."<br>";
-	
-	if($rs['role_id']==1){
-		$tableHTML.="<div style='color:red;'>(สิทธิ์".$rs['role_name'].")</div>";
-	}else if($rs['role_id']==2){
-		$tableHTML.="<div style='color:orange;'>(สิทธิ์".$rs['role_name'].")</div>";
-	}else{
-		$tableHTML.="<div style='color:green;'>(สิทธิ์".$rs['role_name'].")</div>";
-	}
-	
 
-	$tableHTML.="</td>";
-
-	$tableHTML.="	<td>".$rs['department_name']."</td>";
-	$tableHTML.="	<td>".$rs['position_name']."</td>";
-	//$tableHTML.="	<td>".$rs['role_name']."</td>";
-	//$tableHTML.="	<td>".$rs['emp_age_working']."</td>";
-	//$tableHTML.="	<td>".$rs['emp_age']."</td>";
-	$tableHTML.="	<td>".$rs['emp_status_work']."</td>";
-	
-
-	$tableHTML.="	<td>
-	<div style='text-align: center;'>
-			<button type='button' id='idView-".$rs['emp_id']."' class='actionView btn btn-primary '><i class='glyphicon  glyphicon-eye-open'></i></button>
-			<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
-			<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
-	</div>
-			</td>";
-
-	$tableHTML.="</tr>";
-
-	
-	$i++;
-	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
 	echo $tableHTML;
 	$conn->close();
 }

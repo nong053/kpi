@@ -329,14 +329,19 @@ $(document).ready(function(){
 					 var id=idKPI[1];
 					 var kpiTypeScore=idKPI[2];
 					 var kpiBetterFlag=idKPI[3];
-					var kpiName=$(this).parent().parent().prev().prev().prev().prev().text()+"("+$(this).parent().parent().prev().prev().text()+")";
-					// alert(id);
+					var kpiName=$("#kpi-name-"+id).text();
+					var kpiUnit=$("#kpi-unit-"+id).text();
+					// alert(kpiName);
 					 $.ajax({
 							url:"../View/vKpiBaseLine.php",
 							type:"get",
 							dataType:"html",
 							async:false,
-							data:{"kpiName":kpiName},
+							data:{
+								"kpiName":kpiName,
+								"kpiUnit":kpiUnit
+
+						},
 							success:function(data){
 								$("#mainContent").html(data);
 								callProgramControl("cKpiBaseline.js");

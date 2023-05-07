@@ -57,11 +57,15 @@ if($_POST['action']=="add"){
 
 if($_POST['action']=="showData"){
 	//echo "Show Data";
-	$strSQL="SELECT * FROM baseline where kpi_id=$paramKpiId 
-	order by baseline_score";
+	$strSQL="
+	SELECT * FROM baseline b INNER JOIN kpi k on b.kpi_id=k.kpi_id
+	
+	where b.kpi_id=$paramKpiId 
+	order by b.baseline_score";
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
+/*
 	$tableHTML.="<table id='Tablebaseline' class='grid table-striped table'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
@@ -69,7 +73,7 @@ if($_POST['action']=="showData"){
 			$tableHTML.="<col style='width:10%'/>";
 			$tableHTML.="<col style='width:10%'/>";
 			$tableHTML.="<col style='width:50%'/>";
-			/*$tableHTML.="<col />";*/
+			
 			
 		
 		$tableHTML.="</colgroup>";
@@ -86,7 +90,7 @@ if($_POST['action']=="showData"){
 			
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
-
+*/
 	$colorThreshold = array("","#DD0000", "#FFFF99", "#FFCC66", "#99FF00", "#339933", "#336666");
 	$colorThresholdTrueFalse = array("","#DD0000", "#336666");
 	
@@ -94,38 +98,45 @@ if($_POST['action']=="showData"){
 	while($rs=$result->fetch_assoc()){
 		
 
-	$tableHTML.="<tbody class=\"contentkpi\">";
-	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div  style='text-align:center;'>".$i."</div></td>";
-	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_begin']."</div></td>";
-	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_end']."</div></td>";
-	$tableHTML.="	<td><div  style='text-align:right;'>".$rs['baseline_score']."</div></td>";
-	
-	if($paramkpiTypeScore!=3){
+	$tableHTML.="<div class='col-md-4'>";
+		$tableHTML.="<div class='alert alert-success'>";
+		//$tableHTML.="	<div  style='text-align:center;'>".$i."</div>";
+		if($paramkpiTypeScore==1){
+		$tableHTML.="	<div  style='text-align:left;'>เริ่ม <b>".$rs['baseline_begin']." ".$rs['kpi_unit']."</b></div>";
+		$tableHTML.="	<div  style='text-align:left;'>ถึง <b>".$rs['baseline_end']." ".$rs['kpi_unit']."</b></div>";
+		}
+		$tableHTML.="	<div  style='text-align:left;'>แปลงเป็นคะแนนเท่ากับ <b>".$rs['baseline_score']." คะแนน</b></div>";
 		
-		$tableHTML.="	<td><div style=\"width:20px; float:left; height:20px; background:".$colorThreshold[$i]."\"></div> &nbsp;".$rs['suggestion']."</td>";
-		
-	}else if($paramkpiTypeScore==3){
-		$tableHTML.="	<td><div style=\"width:20px; float:left; height:20px; background:".$colorThresholdTrueFalse[$i]."\"></div> &nbsp;".$rs['suggestion']."</td>";
-	}
-
-	if($paramkpiTypeScore==1){
-	$tableHTML.="
-	<td>
-	<div style='text-align: center;'>
-			<button type='button' id='idEdit-".$rs['baseline_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
-			<!-- <button type='button' id='idDel-".$rs['baseline_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button> -->
+		//$paramkpiTypeScore==1 กำหนดเอง
+		//$paramkpiTypeScore==2 1-5
+		//$paramkpiTypeScore==3 ผ่าน/ไม่ผ่าน
+		if($paramkpiTypeScore==1 || $paramkpiTypeScore==2){
 			
-	</div>				
-	</td>";
-	}
-	$tableHTML.="</tr>";
+			$tableHTML.="	<div>เกณฑ์การประเมิน <b>".$rs['suggestion']."</b></div>";
+			$tableHTML.="   <div style=\"float:left;margin-right:5px;\">สีพื้นหลัง</div> <div style=\"width:20px; float:left; height:20px; background:".$colorThreshold[$i]."\"></div>";
+			$tableHTML.="<br style='clear:both'>";
+		}else if($paramkpiTypeScore==3){//ผ่าน ไม่ผ่าน
+			$tableHTML.="	<div>เกณฑ์การประเมิน  <b>".$rs['suggestion']."</b></div>";
+			$tableHTML.="	<div style=\"float:left; margin-right:5px;\">สีพื้นหลัง</div> <div style=\"width:20px; float:left; height:20px; background:".$colorThresholdTrueFalse[$i]."\"></div>";
+			$tableHTML.="<br style='clear:both'>";
+		}
 
+		if($paramkpiTypeScore==1 ){
+		$tableHTML.="
+		<div>
+			<div style='text-align: right;'>
+					<button type='button' id='idEdit-".$rs['baseline_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+			</div>				
+		</div>";
+		}
+		
+		$tableHTML.="</div>";
+	$tableHTML.="</div>";
 	
 	$i++;
 	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
+	// $tableHTML.="</tbody>";
+	// $tableHTML.="</table>";
 	echo $tableHTML;
 	$conn->close();
 }

@@ -268,45 +268,7 @@ if($_POST['action']=="showData"){
 			order by k.kpi_id  desc";
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
-	$i=1;
-	$tableHTML.="<table id='Tablekpi' class='grid table-striped table'>";
-		$tableHTML.="<colgroup>";
-			$tableHTML.="<col style='width:5%' />";
-			$tableHTML.="<col  style='width:30%'/>";
-			$tableHTML.="<col style='width:20%'/>";
-			$tableHTML.="<col style='width:13%'/>";
-			$tableHTML.="<col style='width:13%'/>";
-			$tableHTML.="<col style='width:20%'/>";
-		
-			/*
-			$tableHTML.="<col />";
-			$tableHTML.="<col />";
-			$tableHTML.="<col />";
-			$tableHTML.="<col />";
-			*/
-			
-		
-		$tableHTML.="</colgroup>";
-	$tableHTML.="<thead>";
-		$tableHTML.="<tr>";
-			$tableHTML.="<th style='text-align:center;' data-field=\"kpi_l_tbl_id\"><b>".$_SESSION['kpi_l_tbl_id']." </b></th>";
-			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_name\"><b>".$_SESSION['kpi_l_tbl_kpi_name']."</b></th>";
-			//$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_detail\"><b>".$_SESSION['kpi_l_tbl_kpi_detail']." </b></th>";
-			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_perspective\"><b>".$_SESSION['kpi_l_tbl_kpi_perspective']." </b></th>";
-			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_better_flag\"><b>".$_SESSION['kpi_l_tbl_kpi_better_flag']."</b></th>";
-			$tableHTML.="<th data-field=\"kpi_l_tbl_kpi_type_score\"><b>".$_SESSION['kpi_l_tbl_kpi_type_score']."</b></th>";
-
-			/*
-			$tableHTML.="<th><b>Department</b></th>";
-			$tableHTML.="<th><b>Division </b></th>";
-			$tableHTML.="<th><b>Actual by Query</b></th>";
-			$tableHTML.="<th><b>Kpi Target</b></th>";
-			*/
-			$tableHTML.="<th data-field=\"kpi_l_tbl_manage\" style='text-align:center;'><b>".$_SESSION['kpi_l_tbl_manage']."</b></th>";
-			
-		$tableHTML.="</tr>";
-	$tableHTML.="</thead>";
-	$tableHTML.="<tbody class=\"contentkpi\">";
+	
 
 	while($rs=$result->fetch_assoc()){
 		
@@ -316,70 +278,64 @@ if($_POST['action']=="showData"){
 			$type_target="<i class='glyphicon glyphicon-remove'></i>";
 		}
 		
-	
-	
-	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div style='text-align:center;'>".$i."</div></td>";
-	
-	$tableHTML.="	<td>".$rs['kpi_name']."</td>";
-	
-	$tableHTML.="	<td>".$rs['perspective_name']."</td>";
-	if($rs['kpi_better_flag']=='Y'){
-		$tableHTML.="	<td>ยิ่งมากยิ่งดี <i style='color:green;' class='glyphicon glyphicon-arrow-up'></i></td>";
-	}else if($rs['kpi_better_flag']=='N'){
-		$tableHTML.="	<td>ยิ่งน้อยยิ่งดี <i style='color:red;' class='glyphicon glyphicon-arrow-down'></i></td>";
-	}else{
-		$tableHTML.="	<td>-</td>";
-	}
-	
-
-	$tableHTML.="	<td>";
-	if($rs['kpi_type_score']==1){
-
-		$tableHTML.="กำหนดเอง";
-	}else if($rs['kpi_type_score']==2){
-
-		$tableHTML.="1-5 คะแนน";
-	}else if($rs['kpi_type_score']==3){
-
-		$tableHTML.="ผ่าน/ไม่ผ่าน";
-	}else{
-		$tableHTML.="กำหนดเอง";
-	}
-	$tableHTML.="	</td>";
-
-	
-	/*	
-	$tableHTML.="	<td>".$rs['department_name']."</td>";
-	$tableHTML.="	<td>".$rs['division_name']."</td>";
-	$tableHTML.="	<td>".$type_target."</td>";
-	$tableHTML.="	<td>".$rs['kpi_target']."</td>";
-
-	*/
-	//echo "kpi_type_score=".$rs['kpi_type_score'];
-	
-
-		$tableHTML.="	<td>
-			<div style='text-align: center;'>
-			<button type='button' id='idKPI-".$rs['kpi_id']."-".$rs['kpi_type_score']."-".$rs['kpi_better_flag']."' class=' actionBaseline btn btn-primary '><i class='glyphicon glyphicon-transfer'></i></button>
-
-			<button type='button' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
-			
-			<button type='button' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
-			
-				</div>	
-			</td>";
 		
-	
+		
+		$tableHTML.="<div class='col-md-4'>";
+			$tableHTML.="<div class='alert alert-success'>";
+			//$tableHTML.="	<div style='text-align:center;'>".$i."</div>";
+
+			$tableHTML.="	<div>มุมมองธุรกิจ <b>".$rs['perspective_name']."</b></div>";
+			$tableHTML.="	<div >ตัวชี้วัด <b id='kpi-name-".$rs['kpi_id']."'>".$rs['kpi_name']."</b></div>";
+			$tableHTML.="	<div  style='display:none;'><b id='kpi-unit-".$rs['kpi_id']."'>".$rs['kpi_unit']."</b></div>";
+			$tableHTML.="	<div >เป้าหมาย <b id='kpi-data-target-".$rs['kpi_id']."'>".$rs['kpi_data_target']." ".$rs['kpi_unit']."</b></div>";
+			
+			
+			if($rs['kpi_better_flag']=='Y'){
+				$tableHTML.="	<div>ประเภทตัวชี้วัด <b>ยิ่งมากยิ่งดี <i style='color:green;' class='glyphicon glyphicon-arrow-up'></i></b></div>";
+			}else if($rs['kpi_better_flag']=='N'){
+				$tableHTML.="	<div>ประเภทตัวชี้วัด <b>ยิ่งน้อยยิ่งดี <i style='color:red;' class='glyphicon glyphicon-arrow-down'></i></b></div>";
+			}else{
+				$tableHTML.="	<div>-</div>";
+			}
+			
+
+			$tableHTML.="	<div>ประเภทการคิดคะแนน <b>";
+			if($rs['kpi_type_score']==1){
+
+				$tableHTML.="กำหนดเอง";
+			}else if($rs['kpi_type_score']==2){
+
+				$tableHTML.="1-5 คะแนน";
+			}else if($rs['kpi_type_score']==3){
+
+				$tableHTML.="ผ่าน/ไม่ผ่าน";
+			}else{
+				$tableHTML.="กำหนดเอง";
+			}
+			$tableHTML.="	</b></div>";
+
+			
+			
+
+			$tableHTML.="	
+				<div style='text-align: right;'>
+					<button type='button' id='idKPI-".$rs['kpi_id']."-".$rs['kpi_type_score']."-".$rs['kpi_better_flag']."' class=' actionBaseline btn btn-primary '><i class='glyphicon glyphicon-transfer'></i></button>
+
+					<button type='button' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+					
+					<button type='button' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+				</div>	
+				";
+			
+		
+
+		$tableHTML.="</div>";
+	$tableHTML.="</div>";
 
 	
-	$tableHTML.="</tr>";
-
 	
-	$i++;
 	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
+
 	echo $tableHTML;
 	$conn->close();
 }

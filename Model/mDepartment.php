@@ -49,51 +49,32 @@ if($_POST['action']=="showData"){
 	$strSQL="SELECT * FROM department where  admin_id='$admin_id' order by department_id";
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
-	$i=1;
-	$tableHTML.="<table id='Tabledepartment' class='grid table-striped table' style='width:100%'>";
-		$tableHTML.="<colgroup>";
-			$tableHTML.="<col style='width:5%' />";
-			//$tableHTML.="<col style='width:10%' />";
-			$tableHTML.="<col  style='width:35%'/>";
-			$tableHTML.="<col style='width:35%'/>";
 	
-		
-		$tableHTML.="</colgroup>";
-	$tableHTML.="<thead>";
-		$tableHTML.="<tr>";
-			$tableHTML.="<th style='text-align:center;' data-field=\"column1\"><b>".$_SESSION['department_l_tbl_id']."</b></th>";
-			//$tableHTML.="<th data-field=\"column2\"><b>".$_SESSION['department_l_tbl_department_code']."</b></th>";
-			$tableHTML.="<th data-field=\"column3\"><b>".$_SESSION['department_l_tbl_department_name']."</b></th>";
-			$tableHTML.="<th data-field=\"column4\"><b>".$_SESSION['department_l_tbl_department_detail']."</b></th>";
-			$tableHTML.="<th data-field=\"column5\" style='text-align:center;'><b>".$_SESSION['department_l_tbl_manage']."</b></th>";
-			
-		$tableHTML.="</tr>";
-	$tableHTML.="</thead>";
 	
 	while($rs=$result->fetch_assoc()){
 		
 	
-	$tableHTML.="<tbody class=\"contentdepartment\">";
-	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div style='text-align:center;'>".$i."</div></td>";
-	//$tableHTML.="	<td>".$rs['department_code']."</td>";
-	$tableHTML.="	<td>".$rs['department_name']."</td>";
-	$tableHTML.="	<td>".$rs['department_detail']."</td>";
 
-	$tableHTML.="	<td>
+	$tableHTML.="<div class='col-md-4'>";
+		$tableHTML.="<div class='alert alert-success'>";
+		$tableHTML.="	<div style='text-align:right;'>".$i."</div>";
+		//$tableHTML.="	<td>".$rs['department_code']."</td>";
+		$tableHTML.="	<div>แผนก <b>".$rs['department_name']."</b></div>";
+		$tableHTML.="	<div>รายละเอียด <b>".$rs['department_detail']."</b></div>";
 
-				<div style='text-align: center;'>
-					<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
-					<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
-				</div>
-			</td>";
-	$tableHTML.="</tr>";
+		$tableHTML.="	
 
-	
-	$i++;
+						<div style='text-align: right;'>
+							<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+							<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+						</div>
+				";
+		$tableHTML.="</div>";
+	$tableHTML.="</div>";
+
+
 	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
+
 	echo $tableHTML;
 	$conn->close();
 }

@@ -78,7 +78,7 @@ $emp_id=$_GET['emp_id'];
 </div>
 		
 			
-<div class='row container'>
+<div class='row1 container'>
 	<div class="col-md-12" style="margin-top:5px;">
 
 		<!-- ### Panel Start ### -->

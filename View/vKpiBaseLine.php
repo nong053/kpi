@@ -89,6 +89,7 @@ if($_SESSION['language']=="th"){
  </style>
 <?php 
 $kpiName=$_GET['kpiName'];
+$kpiUnit=$_GET['kpiUnit'];
 ?>
 
 
@@ -164,7 +165,7 @@ $kpiName=$_GET['kpiName'];
      <h2> <strong><?=$_SESSION['baseline_l_des_title']?>  </strong></h2>
    		<?=$_SESSION['baseline_l_des_detail']?>
     </div>
-    <h4><b><?=$_SESSION['baseline_l_des_btn_kpi']?></b> : <?=$kpiName?></h4>
+    <h4><b><?=$_SESSION['baseline_l_des_btn_kpi']?></b> : <?=$kpiName?> หน่วย (<?=$kpiUnit?>)</h4>
     
     <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">

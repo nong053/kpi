@@ -35,51 +35,31 @@ if($_POST['action']=="showData"){
  order by  perspective_id
 	";
 	$result=$conn->query($strSQL);
-	$$tableHTML="";
-	$i=1;
-	$tableHTML.="<table id='TablePerspective' class='grid table-striped table' style='width:100%'>";
-	$tableHTML.="<colgroup>";
-	$tableHTML.="<col style='width:5%' />";
-    $tableHTML.="<col  />";
-    $tableHTML.="<col  />";
 	
-	$tableHTML.="<col style='' />";
-	
-	$tableHTML.="</colgroup>";
-	$tableHTML.="<thead>";
-	$tableHTML.="<tr>";
-	$tableHTML.="<th style='text-align:center;' data-field=\"perspective_l_tbl_id\"><b>".$_SESSION['perspective_l_tbl_id']."</b></th>";
-    $tableHTML.="<th data-field=\"perspective_l_tbl_perspective_name\"><b>".$_SESSION['perspective_l_tbl_perspective_name']."</b></th>";
-    $tableHTML.="<th style='text-align:right;' data-field=\"perspective_l_tbl_perspective_weight\"><b>".$_SESSION['perspective_l_tbl_perspective_weight']."</b></th>";
-
-	$tableHTML.="<th data-field=\"perspective_l_tbl_perspective_manage\" style='text-align:center;'><b>".$_SESSION['perspective_l_tbl_perspective_manage']."</b></th>";
-
-	$tableHTML.="</tr>";
-	$tableHTML.="</thead>";
-	$tableHTML.="<tbody class=\"contentPerspective\">";
 	while($rs=$result->fetch_assoc()){
 		
 	
 	
-	$tableHTML.="<tr>";
-	$tableHTML.="	<td><div style='text-align: center;'>".$i."</div></td>";
-    $tableHTML.="	<td>".$rs['perspective_name']."</td>";
-    $tableHTML.="	<td><div style='text-align: right;'>".$rs['perspective_weight']."%</div></td>";
-    		
-	$tableHTML.="<td>
-			<div style='text-align: center;'>
-				<button type='button' id='idEdit-".$rs['perspective_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
-			    <button type='button' id='idDel-".$rs['perspective_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
-			</div>
-			</td>";
-	$tableHTML.="	<td>".$rs['score']."</td>";	
-	$tableHTML.="</tr>";
+	$tableHTML.="<div class='col-md-4'>";
+		$tableHTML.="<div class='alert alert-success'>";
+		$tableHTML.="	<div style='text-align: center;'>".$i."</div>";
+		$tableHTML.="	<div>มุมมองธุรกิจ <b>".$rs['perspective_name']."</b></div>";
+		$tableHTML.="	<div style='text-align: left;'>น้ำหนัก <b>".$rs['perspective_weight']."%</b></div>";
+				
+		$tableHTML.="
+						<div style='text-align: right;'>
+							<button type='button' id='idEdit-".$rs['perspective_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
+							<button type='button' id='idDel-".$rs['perspective_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
+						</div>
+				";
+		$tableHTML.="	<div>".$rs['score']."</div>";	
+		$tableHTML.="</div>";
+	$tableHTML.="</div>";
 
 	
-	$i++;
+	
 	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
+
 	echo $tableHTML;
 	$conn->close();
 }
