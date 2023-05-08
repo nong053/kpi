@@ -64,36 +64,40 @@
 					
 								var html="";
 								$.each(data,function(index,indexEntry){
-									html+="<tr>";
-										html+="<td><div style='text-align:center;'>";
-											html+=(index+1);
-										html+="</div></td>";
+									html+="<div class='col-md-12'>";
+										html+="<div class='alert alert-success'>";
+											// html+="<div style='text-align:center;'>";
+											// 	html+=(index+1);
+											// html+="</div>";
 
-										html+="<td>";
-											html+=indexEntry[1];
+											html+="<div>";
+												html+=indexEntry[1];
+											html+="</div>";
 
-										html+="<td><div style='text-align:right;'>";
-											html+=indexEntry[2];
-										html+="</div</td>";
+											html+="<div style='text-align:right;'>";
+												html+=indexEntry[2];
+											html+="</div>";
 
-										html+="<td><div style='text-align:right;'>";
-											html+=indexEntry[6];
-										html+="</div</td>";
+											html+="<div style='text-align:right;'>";
+												html+=indexEntry[6];
+											html+="</div>";
 
-										html+="<td><div style='text-align:right;'>";
-											html+=indexEntry[3];
-										html+="</div></td>";
+											html+="<div style='text-align:right;'>";
+												html+=indexEntry[3];
+											html+="</div>";
 
-										html+="<td><div style='text-align:right;'>";
+											html+="<div style='text-align:right;'>";
 
-											var performance_emp=indexEntry[7]*40/100;
-											var performance_chief=indexEntry[4]*60/100;
-											var performance_total=performance_emp+performance_chief;
-											performance_total =parseFloat(performance_total).toFixed(2);
-											
-											html+=performance_total+"%";
-										html+="</div></td>";
-									html+="</tr>";
+												var performance_emp=indexEntry[7]*40/100;
+												var performance_chief=indexEntry[4]*60/100;
+												var performance_total=performance_emp+performance_chief;
+												performance_total =parseFloat(performance_total).toFixed(2);
+												
+												html+=performance_total+"%";
+											html+="</div>";
+
+										html+="</div>";
+									html+="</div>";
 								});
 								
 								$("#kpi_list_result").html(html);

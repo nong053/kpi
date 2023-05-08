@@ -187,7 +187,7 @@ if($_SESSION['language']=="th"){
 	   		<!-- content start-->
 			   
 
-			   <table class="table">
+			   <!-- <table class="table">
 				   <thead>
 					   <tr>
 							<th style="text-align: center;">#</th>
@@ -196,15 +196,13 @@ if($_SESSION['language']=="th"){
 							<th style="text-align: right;">ประเมินตนเอง</th>
 							<th style="text-align: right;">หัวหน้าประเมิน</th>
 							<th style="text-align: right;">ผลประเมิน%</th>
-							
 					   </tr>
 				   </thead>
 				   <tbody id="kpi_list_result">
-
-					   
 				   </tbody>
-			   </table>
+			   </table> -->
 			   
+			   <div id="kpi_list_result"></div>
 			   <hr>
 
 			<form id="AssignKpiForm">

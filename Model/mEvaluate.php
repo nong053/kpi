@@ -551,6 +551,7 @@ $division_id=$_POST['division_id'];
 	$result=$conn->query($strSQL);
 	$$tableHTML="";
 	$i=1;
+	/*
 	$tableHTML.="<table id='TableassignKpi' class=table grid table-striped'>";
 		$tableHTML.="<colgroup>";
 			$tableHTML.="<col style='width:5%' />";
@@ -575,6 +576,7 @@ $division_id=$_POST['division_id'];
 		$tableHTML.="</tr>";
 	$tableHTML.="</thead>";
 	$tableHTML.="<tbody class=\"contentassignKpi\">";
+	*/
 	while($rs=$result->fetch_assoc()){
 		
 		if($rs['kpi_type_actual']=="0"){
@@ -591,37 +593,40 @@ $division_id=$_POST['division_id'];
 
 
 	
-	$tableHTML.="<tr>";
-	$tableHTML.="	<td ><div style='text-align:center;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></td>";
-	$tableHTML.="	<td>".$rs['kpi_name']." ".$rs['kpi_unit']."</td>";
-	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."%</div></td>";
-	$tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
-	$tableHTML.="	<td><div style=' text-align:right;'>".number_format((float)$kpi_actual, 2, '.', '') ."</div></td>";
-	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
-	
-	$tableHTML.="	<td>";
+	$tableHTML.="<div class='col-md-4'>";
+		$tableHTML.="<div class='alert alert-success'>";
 
-		if($rs['approve_flag']=='Y'){
-			$tableHTML.="ประเมินเรียบร้อย";			
-		}else{	
+		$tableHTML.="	<div ><div style='text-align:center;'></div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></div>";
+		$tableHTML.="	<div>".$rs['kpi_name']." ".$rs['kpi_unit']."</div>";
+		$tableHTML.="	<div><div style='text-align:right;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."%</div></div>";
+		$tableHTML.="	<div><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></div>";
+		$tableHTML.="	<div><div style=' text-align:right;'>".number_format((float)$kpi_actual, 2, '.', '') ."</div></div>";
+		//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
+		
+		$tableHTML.="	<div>";
+			if($rs['approve_flag']=='Y'){
+				$tableHTML.="ประเมินเรียบร้อย";			
+			}else{	
 
-		$tableHTML.="		
-		<div style='text-align:center;'>
-				<button type='button' style='display:none;' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
+			$tableHTML.="		
+			<div style='text-align:center;'>
+					<button type='button' style='display:none;' id='idEdit-".$rs['kpi_id']."' class='actionEdit btn btn-primary btn-xs'><i class='glyphicon glyphicon-pencil'></i></button>
 
-				<button type='button' id='idAddScore-".$rs['assign_kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['kpi_id']."' class='actionAddScore btn btn-primary '>เริ่มประเมินรายตัวชี้วัด</button>
+					<button type='button' id='idAddScore-".$rs['assign_kpi_year']."-".$rs['appraisal_period_id']."-".$rs['department_id']."-".$rs['position_id']."-".$rs['emp_id']."-".$rs['kpi_id']."' class='actionAddScore btn btn-primary '>เริ่มประเมินรายตัวชี้วัด</button>
 
-				<button type='button' style='display:none;' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
-		</div>";
-		}
+					<button type='button' style='display:none;' id='idDel-".$rs['kpi_id']."' class=' actionDel btn btn-danger btn-xs'><i class='glyphicon glyphicon-trash'></i></button>
+			</div>";
+			}
 
-	$tableHTML.="</td>";
-	$tableHTML.="</tr>";
+		$tableHTML.="</div>";
+
+		$tableHTML.="</div>";
+	$tableHTML.="</div>";
 	
 	$i++;
 	}
-	$tableHTML.="</tbody>";
-	$tableHTML.="</table>";
+	// $tableHTML.="</tbody>";
+	// $tableHTML.="</table>";
 	echo $tableHTML;
 	$conn->close();
 }
