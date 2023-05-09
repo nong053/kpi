@@ -180,12 +180,12 @@ $department_name=$_GET['department_name'];
 		background:#F5F5F5;
 		width:20px;
 		height:20px;
-		bborder-radius: 100%;
+		border-radius: 100%;
 	}
 	.modal-dialog {
 		padding-bottom: 30px;
 		padding-top: 30px;
-		width: 780px;
+		/* width: 780px; */
 	}
 
 	/*hidden tooltip sparkline*/
@@ -210,6 +210,12 @@ $department_name=$_GET['department_name'];
 	.fontLabelParam{
 		text-align:right; 
 		padding-top:5px;
+	}
+	.alet{
+		padding:10px;
+	}
+	.fontInThumbnail{
+		margin-left: 10px;
 	}
 		
 </style>
@@ -293,7 +299,7 @@ $department_name=$_GET['department_name'];
 		  </div>
 		  <div class="panel-body">
 		    	
-		    	<row>
+		    	<div class='row1'>
 		    		
 		    		<div class="col-md-12" style="padding-left: 0;padding-right: 0;">
 		    		
@@ -303,7 +309,7 @@ $department_name=$_GET['department_name'];
 		    			
 		    		</div>
 		    		
-		    	</row>
+		    	</div>
 		    	
 		  </div>
 		

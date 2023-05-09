@@ -118,7 +118,7 @@ $emp_id=$_GET['emp_id'];
 								</div>
 								<div class="panel-body panel-body-bottom" style="padding: 5px;margin-bottom: 5px;">
 								
-										<div id="barChartPersonal-<?=$emp_id?>"  style="100%"></div> 
+										<div id="barChartPersonal-<?=$emp_id?>"  style="width:300px;"></div> 
 
 								</div>
 					</div>
@@ -126,27 +126,18 @@ $emp_id=$_GET['emp_id'];
 			
 	</div>
 </div>
-<div class="row container">
-
-		
+<div class="row1 container">
 		<div class="col-md-12">
-			
 			<!-- ### Panel Start ### -->
 				<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
 							<div class="panel-heading">
 							<B><i class="glyphicon glyphicon-record"></i> <?=$_SESSION['emp_dashboard2_l_title_kpi_result']?></B>			
 							</div>
 							<div class="panel-body panel-body-bottom" style="padding-left: 0;padding-right: 0;margin-bottom: 5px;">
-							
-									
 								<!-- ### Panel End ### -->
 							<!--  table grid start -->
 							<div  id="gridPersonalKPI-<?=$emp_id?>"></div>
-							
-							
 							<!--  table grid end -->
-								
-								
 							</div>
 				</div>
 		<!--panel end-->

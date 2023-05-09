@@ -291,8 +291,8 @@ var  getColorBall=function(score)
 		                   
 						   
 						   
-						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold;  color:green;'>"+parseFloat(score).toFixed(2)+"%</span> ";
-						   ballScoll+="<div  class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+						   ballScoll+="<span style='float:right;padding-left:5px; font-weight:bold;  color:green;'>"+parseFloat(score).toFixed(2)+"%</span> ";
+						   ballScoll+="<div  class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:right;'></div>";
 		                   
 					 }else if(index==1 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						 
@@ -300,8 +300,8 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
-						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+						   ballScoll+="<span style='float:right;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:right;'></div>";
 		                   
 					 }else if(index==2 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						
@@ -309,8 +309,8 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
-						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+						   ballScoll+="<span style='float:right;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:right;'></div>";
 		                   
 					 }else if(index==3 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						
@@ -318,8 +318,8 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
-						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+						   ballScoll+="<span style='float:right;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:right;'></div>";
 		                   
 					 }else if(index==4 && (parseInt(indexEntry[1])<= score  ) &&( parseInt(indexEntry[2])>= score)){
 						 
@@ -327,8 +327,8 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball'style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
-						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+						   ballScoll+="<span style='float:right;padding-left:5px;  font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:right;'></div>";
 		                   
 					 }else if(index==5 && (parseInt(indexEntry[1])<= score  ) ){
 						 
@@ -336,8 +336,8 @@ var  getColorBall=function(score)
 		                   //ballScoll+="<div id='ball2'  class='ball' style='background-color:#cccccc; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   //ballScoll+="<div id='ball3'  class='ball' style='background-color:#"+indexIntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
 		                   
-						   ballScoll+="<span style='float:left;padding-left:5px; font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
-						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:left;'></div>";
+						   ballScoll+="<span style='float:right;padding-left:5px; font-weight:bold; color:green; '>"+parseFloat(score).toFixed(2)+"%</span> &nbsp;";
+						   ballScoll+="<div   class='ball' style='background-color:#"+indexEntry[3]+"; width:20px;height:20px;border-radius:100px; float:right;'></div>";
 					 }
 				
 			});
@@ -378,19 +378,20 @@ function detailKpiByEmp(emp_id) {
 											
 												//textJson+="<div class='' style='text-align:center;'>"+(index+1)+"</div>\",";
 												textJson+="<div class=''>ตัวชี้วัด "+EntryIndex[1]+"</div>";
-												textJson+="<div class='textR1' >เป้าหมาย "+EntryIndex[2]+" "+EntryIndex[8]+"</div>";
-												textJson+="<div class='textR1'>ผลประเมินตนเอง"+EntryIndex[6]+" "+EntryIndex[8]+"</div>";
-												textJson+="<div class='textR1'>ผลหัวหน้าประเมิน"+EntryIndex[3]+" "+EntryIndex[8]+"</div>";
+												textJson+="<div class='col-md-6' >เป้าหมาย</div><div class='col-md-6 textR' > "+EntryIndex[2]+" "+EntryIndex[8]+"</div>";
+												textJson+="<div class='col-md-6' >ผลประเมินตนเอง</div><div class='col-md-6 textR'>"+EntryIndex[6]+" "+EntryIndex[8]+"</div>";
+												textJson+="<div class='col-md-6' >ผลหัวหน้าประเมิน</div><div class='col-md-6 textR'>"+EntryIndex[3]+" "+EntryIndex[8]+"</div>";
 												var performance_emp=EntryIndex[7]*40/100;
 												var performance_chief=EntryIndex[4]*60/100;
 												
 												var performance_total=performance_emp+performance_chief;
 
 												performance_total =parseFloat(performance_total).toFixed(2);
-												textJson+="<div>ผลประเมินทั้งหมด</div>";
-												textJson+="<div class='textR1'>";
+												textJson+="<div class='col-md-6'>ผลประเมินทั้งหมด</div>";
+												textJson+="<div class='col-md-6 textR'>";
 												textJson+=""+getColorBall(performance_total)+"";
 												textJson+="</div>";
+												textJson+="<br style='clear:both'>";
 
 
 								textJson+="</div>";
@@ -706,18 +707,18 @@ function detailKpiByEmp(emp_id) {
 												}else{
 													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80px' height='80px' class='img-circle'  src='"+EntryIndex[0]+"'></div>";
 												}
-												textJson+="<div><a class='actionViewEmployee' id='actionViewEmployee-"+EntryIndex[5]+"'>"+EntryIndex[1]+"</a></div>";
-												textJson+="<div>แผนก/ฝ่าย "+EntryIndex[6]+"</div>";
-												textJson+="<div>ตำแหน่ง "+EntryIndex[2]+"</div>";
+												textJson+="<div class='fontInThumbnail'><a class='actionViewEmployee' id='actionViewEmployee-"+EntryIndex[5]+"'>"+EntryIndex[1]+"</a></div>";
+												textJson+="<div class='fontInThumbnail'>แผนก/ฝ่าย "+EntryIndex[6]+"</div>";
+												textJson+="<div class='fontInThumbnail'>ตำแหน่ง "+EntryIndex[2]+"</div>";
 													textJson+="<div class='alet alert-success'>";
-														textJson+="<div>ประเมินตนเอง "+EntryIndex[8]+"%</div>";
-														textJson+="<div>หัวหน้าประเมิน "+EntryIndex[9]+"%</div>";
-														textJson+="<div>ผลประเมิน "+EntryIndex[3]+"%</div>";
+														textJson+="<div class='col-md-6'>ประเมินตนเอง </div><div class='col-md-6 textR'>"+EntryIndex[8]+"%</div>";
+														textJson+="<div class='col-md-6'>หัวหน้าประเมิน </div><div class='col-md-6 textR'>"+EntryIndex[9]+"%</div>";
+														//textJson+="<div class='col-md-6'>ผลประเมิน </div><div class='col-md-6 textR'>"+EntryIndex[3]+"%</div>";
 
 														if(EntryIndex[7]==0){
-															textJson+="<div class='textL'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a></div>";
+															textJson+="<div class='col-md-6'>ผลประเมิน </div><div class='textR'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img style='text-align:right;float:right;' width='20' src='../images/PDF_downlaod.png'></a></div>";
 														}else{
-															textJson+="<div class='textL'>"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img width='20' src='../images/PDF_downlaod.png'></a><div style='font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div></div>";
+															textJson+="<div class='col-md-6'>ผลประเมิน </div><div class='textR'>"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img style='float:right' width='20' src='../images/PDF_downlaod.png'></a><div style='font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div></div>";
 														}
 														textJson+="<div style='text-align:right;' ><button id='viewKpiDetail-"+EntryIndex[5]+"' class='btn-block btn btn-primary viewKpiDetail'>รายละเอียด</button></div>";
 												textJson+="</div>";
@@ -813,7 +814,7 @@ function detailKpiByEmp(emp_id) {
 		var data_id = this.id;
 		var data_array= data_id.split("-");
 		var	emp_id=data_array[1];
-		alert(emp_id);
+		//alert(emp_id);
 		detailKpiByEmp(emp_id);
 		$("#kpiViewDetailModal").modal('show');
 		
