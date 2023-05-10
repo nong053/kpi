@@ -372,26 +372,40 @@ where (e.department_id='All' or 'All' ='All')
 		
 		}
 		$tableHTML.=" 	</div>";
-		$tableHTML.="	<div>";
-			$tableHTML.="	<div>รหัส <b>".$rs['emp_code']."<br>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b></div>";
+		$tableHTML.="<table class='table'>";
+		$tableHTML.="	<tr>";
+			$tableHTML.="<td><div class=''>รหัส</div></td> <td> <div class='textR'><b>".$rs['emp_code']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<td><div class=''>ชื่อ-นามสกุล</div> </td> <td><div class='textR'> <b>".$rs['emp_first_name']." ".$rs['emp_last_name']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<td><div class=''>สิทธิ์</div></td>";
 			if($rs['role_id']==1){
-				$tableHTML.="<div style='color:red;'>(สิทธิ์".$rs['role_name'].")</div>";
+				$tableHTML.="<td><div  class='textR' style='color:red;'>".$rs['role_name']."</div></td>";
 			}else if($rs['role_id']==2){
-				$tableHTML.="<div style='color:orange;'>(สิทธิ์".$rs['role_name'].")</div>";
+				$tableHTML.="<td><div class='textR' style='color:orange;'>".$rs['role_name']."</div></td>";
 			}else{
-				$tableHTML.="<div style='color:green;'>(สิทธิ์".$rs['role_name'].")</div>";
+				$tableHTML.="<td><div class='textR' style='color:green;'>".$rs['role_name']."</div></td>";
 			}
 		
 
-		$tableHTML.="</div>";
+		$tableHTML.="</tr>";
 
-		$tableHTML.="	<div>แผนก <b>".$rs['department_name']."</b></div>";
-		$tableHTML.="	<div>ตำแหน่ง <b>".$rs['position_name']."</b></div>";
-		$tableHTML.="	<div>สถานะ <b>".$rs['emp_status_work']."</b></div>";
 		
+			$tableHTML.="<tr>";
+			$tableHTML.="	<td><div class=''>แผนก</div></td> <td><div class='textR'> <b>".$rs['department_name']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+			$tableHTML.="	<td><div class=''>ตำแหน่ง</div></td><td><div class='textR'> <b>".$rs['position_name']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+			$tableHTML.="	<td><div class=''>สถานะ</div></td><td><div class='textR'> <b>".$rs['emp_status_work']."</b></div></td>";
+			$tableHTML.="</tr>";
+		$tableHTML.="</table>";
 
 		$tableHTML.="
-						<div style='text-align: right;'>
+						<div style='text-align: center;'>
 								<button type='button' id='idView-".$rs['emp_id']."' class='actionView btn btn-primary '><i class='glyphicon  glyphicon-eye-open'></i></button>
 								<button type='button' id='idEdit-".$rs['emp_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 								<button type='button' id='idDel-".$rs['emp_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>

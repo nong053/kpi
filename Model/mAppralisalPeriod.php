@@ -69,7 +69,7 @@ if($_POST['action']=="showData"){
 		//$tableHTML.="	<td style='text-align:right;'>".$rs['appraisal_period_target_percentage']."%</td>";
 		
 		$tableHTML.="
-						<div style='text-align: right;' class='row'>
+						<div style='text-align: right;' class='row1'>
 								<button type='button' id='idEdit-".$rs['appraisal_period_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 								<button type='button' id='idDel-".$rs['appraisal_period_id']."' class='  actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 						</div>
