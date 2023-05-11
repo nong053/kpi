@@ -374,7 +374,8 @@ if($_POST['action']=="showEmpData"){
 			 }
 		}else{
 			$tableHTML.="<div style='text-align:center;'>
-			<div style='text-align:left; color:red;'>ยังไม่ถูกมอบหมายตัวชี้วัด </div>
+			<div style=' color:red; padding:6px;'>ยังไม่ถูกมอบหมายตัวชี้วัด </div>
+			
 			</div>";
 		}
 		$tableHTML.="</div>";

@@ -701,7 +701,7 @@ function detailKpiByEmp(emp_id) {
 
 										
 										textJson+="<div class='col-md-3 '>";
-											textJson+="<div class='thumbnail'>";
+											textJson+="<div class='thumbnail alert alert-success'>";
 												if(EntryIndex[0]==""){
 													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center; opacity:0.1'><img width='80px' height='80px' class='img-circle'  src='../View/uploads/avatar.jpg'></div>";
 												}else{
@@ -709,36 +709,35 @@ function detailKpiByEmp(emp_id) {
 												}
 												textJson+="<table class='table'>";
 												textJson+="<tr>";
-
-													textJson+="<td>ชื่อ-นามสกุล</td><td class='textR'><div class='fontInThumbnail'><a class='actionViewEmployee' id='actionViewEmployee-"+EntryIndex[5]+"'>"+EntryIndex[1]+"</a></div></td>";
+													textJson+="<td>ชื่อ-นามสกุล</td><td ><div class='fontInThumbnail textR'><a class='actionViewEmployee' id='actionViewEmployee-"+EntryIndex[5]+"'><b>"+EntryIndex[1]+"</b></a></div></td>";
 												textJson+="</tr>";
 												textJson+="<tr>";
-													textJson+="<td>แผนก/ฝ่าย</td><td class='textR'><div class='fontInThumbnail'> "+EntryIndex[6]+"</div></td>";
+													textJson+="<td>แผนก/ฝ่าย</td><td><div class='fontInThumbnail textR'> <b>"+EntryIndex[6]+"</b></div></td>";
 												textJson+="</tr>";
 												textJson+="<tr>";
-													textJson+="<td>ตำแหน่ง</td><td class='textR'><div class='fontInThumbnail'> "+EntryIndex[2]+"</div></td>";
+													textJson+="<td>ตำแหน่ง</td><td><div class='fontInThumbnail textR'> <b>"+EntryIndex[2]+"</b></div></td>";
 												textJson+="</tr>";
 												textJson+="<tr>";
 
 													//textJson+="<div class='alet alert-success'>";
-															textJson+="<td>ประเมินตนเอง</td><td class='textR'><div class='col-md-6'> </div><div class='col-md-6 textR'>"+EntryIndex[8]+"%</div></td>";
+															textJson+="<td>ประเมินตนเอง</td><td ><div class='textR'><b>"+EntryIndex[8]+"%</b></div></td>";
 														textJson+="</tr>";
 														textJson+="<tr>";
-															textJson+="<td>หัวหน้าประเมิน</td><td class='textR'><div class='col-md-6'> </div><div class='col-md-6 textR'>"+EntryIndex[9]+"%</div></td>";
+															textJson+="<td>หัวหน้าประเมิน</td><td > <div class='textR'><b>"+EntryIndex[9]+"%</b></div></td>";
 														textJson+="</tr>";
 														textJson+="<tr>";
 
 														if(EntryIndex[7]==0){
 
-															textJson+="<td>ผลประเมิน</td><td class='textR'><div class='col-md-6'> </div><div class='textR'>"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img style='text-align:right;float:right;' width='20' src='../images/PDF_downlaod.png'></a></div></td>";
+															textJson+="<td>ผลประเมิน</td><td >"+getColorBall(EntryIndex[3])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img style='text-align:right;float:right;' width='20' src='../images/PDF_downlaod.png'></a></td>";
 														}else{
-															textJson+="<td>ผลประเมิน</td><td class='textR'><div class='col-md-6'> </div><div class='textR'>"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img style='float:right' width='20' src='../images/PDF_downlaod.png'></a><div style='font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div></div></td>";
+															textJson+="<td>ผลประเมิน</td><td >"+getColorBall(EntryIndex[3],EntryIndex[5])+"<a href='#' class='downloadPDFbyPerson' id='downloadPDFbyPerson-"+EntryIndex[10]+"-"+EntryIndex[11]+"-"+EntryIndex[12]+"-"+EntryIndex[13]+"-"+EntryIndex[5]+"'><img style='float:right' width='20' src='../images/PDF_downlaod.png'></a><div style='text-align:right; font-size:12px;'>ปรับ("+EntryIndex[7]+")"+EntryIndex[14]+"</div></td>";
 														}
 														textJson+="</tr>";
 														
 														//textJson+="</div>";//alet
 													textJson+="</table>";
-													textJson+="<div style='text-align:center;' ><button id='viewKpiDetail-"+EntryIndex[5]+"' class='btn-block btn btn-primary viewKpiDetail'>รายละเอียด</button></div>";
+													textJson+="<div style='text-align:center;'><button id='viewKpiDetail-"+EntryIndex[5]+"' class='btn-block1 btn btn-primary viewKpiDetail'>รายละเอียด</button></div>";
 											textJson+="</div>";//thumbnail
 										textJson+="</div>";//col-md-3
 												
