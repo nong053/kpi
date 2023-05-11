@@ -60,22 +60,28 @@ if($_POST['action']=="showData"){
 	while($rs=$result->fetch_assoc()){	
 	
 	
-	$tableHTML.="<div class='col-md-4'>";
+	$tableHTML.="<div class='col-md-3'>";
 	$tableHTML.="	<div class='alert alert-success'>";
-		$tableHTML.="	<div>ปีประเมิน <b>".$rs['appraisal_period_year']."</b></div>";
-		$tableHTML.="	<div>ช่วงประเมิน <b>".$rs['appraisal_period_desc']."</b></div>";
+	$tableHTML.="<table class='table'>";
+	$tableHTML.="<tr>";
+		$tableHTML.="<td>ปีประเมิน</td><td class='textR'>	<div> <b>".$rs['appraisal_period_year']."</b></div></td>";
+		$tableHTML.="</tr>";
+		$tableHTML.="<tr>";
+		$tableHTML.="<td>ช่วงประเมิน</td><td class='textR'>	<div> <b>".$rs['appraisal_period_desc']."</b></div></td>";
 		//$tableHTML.="	<td>".$rs['appraisal_period_start']."</td>";
 		//$tableHTML.="	<td>".$rs['appraisal_period_end']."</td>";
 		//$tableHTML.="	<td style='text-align:right;'>".$rs['appraisal_period_target_percentage']."%</td>";
-		
+		$tableHTML.="</tr>";
+		$tableHTML.="</table>";
 		$tableHTML.="
-						<div style='text-align: right;' class='row1'>
+						<div style='text-align: center;' class='row1'>
 								<button type='button' id='idEdit-".$rs['appraisal_period_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 								<button type='button' id='idDel-".$rs['appraisal_period_id']."' class='  actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 						</div>
 		";
 	$tableHTML.="</div>";
 	$tableHTML.="</div>";
+
 
 	
 	$i++;

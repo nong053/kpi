@@ -40,14 +40,19 @@ if($_POST['action']=="showData"){
 		
 	
 	
-	$tableHTML.="<div class='col-md-4'>";
+	$tableHTML.="<div class='col-md-3'>";
 		$tableHTML.="<div class='alert alert-success'>";
-		$tableHTML.="	<div style='text-align: center;'>".$i."</div>";
-		$tableHTML.="	<div>มุมมองธุรกิจ <b>".$rs['perspective_name']."</b></div>";
-		$tableHTML.="	<div style='text-align: left;'>น้ำหนัก <b>".$rs['perspective_weight']."%</b></div>";
-				
+		$tableHTML.="<table class='table'>";
+		//$tableHTML.="	<div style='text-align: center;'>".$i."</div>";
+		$tableHTML.="<tr>";
+		$tableHTML.="<td>มุมมองธุรกิจ</td><td class='textR'><div> <b>".$rs['perspective_name']."</b></div></td>";
+		$tableHTML.="</tr>";
+		$tableHTML.="<tr>";
+		$tableHTML.="<td>น้ำหนัก</td><td class='textR'><div> <b>".$rs['perspective_weight']."%</b></div></td>";
+		$tableHTML.="</tr>";
+		$tableHTML.="</table>";
 		$tableHTML.="
-						<div style='text-align: right;'>
+						<div style='text-align: center;'>
 							<button type='button' id='idEdit-".$rs['perspective_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 							<button type='button' id='idDel-".$rs['perspective_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 						</div>

@@ -62,18 +62,22 @@ LEFT JOIN role r on pe.role_id=r.role_id
 	while($rs=$result->fetch_assoc()){
 		
 	
-	$tableHTML.="<div class='col-md-4'>";
+	$tableHTML.="<div class='col-md-3'>";
 		$tableHTML.="<div class='alert alert-success'>";
-		$tableHTML.="	<div style='text-align:left;'>".$i."</div>";
-		$tableHTML.="	<div>ตำแหน่ง <b>".$rs['position_name']."</b></div>";
-		//$tableHTML.="	<td>".$rs['role_name']."</td>";
-
+		$tableHTML.="<table class='table'>";
+			$tableHTML.="<tr>";
+			//$tableHTML.="	<div style='text-align:left;'>".$i."</div>";
+			$tableHTML.="<td>ตำแหน่ง</td><td class='textR'><div> <b>".$rs['position_name']."</b></div></td>";
+			//$tableHTML.="	<td>".$rs['role_name']."</td>";
+			$tableHTML.="</tr>";
+		$tableHTML.="</table>";
 		$tableHTML.="
-						<div style='text-align: right;'>
+						<div style='text-align: center;'>
 								<button type='button' id='idEdit-".$rs['position_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 								<button type='button' id='idDel-".$rs['position_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 						</div>
 					";
+
 		$tableHTML.="</div>";
 	$tableHTML.="</div>";
 

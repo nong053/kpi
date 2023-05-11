@@ -55,16 +55,25 @@ if($_POST['action']=="showData"){
 		
 	
 
-	$tableHTML.="<div class='col-md-4'>";
+	$tableHTML.="<div class='col-md-3'>";
 		$tableHTML.="<div class='alert alert-success'>";
-		$tableHTML.="	<div style='text-align:right;'>".$i."</div>";
-		//$tableHTML.="	<td>".$rs['department_code']."</td>";
-		$tableHTML.="	<div>แผนก <b>".$rs['department_name']."</b></div>";
-		$tableHTML.="	<div>รายละเอียด <b>".$rs['department_detail']."</b></div>";
+		$tableHTML.="<table class='table'>";
+			$tableHTML.="<tr>";
+
+			//$tableHTML.="	<div>".$i."</div>";
+			//$tableHTML.="	<td>".$rs['department_code']."</td>";
+			$tableHTML.="<td>แผนก</td><td class='textR'><div> <b>".$rs['department_name']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+
+			$tableHTML.="<td>รายละเอียด</td><td class='textR'><div> <b>".$rs['department_detail']."</b></div></td>";
+			$tableHTML.="</tr>";
+		$tableHTML.="</table>";
+
 
 		$tableHTML.="	
 
-						<div style='text-align: right;'>
+						<div style='text-align: center;'>
 							<button type='button' id='idEdit-".$rs['department_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 							<button type='button' id='idDel-".$rs['department_id']."' class=' actionDel btn btn-danger '><i class='glyphicon glyphicon-trash'></i></button>
 						</div>

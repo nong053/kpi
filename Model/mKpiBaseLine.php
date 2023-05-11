@@ -100,31 +100,52 @@ if($_POST['action']=="showData"){
 
 	$tableHTML.="<div class='col-md-4'>";
 		$tableHTML.="<div class='alert alert-success'>";
+		$tableHTML.="<table class='table'>";
+		
 		//$tableHTML.="	<div  style='text-align:center;'>".$i."</div>";
 		if($paramkpiTypeScore==1){
-		$tableHTML.="	<div  style='text-align:left;'>เริ่ม <b>".$rs['baseline_begin']." ".$rs['kpi_unit']."</b></div>";
-		$tableHTML.="	<div  style='text-align:left;'>ถึง <b>".$rs['baseline_end']." ".$rs['kpi_unit']."</b></div>";
-		}
-		$tableHTML.="	<div  style='text-align:left;'>แปลงเป็นคะแนนเท่ากับ <b>".$rs['baseline_score']." คะแนน</b></div>";
 		
+			$tableHTML.="<tr>";
+		$tableHTML.="<td>เริ่ม</td><td class='textR'><div  style='text-align:left;'> <b>".$rs['baseline_begin']." ".$rs['kpi_unit']."</b></div></td>";
+
+		$tableHTML.="</tr>";
+		$tableHTML.="<tr>";
+
+		$tableHTML.="<td>ถึง</td><td class='textR'><div  style='text-align:left;'> <b>".$rs['baseline_end']." ".$rs['kpi_unit']."</b></div></td>";
+
+		$tableHTML.="</tr>";
+		$tableHTML.="<tr>";
+			
+		}
+		$tableHTML.="<tr>";
+		$tableHTML.="<td>แปลงเป็นคะแนนเท่ากับ</td><td class='textR'><div> <b>".$rs['baseline_score']." คะแนน</b></div></td>";
+		$tableHTML.="</tr>";
 		//$paramkpiTypeScore==1 กำหนดเอง
 		//$paramkpiTypeScore==2 1-5
 		//$paramkpiTypeScore==3 ผ่าน/ไม่ผ่าน
 		if($paramkpiTypeScore==1 || $paramkpiTypeScore==2){
-			
-			$tableHTML.="	<div>เกณฑ์การประเมิน <b>".$rs['suggestion']."</b></div>";
-			$tableHTML.="   <div style=\"float:left;margin-right:5px;\">สีพื้นหลัง</div> <div style=\"width:20px; float:left; height:20px; background:".$colorThreshold[$i]."\"></div>";
-			$tableHTML.="<br style='clear:both'>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<td>เกณฑ์การประเมิน</td><td class='textR'><div> <b>".$rs['suggestion']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<td>สีพื้นหลัง</td><td class='textR'> <div style=\"width:20px; float:right; height:20px; background:".$colorThreshold[$i]."\"></div></td>";
+			$tableHTML.="</tr>";
+			//$tableHTML.="<br style='clear:both'>";
 		}else if($paramkpiTypeScore==3){//ผ่าน ไม่ผ่าน
-			$tableHTML.="	<div>เกณฑ์การประเมิน  <b>".$rs['suggestion']."</b></div>";
-			$tableHTML.="	<div style=\"float:left; margin-right:5px;\">สีพื้นหลัง</div> <div style=\"width:20px; float:left; height:20px; background:".$colorThresholdTrueFalse[$i]."\"></div>";
-			$tableHTML.="<br style='clear:both'>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<td>เกณฑ์การประเมิน</td><td class='textR'><div>  <b>".$rs['suggestion']."</b></div></td>";
+			$tableHTML.="</tr>";
+			$tableHTML.="<tr>";
+			$tableHTML.="<td>สีพื้นหลัง</td><td class='textR'> <div style=\"width:20px; float:right; height:20px; background:".$colorThresholdTrueFalse[$i]."\"></div></td>";
+			$tableHTML.="</tr>";
+			//$tableHTML.="<br style='clear:both'>";
 		}
-
+		$tableHTML.="</tr>";
+		$tableHTML.="</table>";
 		if($paramkpiTypeScore==1 ){
 		$tableHTML.="
 		<div>
-			<div style='text-align: right;'>
+			<div style='text-align: center;'>
 					<button type='button' id='idEdit-".$rs['baseline_id']."' class='actionEdit btn btn-primary '><i class='glyphicon glyphicon-pencil'></i></button>
 			</div>				
 		</div>";
