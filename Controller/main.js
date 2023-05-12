@@ -110,7 +110,7 @@ var withdrawFn=function(){
 	$(".subMenu").addClass("submenuHover").css({"padding-left":"0px"});
 	$("#slideLeft").show();
 	$("#subjectPage").show();
- 
+ 	
 
 };
 
@@ -118,9 +118,11 @@ var withdrawFn=function(){
 var checkWithDrawEnlarge = function(){
 	if($("#withdrawEnlarge").hasClass("active")){
 		withdrawFn();
+		$("body").show();
 	
  	}else{
  		EnlargeFn();
+		 $("body").show();
 		
  	}
 }

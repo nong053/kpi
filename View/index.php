@@ -210,7 +210,7 @@ if($_SESSION['login_status']!="1"){
   
   </head>
 
-  <body ng-app="myApp">
+  <body ng-app="myApp" style="display:none;">
 
     <div class="navbar navbar-blue navbar-fixed-top shadow-sm" role="navigation">
       <div class="container">

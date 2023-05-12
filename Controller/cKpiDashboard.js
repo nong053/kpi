@@ -377,21 +377,33 @@ function detailKpiByEmp(emp_id) {
 											
 											
 												//textJson+="<div class='' style='text-align:center;'>"+(index+1)+"</div>\",";
-												textJson+="<div class=''>ตัวชี้วัด "+EntryIndex[1]+"</div>";
-												textJson+="<div class='col-md-6' >เป้าหมาย</div><div class='col-md-6 textR' > "+EntryIndex[2]+" "+EntryIndex[8]+"</div>";
-												textJson+="<div class='col-md-6' >ผลประเมินตนเอง</div><div class='col-md-6 textR'>"+EntryIndex[6]+" "+EntryIndex[8]+"</div>";
-												textJson+="<div class='col-md-6' >ผลหัวหน้าประเมิน</div><div class='col-md-6 textR'>"+EntryIndex[3]+" "+EntryIndex[8]+"</div>";
+												textJson+="<table class='table'>";
+												textJson+="<tr>";
+												textJson+="<td><div class=''>ตัวชี้วัด</div></td><td><div class='textR'> "+EntryIndex[1]+"</div></td>";
+												textJson+="</tr>";
+												textJson+="<tr>";
+												textJson+="<td><div > เป้าหมาย</div></td><td><div class='textR' > "+EntryIndex[2]+" "+EntryIndex[8]+"</div></td>";
+												textJson+="</tr>";
+												textJson+="<tr>";
+												textJson+="<td><div class='' >ผลประเมินตนเอง</div></td><td><div class=' textR'>"+EntryIndex[6]+" "+EntryIndex[8]+"</div></td>";
+												textJson+="</tr>";
+												textJson+="<tr>";
+												textJson+="<td><div class='' >ผลหัวหน้าประเมิน</div></td><td><div class=' textR'>"+EntryIndex[3]+" "+EntryIndex[8]+"</div></td>";
+												
+												
 												var performance_emp=EntryIndex[7]*40/100;
 												var performance_chief=EntryIndex[4]*60/100;
 												
 												var performance_total=performance_emp+performance_chief;
-
+												
 												performance_total =parseFloat(performance_total).toFixed(2);
-												textJson+="<div class='col-md-6'>ผลประเมินทั้งหมด</div>";
-												textJson+="<div class='col-md-6 textR'>";
+												textJson+="<tr>";
+												textJson+="<td><div class=''>ผลประเมินทั้งหมด</div></td>";
+												textJson+="<td><div class=' textR'>";
 												textJson+=""+getColorBall(performance_total)+"";
-												textJson+="</div>";
-												textJson+="<br style='clear:both'>";
+												textJson+="</div></td>";
+												textJson+="</tr>";
+												textJson+="<table>";
 
 
 								textJson+="</div>";
