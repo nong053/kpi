@@ -113,17 +113,17 @@ $kpiUnit=$_GET['kpiUnit'];
 			<table style="width:100%;">
 				
 				<tr>
-					<td style="width:200px;" class='text-right'><b><?=$_SESSION['baseline_l_form_begin']?>  <font color="red">*</font></b></td>
-					<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control " style="width:100px;" ></td>
+					<td  class='text-right'><b><?=$_SESSION['baseline_l_form_begin']?>  <font color="red">*</font></b></td>
+					<td><input type="text" id="baselineBegin" name="baselineBegin"  class="form-control "  ></td>
 				</tr>
 				<tr>
 					<td class='text-right'><b><?=$_SESSION['baseline_l_form_end']?>  <font color="red">*</font></b></td>
-					<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control " style="width:100px;"></td>
+					<td><input type="text" id="baselineEnd" name="baselineEnd"  class="form-control " ></td>
 				</tr>
 				
 				<tr style='display:none;'>
 					<td class='text-right'><b><?=$_SESSION['baseline_l_form_score']?> <font color="red">*</font></b></td>
-					<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control " style="width:100px;"></td>
+					<td><input type="text" id="baselinetargetScore" name="baselinetargetScore"  class="form-control " ></td>
 				</tr>
 				<tr style='display:none;'>
 					<td class='text-right' valign="top"><b><?=$_SESSION['baseline_l_form_suggestion']?></b></td>
@@ -165,7 +165,7 @@ $kpiUnit=$_GET['kpiUnit'];
      <h2> <strong><?=$_SESSION['baseline_l_des_title']?>  </strong></h2>
    		<?=$_SESSION['baseline_l_des_detail']?>
     </div>
-    <h4><b><?=$_SESSION['baseline_l_des_btn_kpi']?></b> : <?=$kpiName?> หน่วย (<?=$kpiUnit?>)</h4>
+    <h4><b><?=$_SESSION['baseline_l_des_btn_kpi']?></b> : <?=$kpiName?> </h4>
     
     <div style="margin-top: 5px;" class="panel panel-default panel-bottom">
 			  <div class="panel-heading">

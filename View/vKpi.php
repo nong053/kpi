@@ -132,7 +132,7 @@ if($_SESSION['language']=="th"){
 						<td><input type="text" id="kpiCode" name="kpiCode"  style='width:100px;'  class="form-control "></td>
 					</tr>
 -->
-					<tr style="display: none;" style="width:30%;" >
+					<tr style="display: none;" >
 						<td class="text-right"><b><?=$_SESSION['kpi_l_form_department']?> <font color="red">*</font></b></td>
 						<td id='formdepDropDrowListArea'></td>
 					</tr>
