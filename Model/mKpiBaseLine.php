@@ -106,12 +106,12 @@ if($_POST['action']=="showData"){
 		if($paramkpiTypeScore==1){
 		
 			$tableHTML.="<tr>";
-		$tableHTML.="<td>เริ่ม</td><td class='textR'><div  style='text-align:left;'> <b>".$rs['baseline_begin']." ".$rs['kpi_unit']."</b></div></td>";
+		$tableHTML.="<td>เริ่ม</td><td class='textR'><div  style='text-align:right;'> <b>".$rs['baseline_begin']." ".$rs['kpi_unit']."</b></div></td>";
 
 		$tableHTML.="</tr>";
 		$tableHTML.="<tr>";
 
-		$tableHTML.="<td>ถึง</td><td class='textR'><div  style='text-align:left;'> <b>".$rs['baseline_end']." ".$rs['kpi_unit']."</b></div></td>";
+		$tableHTML.="<td>ถึง</td><td class='textR'><div  style='text-align:right;'> <b>".$rs['baseline_end']." ".$rs['kpi_unit']."</b></div></td>";
 
 		$tableHTML.="</tr>";
 		$tableHTML.="<tr>";

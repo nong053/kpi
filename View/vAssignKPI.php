@@ -272,7 +272,7 @@ if($_SESSION['language']=="th"){
 
 
  <!-- Large modal start-->
-<div class="modal fade " id='assignResultKPIModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade " id='assignResultKPIModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style=" overflow-x: hidden; overflow-y: auto;">
   <div class="modal-dialog modal-lg" role="document">
    
    <div class="modal-content"> 

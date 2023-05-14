@@ -298,11 +298,11 @@ if($_POST['action']=="showEmpData"){
 		
 		$tableHTML.="<table class='table'>";
 		$tableHTML.="<tr>";
-		$tableHTML.="<td><div>ประเมินตนเอง1 </div></td><td><div style=' text-align:right; font-weight:bold; color:orange;'>".number_format((float)$rsKpiResult['emp_score_sum_percentage'], 2, '.', '')."%</div></td>";
+		$tableHTML.="<td><div>ประเมินตนเอง </div></td><td><div style=' text-align:right; font-weight:bold; color:orange;'>".number_format((float)$rsKpiResult['emp_score_sum_percentage'], 2, '.', '')."%</div></td>";
 		$tableHTML.="</tr><tr>";
-		$tableHTML.="<td><div>หัวหน้าประเมิน2</div></td><td><div style=' text-align:right; font-weight:bold; color:orange;'>".number_format((float)$rsKpiResult['score_sum_percentage'], 2, '.', '')."%</div></td>";
+		$tableHTML.="<td><div>หัวหน้าประเมิน</div></td><td><div style=' text-align:right; font-weight:bold; color:orange;'>".number_format((float)$rsKpiResult['score_sum_percentage'], 2, '.', '')."%</div></td>";
 		$tableHTML.="</tr><tr>";
-		$tableHTML.="<td><div>ปรับคะแนน3 </div></td><td><div style=' text-align:right; font-weight:bold; color:orange;'>".number_format((float)$rsKpiResult['adjust_percentage'], 2, '.', '')."%</div></td>";
+		$tableHTML.="<td><div>ปรับคะแนน </div></td><td><div style=' text-align:right; font-weight:bold; color:orange;'>".number_format((float)$rsKpiResult['adjust_percentage'], 2, '.', '')."%</div></td>";
 		$tableHTML.="</tr><tr>";
 
 		$total_score_percentage=(($rsKpiResult['score_sum_percentage']*60/100) +($rsKpiResult['emp_score_sum_percentage']*40/100)+$rsKpiResult['adjust_percentage']);
@@ -630,13 +630,16 @@ $division_id=$_POST['division_id'];
 
 
 	
-	$tableHTML.="<div class='col-md-4'>";
+	$tableHTML.="<div class='col-md-12'>";
 	$tableHTML.="<div class='alert alert-success'>";
-	//$tableHTML.="	<div><div style='text-align:center;'>".$i."</div> <span style='display:none;' class='".$complete_kpi_score_flag." check_complete_kpi_score' id='check_complete_kpi_score-".$rs['kpi_id']."'></span></div>";
-	$tableHTML.="	<div>ตัวชี้วัด ".$rs['kpi_name']."</div>";
-	$tableHTML.="	<div>น้ำหนัก <div style='text-align:left;'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."</div></div>";
-	// $tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
-	// $tableHTML.="	<td><div style='text-align:right;'>".number_format((float)$rs['target_data'], 2, '.', '')."</div></td>";
+	$tableHTML.="<table class='table'>";
+	$tableHTML.="</tr>";
+	$tableHTML.="<td>ตัวชี้วัด</td><td class='textR'> ".$rs['kpi_name']."</td>";
+	$tableHTML.="</tr>";
+	$tableHTML.="<tr>";
+	$tableHTML.="<td>น้ำหนัก</td><td class='textR'>".number_format((float)$rs['kpi_weight'], 2, '.', '')."%</td>";
+	$tableHTML.="</tr>";
+	
 	$unit="";
 	if($rs['kpi_type_score']=='3' || $rs['kpi_type_score']=='2'){
 		$unit="คะแนน";
@@ -647,9 +650,14 @@ $division_id=$_POST['division_id'];
 	if($rs['kpi_actual_manual']!=0 && $rs['kpi_actual_manual']!=''){
 		$kpi_actual_manual=$rs['kpi_actual_manual'];
 	}
-	$tableHTML.="	<div>เป้าหมาย <div style='text-align:left;'>".$rs['target_data']."<br>".$unit."</div></div>";
-	$tableHTML.="	<div>ผลประเมิน <div style='text-align:left;'>".$kpi_actual_manual."<br>".$unit."</div></div>";
-	//$tableHTML.="	<td>".number_format((float)$rs['target_score'], 2, '.', '')."</td>";
+	$tableHTML.="<tr>";
+	$tableHTML.="<td>เป้าหมาย</td><td class='textR'>".$rs['target_data']." ".$unit."</td>";
+	$tableHTML.="</tr>";
+	$tableHTML.="<tr>";
+	$tableHTML.="<td>ผลประเมิน</td><td class='textR'>".$kpi_actual_manual." ".$unit."</td>";
+	$tableHTML.="</tr>";
+
+	$tableHTML.="</table>";
 	$tableHTML.="	
 			
 	<div style='text-align:center;'>

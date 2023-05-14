@@ -25,7 +25,7 @@ $total_score_percentage= $_POST['total_score_percentage'];
 
 if($_POST['action']=='list_kpi'){
 	$strSQL="
-		select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,
+		select kpi.kpi_id as 'kpi_code' ,kpi.kpi_name as 'kpi_name' ,kpi.kpi_unit,
 	ak.target_data as 'kpi_target' ,ak.kpi_actual_manual as 'kpi_actual' ,
 	sum(ak.performance)/count(ak.appraisal_period_id)  as 'kpi_performent',
 	ifnull(ak.emp_kpi_actual_manual,0) as 'emp_kpi_actual' ,
@@ -47,7 +47,7 @@ if($_POST['action']=='list_kpi'){
 	GROUP BY kpi.kpi_id
 
 	";
-	$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,kpi_target_percentage,emp_kpi_actual,emp_performance";
+	$columnName="kpi_code,kpi_name,kpi_target,kpi_actual,kpi_performent,kpi_target_percentage,emp_kpi_actual,emp_performance,kpi_unit";
 	genarateJson($strSQL,$columnName,$conn);
 }
 if($_POST['action']=="showEmpData"){

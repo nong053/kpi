@@ -1103,7 +1103,7 @@ var savePerformanceFn = function(){
 			   alert("ข้อมูลซ้ำ");
 		   }
 		   if(data[0]=="editSuccess"){
-			   alert("บันทึกข้อมูลเรียบร้อย");	
+			   //alert("บันทึกข้อมูลเรียบร้อย");	
 			   //showDataAssignKpi();
 			   showDataAssignKpi($("#assign_kpi_year").val(),$("#assign_kpi_appraisal_period").val(),$("#assign_kpi_department").val(),$("#assign_kpi_position").val(),$("#assign_kpi_emp").val());
 			   $("#addScoreModal").modal('hide');  

@@ -70,31 +70,40 @@
 											// 	html+=(index+1);
 											// html+="</div>";
 
-											html+="<div>";
-												html+=indexEntry[1];
-											html+="</div>";
+											html+="<table class='table'>";
+											 html+="<tr>";
 
-											html+="<div style='text-align:right;'>";
-												html+=indexEntry[2];
-											html+="</div>";
-
-											html+="<div style='text-align:right;'>";
-												html+=indexEntry[6];
-											html+="</div>";
-
-											html+="<div style='text-align:right;'>";
-												html+=indexEntry[3];
-											html+="</div>";
-
-											html+="<div style='text-align:right;'>";
-
-												var performance_emp=indexEntry[7]*40/100;
-												var performance_chief=indexEntry[4]*60/100;
-												var performance_total=performance_emp+performance_chief;
-												performance_total =parseFloat(performance_total).toFixed(2);
 												
-												html+=performance_total+"%";
-											html+="</div>";
+													html+="<td>ตัวชี้วัด</td><td class='textR'>"+indexEntry[1]+"</td>";
+												
+											html+="</tr>";
+											html+="<tr>";
+												
+													html+="<td>เป้าหมาย</td><td class='textR'>"+indexEntry[2]+" "+indexEntry[8]+"</td>";
+												
+											html+="</tr>";
+											html+="<tr>";
+											
+													html+="<td>ผลประเมินตนเอง</td><td class='textR'>"+indexEntry[6]+" "+indexEntry[8]+"</td>";
+												
+											html+="</tr>";
+											html+="<tr>";
+												
+													html+="<td>ผลหัวหน้าประเมิน</td><td class='textR'>"+indexEntry[3]+" "+indexEntry[8]+"</td>";
+											
+											html+="</tr>";
+											html+="<tr>";
+												
+
+													var performance_emp=indexEntry[7]*40/100;
+													var performance_chief=indexEntry[4]*60/100;
+													var performance_total=performance_emp+performance_chief;
+													performance_total =parseFloat(performance_total).toFixed(2);
+													
+													html+="<td>สรุปผลประเมิน</td><td class='textR'>"+performance_total+"%"+"</td>";
+												
+												html+="</tr>";
+											html+="</table>";
 
 										html+="</div>";
 									html+="</div>";

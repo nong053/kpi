@@ -65,6 +65,7 @@ if($_POST['action']=="add"){
 	
 	if($kpiTypeScore==2 || $kpiTypeScore==3){
 		$kpiDataTarget=5;
+		$kpiUnit='คะแนน';
 	}
 	$strSQL="INSERT INTO kpi(kpi_name,kpi_unit,kpi_better_flag,kpi_detail,admin_id,kpi_code,kpi_type_score,kpi_data_target,perspective_id)
 	VALUES('$kpiName','$kpiUnit','$kpiBetterFlag','$kpiDetail','$admin_id','$kpiCode','$kpiTypeScore','$kpiDataTarget','$perspectiveId')";
@@ -396,7 +397,9 @@ if($_POST['action']=="edit"){
 		//echo "[{\"abc\":$rs[kpi_id],\"def\":\"22\"}]";
 		
 		 echo "[{\"kpi_id\":\"$rs[kpi_id]\",\"kpi_code\":\"$rs[kpi_code]\",\"kpi_name\":\"$rs[kpi_name]\",\"kpi_unit\":\"$rs[kpi_unit]\",\"kpi_better_flag\":\"$rs[kpi_better_flag]\",
-		 		\"kpi_detail\":\"$rs[kpi_detail]\",\"department_id\":\"$rs[department_id]\",\"division_id\":\"$rs[division_id]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",\"kpi_target\":\"$rs[kpi_target]\",\"kpi_type_score\":\"$rs[kpi_type_score]\",\"kpi_data_target\":\"$rs[kpi_data_target]\"}]";
+		 		\"kpi_detail\":\"$rs[kpi_detail]\",\"department_id\":\"$rs[department_id]\",\"division_id\":\"$rs[division_id]\",\"kpi_actual_query\":\"$rs[kpi_actual_query]\",
+				\"kpi_actual_manual\":\"$rs[kpi_actual_manual]\",\"kpi_type_actual\":\"$rs[kpi_type_actual]\",\"kpi_target\":\"$rs[kpi_target]\",
+				\"kpi_type_score\":\"$rs[kpi_type_score]\",\"kpi_data_target\":\"$rs[kpi_data_target]\",\"perspective_id\":\"$rs[perspective_id]\"}]";
 		 
 	}else{
 		echo'["error"]';
@@ -406,7 +409,10 @@ if($_POST['action']=="edit"){
 }
 if($_POST['action']=="editAction"){
 	
-
+	if($kpiTypeScore==2 || $kpiTypeScore==3){
+		
+		$kpiUnit='คะแนน';
+	}
 
 	$strSQL="UPDATE kpi SET kpi_name='$kpiName',kpi_unit='$kpiUnit',kpi_better_flag='$kpiBetterFlag',kpi_detail='$kpiDetail',
 	kpi_code='$kpiCode',department_id='$departmentId',perspective_id='$perspectiveId'

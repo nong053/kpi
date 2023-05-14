@@ -97,6 +97,8 @@ $(document).ready(function(){
 		$("#kpiTypeScore2").prop("checked",true);
 		$("#kpi_better_flag_area").hide();
 		$("#kpiDataTargetArea").hide();
+		$("#kpiUnitArea").hide();
+		
 		//$("#kpiDataTargetArea").show();
 		
 		$("#kpiTarget").val("");
@@ -169,6 +171,7 @@ $(document).ready(function(){
 								$("#kpi_type_score_area").hide();
 								$("#kpiDataTargetArea").hide();
 
+								$("#formPerspective").val(data[0]["perspective_id"]);
 
 								$("input#kpiName").val(data[0]["kpi_name"]);
 								$("input#kpiUnit").val(data[0]["kpi_unit"]);
@@ -590,19 +593,25 @@ $(document).ready(function(){
 		var checkUnigueKPICode="";
 		var checkKPICode="";
 		var checkKPIName="";
+		var checkKPIUnit="";
+		var checkkpiDataTargetNumber="";
 
 		if($("#embed_language").val()=="th"){
 
 			 checkUnigueKPICode="รหัสตัวชี้วัดซ้ำ";
 			 checkKPICode="กรอกรหัสตัวชี้วัดด้วยครับ ";
 			 checkKPIName="กรอกชื่อตัวชี้วัดด้วยครับ ";
-			 checkkpiDataTarget="กรอกเป้าข้อมูลดิบด้วยครับ ";
+			 checkKPIUnit="กรอกหน่วยตัวชี้วัดด้วยครับ";
+			 checkkpiDataTarget="กรอกเป้าหมายด้วยครับ ";
+			 checkkpiDataTargetNumber="เป้าหมายต้องเป็นตัวเลข ";
 		}else{
 
-			 checkUnigueKPICode="Duplicate KPI Code.";
-			 checkKPICode="Please fill the Kpi Code.";
-			 checkKPIName="Please fill the Kpi Name.";
-			 checkkpiDataTarget="Please fill kpi data target";
+			 checkUnigueKPICode="Duplicate KPI code.";
+			 checkKPICode="Please fill the KPI code.";
+			 checkKPIName="Please fill the KPI name.";
+			 checkKPIUnit="Please fill the KPI unit.";
+			 checkkpiDataTarget="Please fill KPI target.";
+			 checkkpiDataTargetNumber="KPI target is number only.";
 		}
 
 
@@ -633,10 +642,19 @@ $(document).ready(function(){
 		 	// } 
 
 			if(!$.isNumeric($("#kpiDataTarget").val())){
-				validate+="เป้าข้อมูลดิบต้องเป็นตัวเลข <br>";
+				validate+=checkkpiDataTargetNumber+"<br>";
 			}
 
 	 	}
+
+
+		 if($("#kpiUnitArea").is(":visible")){
+
+		    if($("#kpiUnit").val()==""){
+				validate+=checkKPIUnit+"<br>";
+			} 
+
+		}
 	 	
 
 	 	
