@@ -780,7 +780,13 @@ var showDataEmployee=function(year,appraisal_period_id,department_id,position_id
 							
 							var imageEmp="";
 							
-							imageEmp+="<img class='img-circle' src='"+$("#image_emp_data-"+empId).attr("src")+"' width='100px;' style='opacity:0.1'>";
+							
+							if("../View/uploads/avatar.jpg"==$("#image_emp_data-"+empId).attr("src")){
+								imageEmp+="<img class='img-circle' src='"+$("#image_emp_data-"+empId).attr("src")+"' width='100px;' height='100px;' style='opacity:0.1'>";
+							}else{
+								imageEmp+="<img class='img-circle' src='"+$("#image_emp_data-"+empId).attr("src")+"' width='100px;' height='100px;' style='opacity:1'>";
+							}
+							
 
 							var empAreaData="";
 							empAreaData+="<div class=''>";

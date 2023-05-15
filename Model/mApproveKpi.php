@@ -151,9 +151,9 @@ if($_POST['action']=="showEmpData"){
 			//$tableHTML.="	<div style='text-align:center;'>";
 			
 			if (empty($rs['emp_picture_thum'])) {
-				$tableHTML .= "<div style='text-align:center;'>	<img width=80 height=80 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a></div>";
+				$tableHTML .= "<div style='text-align:center;'>	<img width=100 height=100 class=\"img-circle\" style='opacity:0.1;' src=\"../View/uploads/avatar.jpg\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a></div>";
 			} else {
-				$tableHTML .= "<div style='text-align:center;'>	<img width=80 height=80 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a></div>";
+				$tableHTML .= "<div style='text-align:center;'>	<img width=100 height=100 class=\"img-circle\" src=\"" . $rs['emp_picture_thum'] . "\" ><a id='actionViewEmployee-".$rs['emp_id']."' class='actionViewEmployee'>".$rs['emp_code']."</a></div>";
 			}
 			// <img class=\"img-circle\" src=".$rs['emp_picture_thum']." width=80 height=80></td>";
 			$tableHTML.="<table class='table'>";
