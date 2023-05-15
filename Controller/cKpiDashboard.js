@@ -715,9 +715,9 @@ function detailKpiByEmp(emp_id) {
 										textJson+="<div class='col-md-3 '>";
 											textJson+="<div class='thumbnail alert alert-success'>";
 												if(EntryIndex[0]==""){
-													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center; opacity:0.1'><img width='80px' height='80px' class='img-circle'  src='../View/uploads/avatar.jpg'></div>";
+													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center; opacity:0.1'><img width='100px' height='100px' class='img-circle'  src='../View/uploads/avatar.jpg'></div>";
 												}else{
-													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='80px' height='80px' class='img-circle'  src='"+EntryIndex[0]+"'></div>";
+													textJson+="<div class='kpi' data-toggle='modal' data-target='.bs-example-modal-lg' style='text-align:center;'><img width='100px' height='100px' class='img-circle'  src='"+EntryIndex[0]+"'></div>";
 												}
 												textJson+="<table class='table'>";
 												textJson+="<tr>";
