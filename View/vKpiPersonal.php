@@ -88,15 +88,19 @@ $emp_id=$_GET['emp_id'];
 					</div>
 					<div class="panel-body panel-body-bottom" style="padding-left: 0;padding-right: 0;margin-bottom: 5px;">
 					
-						
-							<div id="gaugePersonalArea">
-			
-								<div id="gauge-container1">
-									<div class="gaugePersonal" id="gaugePersonal-<?=$emp_id?>" style=' height: 175px;'></div>
-									<div style='display:none;' class='gauge_data' id="gauge_data-<?=$emp_id?>"  ></div>
-									<p class="bg-info" style="padding: 15px;margin:10px; text-align:center;margin-bottom:0px;" id="gauge-value-<?=$emp_id?>">  <b> 86%</b></p>
-									<p style="display:none;" id="gaugeValue-<?=$emp_id?>"></p>
+							<div class="col-md-6">
+								<div id="gaugePersonalArea">
+				
+									<div id="gauge-container1">
+										<div class="gaugePersonal" id="gaugePersonal-<?=$emp_id?>" style=' height: 175px;'></div>
+										<div style='display:none;' class='gauge_data' id="gauge_data-<?=$emp_id?>"  ></div>
+										<p class="bg-info" style="padding: 15px;margin:10px; text-align:center;margin-bottom:0px;" id="gauge-value-<?=$emp_id?>">  <b> 86%</b></p>
+										<p style="display:none;" id="gaugeValue-<?=$emp_id?>"></p>
+									</div>
 								</div>
+							</div>
+							<div class="col-md-6">
+								<div id="barChartPersonal-<?=$emp_id?>"  style="width:300px; height:250px;"></div> 
 							</div>
 					</div>
 		</div>
@@ -109,22 +113,22 @@ $emp_id=$_GET['emp_id'];
 		<!-- <img width="250" src="../images/user.jpg" class="img-rounded">-->
 	</div>
 
-	<div class="col-md-12" >
+	<!-- <div class="col-md-12" >
 					
-			<!-- ### Panel Start ### -->
-					<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
-								<div class="panel-heading">
-								<B><i class=" glyphicon glyphicon-edit"></i> <?=$_SESSION['emp_dashboard2_l_title_appraisal_reasult']?></B>
-								</div>
-								<div class="panel-body panel-body-bottom" style="padding: 5px;margin-bottom: 5px;">
-								
-										<div id="barChartPersonal-<?=$emp_id?>"  style="width:300px;"></div> 
-
-								</div>
+		
+		<div class="panel panel-default panel-bottom" style="margin-top: 5px;">
+					<div class="panel-heading">
+					<B><i class=" glyphicon glyphicon-edit"></i> <?=$_SESSION['emp_dashboard2_l_title_appraisal_reasult']?></B>
 					</div>
-					<!-- ### Panel End ### -->		
+					<div class="panel-body panel-body-bottom" style="padding: 5px;margin-bottom: 5px;">
+					
+							
+
+					</div>
+		</div>
+						
 			
-	</div>
+	</div> -->
 </div>
 <div class="row1 container">
 		<div class="col-md-12">

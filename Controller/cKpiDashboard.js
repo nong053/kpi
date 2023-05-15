@@ -389,7 +389,7 @@ function detailKpiByEmp(emp_id) {
 												textJson+="</tr>";
 												textJson+="<tr>";
 												textJson+="<td><div class='' >ผลหัวหน้าประเมิน</div></td><td><div class=' textR'>"+EntryIndex[3]+" "+EntryIndex[8]+"</div></td>";
-												
+												textJson+="</tr>";
 												
 												var performance_emp=EntryIndex[7]*40/100;
 												var performance_chief=EntryIndex[4]*60/100;
@@ -403,7 +403,7 @@ function detailKpiByEmp(emp_id) {
 												textJson+=""+getColorBall(performance_total)+"";
 												textJson+="</div></td>";
 												textJson+="</tr>";
-												textJson+="<table>";
+												textJson+="</table>";
 
 
 								textJson+="</div>";
@@ -699,17 +699,8 @@ function detailKpiByEmp(emp_id) {
 		},
 		success:function(data){
 			
-
 			var textJson="";
-			
-			
 			$.each(data,function(index,EntryIndex){
-			
-									
-									
-										
-										
-										
 
 										
 										textJson+="<div class='col-md-3 '>";
